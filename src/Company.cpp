@@ -550,7 +550,20 @@ void Company::showDate()
 	cout << date.getDay() << "-" << date.getMonth() << "-"<< date.getYear() << endl << endl;
 }
 
+/*
+Reservation* getReservation(string name, unsigned int duration, int month, int day, double startingHour)
+{
+	Reservation a(month,day,startingHour,0,duration);
+	vector<Reservation *> res= Company::getUser(name).getReservations();
+	vector<Reservation *>::iterator it;
+	it = find(res.begin(), res.end(),a);
 
+	if(it != res.end())
+	{
+		return *it;
+	}
+}
+*/
 
 //Exception Handling
 

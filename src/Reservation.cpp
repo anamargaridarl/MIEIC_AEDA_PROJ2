@@ -161,6 +161,12 @@ void Reservation::show() {
 	cout << "Price: " << to_string(getPrice()) << endl;
 }
 
+bool Reservation::operator== (Reservation & r)
+{
+	return (duration == r.getDuration() && month == r.getMonth() && day == r.getDay()
+			&& startingHour == r.getStartingHour());
+}
+
 void Free::readInfo(std::ifstream &infile)
 {
 	Reservation::readInfo(infile);

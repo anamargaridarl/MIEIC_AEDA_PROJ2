@@ -129,13 +129,31 @@ void Person::show()
 	cout << "Gender: " << gender << endl;
 }
 
+void Person::editName(string name) {
+
+	this->name = name;
+}
+
+void Person::editGender(string gender)
+{
+	this->gender=gender;
+}
+
+void Person::editAge(int age)
+{
+	this->age = age;
+}
+
 ////////////////////////////////////////////////////////////////////////////
 double calculateEndHour(double startinghour, int duration)
 {
 	return startinghour + 0.5*duration;
 }
 
+Person::~Person()
+{
 
+}
 
 ////////////////////////////////////////////////////////////////////////////
 //////////////////Teacher///////////////////////////////////////////////////
@@ -257,6 +275,10 @@ void Teacher::cleanVectors()
 	lessons.clear();
 }
 
+Teacher::~Teacher()
+{
+
+}
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -542,6 +564,15 @@ void User::cleanReservations()
 	reservations.clear();
 }
 
+void User::editIsGold(bool isGold)
+{
+	this->isGold = isGold;
+}
+
+User::~User()
+{
+
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //Handling exceptions

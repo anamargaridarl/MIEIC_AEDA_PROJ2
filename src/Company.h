@@ -236,6 +236,7 @@ public:
      */
     void showTeacherLessons (std::string teacher);
     void showDate();
+    //Reservation* getReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
 };
 
 /**

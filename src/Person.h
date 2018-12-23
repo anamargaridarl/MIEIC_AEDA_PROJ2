@@ -104,6 +104,10 @@ public:
 	 * @return
 	 */
 	bool operator == (const Person &p1);
+	~Person();
+	void editGender(std::string gender);
+	void editAge(int age);
+	void editName(std::string name);
 private:
 	std::string name; /**< name of the person */
 	int age;	/**< age of the person */
@@ -233,6 +237,8 @@ public:
 	 * @brief cleaning the Reservations
 	 */
 	void cleanReservations();
+	~User();
+	void editIsGold(bool isGold);
 private:
 	bool isGold; /**< does the user have a Gold Card? */
 	std::string assignedTeacher; /**< name of the assigned teacher*/
@@ -311,6 +317,7 @@ public:
 	 * @brief Cleaning all the vectors of the Teacher
 	 */
 	void cleanVectors();
+	~Teacher();
 private:
 	std::vector<Lesson*> lessons; /**< vector of the lessons */
 	int nStudents;	/**< number of students */
