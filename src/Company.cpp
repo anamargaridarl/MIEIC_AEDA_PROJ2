@@ -550,7 +550,7 @@ void Company::showDate()
 	cout << date.getDay() << "-" << date.getMonth() << "-"<< date.getYear() << endl << endl;
 }
 
-void Company::scheduleRepair(int month, int day)
+void Company::scheduleRepair(int month, int day, unsigned maxRepairs)
 {
 	Date d(day, month, this->date.getYear());
 	vector<Supporter> aux;
@@ -558,7 +558,7 @@ void Company::scheduleRepair(int month, int day)
 	{
 		Supporter sup = this->techSupport.top();
 		this->techSupport.pop();
-		if(sup.checkAvailability(d))
+		if(sup.checkAvailability(d) && sup.numRepairs() < maxRepairs)
 		{
 			sup.scheduleRepair(d, this->date);
 			this->techSupport.push(sup);

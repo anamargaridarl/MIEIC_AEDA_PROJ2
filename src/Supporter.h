@@ -30,6 +30,8 @@ public:
 
     unsigned int getDaysUntilAvailable() const;
 
+    unsigned numRepairs()const;
+
     std::set<Date> &getRepairDates() ;
 
     bool checkAvailability(Date date);

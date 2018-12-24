@@ -241,7 +241,7 @@ public:
     void showTeacherLessons (std::string teacher);
     void showDate();
 
-    void scheduleRepair(int month, int day);
+    void scheduleRepair(int month, int day, unsigned maxRepairs);
 };
 
 /**

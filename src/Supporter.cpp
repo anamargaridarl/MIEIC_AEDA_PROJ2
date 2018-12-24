@@ -25,7 +25,7 @@ void Supporter::setGender(const std::string &gender) {
 
 bool Supporter::operator<(Supporter sp)
 {
-    return this->getDaysUntilAvailable() < sp.getDaysUntilAvailable();
+    return this->getDaysUntilAvailable() > sp.getDaysUntilAvailable();
 }
 
 bool Supporter::checkAvailability(Date date)
@@ -45,4 +45,9 @@ void Supporter::scheduleRepair(Date date, Date currentDate)
 {
     this->repairDates.insert(date);
     this->daysUntilAvailable = (unsigned)(currentDate - date);
+}
+
+unsigned Supporter::numRepairs() const
+{
+    return this->repairDates.size();
 }
