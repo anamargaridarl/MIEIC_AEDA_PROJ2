@@ -8,9 +8,11 @@
 #ifndef SRC_COMPANY_H_
 #define SRC_COMPANY_H_
 
+#include <queue>
 #include "Calendar.h"
 #include "Court.h"
 #include "Date.h"
+#include "Supporter.h"
 /**
  * The company itself, operation all of the rest
  */
@@ -22,9 +24,11 @@ private:
 	std::vector<Court> tennisCourts; /**< vector with all the Courts */
 	std::vector<User> users; /**< vector with all the Users */
 	std::vector<Teacher> teachers; /**< vector with all the Users */
+	std::priority_queue<Supporter> techSupport;
 	double cardValue;
 	int year; /**< current Year */
 	Date date; /**< Current date*/
+
 public:
 	/**
 	 *

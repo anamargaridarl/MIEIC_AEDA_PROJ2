@@ -164,3 +164,22 @@ std::string BadDate::what()
 {
 	return "Data does not exist!";
 }
+
+bool Date::operator==(Date d)
+{
+	return this->getDay() == d.getDay() && this->getMonth() == d.getMonth() && this->getYear() == d.getYear();
+}
+
+int Date::operator-(Date d)
+{
+    int thisJDN = (1461 * (this->getYear() + 4800 + (this->getMonth() - 14)/12))/4 +(367 * (this->getMonth() - 2 - 12 * ((this->getMonth() - 14)/12)))/12 - (3 * ((this->getYear()+ 4900 + (this->getMonth() - 14)/12)/100))/4 + this->getDay() - 32075;
+    int dJDN = (1461 * (d.getYear() + 4800 + (d.getMonth() - 14)/12))/4 +(367 * (d.getMonth() - 2 - 12 * ((d.getMonth() - 14)/12)))/12 - (3 * ((d.getYear()+ 4900 + (d.getMonth() - 14)/12)/100))/4 + d.getDay() - 32075;
+    return thisJDN - dJDN;
+}
+
+bool Date::operator<(Date d)
+{
+	int thisJDN = (1461 * (this->getYear() + 4800 + (this->getMonth() - 14)/12))/4 +(367 * (this->getMonth() - 2 - 12 * ((this->getMonth() - 14)/12)))/12 - (3 * ((this->getYear()+ 4900 + (this->getMonth() - 14)/12)/100))/4 + this->getDay() - 32075;
+	int dJDN = (1461 * (d.getYear() + 4800 + (d.getMonth() - 14)/12))/4 +(367 * (d.getMonth() - 2 - 12 * ((d.getMonth() - 14)/12)))/12 - (3 * ((d.getYear()+ 4900 + (d.getMonth() - 14)/12)/100))/4 + d.getDay() - 32075;
+	return thisJDN < dJDN;
+}

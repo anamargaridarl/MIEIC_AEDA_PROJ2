@@ -79,6 +79,11 @@ public:
 	 */
 	unsigned int getYear();
 
+	bool operator==(Date d);
+
+    int operator-(Date d);
+
+    bool operator<(Date d);
 };
 
 
