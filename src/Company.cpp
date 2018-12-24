@@ -550,6 +550,32 @@ void Company::showDate()
 	cout << date.getDay() << "-" << date.getMonth() << "-"<< date.getYear() << endl << endl;
 }
 
+void Company::scheduleRepair(int month, int day)
+{
+	Date d(day, month, this->date.getYear());
+	vector<Supporter> aux;
+	while(!this->techSupport.empty())
+	{
+		Supporter sup = this->techSupport.top();
+		this->techSupport.pop();
+		if(sup.checkAvailability(d))
+		{
+			sup.scheduleRepair(d, this->date);
+			this->techSupport.push(sup);
+			for(auto &i: aux)
+			{
+				this->techSupport.push(i);
+			}
+		}
+	}
+	for(auto i: aux)
+	{
+		this->techSupport.push(i);
+	}
+	throw NoSupporterAvailable();
+
+}
+
 
 
 //Exception Handling
@@ -562,6 +588,11 @@ string NoUserRegistered::what() const
 string NoTeacherRegistered::what() const
 {
 	return "The teacher with name: " + name + ", is not registered in the system. Please register first.";
+}
+
+std::string NoSupporterAvailable::what() const
+{
+	return "There are no supporters available at the given date\n";
 }
 
 string InvalidAge::what() const

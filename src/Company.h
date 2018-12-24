@@ -240,6 +240,8 @@ public:
      */
     void showTeacherLessons (std::string teacher);
     void showDate();
+
+    void scheduleRepair(int month, int day);
 };
 
 /**
@@ -252,6 +254,13 @@ private:
 	std::string name;
 public:
 	NoUserRegistered(std::string name) { this->name=name;}
+	std::string what()const;
+};
+
+class NoSupporterAvailable
+{
+public:
+	NoSupporterAvailable() {}
 	std::string what()const;
 };
 
