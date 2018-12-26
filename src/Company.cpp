@@ -19,9 +19,9 @@ int Company::getMaxUser() const
 {
 	int maxusers=0;
 	// The number of max Users is calculated
-	for(size_t i =0; i < tennisCourts.size();i++)
+	for(auto i : tennisCourts)
 	{
-		maxusers+=tennisCourts[i].getMaxUsers();
+		maxusers += i.getMaxUsers();
 	}
 	return maxusers;
 }
@@ -46,7 +46,12 @@ vector<User> Company::getUsers()
 
 vector<Teacher> Company::getTeachers()
 {
-	return teachers;
+	vector<Teacher> temp;
+	for(auto i : teachers) {
+		if(i.getStatus())
+			temp.push_back(i);
+	}
+	return temp;
 }
 
 User& Company::getUser(string userName)
@@ -60,15 +65,6 @@ User& Company::getUser(string userName)
 		throw NoUserRegistered(userName);
 }
 
-Teacher& Company::getTeacher(std::string teacherName) {
-	Teacher t(teacherName,0,"");
-	//Finds the teacher
-	vector<Teacher>::iterator it = find(teachers.begin(),teachers.end(),t);
-	if(it != teachers.end())
-		return *it;
-	else
-		throw NoTeacherRegistered(teacherName);
-}
 
 bool Company::makeLesson(int month,int day,double startingHour,string userName,string teacherName)
 {
@@ -79,11 +75,18 @@ bool Company::makeLesson(int month,int day,double startingHour,string userName,s
 
 	try {
 		User& u = getUser(userName); // Gets the user
-		Teacher& t = getTeacher(teacherName); //Gets the teacher
-		for(size_t j =0; j<tennisCourts.size();j++) // Finds the first court where it can reserve the Class
+		Teacher temp(teacherName,0,"");
+		tabTeach::iterator it = teachers.find(temp); //Gets the teacher
+		if(it == teachers.end())
+			throw (NoTeacherRegistered(teacherName));
+		temp = *it;
+		for(auto j : tennisCourts) // Finds the first court where it can reserve the Class
 		{
-			if(tennisCourts[j].reserveClass(month,day,startingHour,u,t))
+			if(j.reserveClass(month,day,startingHour,u,temp)) {
+				teachers.erase(it);
+				teachers.insert(temp);
 				return true;
+			}
 		}
 		return false;
 	}
@@ -113,9 +116,9 @@ bool Company::makeFree(int month,int day,double startingHour, int duration,strin
 
 	try {
 		User& u = getUser(username); // Gets the user
-		for(size_t j =0; j<tennisCourts.size();j++) //Reserves the first available court
+		for(auto i: tennisCourts) //Reserves the first available court
 		{
-			if(tennisCourts[j].reserveFree(month,day,startingHour,duration,u))
+			if(i.reserveFree(month,day,startingHour,duration,u))
 				return true;
 		}
 		return false;
@@ -135,14 +138,16 @@ bool Company::registerUser(string name, int age,bool isGold,string gender)
 		throw(AlreadyRegisteredUser(name));
 	}
 	catch(NoUserRegistered &u) {
-		size_t i2=0;
-		for(size_t i = 1; i < teachers.size();i++)
+		Teacher t2("",0,"");
+		for(auto i: teachers)
 		{ //Adds a teacher to the student
-			if (teachers[i2].getnStudents() >= teachers[i].getnStudents())
-				i2 = i;
+			if (t2.getnStudents() >= i.getnStudents())
+				t2 = i;
 		}
-		teachers[i2].addStudent();
-		User newuser(name,age,gender,isGold,teachers[i2].getName());
+		teachers.erase(t2);
+		t2.addStudent();
+		teachers.insert(t2);
+		User newuser(name,age,gender,isGold,t2.getName());
 		users.push_back(newuser);
 		return true;
 	}
@@ -157,13 +162,23 @@ bool Company::registerTeacher(string teacherName, int age,string gender)
 {
 	if (age <0) //Checks if it's a possible age
 		throw(InvalidAge(age));
+	Teacher temp(teacherName,age,gender);
 	try {
-		Teacher& t = getTeacher(teacherName); //Checks for a teacher with that name
-		throw(AlreadyRegisteredTeacher(teacherName));
+		tabTeach::iterator it = teachers.find(temp);
+		if(it == teachers.end())
+			throw (NoTeacherRegistered(teacherName));
+		if(it->getStatus())
+			throw(AlreadyRegisteredTeacher(teacherName));
+		else{
+			temp = *it;
+			teachers.erase(it);
+			temp.setStatus(true);
+			teachers.insert(temp);
+			return true;
+		}
 	}
 	catch(NoTeacherRegistered &t) {
-		Teacher newteacher(teacherName,age,gender);
-		teachers.push_back(newteacher);
+		teachers.insert(temp);
 		return true;
 	}
 	catch(AlreadyRegisteredTeacher &u) {
@@ -177,8 +192,11 @@ bool Company::makeUserReport(int month,string userName,string teacherName)
 	try
 	{
 	 	User& u = getUser(userName); //Gets the User
-	 	Teacher& t = getTeacher(teacherName); //Gets the Teacher
-		Report* newr = new Report(userName,teacherName,u.getReservations());
+		Teacher temp(teacherName,0,"");
+		tabTeach::iterator it = teachers.find(temp);
+		if(it == teachers.end())
+			throw (NoTeacherRegistered(teacherName));
+	 	Report* newr = new Report(userName,teacherName,u.getReservations());
 		u.setReport(newr,month);
 	}
 	catch(NoUserRegistered &u) //Checks if the user doesn't exist
@@ -216,11 +234,6 @@ bool Company::makeUserInvoice(string userName,int month)
 	catch(NoUserRegistered &u) //Checks if the user exists
 	{
 		cout << u.what() << endl;
-		return false;
-	}
-	catch(NoTeacherRegistered &t) //Checks if the teacher exists
-	{
-		cout << t.what() << endl;
 		return false;
 	}
 	catch(IncorrectMonth &e) //Checks if the month doesn't exist
@@ -340,10 +353,12 @@ void Company::storeInfo(std::ofstream &outfile, int indent) {
 	indentation(outfile, indent); //Saves the teachers in the company
 	outfile << "\"teachers\": [" << endl;
 	indent++;
-	for(unsigned int i = 0; i < this->teachers.size(); i++)
+	for(tabTeach::iterator i = teachers.begin(); i != this->teachers.end();)
 	{
-		this->teachers[i].storeInfo(outfile, indent);
-		if(i+1 != this->teachers.size()) {
+		Teacher temp = *i;
+		temp.storeInfo(outfile, indent);
+		i++;
+		if(i != this->teachers.end()) {
 			indentation(outfile, indent);
 			outfile << "," << endl;
 		}
@@ -399,7 +414,7 @@ void Company::readInfo(std::ifstream &infile) {
 				}
 				Teacher t;
 				t.loadClass(infile);
-				teachers.push_back(t);
+				teachers.insert(t);
 				getline(infile,savingString);
 
 			}
@@ -428,21 +443,24 @@ void Company::readInfo(std::ifstream &infile) {
 Company Company::operator++() {
 	++this->date; //Increments the date
 	if(date.getDay() == 1) { //Checks if the date changes month and year in order to do Invoices and Reports
-		for(size_t i = 0; i < users.size();i++) {
+		for(auto i:users) {
 			if(date.getMonth() == 1) {
-				users[i].cleanVectors();
+				i.cleanVectors();
 			}
 			if(date.getMonth() != 1)
 			{
-				makeUserReport(date.getMonth()-1,users[i].getName(),users[i].getTeacher());
-				makeUserInvoice(users[i].getName(),date.getMonth()-1);
+				makeUserReport(date.getMonth()-1,i.getName(),i.getTeacher());
+				makeUserInvoice(i.getName(),date.getMonth()-1);
 			} else{
 				ofstream outfile(to_string((int)this->cardValue - 1) + "-" + to_string(this->date.getYear()-1) + ".json");
 			}
-			users[i].cleanReservations();
+			i.cleanReservations();
 		}
-		for(size_t i = 0; i<teachers.size();i++) {
-			teachers[i].cleanVectors();
+		for(auto i:teachers) {
+			Teacher temp = i;
+			temp.cleanVectors();
+			teachers.erase(i);
+			teachers.insert(temp);
 		}
 	}
 	return *this;
@@ -466,18 +484,27 @@ bool compareTeacher (Teacher &t1,Teacher &t2) { //Compares 2 teachers
 }
 void Company::showTeachers() { //Shows all teachers
 
-    sort(teachers.begin(),teachers.end(),compareTeacher);
-	for(size_t i = 0; i< teachers.size();i++) {
-		cout << "Teacher no. " << i+1 << ":" << endl;
-		teachers[i].show();
+	vector<Teacher> listing;
+	for(auto i: teachers) {
+		listing.push_back(i);
+	}
+	sort(listing.begin(),listing.end(),compareTeacher);
+	int n=0;
+	for(auto i: listing) {
+		n++;
+		cout << "Teacher no. " << n << ":" << endl;
+		i.show();
 		cout << endl;
 	}
 }
 
 void Company::showTeacher(std::string teacher) {
 	try {
-		Teacher t = getTeacher(teacher); //Gets a specific teacher
-		t.show();
+		Teacher temp(teacher,0,"");
+		tabTeach::iterator t = teachers.find(temp); //Gets a specific teacher
+		if(t == teachers.end())
+			throw(NoTeacherRegistered(teacher));
+		(*t).show();
 		cout << endl;
 	}
 	catch (NoTeacherRegistered &e) //Checks if the teacher exists
@@ -531,11 +558,16 @@ void Company::showUserReservations(std::string name) {
 
 void Company::showTeacherLessons(std::string teacher) {
 	try {
-		Teacher t = getTeacher(teacher);
-		vector <Lesson*> lessons = t.getLessons();
-		for(size_t i =0;i<lessons.size(); i++) {
-			cout << "Lesson number " << i+1 << ": " << endl;
-			lessons[i]->show();
+		Teacher temp(teacher,0,"");
+		tabTeach::iterator t = teachers.find(temp);
+		if(t == teachers.end())
+			throw(NoTeacherRegistered(teacher));
+		vector <Lesson*> lessons = (*t).getLessons();
+		int n =0;
+		for(auto i: lessons) {
+			n++;
+			cout << "Lesson number " << n << ": " << endl;
+			i->show();
 			cout << endl;
 		}
 	}
