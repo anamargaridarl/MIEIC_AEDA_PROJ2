@@ -11,16 +11,28 @@
 #include "Calendar.h"
 #include "Court.h"
 #include "Date.h"
+#include <set>
 /**
  * The company itself, operation all of the rest
  */
 
+struct Comp {
+
+    bool operator()(const User &u1,const User &u2) {
+
+
+    	if (u1.getReservationSize() == u2.getReservationSize()) {
+            return u1.getName() < u2.getName();
+        } else
+            return (u1.getReservationSize() < u2.getReservationSize());
+    }
+};
 
 class Company
 {
 private:
 	std::vector<Court> tennisCourts; /**< vector with all the Courts */
-	std::vector<User> users; /**< vector with all the Users */
+	std::set<User, Comp> users; /**< vector with all the Users */
 	std::vector<Teacher> teachers; /**< vector with all the Users */
 	double cardValue;
 	int year; /**< current Year */
@@ -61,7 +73,7 @@ public:
 	 * @brief Getter of the current Users.
 	 * @return vector of Users
 	 */
-	std::vector <User> getUsers();
+	std::set <User,Comp> getUsers();
 	//tested
 
 	/**
@@ -75,7 +87,9 @@ public:
 	 * @param userName - name of the User
 	 * @return a reference to the user
 	 */
-	User& getUser(std::string userName);
+
+	void reAddUser(User u);
+	User getUser(std::string userName);
 
 
 	/**
@@ -117,7 +131,7 @@ public:
 	 * @param gender - the gender of the User
 	 * @return if the user was succesfully created
 	 */
-	bool registerUser(std::string name, int age,bool isGold,std::string gender);
+	bool registerUser(std::string name, int age,bool isGold,std::string gender,std::string adress, int nif);
 	//tested
 
 	/**
@@ -245,6 +259,9 @@ public:
 
     //Reservation* getReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
 };
+
+
+
 
 /**
  * When a user does not exist

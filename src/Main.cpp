@@ -87,6 +87,8 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
     int m, d, strH;
     float duration;
     int save;
+    string adress;
+    int nif;
 
     int flagMenu = 0;
 
@@ -142,7 +144,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cin >> isGold;
 
                         //Finally register the User
-                        if (!(C.registerUser(name, age, isGold, gender)))
+                        if (!(C.registerUser(name, age, isGold, gender,adress,nif)))
                             cout << " Error adding User. Try again" << endl;
 
                     } else if (flagP == 2) //Add Teacher
@@ -215,7 +217,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     } else if (flagR == 2) //Add Lesson
                     {
                         try {
-                            User &user = C.getUser(name);
+                            User user = C.getUser(name);
                             // Tries to make the reservation
                             if (!C.makeLesson(m, d, strH, name, user.getTeacher()))
                                 cout << " Error adding Lesson. Try again" << endl;
@@ -232,9 +234,11 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                 int flagR;
 
                 cout << "----------------------------------------------" << endl;
-                cout << "1.Edit Basic Information" << endl;
-                cout << "2.Edit Reservation" << endl;
-                cout << "3.Go back" << endl;
+                cout << "1.Person: Edit Basic Information" << endl;
+                cout << "2.Person: Delete    "<< endl;
+                cout << "3.Reservation: Edit Information" << endl;
+                cout << "4.Reservation: Delete" << endl;
+                cout << "5.Go back" << endl;
                 cout << "----------------------------------------------" << endl;
 
                 cin >> flagR;
@@ -253,15 +257,14 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     cout << "1.User" << endl;
                     cout << "2.Teacher" << endl;
 
-                    while (flagR != 1 && flagR != 2) {
+                    cin >> flagP;
+
+                    while (flagP != 1 && flagP != 2) {
                         cin.clear();
                         cin.ignore(1000, '\n');
                         cout << " Error...Try again: " << endl;
-                        cin >> flagR;
+                        cin >> flagP;
                     }
-
-                    cin >> flagP;
-
 
                     int flagM;
                     string newGN;
@@ -275,7 +278,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cin.clear();
                         cin.ignore(1000, '\n');
                         cout << " Error...Try again: " << endl;
-                        cin >> flagR;
+                        cin >> flagM;
                     }
 
                     cout << "Name:" << endl;
@@ -315,8 +318,39 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         }
                     }
                 } else if (flagR == 2) {
-                    cout << "to complete" << endl;
+
+                    int flagP;
+
+                    cout << "1.User" << endl;
+                    cout << "2.Teacher" << endl;
+
+                    cin >> flagP;
+
+                    while (flagP != 1 && flagR != 2) {
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        cout << " Error...Try again: " << endl;
+                        cin >> flagP;
+                    }
+
+                    cout << "Name: " << endl;
+                    cin >> name;
+
+                    if(flagP == 1)
+                    {
+                        //delete user
+                    }
+                    else
+                    {
+                        //delete teacher
+                    }
+
+
                 } else if (flagR == 3) {
+                    cout << "to complete" << endl;
+                }else if (flagR == 4) {
+                    cout << "to complete" << endl;
+                }else if (flagR == 5) {
                     break;
                 }
             }

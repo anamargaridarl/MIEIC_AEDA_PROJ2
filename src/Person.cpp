@@ -291,10 +291,12 @@ User::User()
 }
 
 
-User::User(string name,int age,string gender, bool isGold, string assignedTeacher):Person(name,age,gender)
+User::User(string name,int age,string gender, bool isGold, string assignedTeacher, string adress, int nif):Person(name,age,gender)
 {
 	this->isGold = isGold;
 	this->assignedTeacher = assignedTeacher;
+	this->adress = adress;
+	this->NIF =nif;
 	reports.resize(12);
 	invoices.resize(12);
 }
@@ -312,6 +314,15 @@ void User::stopGold()
 bool User::getisGold()
 {
 	return isGold;
+}
+
+int User::getNIF()
+{
+	return NIF;
+}
+string User::getAdress()
+{
+	return adress;
 }
 
 Report User::getReport(int month)
@@ -393,6 +404,10 @@ vector<Reservation*> User::getReservations()
 {
 	return reservations;
 }
+unsigned int User::getReservationSize() const
+{
+    return reservations.size();
+}
 
 string User::getTeacher()
 {
@@ -413,6 +428,10 @@ void User::storeInfo(ofstream &outfile, int &indentation)
 	indentp(outfile,indentation); // Saves the assigned Teacher
 	outfile << "\"assigned Teacher\": "<< "\""<< assignedTeacher <<"\"" << "," <<  endl;
 	indentp(outfile,indentation);
+	outfile << "\"NIF\": "<< "\""<< NIF <<"\"" << "," <<  endl;
+	indentp(outfile,indentation);
+	outfile << "\"adress\": "<< "\""<< adress <<"\"" << "," <<  endl;
+
 
 	outfile<< "\"reports\": "; // Saves all the reports
 	outfile << "["<< endl;
@@ -490,7 +509,21 @@ void User::loadClass(std::ifstream &inpfile) {
 			savingString = savingString.substr(0, savingString.find(",") - 1);
 			this->assignedTeacher = savingString;
 		}
-		//Saves the reports
+
+		if (savingString.find("\"adress\": ") != string::npos) {
+			savingString = savingString.substr(savingString.find(":") + 3);
+			savingString = savingString.substr(0, savingString.find(",") - 1);
+			this->adress = savingString;
+		}
+
+        if (savingString.find("\"NIF\": ") != string::npos) {
+            savingString = savingString.substr(savingString.find(":") + 3);
+            savingString = savingString.substr(0, savingString.find(",") - 1);
+            this->NIF = stoi(savingString);
+        }
+
+
+        //Saves the reports
 		if (savingString.find("\"reports\": ") != string::npos) {
 			while (getline(inpfile, savingString) && (savingString.find("]") == string::npos)) {
 				Report *I = new Report();
@@ -548,6 +581,8 @@ void User::show()
 
 	cout << "isGold: " << a<< endl;
 	cout <<"Assigned Teacher: "<< assignedTeacher << endl;
+	cout <<"NIF" << NIF << endl;
+	cout << "Adress"<< adress << endl;
 
 }
 
@@ -569,9 +604,19 @@ void User::editIsGold(bool isGold)
 	this->isGold = isGold;
 }
 
+void User::editAdress(string adress)
+{
+	this->adress = adress;
+}
+
+void User::editNIF(int NIF)
+{
+	this->NIF = NIF;
+}
+
 User::~User()
 {
-
+	
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////

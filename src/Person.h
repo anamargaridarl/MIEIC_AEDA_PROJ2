@@ -135,7 +135,7 @@ public:
 	 * @param isGold - does the person have the Gold Card
 	 * @param assignedTeacher - the teacher assigned to the person
 	 */
-	User(std::string name,int age, std::string gender, bool isGold, std::string assignedTeacher);
+	User(std::string name,int age, std::string gender, bool isGold, std::string assignedTeacher, std::string adress, int nif);
 
 	/**
 	 * @brief Make a person have a Gold Card
@@ -152,6 +152,10 @@ public:
 	 * Does this User have a Gold Card
 	 * @return if the user is gold
 	 */
+
+	int getNIF();
+	std::string getAdress();
+	unsigned int getReservationSize() const;
 	bool getisGold();
 
 	/**
@@ -239,8 +243,13 @@ public:
 	void cleanReservations();
 	~User();
 	void editIsGold(bool isGold);
+    void editAdress(std::string adress);
+    void editNIF(int NIF);
+
 private:
 	bool isGold; /**< does the user have a Gold Card? */
+	int NIF;
+	std::string adress;
 	std::string assignedTeacher; /**< name of the assigned teacher*/
 	std::vector<Report*> reports; /**< vector of the reports */
 	std::vector<Reservation*> reservations; /**< vector of the reservations */

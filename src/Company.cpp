@@ -39,7 +39,7 @@ vector<Court> Company::getCourts()
 	return tennisCourts;
 }
 
-vector<User> Company::getUsers()
+set<User, Comp> Company::getUsers()
 {
 	return users;
 }
@@ -49,15 +49,25 @@ vector<Teacher> Company::getTeachers()
 	return teachers;
 }
 
-User& Company::getUser(string userName)
+User Company::getUser(string userName)
 {
-	User u(userName,0,"",false,"");
+	User u(userName,0,"",false,"", "", 0);
 	// Finds the User
-	vector<User>::iterator it = find(users.begin(),users.end(),u);
+	set<User,Comp>::iterator it = users.find(u);
+
 	if(it != users.end())
-		return *it;
+	{
+		User a = *it;
+		users.erase(it);
+		return a;
+	}
 	else
 		throw NoUserRegistered(userName);
+}
+
+void Company::reAddUser(User u) //only used in main
+{
+	users.insert(u);
 }
 
 Teacher& Company::getTeacher(std::string teacherName) {
@@ -78,7 +88,7 @@ bool Company::makeLesson(int month,int day,double startingHour,string userName,s
 	}
 
 	try {
-		User& u = getUser(userName); // Gets the user
+		User u = getUser(userName); // Gets the user
 		Teacher& t = getTeacher(teacherName); //Gets the teacher
 		for(size_t j =0; j<tennisCourts.size();j++) // Finds the first court where it can reserve the Class
 		{
@@ -112,11 +122,14 @@ bool Company::makeFree(int month,int day,double startingHour, int duration,strin
 	}
 
 	try {
-		User& u = getUser(username); // Gets the user
+		User u = getUser(username); // Gets the user
 		for(size_t j =0; j<tennisCourts.size();j++) //Reserves the first available court
 		{
-			if(tennisCourts[j].reserveFree(month,day,startingHour,duration,u))
+			if(tennisCourts[j].reserveFree(month,day,startingHour,duration,u)) {
+				users.insert(u);
 				return true;
+			}
+
 		}
 		return false;
 	}
@@ -126,12 +139,12 @@ bool Company::makeFree(int month,int day,double startingHour, int duration,strin
 	}
 }
 
-bool Company::registerUser(string name, int age,bool isGold,string gender)
+bool Company::registerUser(string name, int age,bool isGold,string gender, string adress, int nif)
 {
 	if (age <0) //Checks if it's a possible age
 		throw(InvalidAge(age));
 	try {
-		User& u = getUser(name); //Checks if there's a user already registered
+		User u = getUser(name); //Checks if there's a user already registered
 		throw(AlreadyRegisteredUser(name));
 	}
 	catch(NoUserRegistered &u) {
@@ -142,8 +155,8 @@ bool Company::registerUser(string name, int age,bool isGold,string gender)
 				i2 = i;
 		}
 		teachers[i2].addStudent();
-		User newuser(name,age,gender,isGold,teachers[i2].getName());
-		users.push_back(newuser);
+		User newUser(name,age,gender,isGold,teachers[i2].getName(), adress, nif);
+		users.insert(newUser);
 		return true;
 	}
 	catch(AlreadyRegisteredUser &u) {
@@ -176,10 +189,11 @@ bool Company::makeUserReport(int month,string userName,string teacherName)
 {
 	try
 	{
-	 	User& u = getUser(userName); //Gets the User
+	 	User u = getUser(userName); //Gets the User
 	 	Teacher& t = getTeacher(teacherName); //Gets the Teacher
 		Report* newr = new Report(userName,teacherName,u.getReservations());
 		u.setReport(newr,month);
+		users.insert(u);
 	}
 	catch(NoUserRegistered &u) //Checks if the user doesn't exist
 	{
@@ -208,10 +222,11 @@ bool Company::makeUserInvoice(string userName,int month)
 {
 	try
 	{
-		User& u = getUser(userName); // Gets the user
+		User u = getUser(userName); // Gets the user
 		// Makes the invoice and saves it
 		Invoice* newinvoice = new Invoice(u.getName(),u.getTeacher(),u.getReservations(), u.getisGold());
 		u.setInvoice(newinvoice,month);
+		users.insert(u);
 	}
 	catch(NoUserRegistered &u) //Checks if the user exists
 	{
@@ -261,6 +276,7 @@ bool Company::showReport(string name, int month)
 		cout << e.what() << endl;
 		return false;
 	}
+	users.insert(u);
 	return true;
 }
 
@@ -288,6 +304,7 @@ bool Company::showInvoice(string name,int month)
 		cout << e.what() << endl;
 		return false;
 	}
+	users.insert(u);
 	return true;
 }
 
@@ -322,17 +339,14 @@ void Company::storeInfo(std::ofstream &outfile, int indent) {
 	indentation(outfile, indent); //Saves the users in the company
 	outfile << "\"users\": [" << endl;
 	indent++;
-	for(unsigned int i = 0; i < this->users.size(); i++)
+	for(set<User,Comp>::iterator it = users.begin(); it != users.end(); it++)
 	{
-		this->users[i].storeInfo(outfile, indent);
-		if(i+1 != this->users.size()) {
-			indentation(outfile, indent);
-			outfile << "," << endl;
-		}
-		else
-		{
-			//outfile << endl;
-		}
+		User a;
+		a = *it;
+		a.storeInfo(outfile, indent);
+		indentation(outfile, indent);
+		outfile << "," << endl;
+
 	}
 	indent--;
 	indentation(outfile, indent);
@@ -388,7 +402,7 @@ void Company::readInfo(std::ifstream &infile) {
 				}
 				User u;
 				u.loadClass(infile);
-				users.push_back(u);
+				users.insert(u);
 			}
 		}
         //Gets all the teachers info
@@ -428,18 +442,26 @@ void Company::readInfo(std::ifstream &infile) {
 Company Company::operator++() {
 	++this->date; //Increments the date
 	if(date.getDay() == 1) { //Checks if the date changes month and year in order to do Invoices and Reports
-		for(size_t i = 0; i < users.size();i++) {
+
+
+		set<User, Comp>::iterator it;
+		for(it = users.begin(); it !=users.end(); it++)
+		{
+			User a = *it;
+
 			if(date.getMonth() == 1) {
-				users[i].cleanVectors();
+				a.cleanVectors();
 			}
 			if(date.getMonth() != 1)
 			{
-				makeUserReport(date.getMonth()-1,users[i].getName(),users[i].getTeacher());
-				makeUserInvoice(users[i].getName(),date.getMonth()-1);
+				makeUserReport(date.getMonth()-1,a.getName(),a.getTeacher());
+				makeUserInvoice(a.getName(),date.getMonth()-1);
 			} else{
 				ofstream outfile(to_string((int)this->cardValue - 1) + "-" + to_string(this->date.getYear()-1) + ".json");
 			}
-			users[i].cleanReservations();
+
+			a.cleanReservations();
+			users.insert(a);
 		}
 		for(size_t i = 0; i<teachers.size();i++) {
 			teachers[i].cleanVectors();
@@ -448,15 +470,13 @@ Company Company::operator++() {
 	return *this;
 }
 
-bool compareUser (User &u1,User &u2) { //Compares 2 users
-    return u1.getName() < u2.getName();
-}
 void Company::showUsers() { //Shows all users
 
-    sort(users.begin(),users.end(),compareUser);
+	set<User, Comp>::iterator it;
 	for(size_t i = 0; i< users.size();i++) {
+		User a = *it;
 		cout << "User no. " << i+1 << ":" << endl;
-		users[i].show();
+		a.show();
 		cout << endl;
 	}
 }
