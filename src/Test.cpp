@@ -1,27 +1,20 @@
-#include "cute.h"
-#include "ide_listener.h"
-#include "xml_listener.h"
-#include "cute_runner.h"
 #include "Calendar.h"
+#include "Company.h"
 using namespace std;
 
-void thisIsATest() {
-	ASSERTM("start writing tests", false);	
-}
 
-bool runAllTests(int argc, char const *argv[]) {
-	cute::suite s { };
-	//TODO add your test here
-	s.push_back(CUTE(thisIsATest));
-	cute::xml_file_opener xmlfile(argc, argv);
-	cute::xml_listener<cute::ide_listener<>> lis(xmlfile.out);
-	auto runner = cute::makeRunner(lis, argc, argv);
-	bool success = runner(s, "AllTests");
-	return success;
-}
+int main() {
+    tabTeach hash;
+    Teacher t1("Pedro",12,"peixe");
+    hash.insert(t1);
+    std::string st1 = t1.getName() + t1.getGender() + std::to_string(t1.getAge()) + std::to_string(t1.getnStudents());
+    cout << picosha2::hash256_hex_string(st1) << endl;
+    Teacher null("",0,"");
+    cout << hash.max_size() << endl;
+    Company c1;
+    stringstream s1;
+    bool active = true;
+    cout << "Working at the company currently: " << (active ? "True" : "False") << endl;
 
-int main(int argc, char const *argv[]) {
-    Year ano(2018);
-    ano.getMonth(2).getDay(4).setSchedule(9, 2);
     return 0;
 }
