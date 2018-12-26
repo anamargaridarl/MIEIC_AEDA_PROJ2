@@ -236,6 +236,13 @@ public:
      */
     void showTeacherLessons (std::string teacher);
     void showDate();
+    void changeName(std::string name, std::string newName, int flag);
+    void changeAge(std::string name, int newAge, int flag);
+	void changeGender(std::string name, std::string newgender, int flag);
+    void changeisGold(std::string name, bool isGold);
+
+
+
     //Reservation* getReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
 };
 

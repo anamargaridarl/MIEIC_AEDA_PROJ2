@@ -550,11 +550,12 @@ void Company::showDate()
 	cout << date.getDay() << "-" << date.getMonth() << "-"<< date.getYear() << endl << endl;
 }
 
+
 /*
-Reservation* getReservation(string name, unsigned int duration, int month, int day, double startingHour)
+Reservation* Company::getReservation(string name, unsigned int duration, int month, int day, double startingHour)
 {
 	Reservation a(month,day,startingHour,0,duration);
-	vector<Reservation *> res= Company::getUser(name).getReservations();
+	vector<Reservation *> res= getUser(name).getReservations();
 	vector<Reservation *>::iterator it;
 	it = find(res.begin(), res.end(),a);
 
@@ -565,6 +566,34 @@ Reservation* getReservation(string name, unsigned int duration, int month, int d
 }
 */
 
+void Company::changeName(string name, string newName, int flag)
+{
+	if (flag == 0)
+		getTeacher(name).editName(newName);
+	else
+    	getUser(name).editName(newName);
+}
+
+void Company::changeAge(string name, int newAge, int flag)
+{
+	if (flag == 0)
+		getTeacher(name).editAge(newAge);
+	else
+		getUser(name).editAge(newAge);
+}
+
+void Company::changeGender(string name, string newgender, int flag)
+{
+	if (flag == 0)
+		getTeacher(name).editGender(newgender);
+	else
+		getUser(name).editGender(newgender);
+}
+
+void Company::changeisGold(string name, bool isGold)
+{
+    getUser(name).editIsGold(isGold);
+}
 //Exception Handling
 
 string NoUserRegistered::what() const
