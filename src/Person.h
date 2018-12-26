@@ -318,6 +318,8 @@ public:
 	//sets the teacher status with the param 'newstat'
 	void setStatus(bool newstat);
 
+	void cleanNStudents();
+
 private:
 	std::vector<Lesson*> lessons; /**< vector of the lessons */
 	int nStudents;	/**< number of students */
