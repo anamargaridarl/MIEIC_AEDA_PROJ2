@@ -124,6 +124,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                  cout << " Can't added Users. Company needs teachers first."      << endl;
                  break;
                 	 }
+                    cout << C.sizer() << endl;
                 }
 
                 if (flagP != 3) //Add User or Teacher
@@ -140,12 +141,21 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     {
                         cout << "Gold Card?" << endl;
                         cout << "Option: 1.yes 0.no " << endl;
-
                         cin >> isGold;
+                        cin.ignore();
+                        cout << "Adress:" << endl;
+                        getline(cin, name);
+                        cout << "NIF:" << endl;
+                        cin >>nif;
+
 
                         //Finally register the User
                         if (!(C.registerUser(name, age, isGold, gender,adress,nif)))
                             cout << " Error adding User. Try again" << endl;
+                        else
+                            C.reAddUser()
+
+
 
                     } else if (flagP == 2) //Add Teacher
                     { // Or the Teacher
@@ -153,7 +163,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                             cout << " Error adding User. Try again" << endl;
                     }
                 }
-
+                cout << C.sizer() << endl;
                 break;
             }
             case 2: //add reservation
@@ -285,6 +295,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     cin >> name;
 
                         if (flagM == 0) {
+                            cout << C.sizer() << endl;
                             cout << "New Name" << endl;
                             cin >> newGN;
                             C.changeName(name, newGN, 1);

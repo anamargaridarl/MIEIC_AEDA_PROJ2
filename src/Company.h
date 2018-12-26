@@ -254,6 +254,7 @@ public:
     void changeAge(std::string name, int newAge, int flag);
 	void changeGender(std::string name, std::string newgender, int flag);
     void changeisGold(std::string name, bool isGold);
+    unsigned int sizer();
 
 
 

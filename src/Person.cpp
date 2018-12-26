@@ -581,8 +581,8 @@ void User::show()
 
 	cout << "isGold: " << a<< endl;
 	cout <<"Assigned Teacher: "<< assignedTeacher << endl;
-	cout <<"NIF" << NIF << endl;
 	cout << "Adress"<< adress << endl;
+    cout <<"NIF" << NIF << endl;
 
 }
 

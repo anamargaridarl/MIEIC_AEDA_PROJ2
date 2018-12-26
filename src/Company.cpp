@@ -65,6 +65,11 @@ User Company::getUser(string userName)
 		throw NoUserRegistered(userName);
 }
 
+unsigned int Company::sizer()
+{
+	return users.size();
+}
+
 void Company::reAddUser(User u) //only used in main
 {
 	users.insert(u);
@@ -144,7 +149,8 @@ bool Company::registerUser(string name, int age,bool isGold,string gender, strin
 	if (age <0) //Checks if it's a possible age
 		throw(InvalidAge(age));
 	try {
-		User u = getUser(name); //Checks if there's a user already registered
+		User u = getUser(name);
+		users.insert(u);//Checks if there's a user already registered
 		throw(AlreadyRegisteredUser(name));
 	}
 	catch(NoUserRegistered &u) {
@@ -511,6 +517,7 @@ void Company::showUser(std::string name) {
 		User u = getUser(name); //Gets a specific user
 		u.show();
 		cout << endl;
+		users.insert(u);
 	}
 	catch (NoUserRegistered &e) //Checks if the user exists
 	{
@@ -589,30 +596,55 @@ Reservation* Company::getReservation(string name, unsigned int duration, int mon
 void Company::changeName(string name, string newName, int flag)
 {
 	if (flag == 0)
+	{
+		//needs new implementation
 		getTeacher(name).editName(newName);
+	}
 	else
-    	getUser(name).editName(newName);
+	{
+		User a = getUser(name);
+		a.editName(newName);
+		users.insert(a);
+	}
+
 }
 
 void Company::changeAge(string name, int newAge, int flag)
 {
 	if (flag == 0)
+	{
+		//needs new implementation
 		getTeacher(name).editAge(newAge);
+	}
 	else
-		getUser(name).editAge(newAge);
+	{
+		User a = getUser(name);
+		a.editAge(newAge);
+		users.insert(a);
+	}
+
 }
 
 void Company::changeGender(string name, string newgender, int flag)
 {
 	if (flag == 0)
+	{
+		//needs new implementation
 		getTeacher(name).editGender(newgender);
+	}
 	else
-		getUser(name).editGender(newgender);
+	{
+		User a = getUser(name);
+		a.editGender(newgender);
+		users.insert(a);
+	}
 }
 
 void Company::changeisGold(string name, bool isGold)
 {
-    getUser(name).editIsGold(isGold);
+	User a = getUser(name);
+	a.editIsGold(isGold);
+	users.insert(a);
 }
 //Exception Handling
 
