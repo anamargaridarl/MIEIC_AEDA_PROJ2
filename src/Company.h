@@ -42,8 +42,7 @@ class Company
 private:
 	std::vector<Court> tennisCourts; /**< vector with all the Courts */
 	std::vector<User> users; /**< vector with all the Users */
-	//std::vector<Teacher> teachers; /**< vector with all the Users */
-    tabTeach teachers;
+	tabTeach teachers;
 	double cardValue;
 	int year; /**< current Year */
 	Date date; /**< Current date*/
@@ -251,7 +250,12 @@ public:
      * @param teacher - name of the Teacher
      */
     void showTeacherLessons (std::string teacher);
+
     void showDate();
+
+    bool changeTeacherStatus(std::string teacher,bool newstat);
+
+    bool removeActiveTeacher(std::string teacher);
 };
 
 /**
@@ -326,6 +330,15 @@ class InvalidDate
 public:
 	InvalidDate(int day, int month) { this->day = day, this->month = month;}
 	std::string what() const;
+};
+
+class InactiveTeacher
+{
+private:
+    std::string name;
+public:
+    InactiveTeacher(std::string name) {this->name = name;}
+    std::string what() const;
 };
 
 #endif /* SRC_COMPANY_H_ */

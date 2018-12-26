@@ -582,6 +582,50 @@ void Company::showDate()
 	cout << date.getDay() << "-" << date.getMonth() << "-"<< date.getYear() << endl << endl;
 }
 
+bool Company::changeTeacherStatus(std::string teacher, bool newstat) {
+    try {
+        Teacher temp(teacher,0,"");
+        tabTeach::iterator it = teachers.find(temp);
+        if(it == teachers.end())
+            throw (NoTeacherRegistered(teacher));
+        temp = *it;
+        teachers.erase(it);
+        temp.setStatus(newstat);
+        teachers.insert(temp);
+        return true;
+    }
+    catch(NoTeacherRegistered &t) {
+        cout << t.what() << endl;
+        return false;
+    }
+}
+
+bool Company::removeActiveTeacher(std::string teacher) {
+	try {
+		Teacher temp(teacher,0,"");
+		tabTeach::iterator it = teachers.find(temp);
+		if(it == teachers.end())
+			throw (NoTeacherRegistered(teacher));
+		if(!(*it).getStatus())
+			throw (InactiveTeacher(teacher));
+		temp = *it;
+		teachers.erase(it);
+		temp.setStatus(false);
+		temp.cleanVectors();
+		temp.cleanNStudents();
+		teachers.insert(temp);
+		return true;
+	}
+    catch(NoTeacherRegistered &t) {
+        cout << t.what() << endl;
+        return false;
+    }
+    catch(InactiveTeacher &i) {
+        cout << i.what() << endl;
+        return false;
+    }
+}
+
 
 
 //Exception Handling
@@ -613,4 +657,8 @@ string AlreadyRegisteredTeacher::what() const
 
 std::string InvalidDate::what() const {
 	return "The date given is invalid. Day " + to_string(day) + " of month " + to_string(month) + " has passed.";
+}
+
+std::string InactiveTeacher::what() const {
+	return "The teacher with name: " + name + ", is not currently working for the company.";
 }
