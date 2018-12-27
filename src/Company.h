@@ -256,6 +256,8 @@ public:
     bool changeTeacherStatus(std::string teacher,bool newstat);
 
     bool removeActiveTeacher(std::string teacher);
+
+    std::vector<User> getTeacherStudents(std::string teacher) const;
 };
 
 /**

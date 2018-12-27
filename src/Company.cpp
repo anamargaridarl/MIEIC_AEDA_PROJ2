@@ -141,7 +141,7 @@ bool Company::registerUser(string name, int age,bool isGold,string gender)
 		Teacher t2("",0,"");
 		for(auto i: teachers)
 		{ //Adds a teacher to the student
-			if (t2.getnStudents() >= i.getnStudents())
+			if (t2.getnStudents() >= i.getnStudents() && i.getStatus())
 				t2 = i;
 		}
 		teachers.erase(t2);
@@ -608,12 +608,29 @@ bool Company::removeActiveTeacher(std::string teacher) {
 			throw (NoTeacherRegistered(teacher));
 		if(!(*it).getStatus())
 			throw (InactiveTeacher(teacher));
+
 		temp = *it;
+		//get the students that will need to have another teacher assigned
+		vector<User> students = getTeacherStudents(teacher);
 		teachers.erase(it);
-		temp.setStatus(false);
-		temp.cleanVectors();
-		temp.cleanNStudents();
-		teachers.insert(temp);
+		//remove the teacher active status
+		temp.setStatus(false); // set to inactivity
+		temp.cleanVectors(); // clear lessons
+		temp.cleanNStudents(); //clear nº students assigned
+		teachers.insert(temp); // keep the record
+		
+		for(auto i: students)
+        {
+			temp = *teachers.begin();
+			for(auto j: teachers) {
+				if (temp.getnStudents() >= j.getnStudents())
+					temp = j;
+			}
+			teachers.erase(temp);
+			temp.addStudent();
+			teachers.insert(temp);
+			//i.editTeacher(temp.getName());
+		}
 		return true;
 	}
     catch(NoTeacherRegistered &t) {
@@ -624,6 +641,15 @@ bool Company::removeActiveTeacher(std::string teacher) {
         cout << i.what() << endl;
         return false;
     }
+}
+
+std::vector<User> Company::getTeacherStudents(std::string teacher) const {
+    vector<User> temp;
+    for(auto i: users) {
+        if(i.getTeacher() == teacher)
+            temp.push_back(i);
+    }
+    return temp;
 }
 
 
