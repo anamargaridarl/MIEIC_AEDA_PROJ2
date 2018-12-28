@@ -49,25 +49,17 @@ vector<Teacher> Company::getTeachers()
 	return teachers;
 }
 
-User Company::getUser(string userName)
-{
-	User u(userName,0,"",false,"", "", 0);
+User Company::getUser(string userName) {
+	User u(userName, 0, "", false, "", "", 0);
 	// Finds the User
-	set<User,Comp>::iterator it = users.find(u);
+	set<User, Comp>::iterator it = users.find(u);
 
-	if(it != users.end())
-	{
+	if (it != users.end()) {
 		User a = *it;
 		users.erase(it);
 		return a;
-	}
-	else
+	} else
 		throw NoUserRegistered(userName);
-}
-
-unsigned int Company::sizer()
-{
-	return users.size();
 }
 
 void Company::reAddUser(User u) //only used in main
@@ -478,12 +470,13 @@ Company Company::operator++() {
 
 void Company::showUsers() { //Shows all users
 
-	set<User, Comp>::iterator it;
-	for(size_t i = 0; i< users.size();i++) {
+	set<User, Comp>::iterator it = users.begin();
+	for (size_t i = 0; i < users.size(); i++) {
 		User a = *it;
-		cout << "User no. " << i+1 << ":" << endl;
+		cout << "User no. " << i + 1 << ":" << endl;
 		a.show();
 		cout << endl;
+		it++;
 	}
 }
 
@@ -578,20 +571,25 @@ void Company::showDate()
 }
 
 
-/*
-Reservation* Company::getReservation(string name, unsigned int duration, int month, int day, double startingHour)
+void Company::changeReservation(string name, unsigned int duration, int month, int day, double startingHour)
 {
+	//need testing after function changeReservation
+
 	Reservation a(month,day,startingHour,0,duration);
-	vector<Reservation *> res= getUser(name).getReservations();
+	User b = getUser(name);
+
+	vector<Reservation *> res= b.getReservations();
 	vector<Reservation *>::iterator it;
-	it = find(res.begin(), res.end(),a);
+	it = find(res.begin(), res.end(), &a);
 
 	if(it != res.end())
 	{
-		return *it;
-	}
+		//it->changereservation
+		users.insert(b);
+	} else
+		throw(NoReservation(name));
 }
-*/
+
 
 void Company::changeName(string name, string newName, int flag)
 {
@@ -602,6 +600,7 @@ void Company::changeName(string name, string newName, int flag)
 	}
 	else
 	{
+	    cout << "ola" << endl;
 		User a = getUser(name);
 		a.editName(newName);
 		users.insert(a);
@@ -646,7 +645,29 @@ void Company::changeisGold(string name, bool isGold)
 	a.editIsGold(isGold);
 	users.insert(a);
 }
+
+//need to implement in main
+void Company::changeNIF(std::string name, int newNIF)
+{
+    User a = getUser(name);
+    a.editNIF(newNIF);
+    users.insert(a);
+}
+void Company::changeAdress(std::string name, std::string newAdress)
+{
+	User a = getUser(name);
+	a.editAdress(newAdress);
+	users.insert(a);
+}
+
+
+
 //Exception Handling
+
+string NoReservation::what() const
+{
+	return "No Reservation available under user: " + name + "under those conditions";
+}
 
 string NoUserRegistered::what() const
 {

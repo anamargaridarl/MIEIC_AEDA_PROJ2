@@ -245,6 +245,8 @@ public:
 	void editIsGold(bool isGold);
     void editAdress(std::string adress);
     void editNIF(int NIF);
+    void editAssignedTeacher(std::string newTeacher);
+
 
 private:
 	bool isGold; /**< does the user have a Gold Card? */

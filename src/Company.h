@@ -254,11 +254,12 @@ public:
     void changeAge(std::string name, int newAge, int flag);
 	void changeGender(std::string name, std::string newgender, int flag);
     void changeisGold(std::string name, bool isGold);
-    unsigned int sizer();
+    //not implemented in main
+    void changeNIF(std::string name, int newNIF);
+    void changeAdress(std::string name, std::string newAdress);
+	void changeReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
 
 
-
-    //Reservation* getReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
 };
 
 
@@ -267,6 +268,16 @@ public:
 /**
  * When a user does not exist
  */
+
+class NoReservation
+{
+private:
+	std::string name;
+public:
+	NoReservation(std::string name) { this->name=name;}
+	std::string what()const;
+};
+
 
 class NoUserRegistered
 {

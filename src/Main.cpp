@@ -81,7 +81,7 @@ int Menu(const int cardValue,Company &C) {
 
 int DevelopCompany(Company &C, unsigned int cardValue) {
 
-    string name, gender;
+    string name, gender, assignedT, address;
     int age;
     bool isGold;
     int m, d, strH;
@@ -124,7 +124,6 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                  cout << " Can't added Users. Company needs teachers first."      << endl;
                  break;
                 	 }
-                    cout << C.sizer() << endl;
                 }
 
                 if (flagP != 3) //Add User or Teacher
@@ -144,7 +143,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cin >> isGold;
                         cin.ignore();
                         cout << "Adress:" << endl;
-                        getline(cin, name);
+                        getline(cin, adress);
                         cout << "NIF:" << endl;
                         cin >>nif;
 
@@ -152,8 +151,6 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         //Finally register the User
                         if (!(C.registerUser(name, age, isGold, gender,adress,nif)))
                             cout << " Error adding User. Try again" << endl;
-                        else
-                            C.reAddUser()
 
 
 
@@ -163,7 +160,6 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                             cout << " Error adding User. Try again" << endl;
                     }
                 }
-                cout << C.sizer() << endl;
                 break;
             }
             case 2: //add reservation
@@ -245,7 +241,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                 cout << "----------------------------------------------" << endl;
                 cout << "1.Person: Edit Basic Information" << endl;
-                cout << "2.Person: Delete    "<< endl;
+                cout << "2.Person: Delete    " << endl;
                 cout << "3.Reservation: Edit Information" << endl;
                 cout << "4.Reservation: Delete" << endl;
                 cout << "5.Go back" << endl;
@@ -259,8 +255,8 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     cout << " Error...Try again: " << endl;
                     cin >> flagR;
                 }
-
-                if (flagR == 1) {
+                ///----------------------------------------------------------------
+                if (flagR == 1) { //edit person basic information
 
                     int flagP;
 
@@ -279,56 +275,118 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     int flagM;
                     string newGN;
 
-                    if (flagP == 1) {
-                    cout << "Edit Name, Age or Gender, GoldCard (0,1,2,3)" << endl;
+                ///----------------------------------------------------------------
+                    ///------------------------------------------------------------
+                    if (flagP == 1) { //edit user
+                        cout << "1.Edit Name" << endl;
+                        cout << "2.Age " << endl;
+                        cout << "3.Gender " << endl;
+                        cout << "4.GoldCard " << endl;
+                        cout << "5.Address " << endl;
+                        cout << "6.NIF " << endl;
 
-                    cin >> flagM;
-
-                    while (flagM != 0 && flagM != 1 && flagM != 2 && flagM != 3) {
-                        cin.clear();
-                        cin.ignore(1000, '\n');
-                        cout << " Error...Try again: " << endl;
                         cin >> flagM;
+
+                        while (flagM != 0 && flagM != 1 && flagM != 2 && flagM != 3 && flagM != 4 && flagM != 5 &&
+                               flagM != 6) {
+                            cin.clear();
+                            cin.ignore(1000, '\n');
+                            cout << " Error...Try again: " << endl;
+                            cin >> flagM;
+                        }
+
+                        cin.ignore();
+                        cout << "Name:" << endl;
+                        getline(cin, name);
+
+                        switch (flagM) {
+                            case 1: {
+                                cin.ignore();
+                                cout << "New Name" << endl;
+                                getline(cin, newGN);
+                                C.changeName(name, newGN, 1);
+                                break;
+                            }
+                            case 2: {
+                                cout << "New Age" << endl;
+                                cin >> age;
+                                C.changeAge(name, age, 1);
+                                break;
+                            }
+                            case 3: {
+                                cout << "New Gender" << endl;
+                                cin >> newGN;
+                                C.changeGender(name, newGN, 1);
+                                break;
+                            }
+                            case 4: {
+                                cout << "Change Gold Status: (1-add card, 0-remove gold card)" << endl;
+                                cin >> isGold;
+                                C.changeisGold(name, isGold);
+                                break;
+                            }
+                            case 5: {
+                                cin.ignore();
+                                cout << "Change address" << endl;
+                                getline(cin, address);
+                                C.changeAdress(name,address);
+                                break;
+                            }
+                            case 6: {
+                                cout << "Change NIF" << endl;
+                                cin >> nif;
+                                C.changeNIF(name,nif);
+                                break;
+                            }
+
+
+                        }
+
+                    ///------------------------------------------------------------
+                    } else { //edit teacher
+                        cout << "1.Edit Name" << endl;
+                        cout << "2.Age " << endl;
+                        cout << "3.Gender " << endl;
+                        //need to had more categories after merge
+
+                        cin >> flagM;
+
+                        while (flagM != 0 && flagM != 1 && flagM != 2 && flagM != 3) {
+                            cin.clear();
+                            cin.ignore(1000, '\n');
+                            cout << " Error...Try again: " << endl;
+                            cin >> flagM;
+                        }
+
+                        cin.ignore();
+                        cout << "Name:" << endl;
+                        getline(cin, name);
+
+
+                        switch (flagM) {
+                            case 1: {
+                                cout << "New Name" << endl;
+                                getline(cin, newGN);
+                                C.changeName(name, newGN, 0);
+                                break;
+                            }
+                            case 2: {
+                                cout << "New Age" << endl;
+                                cin >> age;
+                                C.changeAge(name, age, 0);
+                                break;
+                            }
+                            case 3: {
+                                cout << "New Gender" << endl;
+                                cin >> newGN;
+                                C.changeGender(name, newGN, 0);
+                                break;
+                            }
+                        }
                     }
 
-                    cout << "Name:" << endl;
-                    cin >> name;
-
-                        if (flagM == 0) {
-                            cout << C.sizer() << endl;
-                            cout << "New Name" << endl;
-                            cin >> newGN;
-                            C.changeName(name, newGN, 1);
-                        } else if (flagM == 1) {
-                            cout << "New Age" << endl;
-                            cin >> age;
-                            C.changeAge(name, age, 1);
-                        } else if (flagM == 2) {
-                            cout << "New Gender" << endl;
-                            cin >> newGN;
-                            C.changeGender(name, newGN, 1);
-                        }
-                            else if(flagM == 3) {
-                            cout << "Change Gold Status: (1-add card, 0-remove gold card)" << endl;
-                            cin >> isGold;
-                            C.changeisGold(name, isGold);
-                        }
-                    } else {
-                        if (flagM == 0) {
-                            cout << "New Name" << endl;
-                            cin >> newGN;
-                            C.changeName(name, newGN, 0);
-                        } else if (flagM == 1) {
-                            cout << "New Age" << endl;
-                            cin >> age;
-                            C.changeAge(name, age, 0);
-                        } else if (flagM == 2) {
-                            cout << "New Gender" << endl;
-                            cin >> newGN;
-                            C.changeGender(name, newGN, 0);
-                        }
-                    }
-                } else if (flagR == 2) {
+                ///------------------------------------------------------------
+                } else if (flagR == 2) { //delete person
 
                     int flagP;
 
@@ -347,23 +405,23 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     cout << "Name: " << endl;
                     cin >> name;
 
-                    if(flagP == 1)
-                    {
+                    if (flagP == 1) {
                         //delete user
-                    }
-                    else
-                    {
+                    } else {
                         //delete teacher
                     }
 
-
-                } else if (flagR == 3) {
+                ///------------------------------------------------------------
+                } else if (flagR == 3) { //edit reservation
                     cout << "to complete" << endl;
-                }else if (flagR == 4) {
+                ///------------------------------------------------------------
+                } else if (flagR == 4) { //delete reservation
                     cout << "to complete" << endl;
-                }else if (flagR == 5) {
+                ///------------------------------------------------------------
+                } else if (flagR == 5) { //go back
                     break;
                 }
+                ///------------------------------------------------------------
             }
             case 4: //Adds the Courts
             {
@@ -397,6 +455,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     case 1://all teachers and Users
                     {
                         C.showTeachers();
+                        cout << "pele"<< endl;
                         C.showUsers();
                         break;
                     }

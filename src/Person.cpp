@@ -581,8 +581,8 @@ void User::show()
 
 	cout << "isGold: " << a<< endl;
 	cout <<"Assigned Teacher: "<< assignedTeacher << endl;
-	cout << "Adress"<< adress << endl;
-    cout <<"NIF" << NIF << endl;
+	cout << "Adress: "<< adress << endl;
+    cout <<"NIF: " << NIF << endl;
 
 }
 
@@ -614,9 +614,15 @@ void User::editNIF(int NIF)
 	this->NIF = NIF;
 }
 
+void User::editAssignedTeacher(string newTeacher)
+{
+	this->assignedTeacher = newTeacher;
+	//need to make modification in teacher as well
+}
+
 User::~User()
 {
-	
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
