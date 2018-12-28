@@ -22,6 +22,8 @@ private:
 
 public:
 
+    Supporter(){};
+
     Supporter(const std::string &name, const std::string &gender);
 
     const std::string &getName() const;
@@ -47,6 +49,12 @@ public:
     unsigned int getID() const;
 
     friend std::ostream &operator<<(std::ostream& out, const Supporter & sp);
+
+    void storeInfo(std::ofstream &outfile, int indentation);
+
+    void indent(std::ofstream &outfile, int indentation);
+
+    void readInfo(std::ifstream &infile);
 
 };
 

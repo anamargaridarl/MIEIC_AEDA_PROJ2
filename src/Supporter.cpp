@@ -84,3 +84,90 @@ ostream &operator<<(std::ostream &out, const Supporter & sp)
         << "Days Until Next Available: " << sp.daysUntilAvailable << endl;
     return out;
 }
+
+void Supporter::indent(std::ofstream &outfile, int indentation)
+{
+    for(int i = 0; i < indentation; i++)
+    {
+        outfile << "\t";
+    }
+}
+
+void Supporter::storeInfo(std::ofstream &outfile, int indentation)
+{
+    indent(outfile, indentation);
+    outfile << "{" << endl;
+    indentation++;
+    indent(outfile, indentation);
+    outfile << "\"Name\": \"" << this->name << "\"," << endl;
+    indent(outfile, indentation);
+    outfile << "\"ID\": " << this->ID << "," << endl;
+    indent(outfile, indentation);
+    outfile << "\"Gender\": \"" << this->gender << "\","<< endl;
+    indent(outfile, indentation);
+    outfile << "\"DaysUntilAvailable\": " << this->daysUntilAvailable <<  "," << endl;
+    indent(outfile, indentation);
+    outfile << "\"RepairDates\": " << endl;
+    indent(outfile, indentation);
+    outfile << "[" << endl;
+    indentation++;
+    auto it = this->repairDates.begin();
+    for(it; it != this->repairDates.end(); it++)
+    {
+        it->storeInfo(outfile, indentation);
+        if((++it) == this->repairDates.end())
+            break;
+        it--;
+        outfile << "," << endl;
+    }
+    outfile << endl;
+    indentation--;
+    indent(outfile, indentation);
+    outfile << "]" << endl;
+    indentation--;
+    outfile << "}" << endl;
+}
+
+void Supporter::readInfo(std::ifstream &infile)
+{
+    string savingString;
+    while (getline(infile, savingString))
+    {
+        if(savingString.find("Name") != string::npos)
+        {
+            savingString = savingString.substr(savingString.find(" "));
+            savingString = savingString.substr(2, savingString.size() - 4);
+            this->name = savingString;
+        }
+        else if(savingString.find("ID") != string::npos)
+        {
+            savingString = savingString.substr(savingString.find(" ") + 1);
+            savingString = savingString.substr(0, savingString.size()-1);
+            this->ID = (unsigned)stoul(savingString);
+        }
+        else if(savingString.find("Gender") != string::npos)
+        {
+            savingString = savingString.substr(savingString.find(" ") + 2);
+            savingString = savingString.substr(0, savingString.size() - 2);
+            this->gender = savingString;
+        }
+        else if(savingString.find("DaysUntilAvailable") != string::npos)
+        {
+            savingString = savingString.substr(savingString.find(" ") + 1);
+            savingString = savingString.substr(0, savingString.size() - 1);
+            this->daysUntilAvailable = (unsigned) stoul(savingString);
+        }
+        else if(savingString.find("RepairDates") != string::npos)
+        {
+            while (getline(infile, savingString))
+            {
+                if(savingString.find("]") != string::npos)
+                    break;
+                Date d;
+                d.readInfo(infile);
+                this->repairDates.insert(d);
+                getline(infile, savingString);
+            }
+        }
+    }
+}

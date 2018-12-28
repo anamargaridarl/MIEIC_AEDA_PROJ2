@@ -95,7 +95,7 @@ Date Date::operator ++()
 	return *this;
 }
 
-void Date::indent(std::ofstream &outfile, int identation)
+void Date::indent(std::ofstream &outfile, int identation) const
 {
 	for(int i = 0; i < identation; i++)
 	{
@@ -104,7 +104,7 @@ void Date::indent(std::ofstream &outfile, int identation)
 }
 
 
-void Date::storeInfo(std::ofstream &outfile, int indentation)
+void Date::storeInfo(std::ofstream &outfile, int indentation) const
 {
 	indent(outfile, indentation);
 	outfile << "{" << endl;
@@ -172,12 +172,6 @@ bool Date::operator==(Date d)
 
 int Date::operator-(Date d)
 {
-    int thisJDN = (1461 * (this->getYear() + 4800 + (this->getMonth() - 14)/12))/4 +(367 * (this->getMonth() - 2 - 12 * ((this->getMonth() - 14)/12)))/12 - (3 * ((this->getYear()+ 4900 + (this->getMonth() - 14)/12)/100))/4 + this->getDay() - 32075;
-    int dJDN = (1461 * (d.getYear() + 4800 + (d.getMonth() - 14)/12))/4 +(367 * (d.getMonth() - 2 - 12 * ((d.getMonth() - 14)/12)))/12 - (3 * ((d.getYear()+ 4900 + (d.getMonth() - 14)/12)/100))/4 + d.getDay() - 32075;
-    thisJDN = 365*this->getYear() + floor(this->getYear()/4) - floor(this->getYear()/100) + floor(this->getYear()/400)
-            + this->getDay() + floor((153*this->getMonth() + 8)/5);
-    dJDN = 365*d.getYear() + floor(d.getYear()/4) - floor(d.getYear()/100) + floor(d.getYear()/400)
-           + d.getDay() + floor((153*d.getMonth() + 8)/5);
     int thisM= this->getMonth(), thisY = this->getYear();
     int dM = d.getMonth(), dY = d.getYear();
     if(this->getMonth() <= 2)
@@ -190,8 +184,8 @@ int Date::operator-(Date d)
         dM += 12;
         dY -= 1;
     }
-    thisJDN = (int)(floor((146097*thisY))/400 + floor((153 * thisM + 8)/5)+this->getDay());
-    dJDN = (int)(floor((146097*dY))/400 + floor((153 * dM + 8)/5)+d.getDay());
+    int thisJDN = (int)(floor((146097*thisY))/400 + floor((153 * thisM + 8)/5)+this->getDay());
+    int dJDN = (int)(floor((146097*dY))/400 + floor((153 * dM + 8)/5)+d.getDay());
     return thisJDN - dJDN;
 }
 
