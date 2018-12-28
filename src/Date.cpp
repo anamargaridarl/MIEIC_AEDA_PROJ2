@@ -174,12 +174,32 @@ int Date::operator-(Date d)
 {
     int thisJDN = (1461 * (this->getYear() + 4800 + (this->getMonth() - 14)/12))/4 +(367 * (this->getMonth() - 2 - 12 * ((this->getMonth() - 14)/12)))/12 - (3 * ((this->getYear()+ 4900 + (this->getMonth() - 14)/12)/100))/4 + this->getDay() - 32075;
     int dJDN = (1461 * (d.getYear() + 4800 + (d.getMonth() - 14)/12))/4 +(367 * (d.getMonth() - 2 - 12 * ((d.getMonth() - 14)/12)))/12 - (3 * ((d.getYear()+ 4900 + (d.getMonth() - 14)/12)/100))/4 + d.getDay() - 32075;
+    thisJDN = 365*this->getYear() + floor(this->getYear()/4) - floor(this->getYear()/100) + floor(this->getYear()/400)
+            + this->getDay() + floor((153*this->getMonth() + 8)/5);
+    dJDN = 365*d.getYear() + floor(d.getYear()/4) - floor(d.getYear()/100) + floor(d.getYear()/400)
+           + d.getDay() + floor((153*d.getMonth() + 8)/5);
+    int thisM= this->getMonth(), thisY = this->getYear();
+    int dM = d.getMonth(), dY = d.getYear();
+    if(this->getMonth() <= 2)
+    {
+        thisM += 12;
+        thisY -= 1;
+    }
+    if(d.getMonth()<=2)
+    {
+        dM += 12;
+        dY -= 1;
+    }
+    thisJDN = (int)(floor((146097*thisY))/400 + floor((153 * thisM + 8)/5)+this->getDay());
+    dJDN = (int)(floor((146097*dY))/400 + floor((153 * dM + 8)/5)+d.getDay());
     return thisJDN - dJDN;
 }
 
-bool Date::operator<(Date d)
+
+
+bool operator<(Date d1, Date d2)
 {
-	int thisJDN = (1461 * (this->getYear() + 4800 + (this->getMonth() - 14)/12))/4 +(367 * (this->getMonth() - 2 - 12 * ((this->getMonth() - 14)/12)))/12 - (3 * ((this->getYear()+ 4900 + (this->getMonth() - 14)/12)/100))/4 + this->getDay() - 32075;
-	int dJDN = (1461 * (d.getYear() + 4800 + (d.getMonth() - 14)/12))/4 +(367 * (d.getMonth() - 2 - 12 * ((d.getMonth() - 14)/12)))/12 - (3 * ((d.getYear()+ 4900 + (d.getMonth() - 14)/12)/100))/4 + d.getDay() - 32075;
-	return thisJDN < dJDN;
+    int d1JDN = (1461 * (d1.getYear() + 4800 + (d1.getMonth() - 14)/12))/4 +(367 * (d1.getMonth() - 2 - 12 * ((d1.getMonth() - 14)/12)))/12 - (3 * ((d1.getYear()+ 4900 + (d1.getMonth() - 14)/12)/100))/4 + d1.getDay() - 32075;
+    int d2JDN = (1461 * (d2.getYear() + 4800 + (d2.getMonth() - 14)/12))/4 +(367 * (d2.getMonth() - 2 - 12 * ((d2.getMonth() - 14)/12)))/12 - (3 * ((d2.getYear()+ 4900 + (d2.getMonth() - 14)/12)/100))/4 + d2.getDay() - 32075;
+    return d1JDN < d2JDN;
 }

@@ -9,12 +9,15 @@
 #include <set>
 #include "Date.h"
 
+
 class Supporter {
 private:
     std::string name;
     std::string gender;
     std::set<Date> repairDates;
     unsigned daysUntilAvailable;
+    unsigned ID;
+    static unsigned currentID;
 
 public:
 
@@ -38,8 +41,9 @@ public:
 
     void scheduleRepair(Date date, Date currentDate);
 
-    bool operator<(Supporter sp);
+    friend bool operator<(const Supporter sp1, const Supporter sp2);
 
+    unsigned int getID() const;
 };
 
 

@@ -5,7 +5,14 @@
 #include "Supporter.h"
 using namespace std;
 
-Supporter::Supporter(const std::string &name, const std::string &gender) : name(name), gender(gender) {}
+#include <iostream>
+unsigned Supporter::currentID = 0;
+
+Supporter::Supporter(const std::string &name, const std::string &gender) : name(name), gender(gender)
+{
+    this->ID = ++currentID;
+    this->daysUntilAvailable = 0;
+}
 
 const std::string &Supporter::getName() const {
     return name;
@@ -23,14 +30,15 @@ void Supporter::setGender(const std::string &gender) {
     Supporter::gender = gender;
 }
 
-bool Supporter::operator<(Supporter sp)
+bool operator<(const Supporter sp1, const Supporter sp2)
 {
-    return this->getDaysUntilAvailable() > sp.getDaysUntilAvailable();
+    return sp1.getDaysUntilAvailable() > sp2.getDaysUntilAvailable();
 }
+
 
 bool Supporter::checkAvailability(Date date)
 {
-    return (this->repairDates.find(date) != this->repairDates.end());
+    return (this->repairDates.find(date) == this->repairDates.end());
 }
 
 set<Date> &Supporter::getRepairDates() {
@@ -44,10 +52,14 @@ unsigned int Supporter::getDaysUntilAvailable() const {
 void Supporter::scheduleRepair(Date date, Date currentDate)
 {
     this->repairDates.insert(date);
-    this->daysUntilAvailable = (unsigned)(currentDate - date);
+    this->daysUntilAvailable = (unsigned)(date - currentDate);
 }
 
 unsigned Supporter::numRepairs() const
 {
     return this->repairDates.size();
+}
+
+unsigned int Supporter::getID() const {
+    return ID;
 }

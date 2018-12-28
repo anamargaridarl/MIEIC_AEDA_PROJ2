@@ -83,7 +83,7 @@ public:
 
     int operator-(Date d);
 
-    bool operator<(Date d);
+    friend bool operator<(Date d1, Date d2);
 };
 
 

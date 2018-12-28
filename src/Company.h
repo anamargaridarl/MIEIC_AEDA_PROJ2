@@ -241,7 +241,11 @@ public:
     void showTeacherLessons (std::string teacher);
     void showDate();
 
-    void scheduleRepair(int month, int day, unsigned maxRepairs);
+    void scheduleRepair(int day, int month);
+
+    void addRepairer(std::string name, std::string gender);
+
+    void removeRepairer(unsigned id);
 };
 
 /**
@@ -259,8 +263,10 @@ public:
 
 class NoSupporterAvailable
 {
+	unsigned day;
+	unsigned month;
 public:
-	NoSupporterAvailable() {}
+	NoSupporterAvailable(unsigned day, unsigned month):day(day), month(month) {}
 	std::string what()const;
 };
 
@@ -323,6 +329,15 @@ class InvalidDate
 public:
 	InvalidDate(int day, int month) { this->day = day, this->month = month;}
 	std::string what() const;
+};
+
+class NoSupporterID
+{
+private:
+    unsigned ID;
+public:
+    NoSupporterID(unsigned ID):ID(ID){};
+    std::string what() const;
 };
 
 #endif /* SRC_COMPANY_H_ */

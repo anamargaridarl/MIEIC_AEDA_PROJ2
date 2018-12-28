@@ -8,6 +8,7 @@
 #include "Company.h"
 
 using namespace std;
+static unsigned maxRepairs = 4;
 
 Company::Company(double cardValue, Date d)
 {
@@ -550,7 +551,7 @@ void Company::showDate()
 	cout << date.getDay() << "-" << date.getMonth() << "-"<< date.getYear() << endl << endl;
 }
 
-void Company::scheduleRepair(int month, int day, unsigned maxRepairs)
+void Company::scheduleRepair(int day, int month)
 {
 	Date d(day, month, this->date.getYear());
 	vector<Supporter> aux;
@@ -566,16 +567,65 @@ void Company::scheduleRepair(int month, int day, unsigned maxRepairs)
 			{
 				this->techSupport.push(i);
 			}
+			return;
+		} else
+		{
+			aux.push_back(sup);
 		}
 	}
-	for(auto i: aux)
+	for(const auto &i: aux)
 	{
 		this->techSupport.push(i);
 	}
-	throw NoSupporterAvailable();
+	throw NoSupporterAvailable(day, month);
 
 }
 
+void Company::addRepairer(std::string name, std::string gender)
+{
+	Supporter ts(name, gender);
+	this->techSupport.push(ts);
+}
+
+
+void Company::removeRepairer(unsigned id)
+{
+	vector<Supporter> aux;
+	while(!this->techSupport.empty())
+	{
+		Supporter sup = this->techSupport.top();
+		this->techSupport.pop();
+		if(sup.getID() == id)
+		{
+			for(auto &i: aux)
+			{
+				this->techSupport.push(i);
+			}
+			for(auto i: sup.getRepairDates())
+			{
+				try
+				{
+					this->scheduleRepair(i.getDay(), i.getMonth());
+				}
+				catch(NoSupporterAvailable &e)
+				{
+					cout << e.what();
+				}
+
+			}
+			return;
+		} else
+		{
+			aux.push_back(sup);
+		}
+	}
+
+	for(const auto &i: aux)
+	{
+		this->techSupport.push(i);
+	}
+	throw NoSupporterID(id);
+}
 
 
 //Exception Handling
@@ -592,7 +642,7 @@ string NoTeacherRegistered::what() const
 
 std::string NoSupporterAvailable::what() const
 {
-	return "There are no supporters available at the given date\n";
+	return "There are no supporters available at " + to_string(this->day) + " of " + to_string(this->month) + " \n";
 }
 
 string InvalidAge::what() const
@@ -612,4 +662,9 @@ string AlreadyRegisteredTeacher::what() const
 
 std::string InvalidDate::what() const {
 	return "The date given is invalid. Day " + to_string(day) + " of month " + to_string(month) + " has passed.";
+}
+
+std::string NoSupporterID::what() const
+{
+	return "The supporter with the ID " + to_string(this->ID) + " is not registered in this company\n";
 }
