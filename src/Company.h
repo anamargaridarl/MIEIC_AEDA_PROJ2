@@ -44,7 +44,6 @@ private:
 	std::vector<User> users; /**< vector with all the Users */
 	tabTeach teachers;
 	double cardValue;
-	int year; /**< current Year */
 	Date date; /**< Current date*/
 public:
 	/**
@@ -341,6 +340,15 @@ private:
 public:
     InactiveTeacher(std::string name) {this->name = name;}
     std::string what() const;
+};
+
+class NoActiveTeachersLeft
+{
+private:
+	std::string name;
+public:
+	NoActiveTeachersLeft(std::string name) {this->name = name;}
+	std::string what() const;
 };
 
 #endif /* SRC_COMPANY_H_ */

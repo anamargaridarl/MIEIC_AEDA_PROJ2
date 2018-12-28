@@ -29,7 +29,7 @@ int Company::getMaxUser() const
 void Company::createCourt()
 {
 	// Creates a new Court and saves it
-	Court newcourt(year);
+	Court newcourt(date.getYear());
 	tennisCourts.push_back(newcourt);
 
 }
@@ -164,19 +164,30 @@ bool Company::registerTeacher(string teacherName, int age,string gender)
 		throw(InvalidAge(age));
 	Teacher temp(teacherName,age,gender);
 	try {
-		tabTeach::iterator it = teachers.find(temp);
-		if(it == teachers.end())
-			throw (NoTeacherRegistered(teacherName));
-		if(it->getStatus())
+		tabTeach::iterator it = teachers.find(temp); //try to find if the wanted teacher is already registered
+		if(it == teachers.end()) {  //if not, proceeds to check for other available teacher to substitute
+            bool subst = false;
+		    for(auto i: teachers) {
+                if(i.getName() != "" && !i.getStatus())    //search the teachers table to find a available one
+                {
+                    temp = i;
+                    subst = true;
+                    break;
+                }
+            }
+		    if(!subst)                                     //if there is none, create a teacher with the wanted parameter
+		        throw (NoTeacherRegistered(teacherName));
+        }
+		if(it->getStatus())                                //if the teacher is found and already in service, an exception is thrown
 			throw(AlreadyRegisteredTeacher(teacherName));
-		else{
+		else{                                           //if the teacher is found and is inactive
 			temp = *it;
-			teachers.erase(it);
-			temp.setStatus(true);
-			teachers.insert(temp);
-			return true;
 		}
-	}
+        teachers.erase(temp);                           //alter the information and set the teacher back to activity
+        temp.setStatus(true);
+        teachers.insert(temp);
+        return true;
+    }
 	catch(NoTeacherRegistered &t) {
 		teachers.insert(temp);
 		return true;
@@ -379,7 +390,7 @@ void Company::storeInfo(std::ofstream &outfile, int indent) {
 	outfile << endl;
 	indent--;
 	indentation(outfile, indent);
-	outfile << "}";
+	outfile << "}" << endl;
 }
 
 void Company::readInfo(std::ifstream &infile) {
@@ -395,6 +406,7 @@ void Company::readInfo(std::ifstream &infile) {
 				}
 			}
 		}
+		cout << "Tennis Courts read successfully" << endl;
         //Gets all the users info
 		if (savingString.find("users") != string::npos) {
 			while (getline(infile, savingString)) {
@@ -406,6 +418,7 @@ void Company::readInfo(std::ifstream &infile) {
 				users.push_back(u);
 			}
 		}
+		cout << "Users read successfully" << endl;
         //Gets all the teachers info
 		if (savingString.find("teachers") != string::npos) {
 			while (getline(infile, savingString)) {
@@ -419,24 +432,22 @@ void Company::readInfo(std::ifstream &infile) {
 
 			}
 		}
+		cout << "Teachers read successfully" << endl;
         //Gets the card Value
 		if (savingString.find("cardValue") != string::npos) {
 			savingString = savingString.substr(savingString.find("cardValue") + 11);
 			savingString = savingString.substr(0, savingString.find(','));
 			this->cardValue = stod(savingString);
 		}
-        //Gets the year info
-		if (savingString.find("year") != string::npos) {
-			savingString = savingString.substr(savingString.find("year") + 7);
-			savingString = savingString.substr(0, savingString.find_last_of(','));
-			this->year = stoi(savingString);
-		}
+		cout << "CV read successfully" << endl;
+
         //Gets the Date info
 		if (savingString.find("Date") != string::npos) {
 			Date d;
 			d.readInfo(infile);
 			this->date = d;
 		}
+		cout << "Date read successfully" << endl;
 	}
 }
 
@@ -618,12 +629,20 @@ bool Company::removeActiveTeacher(std::string teacher) {
 		temp.cleanVectors(); // clear lessons
 		temp.cleanNStudents(); //clear nº students assigned
 		teachers.insert(temp); // keep the record
-		
+		bool found_active = false;
+		for(auto j:teachers) {
+			if(j.getStatus()) {
+				temp = j;
+				found_active = true;
+				break;
+			}
+		}
+		if(!found_active)
+			throw (NoActiveTeachersLeft(teacher));
 		for(auto i: students)
         {
-			temp = *teachers.begin();
 			for(auto j: teachers) {
-				if (temp.getnStudents() >= j.getnStudents())
+				if (temp.getnStudents() >= j.getnStudents() && j.getStatus())
 					temp = j;
 			}
 			teachers.erase(temp);
@@ -687,4 +706,8 @@ std::string InvalidDate::what() const {
 
 std::string InactiveTeacher::what() const {
 	return "The teacher with name: " + name + ", is not currently working for the company.";
+}
+
+std::string NoActiveTeachersLeft::what() const {
+	return "The teacher with name: " + name + ", is the last teacher available. Cannot be removed.";
 }
