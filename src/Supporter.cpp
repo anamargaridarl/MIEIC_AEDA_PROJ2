@@ -12,6 +12,7 @@ Supporter::Supporter(const std::string &name, const std::string &gender) : name(
 {
     this->ID = ++currentID;
     this->daysUntilAvailable = 0;
+    this->repairDates.clear();
 }
 
 const std::string &Supporter::getName() const {
@@ -52,7 +53,19 @@ unsigned int Supporter::getDaysUntilAvailable() const {
 void Supporter::scheduleRepair(Date date, Date currentDate)
 {
     this->repairDates.insert(date);
-    this->daysUntilAvailable = (unsigned)(date - currentDate);
+
+
+    if(this->repairDates.size() != 1)
+    {
+        Date d = *(--(--this->repairDates.end()));
+        if((date - currentDate) > 1 &&  (date - d) == 1)
+            this->daysUntilAvailable++;
+    } else{
+        if((date - currentDate) > 1)
+            return;
+        else
+            this->daysUntilAvailable++;
+    }
 }
 
 unsigned Supporter::numRepairs() const
