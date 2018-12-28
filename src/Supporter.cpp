@@ -76,3 +76,11 @@ unsigned Supporter::numRepairs() const
 unsigned int Supporter::getID() const {
     return ID;
 }
+
+
+ostream &operator<<(std::ostream &out, const Supporter & sp)
+{
+    out << "Name: " << sp.name << endl << "ID: " << sp.ID << endl << "Gender: " << sp.getGender() << endl
+        << "Days Until Next Available: " << sp.daysUntilAvailable << endl;
+    return out;
+}

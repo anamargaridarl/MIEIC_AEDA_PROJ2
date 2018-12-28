@@ -627,6 +627,21 @@ void Company::removeRepairer(unsigned id)
 	throw NoSupporterID(id);
 }
 
+void Company::listAllRepairers() const
+{
+	if(this->techSupport.empty())
+	    cout << "The company does not possess any Repairers" << endl;
+	else
+    {
+	    priority_queue<Supporter> copy = this->techSupport;
+	    while(!copy.empty())
+        {
+	        cout << copy.top();
+	        copy.pop();
+        }
+    }
+}
+
 
 //Exception Handling
 

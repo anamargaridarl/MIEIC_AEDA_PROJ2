@@ -7,6 +7,7 @@
 
 #include <string>
 #include <set>
+#include <iostream>
 #include "Date.h"
 
 
@@ -44,6 +45,9 @@ public:
     friend bool operator<(const Supporter sp1, const Supporter sp2);
 
     unsigned int getID() const;
+
+    friend std::ostream &operator<<(std::ostream& out, const Supporter & sp);
+
 };
 
 
