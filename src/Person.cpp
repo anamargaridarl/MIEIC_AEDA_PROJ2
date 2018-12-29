@@ -620,7 +620,8 @@ void User::editAssignedTeacher(string newTeacher)
 	//need to make modification in teacher as well
 }
 
-User::~User()
+
+void User::deleteUser()
 {
     for(size_t i = 0; i< reports.size(); i++)
     {

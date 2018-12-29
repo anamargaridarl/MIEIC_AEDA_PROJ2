@@ -51,13 +51,17 @@ vector<Teacher> Company::getTeachers()
 
 void Company::deleteUser(string name)
 {
-	User u(name, 0, "", false, "", "", 0);
-	set<User, Comp>::iterator it = users.find(u);
-	if (it != users.end()) {
-		users.erase(it);
+	set<User, Comp>::iterator it = users.begin();
+
+	while (it != users.end())
+	{
+		if(it->getName() == name) {
+			users.erase(it);
+		}
+		else it++;
 	}
-	else
-		throw NoUserRegistered(name);
+
+	throw NoUserRegistered(name);
 }
 
 User Company::getUser(string userName) {
@@ -71,6 +75,7 @@ User Company::getUser(string userName) {
 			users.erase(it);
 			return a;
 		}
+		else it++;
 	}
 
 	throw NoUserRegistered(userName);

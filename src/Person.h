@@ -242,12 +242,12 @@ public:
 	 * @brief cleaning the Reservations
 	 */
 	void cleanReservations();
-	~User();
+	//~User();
 	void editIsGold(bool isGold);
     void editAdress(std::string adress);
     void editNIF(int NIF);
-	//bool operator == (const User & u1);
-    void editAssignedTeacher(std::string newTeacher);
+	void deleteUser();
+
 
 
 private:
