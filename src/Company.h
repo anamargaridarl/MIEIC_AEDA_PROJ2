@@ -24,7 +24,7 @@ struct Comp {
     	if (u1.getReservationSize() == u2.getReservationSize()) {
             return u1.getName() < u2.getName();
         } else
-            return (u1.getReservationSize() < u2.getReservationSize());
+            return (u1.getReservationSize() > u2.getReservationSize());
     }
 };
 
@@ -108,7 +108,7 @@ public:
 	 * @param teacherName - the name of the Teacher
 	 * @return if it was successful created
 	 */
-	bool makeLesson(int month,int day,double startingHour,std::string userName,std::string teacherName);
+	bool makeLesson(int month,int day,double startingHour,std::string userName);
 	//tested
 
 	/**

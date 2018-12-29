@@ -223,9 +223,8 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     } else if (flagR == 2) //Add Lesson
                     {
                         try {
-                            User user = C.getUser(name);
                             // Tries to make the reservation
-                            if (!C.makeLesson(m, d, strH, name, user.getTeacher()))
+                            if (!C.makeLesson(m, d, strH, name))
                                 cout << " Error adding Lesson. Try again" << endl;
                         }
                         catch(NoUserRegistered &u) { // If the user doesn't exist
@@ -464,7 +463,6 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     case 1://all teachers and Users
                     {
                         C.showTeachers();
-                        cout << "pele"<< endl;
                         C.showUsers();
                         break;
                     }

@@ -16,6 +16,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include "stdlib.h"
 
 /**
  * The class that stores the information of the people in the company
@@ -245,6 +246,7 @@ public:
 	void editIsGold(bool isGold);
     void editAdress(std::string adress);
     void editNIF(int NIF);
+	//bool operator == (const User & u1);
     void editAssignedTeacher(std::string newTeacher);
 
 

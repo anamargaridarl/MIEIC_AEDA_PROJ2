@@ -54,7 +54,6 @@ void Company::deleteUser(string name)
 	User u(name, 0, "", false, "", "", 0);
 	set<User, Comp>::iterator it = users.find(u);
 	if (it != users.end()) {
-		it->~User();
 		users.erase(it);
 	}
 	else
@@ -62,16 +61,19 @@ void Company::deleteUser(string name)
 }
 
 User Company::getUser(string userName) {
-	User u(userName, 0, "", false, "", "", 0);
-	// Finds the User
-	set<User, Comp>::iterator it = users.find(u);
 
-	if (it != users.end()) {
-		User a = *it;
-		users.erase(it);
-		return a;
-	} else
-		throw NoUserRegistered(userName);
+	set<User, Comp>::iterator it = users.begin();
+
+	while (it != users.end())
+	{
+		if(it->getName() == userName) {
+			User a = *it;
+			users.erase(it);
+			return a;
+		}
+	}
+
+	throw NoUserRegistered(userName);
 }
 
 void Company::reAddUser(User u) //only used in main
@@ -89,7 +91,7 @@ Teacher& Company::getTeacher(std::string teacherName) {
 		throw NoTeacherRegistered(teacherName);
 }
 
-bool Company::makeLesson(int month,int day,double startingHour,string userName,string teacherName)
+bool Company::makeLesson(int month,int day,double startingHour,string userName)
 {
 	// Checks if its a possible date
 	if(month < date.getMonth() || (month == date.getMonth() && day < date.getDay())) {
@@ -97,13 +99,18 @@ bool Company::makeLesson(int month,int day,double startingHour,string userName,s
 	}
 
 	try {
-		User u = getUser(userName); // Gets the user
-		Teacher& t = getTeacher(teacherName); //Gets the teacher
+		User u;
+		u = getUser(userName); // Gets the user
+		Teacher& t = getTeacher(u.getTeacher());//Gets the teacher
 		for(size_t j =0; j<tennisCourts.size();j++) // Finds the first court where it can reserve the Class
 		{
 			if(tennisCourts[j].reserveClass(month,day,startingHour,u,t))
+			{
+				users.insert(u);
 				return true;
+			}
 		}
+		users.insert(u);
 		return false;
 	}
 	catch(NoUserRegistered &u) { // If the user doesn't exist
@@ -131,7 +138,8 @@ bool Company::makeFree(int month,int day,double startingHour, int duration,strin
 	}
 
 	try {
-		User u = getUser(username); // Gets the user
+		User u;
+		u= getUser(username); // Gets the user
 		for(size_t j =0; j<tennisCourts.size();j++) //Reserves the first available court
 		{
 			if(tennisCourts[j].reserveFree(month,day,startingHour,duration,u)) {
@@ -153,7 +161,8 @@ bool Company::registerUser(string name, int age,bool isGold,string gender, strin
 	if (age <0) //Checks if it's a possible age
 		throw(InvalidAge(age));
 	try {
-		User u = getUser(name);
+		User u;
+		u= getUser(name);
 		users.insert(u);//Checks if there's a user already registered
 		throw(AlreadyRegisteredUser(name));
 	}
@@ -548,6 +557,7 @@ void Company::showCourts() {
 void Company::showUserReservations(std::string name) {
 	try {
 		User u = getUser(name);
+		users.insert(u);
 		vector <Reservation*> reservations = u.getReservations();
 		for(size_t i =0;i<reservations.size(); i++) {
 			cout << "Reservation number " << i+1 << ": " << endl;

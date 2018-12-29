@@ -622,11 +622,6 @@ void User::editAssignedTeacher(string newTeacher)
 
 User::~User()
 {
-    for(size_t i = 0; i< reservations.size(); i++)
-    {
-        delete reservations.at(i);
-    }
-
     for(size_t i = 0; i< reports.size(); i++)
     {
         delete reports.at(i);
@@ -636,8 +631,13 @@ User::~User()
     {
         delete invoices.at(i);
     }
+	for(size_t i = 0; i< reservations.size(); i++)
+	{
+		delete reservations.at(i);
+	}
 
 }
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //Handling exceptions
