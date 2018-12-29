@@ -56,6 +56,8 @@ void Company::deleteUser(string name)
 	while (it != users.end())
 	{
 		if(it->getName() == name) {
+            User a = *it;
+		    a.deleteUser();
 			users.erase(it);
 		}
 		else it++;
