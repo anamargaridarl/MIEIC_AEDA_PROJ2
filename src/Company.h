@@ -29,6 +29,7 @@ private:
 	int year; /**< current Year */
 	Date date; /**< Current date*/
 
+	void updateAvailableDays();
 public:
 	/**
 	 *
@@ -241,7 +242,7 @@ public:
     void showTeacherLessons (std::string teacher);
     void showDate();
 
-    void scheduleRepair(int day, int month);
+    void scheduleRepair(int day, int month, unsigned ID);
 
     void addRepairer(std::string name, std::string gender);
 
@@ -340,6 +341,15 @@ private:
 public:
     NoSupporterID(unsigned ID):ID(ID){};
     std::string what() const;
+};
+
+class NoCourtID
+{
+private:
+	unsigned ID;
+public:
+	NoCourtID(unsigned ID): ID(ID){};
+	std::string what() const;
 };
 
 #endif /* SRC_COMPANY_H_ */

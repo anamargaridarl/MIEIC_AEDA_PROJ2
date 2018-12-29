@@ -446,6 +446,7 @@ Company Company::operator++() {
 			teachers[i].cleanVectors();
 		}
 	}
+	this->updateAvailableDays();
 	return *this;
 }
 
@@ -551,8 +552,10 @@ void Company::showDate()
 	cout << date.getDay() << "-" << date.getMonth() << "-"<< date.getYear() << endl << endl;
 }
 
-void Company::scheduleRepair(int day, int month)
+void Company::scheduleRepair(int day, int month, unsigned ID)
 {
+	if(this->tennisCourts.size() > ID)
+		throw NoCourtID(ID);
 	Date d(day, month, this->date.getYear());
 	vector<Supporter> aux;
 	while(!this->techSupport.empty())
@@ -561,7 +564,7 @@ void Company::scheduleRepair(int day, int month)
 		this->techSupport.pop();
 		if(sup.checkAvailability(d) && sup.numRepairs() < maxRepairs)
 		{
-			sup.scheduleRepair(d, this->date);
+			sup.scheduleRepair(d, this->date, ID);
 			this->techSupport.push(sup);
 			for(auto &i: aux)
 			{
@@ -605,7 +608,7 @@ void Company::removeRepairer(unsigned id)
 			{
 				try
 				{
-					this->scheduleRepair(i.getDay(), i.getMonth());
+					this->scheduleRepair(i.getRepairDate().getDay(), i.getRepairDate().getMonth(), i.getSupID());
 				}
 				catch(NoSupporterAvailable &e)
 				{
@@ -639,6 +642,22 @@ void Company::listAllRepairers() const
 	        cout << copy.top();
 	        copy.pop();
         }
+    }
+}
+
+void Company::updateAvailableDays()
+{
+    vector<Supporter> aux;
+    while(!this->techSupport.empty())
+    {
+        Supporter sup = this->techSupport.top();
+        --sup;
+        aux.push_back(sup);
+        this->techSupport.pop();
+    }
+    for(const auto &i: aux)
+    {
+        this->techSupport.push(i);
     }
 }
 
@@ -682,4 +701,9 @@ std::string InvalidDate::what() const {
 std::string NoSupporterID::what() const
 {
 	return "The supporter with the ID " + to_string(this->ID) + " is not registered in this company\n";
+}
+
+std::string NoCourtID::what() const
+{
+	return "The Court with the ID " + to_string(this->ID) + " is not registered in this company\n";
 }

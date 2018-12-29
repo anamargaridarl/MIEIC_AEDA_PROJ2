@@ -39,10 +39,11 @@ bool operator<(const Supporter sp1, const Supporter sp2)
 
 bool Supporter::checkAvailability(Date date)
 {
-    return (this->repairDates.find(date) == this->repairDates.end());
+    Repair rp(this->ID, date);
+    return (this->repairDates.find(rp) == this->repairDates.end());
 }
 
-set<Date> &Supporter::getRepairDates() {
+set<Repair> &Supporter::getRepairDates() {
     return repairDates;
 }
 
@@ -50,14 +51,15 @@ unsigned int Supporter::getDaysUntilAvailable() const {
     return daysUntilAvailable;
 }
 
-void Supporter::scheduleRepair(Date date, Date currentDate)
+void Supporter::scheduleRepair(Date date, Date currentDate, unsigned courtID)
 {
-    this->repairDates.insert(date);
+    Repair rp(courtID, date);
+    this->repairDates.insert(rp);
 
 
     if(this->repairDates.size() != 1)
     {
-        Date d = *(--(--this->repairDates.end()));
+        Date d = (--(--this->repairDates.end()))->getRepairDate();
         if((date - currentDate) > 1 &&  (date - d) == 1)
             this->daysUntilAvailable++;
     } else{
@@ -114,17 +116,28 @@ void Supporter::storeInfo(std::ofstream &outfile, int indentation)
     auto it = this->repairDates.begin();
     for(it; it != this->repairDates.end(); it++)
     {
-        it->storeInfo(outfile, indentation);
+        indent(outfile, indentation);
+        outfile << "{" << endl;
+        indentation++;
+        indent(outfile, indentation);
+        outfile << "\"ID:\": "<<it->getSupID() << ","<< endl;
+        indent(outfile, indentation);
+        outfile << "\"repairDate\":" << endl;
+        it->getRepairDate().storeInfo(outfile, indentation);
+        indentation--;
+        outfile << endl;
+        indent(outfile, indentation);
+        outfile<< "}";
         if((++it) == this->repairDates.end())
             break;
-        it--;
         outfile << "," << endl;
+        it--;
     }
     outfile << endl;
     indentation--;
+    indentation--;
     indent(outfile, indentation);
     outfile << "]" << endl;
-    indentation--;
     outfile << "}" << endl;
 }
 
@@ -161,13 +174,34 @@ void Supporter::readInfo(std::ifstream &infile)
         {
             while (getline(infile, savingString))
             {
-                if(savingString.find("]") != string::npos)
-                    break;
+                Repair rp;
                 Date d;
-                d.readInfo(infile);
-                this->repairDates.insert(d);
-                getline(infile, savingString);
+                if(savingString.find("ID") != string::npos)
+                {
+                    savingString = savingString.substr(savingString.find(" ") + 1);
+                    savingString = savingString.substr(0, savingString.size() - 1);
+                    rp.setSupID((unsigned) stoul(savingString));
+                }
+                else if(savingString.find("repairDate") != string::npos)
+                {
+                    d.readInfo(infile);
+                    rp.setRepairDate(d);
+                    this->repairDates.insert(rp);
+                    getline(infile, savingString);
+                }
+                if(savingString.find("]") != string::npos) {
+                    break;
+                }
             }
         }
     }
+}
+
+Supporter Supporter::operator--()
+{
+    if(this->daysUntilAvailable != 0)
+    {
+        this->daysUntilAvailable--;
+    }
+    return *this;
 }

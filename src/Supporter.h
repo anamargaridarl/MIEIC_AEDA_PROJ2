@@ -8,14 +8,13 @@
 #include <string>
 #include <set>
 #include <iostream>
-#include "Date.h"
-
+#include "Repair.h"
 
 class Supporter {
 private:
     std::string name;
     std::string gender;
-    std::set<Date> repairDates;
+    std::set<Repair> repairDates;
     unsigned daysUntilAvailable;
     unsigned ID;
     static unsigned currentID;
@@ -38,11 +37,11 @@ public:
 
     unsigned numRepairs()const;
 
-    std::set<Date> &getRepairDates() ;
+    std::set<Repair> &getRepairDates() ;
 
     bool checkAvailability(Date date);
 
-    void scheduleRepair(Date date, Date currentDate);
+    void scheduleRepair(Date date, Date currentDate, unsigned courtID);
 
     friend bool operator<(const Supporter sp1, const Supporter sp2);
 
@@ -55,6 +54,8 @@ public:
     void indent(std::ofstream &outfile, int indentation);
 
     void readInfo(std::ifstream &infile);
+
+    Supporter operator--();
 
 };
 
