@@ -258,7 +258,7 @@ public:
     void changeNIF(std::string name, int newNIF);
     void changeAdress(std::string name, std::string newAdress);
 	void changeReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
-
+	void deleteUser(std::string name);
 
 };
 

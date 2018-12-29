@@ -262,10 +262,11 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                     cout << "1.User" << endl;
                     cout << "2.Teacher" << endl;
+                    cout << "3.Back" << endl;
 
                     cin >> flagP;
 
-                    while (flagP != 1 && flagP != 2) {
+                    while (flagP != 1 && flagP != 2 && flagP != 3) {
                         cin.clear();
                         cin.ignore(1000, '\n');
                         cout << " Error...Try again: " << endl;
@@ -301,7 +302,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                         switch (flagM) {
                             case 1: {
-                                cin.ignore();
+                                //cin.ignore();
                                 cout << "New Name" << endl;
                                 getline(cin, newGN);
                                 C.changeName(name, newGN, 1);
@@ -343,7 +344,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         }
 
                     ///------------------------------------------------------------
-                    } else { //edit teacher
+                    } else if(flagP == 2){ //edit teacher
                         cout << "1.Edit Name" << endl;
                         cout << "2.Age " << endl;
                         cout << "3.Gender " << endl;
@@ -383,6 +384,9 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                                 break;
                             }
                         }
+                    }else
+                        {
+                        break;
                     }
 
                 ///------------------------------------------------------------
@@ -392,10 +396,11 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                     cout << "1.User" << endl;
                     cout << "2.Teacher" << endl;
+                    cout << "3.Back" << endl;
 
                     cin >> flagP;
 
-                    while (flagP != 1 && flagR != 2) {
+                    while (flagP != 1 && flagR != 2 && flagR != 3) {
                         cin.clear();
                         cin.ignore(1000, '\n');
                         cout << " Error...Try again: " << endl;
@@ -406,9 +411,13 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     cin >> name;
 
                     if (flagP == 1) {
-                        //delete user
-                    } else {
+                        C.deleteUser(name);
+                    } else if(flagP == 2) {
                         //delete teacher
+                    }
+                    else
+                    {
+                        break;
                     }
 
                 ///------------------------------------------------------------

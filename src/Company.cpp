@@ -49,6 +49,18 @@ vector<Teacher> Company::getTeachers()
 	return teachers;
 }
 
+void Company::deleteUser(string name)
+{
+	User u(name, 0, "", false, "", "", 0);
+	set<User, Comp>::iterator it = users.find(u);
+	if (it != users.end()) {
+		it->~User();
+		users.erase(it);
+	}
+	else
+		throw NoUserRegistered(name);
+}
+
 User Company::getUser(string userName) {
 	User u(userName, 0, "", false, "", "", 0);
 	// Finds the User
@@ -600,7 +612,6 @@ void Company::changeName(string name, string newName, int flag)
 	}
 	else
 	{
-	    cout << "ola" << endl;
 		User a = getUser(name);
 		a.editName(newName);
 		users.insert(a);
