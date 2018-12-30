@@ -6,6 +6,7 @@
  */
 
 #include "Company.h"
+#include <string>
 
 using namespace std;
 
@@ -59,17 +60,18 @@ User Company::getUser(string userName) {
 
 	set<User>::iterator it = users.begin();
 
-	while (it != users.end())
-	{
-		if(it->getName() == userName) {
-			User a = *it;
-			users.erase(it);
-			return a;
+		while (it != users.end()) {
+			if (it->getName() == userName) {
+				User a = *it;
+				users.erase(it);
+				return a;
+			} else it++;
 		}
-		else it++;
-	}
 
-	throw NoUserRegistered(userName);
+		throw NoUserRegistered(userName);
+
+
+
 }
 
 void Company::reAddUser(User u) //only used in main
@@ -152,11 +154,33 @@ bool Company::makeFree(int month,int day,double startingHour, int duration,strin
 	}
 }
 
+bool Company::checkNIF(int nif) {
+
+    set<User>::iterator it = users.begin();
+
+    while (it != users.end()) {
+        if (it->getNIF() == nif || to_string(nif).size() != 9) {
+        	cout << to_string(nif).size() << endl;
+            return false;
+        }
+        else it++;
+    }
+
+    if(to_string(nif).size() != 9)
+    	return false;
+	else
+    return true;
+
+}
+
 bool Company::registerUser(string name, int age,bool isGold,string gender, string adress, int nif)
 {
 	if (age <0) //Checks if it's a possible age
 		throw(InvalidAge(age));
+	if(!checkNIF(nif))
+		throw(InvalidNIF(nif));
 	try {
+
 		User u;
 		u= getUser(name);
 		users.insert(u);//Checks if there's a user already registered
@@ -666,6 +690,9 @@ void Company::changeisGold(string name, bool isGold)
 //need to implement in main
 void Company::changeNIF(std::string name, int newNIF)
 {
+	if(!checkNIF(newNIF))
+		throw(InvalidNIF(newNIF));
+
     User a = getUser(name);
     a.editNIF(newNIF);
     users.insert(a);
@@ -713,4 +740,8 @@ string AlreadyRegisteredTeacher::what() const
 
 std::string InvalidDate::what() const {
 	return "The date given is invalid. Day " + to_string(day) + " of month " + to_string(month) + " has passed.";
+}
+
+std::string InvalidNIF::what() const {
+	return "Invalid NIF: " + to_string(nif);
 }

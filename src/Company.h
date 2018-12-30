@@ -260,6 +260,7 @@ public:
     void changeAddress(std::string name, std::string newAdress);
 	void changeReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
 	void deleteUser(std::string name);
+    bool checkNIF(int nif);
 
 };
 
@@ -349,5 +350,16 @@ public:
 	InvalidDate(int day, int month) { this->day = day, this->month = month;}
 	std::string what() const;
 };
+
+
+class InvalidNIF
+{
+private:
+	int nif;
+public:
+	InvalidNIF(int nif) { this->nif=nif;}
+	std::string what()const;
+};
+
 
 #endif /* SRC_COMPANY_H_ */

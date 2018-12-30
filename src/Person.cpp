@@ -311,21 +311,21 @@ void User::stopGold()
 	isGold = false;
 }
 
-bool User::getisGold()
+bool User::getisGold() const
 {
 	return isGold;
 }
 
-int User::getNIF()
+int User::getNIF() const
 {
 	return NIF;
 }
-string User::getAddress()
+string User::getAddress() const
 {
 	return address;
 }
 
-Report User::getReport(int month)
+Report User::getReport(int month) const
 {
 	if(month > 12) // Checks if it's a possible month
 		throw(IncorrectMonth());
@@ -338,7 +338,7 @@ Report User::getReport(int month)
 		return *reports.at(month -1);
 }
 
-Invoice User::getInvoice(int month)
+Invoice User::getInvoice(int month) const
 {
 	if(month > 12) // Checks if it's a possible month
 			throw(IncorrectMonth());
@@ -400,7 +400,7 @@ void User::setReservation(Reservation* reservation)
 		reservations.push_back(reservation);
 }
 
-vector<Reservation*> User::getReservations()
+vector<Reservation*> User::getReservations() const
 {
 	return reservations;
 }
@@ -409,12 +409,12 @@ unsigned int User::getReservationSize() const
     return reservations.size();
 }
 
-string User::getTeacher()
+string User::getTeacher() const
 {
 	return this->assignedTeacher;
 }
 
-vector<Invoice*> User::getInvoices()
+vector<Invoice*> User::getInvoices() const
 {
 	return invoices;
 }

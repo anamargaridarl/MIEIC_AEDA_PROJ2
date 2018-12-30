@@ -149,8 +149,22 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
 
                         //Finally register the User
-                        if (!(C.registerUser(name, age, isGold, gender,adress,nif)))
+                        try
+                        {
+                            if(!C.registerUser(name, age, isGold, gender,adress,nif))
+                                cout << " Error adding User. Try again" << endl;
+                        }
+                        catch(InvalidNIF &u)
+                        {
+                            cout << u.what() << endl;
                             cout << " Error adding User. Try again" << endl;
+                        }
+                        catch(InvalidAge &u)
+                        {
+                            cout << u.what() << endl;
+                            cout << " Error adding User. Try again" << endl;
+
+                        }
 
 
 
@@ -304,19 +318,37 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                                 //cin.ignore();
                                 cout << "New Name" << endl;
                                 getline(cin, newGN);
-                                C.changeName(name, newGN, 1);
+                                try{
+                                    C.changeName(name, newGN, 1);
+                                }
+                                catch(NoUserRegistered &u)
+                                {
+                                    cout << u.what() << endl;
+                                }
                                 break;
                             }
                             case 2: {
                                 cout << "New Age" << endl;
                                 cin >> age;
-                                C.changeAge(name, age, 1);
+                                try{
+                                    C.changeAge(name, age, 1);
+                                }
+                                catch(NoUserRegistered &u)
+                                {
+                                    cout << u.what() << endl;
+                                }
                                 break;
                             }
                             case 3: {
                                 cout << "New Gender" << endl;
                                 cin >> newGN;
-                                C.changeGender(name, newGN, 1);
+                                try{
+                                    C.changeGender(name, newGN, 1);
+                                }
+                                catch(NoUserRegistered &u)
+                                {
+                                    cout << u.what() << endl;
+                                }
                                 break;
                             }
                             case 4: {
@@ -329,13 +361,29 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                                 cin.ignore();
                                 cout << "Change address" << endl;
                                 getline(cin, address);
-                                C.changeAddress(name, address);
+                                try {
+                                    C.changeAddress(name, address);
+                                }
+                                catch(NoUserRegistered &u)
+                                {
+                                    cout << u.what() << endl;
+                                }
                                 break;
                             }
                             case 6: {
                                 cout << "Change NIF" << endl;
                                 cin >> nif;
-                                C.changeNIF(name,nif);
+                                try {
+                                    C.changeNIF(name, nif);
+                                }
+                                catch(NoUserRegistered &u)
+                                {
+                                    cout << u.what() << endl;
+                                }
+                                catch(InvalidNIF &u)
+                                {
+                                    cout << u.what() << endl;
+                                }
                                 break;
                             }
 

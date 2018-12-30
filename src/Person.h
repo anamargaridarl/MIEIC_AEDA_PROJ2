@@ -154,42 +154,42 @@ public:
 	 * @return if the user is gold
 	 */
 
-	int getNIF();
-	std::string getAddress();
+	int getNIF() const;
+	std::string getAddress() const;
 	unsigned int getReservationSize() const;
-	bool getisGold();
+	bool getisGold() const;
 
 	/**
 	 * Getter of the Report of a Specific Month
 	 * @param month - month wanted
 	 * @return the report of said month
 	 */
-	Report getReport(int month);
+	Report getReport(int month) const;
 
 	/**
 	 * Getter of the Invoice of a Specific Month
 	 * @param month - month wanted
 	 * @return the Invoice of said month
 	 */
-	Invoice getInvoice(int month);
+	Invoice getInvoice(int month) const;
 
 	/**
 	 * @brief Getter of all the invoices
 	 * @return vector of Invoices
 	 */
-	std::vector<Invoice*> getInvoices();
+	std::vector<Invoice*> getInvoices() const;
 
 	/**
 	 * @brief Getter of all the Reservation
 	 * @return vector of Reservations
 	 */
-	std::vector<Reservation*> getReservations();
+	std::vector<Reservation*> getReservations() const;
 
 	/**
 	 * @brief Getter of the assigned teacher
 	 * @return the name of the teacher
 	 */
-	std::string getTeacher();
+	std::string getTeacher() const;
 
 	/**
 	 * Setter of the Invoice
