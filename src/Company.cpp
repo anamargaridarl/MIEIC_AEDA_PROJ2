@@ -611,6 +611,7 @@ bool Company::changeTeacherStatus(std::string teacher, bool newstat) {
     }
 }
 
+//remove the teacher from active status and reassign his/her students to another teach and reschedule all possible lessons
 bool Company::removeActiveTeacher(std::string teacher) {
 	try {
 		Teacher temp(teacher,0,"");
@@ -623,6 +624,8 @@ bool Company::removeActiveTeacher(std::string teacher) {
 		temp = *it;
 		//get the students that will need to have another teacher assigned
 		vector<User> students = getTeacherStudents(teacher);
+		//get the removed teacher's lessons to be rescheduled
+		vector<Lesson*> mLessons = temp.getLessons();
 		teachers.erase(it);
 		//remove the teacher active status
 		temp.setStatus(false); // set to inactivity
@@ -630,25 +633,26 @@ bool Company::removeActiveTeacher(std::string teacher) {
 		temp.cleanNStudents(); //clear nº students assigned
 		teachers.insert(temp); // keep the record
 		bool found_active = false;
-		for(auto j:teachers) {
+		for(auto j:teachers) {				//find the first teacher active in the table
 			if(j.getStatus()) {
 				temp = j;
 				found_active = true;
 				break;
 			}
 		}
-		if(!found_active)
+		if(!found_active)				//if there are none an exception is thrown
 			throw (NoActiveTeachersLeft(teacher));
-		for(auto i: students)
-        {
+		for(auto i: students)							//reassign another teacher to each student affected
+        {												//distribuiting accordingly across the rest of the teachers
 			for(auto j: teachers) {
 				if (temp.getnStudents() >= j.getnStudents() && j.getStatus())
 					temp = j;
 			}
 			teachers.erase(temp);
-			temp.addStudent();
+			temp.addStudent(); 		// add a student to the substitute teacher
+			rescheduleLessons(mLessons,i,temp); // reschedule the possible lessons
 			teachers.insert(temp);
-			//i.editTeacher(temp.getName());
+			//i.editTeacher(temp.getName()); //change assignTeacher in User
 		}
 		return true;
 	}
@@ -662,13 +666,48 @@ bool Company::removeActiveTeacher(std::string teacher) {
     }
 }
 
-std::vector<User> Company::getTeacherStudents(std::string teacher) const {
-    vector<User> temp;
+std::vector<User&> Company::getTeacherStudents(std::string teacher) const {
+    vector<User&> temp;
     for(auto i: users) {
         if(i.getTeacher() == teacher)
             temp.push_back(i);
     }
     return temp;
+}
+//returns true if at least one lesson is rescheduled
+bool Company::rescheduleLessons(std::vector<Lesson *> lessons, User &user, Teacher &subst) {
+	vector<Reservation*> reservs = user.getReservations();
+	vector<Reservation*> rejects;
+	for(auto i: lessons) {
+		for(auto j: reservs) {
+			if(i == j) {
+				auto l = find(subst.getLessons().begin(),subst.getLessons().end(),i);
+				if(l == subst.getLessons().end()) {
+					subst.setLesson(i);
+				}
+				else {
+					rejects.push_back(j);
+					//remove from user reservations
+				}
+			}
+		}
+	}
+	if(!rejects.empty()) {
+		cout << "The user: " << user.getName() << "has the following lessons unscheduled:" << endl;
+		int n = 1;
+		for (auto i: rejects) {
+			cout << "Lesson nº " << n << ":\t Day/Month: " << i->getDay() << "/" << i->getMonth() << "\t Time: "
+				 << i->getStartingHour() << ":" << i->getStartingHour() + i->getDuration() << endl;
+			//free reservation memory
+		}
+	}
+
+	if(rejects.size() == lessons.size()) {
+		return false;
+	}
+	else {
+		return true;
+	}
 }
 
 
