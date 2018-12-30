@@ -634,6 +634,16 @@ void User::deleteUser()
 
 }
 
+bool operator<(User u1, User u2)
+{
+    if (u1.getReservationSize() == u2.getReservationSize()) {
+        return u1.getName() < u2.getName();
+    } else
+        return (u1.getReservationSize() > u2.getReservationSize());
+}
+
+
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //Handling exceptions

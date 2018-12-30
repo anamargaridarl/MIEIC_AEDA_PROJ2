@@ -16,6 +16,7 @@
  * The company itself, operation all of the rest
  */
 
+/*
 struct Comp {
 
     bool operator()(const User &u1,const User &u2) {
@@ -26,13 +27,13 @@ struct Comp {
         } else
             return (u1.getReservationSize() > u2.getReservationSize());
     }
-};
+};*/
 
 class Company
 {
 private:
 	std::vector<Court> tennisCourts; /**< vector with all the Courts */
-	std::set<User, Comp> users; /**< vector with all the Users */
+	std::set<User> users; /**< vector with all the Users */
 	std::vector<Teacher> teachers; /**< vector with all the Users */
 	double cardValue;
 	int year; /**< current Year */
@@ -73,7 +74,7 @@ public:
 	 * @brief Getter of the current Users.
 	 * @return vector of Users
 	 */
-	std::set <User,Comp> getUsers();
+	std::set <User> getUsers();
 	//tested
 
 	/**

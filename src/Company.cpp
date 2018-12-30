@@ -39,7 +39,7 @@ vector<Court> Company::getCourts()
 	return tennisCourts;
 }
 
-set<User, Comp> Company::getUsers()
+set<User> Company::getUsers()
 {
 	return users;
 }
@@ -57,7 +57,7 @@ void Company::deleteUser(string name)
 
 User Company::getUser(string userName) {
 
-	set<User, Comp>::iterator it = users.begin();
+	set<User>::iterator it = users.begin();
 
 	while (it != users.end())
 	{
@@ -354,7 +354,7 @@ void Company::storeInfo(std::ofstream &outfile, int indent) {
 	indentation(outfile, indent); //Saves the users in the company
 	outfile << "\"users\": [" << endl;
 	indent++;
-	for(set<User,Comp>::iterator it = users.begin(); it != users.end(); it++)
+	for(set<User>::iterator it = users.begin(); it != users.end(); it++)
 	{
 		User a;
 		a = *it;
@@ -459,7 +459,7 @@ Company Company::operator++() {
 	if(date.getDay() == 1) { //Checks if the date changes month and year in order to do Invoices and Reports
 
 
-		set<User, Comp>::iterator it;
+		set<User>::iterator it;
 		for(it = users.begin(); it !=users.end(); it++)
 		{
 			User a = *it;
@@ -487,7 +487,7 @@ Company Company::operator++() {
 
 void Company::showUsers() { //Shows all users
 
-	set<User, Comp>::iterator it = users.begin();
+	set<User>::iterator it = users.begin();
 	for (size_t i = 0; i < users.size(); i++) {
 		User a = *it;
 		cout << "User no. " << i + 1 << ":" << endl;
