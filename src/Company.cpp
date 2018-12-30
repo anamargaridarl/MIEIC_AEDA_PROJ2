@@ -51,19 +51,8 @@ vector<Teacher> Company::getTeachers()
 
 void Company::deleteUser(string name)
 {
-	set<User, Comp>::iterator it = users.begin();
-
-	while (it != users.end())
-	{
-		if(it->getName() == name) {
-            User a = *it;
-		    a.deleteUser();
-			users.erase(it);
-		}
-		else it++;
-	}
-
-	throw NoUserRegistered(name);
+	User u = this->getUser(name);
+	u.deleteUser();
 }
 
 User Company::getUser(string userName) {
@@ -681,7 +670,7 @@ void Company::changeNIF(std::string name, int newNIF)
     a.editNIF(newNIF);
     users.insert(a);
 }
-void Company::changeAdress(std::string name, std::string newAdress)
+void Company::changeAddress(std::string name, std::string newAdress)
 {
 	User a = getUser(name);
 	a.editAdress(newAdress);

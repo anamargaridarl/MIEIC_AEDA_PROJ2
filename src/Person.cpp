@@ -291,11 +291,11 @@ User::User()
 }
 
 
-User::User(string name,int age,string gender, bool isGold, string assignedTeacher, string adress, int nif):Person(name,age,gender)
+User::User(string name,int age,string gender, bool isGold, string assignedTeacher, string address, int nif):Person(name,age,gender)
 {
 	this->isGold = isGold;
 	this->assignedTeacher = assignedTeacher;
-	this->adress = adress;
+	this->address = address;
 	this->NIF =nif;
 	reports.resize(12);
 	invoices.resize(12);
@@ -320,9 +320,9 @@ int User::getNIF()
 {
 	return NIF;
 }
-string User::getAdress()
+string User::getAddress()
 {
-	return adress;
+	return address;
 }
 
 Report User::getReport(int month)
@@ -430,7 +430,7 @@ void User::storeInfo(ofstream &outfile, int &indentation)
 	indentp(outfile,indentation);
 	outfile << "\"NIF\": "<< "\""<< NIF <<"\"" << "," <<  endl;
 	indentp(outfile,indentation);
-	outfile << "\"adress\": "<< "\""<< adress <<"\"" << "," <<  endl;
+	outfile << "\"address\": "<< "\""<< address <<"\"" << "," <<  endl;
 
 
 	outfile<< "\"reports\": "; // Saves all the reports
@@ -510,10 +510,10 @@ void User::loadClass(std::ifstream &inpfile) {
 			this->assignedTeacher = savingString;
 		}
 
-		if (savingString.find("\"adress\": ") != string::npos) {
+		if (savingString.find("\"address\": ") != string::npos) {
 			savingString = savingString.substr(savingString.find(":") + 3);
 			savingString = savingString.substr(0, savingString.find(",") - 1);
-			this->adress = savingString;
+			this->address = savingString;
 		}
 
         if (savingString.find("\"NIF\": ") != string::npos) {
@@ -581,7 +581,7 @@ void User::show()
 
 	cout << "isGold: " << a<< endl;
 	cout <<"Assigned Teacher: "<< assignedTeacher << endl;
-	cout << "Adress: "<< adress << endl;
+	cout << "Adress: "<< address << endl;
     cout <<"NIF: " << NIF << endl;
 
 }
@@ -606,7 +606,7 @@ void User::editIsGold(bool isGold)
 
 void User::editAdress(string adress)
 {
-	this->adress = adress;
+	this->address = adress;
 }
 
 void User::editNIF(int NIF)

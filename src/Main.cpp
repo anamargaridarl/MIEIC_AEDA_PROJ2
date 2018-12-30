@@ -142,7 +142,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cout << "Option: 1.yes 0.no " << endl;
                         cin >> isGold;
                         cin.ignore();
-                        cout << "Adress:" << endl;
+                        cout << "Address:" << endl;
                         getline(cin, adress);
                         cout << "NIF:" << endl;
                         cin >>nif;
@@ -329,7 +329,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                                 cin.ignore();
                                 cout << "Change address" << endl;
                                 getline(cin, address);
-                                C.changeAdress(name,address);
+                                C.changeAddress(name, address);
                                 break;
                             }
                             case 6: {
