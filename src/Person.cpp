@@ -614,11 +614,6 @@ void User::editNIF(int NIF)
 	this->NIF = NIF;
 }
 
-void User::editAssignedTeacher(string newTeacher)
-{
-	this->assignedTeacher = newTeacher;
-	//need to make modification in teacher as well
-}
 
 
 void User::deleteUser()
