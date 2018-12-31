@@ -234,7 +234,7 @@ public:
 	 */
 	void cleanReservations();
 
-	void editTeacher(std::string newteach);
+	//void editTeacher(std::string newteach);
 
 	void setReservations(std::vector<Reservation*> reservs);
 private:

@@ -258,7 +258,7 @@ public:
 
     //std::vector<User&> getTeacherStudents(std::string teacher);
 
-    bool rescheduleLessons(std::vector<Lesson*> Lessons, User & user,Teacher &subst);
+    bool rescheduleLessons(std::vector<Lesson *> lessons, std::vector<Reservation *> &reservs, Teacher &subst, std::string username);
 };
 
 /**

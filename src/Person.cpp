@@ -566,9 +566,6 @@ void User::cleanReservations()
 	reservations.clear();
 }
 
-void User::editTeacher(std::string newteach) {
-	this->assignedTeacher = newteach;
-}
 
 void User::setReservations(std::vector<Reservation *> reservs) {
 	this->reservations = reservs;

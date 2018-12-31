@@ -622,46 +622,58 @@ bool Company::changeTeacherStatus(std::string teacher, bool newstat) {
 //remove the teacher from active status and reassign his/her students to another teach and reschedule all possible lessons
 bool Company::removeActiveTeacher(std::string teacher) {
 	try {
-		Teacher temp(teacher,0,"");
-		tabTeach::iterator it = teachers.find(temp);
+		Teacher rem_teacher(teacher,0,"");
+		tabTeach::iterator it = teachers.find(rem_teacher);
 		if(it == teachers.end())
 			throw (NoTeacherRegistered(teacher));
 		if(!(*it).getStatus())
 			throw (InactiveTeacher(teacher));
 
-		temp = *it;
+		rem_teacher = *it;
 		//get the students that will need to have another teacher assigned
-		//vector<User&> students = getTeacherStudents(teacher); // FAILING
-		vector<User> students;
 		//get the removed teacher's lessons to be rescheduled
-		vector<Lesson*> mLessons = temp.getLessons();
+		vector<Lesson*> mLessons = rem_teacher.getLessons();
 		teachers.erase(it);
 		//remove the teacher active status
-		temp.setStatus(false); // set to inactivity
-		temp.cleanVectors(); // clear lessons
-		temp.cleanNStudents(); //clear nº students assigned
-		teachers.insert(temp); // keep the record
+		rem_teacher.setStatus(false); // set to inactivity
+		rem_teacher.cleanVectors(); // clear lessons
+		rem_teacher.cleanNStudents(); //clear nº students assigned
+		teachers.insert(rem_teacher); // keep the record
+
+		Teacher new_teacher(teacher,0,"");
 		bool found_active = false;
+
 		for(auto j:teachers) {				//find the first teacher active in the table
 			if(j.getStatus()) {
-				temp = j;
+				new_teacher = j;
 				found_active = true;
 				break;
 			}
 		}
 		if(!found_active)				//if there are none an exception is thrown
 			throw (NoActiveTeachersLeft(teacher));
-		for(auto i: students)							//reassign another teacher to each student affected
+
+		for(auto i: users)							//reassign another teacher to each student affected
         {												//distribuiting accordingly across the rest of the teachers
-			for(auto j: teachers) {
-				if (temp.getnStudents() >= j.getnStudents() && j.getStatus())
-					temp = j;
+
+			if(i.getTeacher() == rem_teacher.getName()) {
+				for (auto j: teachers) {
+					if (new_teacher.getnStudents() >= j.getnStudents() && j.getStatus())
+						new_teacher = j;
+				}
+				teachers.erase(new_teacher);
+				new_teacher.addStudent();// add a student to the substitute teacher
+				std::vector<Reservation *> reservs = i.getReservations();
+				rescheduleLessons(mLessons, reservs, new_teacher,i.getName()); // reschedule the possible lessons
+				teachers.insert(new_teacher);
+
+				/*needs bst to work*/
+				//users.erase(i);
+				User u = i;
+				//u.editTeacher(temp.getName());//ana side
+				//u.editreservations(reservs); //ana side
+				//users.insert(u);
 			}
-			teachers.erase(temp);
-			temp.addStudent(); 		// add a student to the substitute teacher
-			//rescheduleLessons(mLessons,i,temp); // reschedule the possible lessons
-			teachers.insert(temp);
-			//i.editTeacher(temp.getName()); //change assignTeacher in User (TO BE UPDATED)
 		}
 		return true;
 	}
@@ -687,8 +699,8 @@ std::vector<User&> Company::getTeacherStudents(std::string teacher)  {
 }
  */
 //returns true if at least one lesson is rescheduled
-bool Company::rescheduleLessons(std::vector<Lesson *> lessons, User &user, Teacher &subst) {
-	vector<Reservation*> reservs = user.getReservations();
+bool Company::rescheduleLessons(std::vector<Lesson *> lessons, std::vector<Reservation *> &reservs, Teacher &subst, string username) {
+
 	vector<Reservation*> rejects;
 	for(auto i: lessons) {
 		for (auto j= reservs.begin(); j != reservs.end(); j++) {
@@ -706,10 +718,8 @@ bool Company::rescheduleLessons(std::vector<Lesson *> lessons, User &user, Teach
 		}
 	}
 
-	user.setReservations(reservs); //set the reservations with the changes made;
-
 	if(!rejects.empty()) {
-		cout << "The user: " << user.getName() << "has the following lessons unscheduled:" << endl;
+		cout << "The user: " << username << "has the following lessons unscheduled:" << endl;
 		int n = 1;
 		for (auto i: rejects) {
 			cout << "Lesson nº " << n << ":\t Day/Month: " << i->getDay() << "/" << i->getMonth() << "\t Time: "
