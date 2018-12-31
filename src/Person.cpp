@@ -396,7 +396,7 @@ vector<Reservation*> User::getReservations()
 	return reservations;
 }
 
-string User::getTeacher()
+string User::getTeacher() const
 {
 	return this->assignedTeacher;
 }
@@ -564,6 +564,14 @@ void User::cleanVectors()
 void User::cleanReservations()
 {
 	reservations.clear();
+}
+
+void User::editTeacher(std::string newteach) {
+	this->assignedTeacher = newteach;
+}
+
+void User::setReservations(std::vector<Reservation *> reservs) {
+	this->reservations = reservs;
 }
 
 

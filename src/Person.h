@@ -180,7 +180,7 @@ public:
 	 * @brief Getter of the assigned teacher
 	 * @return the name of the teacher
 	 */
-	std::string getTeacher();
+	std::string getTeacher() const;
 
 	/**
 	 * Setter of the Invoice
@@ -233,6 +233,10 @@ public:
 	 * @brief cleaning the Reservations
 	 */
 	void cleanReservations();
+
+	void editTeacher(std::string newteach);
+
+	void setReservations(std::vector<Reservation*> reservs);
 private:
 	bool isGold; /**< does the user have a Gold Card? */
 	std::string assignedTeacher; /**< name of the assigned teacher*/
