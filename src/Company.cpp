@@ -77,9 +77,13 @@ bool Company::makeLesson(int month,int day,double startingHour,string userName,s
 		User& u = getUser(userName); // Gets the user
 		Teacher temp(teacherName,0,"");
 		tabTeach::iterator it = teachers.find(temp); //Gets the teacher
-		if(it == teachers.end())
+		if(it == teachers.end()) {
 			throw (NoTeacherRegistered(teacherName));
+		}
 		temp = *it;
+		if(!temp.getStatus()) {
+			throw (InactiveTeacher(teacherName));
+		}
 		for(auto j : tennisCourts) // Finds the first court where it can reserve the Class
 		{
 			if(j.reserveClass(month,day,startingHour,u,temp)) {
@@ -97,6 +101,11 @@ bool Company::makeLesson(int month,int day,double startingHour,string userName,s
 	catch(NoTeacherRegistered &t) // If the teacher doesn't exist
 	{
 		cout << t.what() << endl;
+		return false;
+	}
+	catch(InactiveTeacher &i) //if the teacher find is inactive
+	{
+		cout << i.what() << endl;
 		return false;
 	}
 }
@@ -406,7 +415,7 @@ void Company::readInfo(std::ifstream &infile) {
 				}
 			}
 		}
-		cout << "Tennis Courts read successfully" << endl;
+
         //Gets all the users info
 		if (savingString.find("users") != string::npos) {
 			while (getline(infile, savingString)) {
@@ -418,7 +427,7 @@ void Company::readInfo(std::ifstream &infile) {
 				users.push_back(u);
 			}
 		}
-		cout << "Users read successfully" << endl;
+
         //Gets all the teachers info
 		if (savingString.find("teachers") != string::npos) {
 			while (getline(infile, savingString)) {
@@ -432,14 +441,13 @@ void Company::readInfo(std::ifstream &infile) {
 
 			}
 		}
-		cout << "Teachers read successfully" << endl;
+
         //Gets the card Value
 		if (savingString.find("cardValue") != string::npos) {
 			savingString = savingString.substr(savingString.find("cardValue") + 11);
 			savingString = savingString.substr(0, savingString.find(','));
 			this->cardValue = stod(savingString);
 		}
-		cout << "CV read successfully" << endl;
 
         //Gets the Date info
 		if (savingString.find("Date") != string::npos) {
@@ -447,7 +455,7 @@ void Company::readInfo(std::ifstream &infile) {
 			d.readInfo(infile);
 			this->date = d;
 		}
-		cout << "Date read successfully" << endl;
+
 	}
 }
 
@@ -623,7 +631,8 @@ bool Company::removeActiveTeacher(std::string teacher) {
 
 		temp = *it;
 		//get the students that will need to have another teacher assigned
-		vector<User> students = getTeacherStudents(teacher);
+		//vector<User&> students = getTeacherStudents(teacher); // FAILING
+		vector<User> students;
 		//get the removed teacher's lessons to be rescheduled
 		vector<Lesson*> mLessons = temp.getLessons();
 		teachers.erase(it);
@@ -652,7 +661,7 @@ bool Company::removeActiveTeacher(std::string teacher) {
 			temp.addStudent(); 		// add a student to the substitute teacher
 			rescheduleLessons(mLessons,i,temp); // reschedule the possible lessons
 			teachers.insert(temp);
-			//i.editTeacher(temp.getName()); //change assignTeacher in User
+			i.editTeacher(temp.getName()); //change assignTeacher in User (TO BE UPDATED)
 		}
 		return true;
 	}
@@ -666,39 +675,46 @@ bool Company::removeActiveTeacher(std::string teacher) {
     }
 }
 
-std::vector<User&> Company::getTeacherStudents(std::string teacher) const {
+/*
+std::vector<User&> Company::getTeacherStudents(std::string teacher)  {
     vector<User&> temp;
-    for(auto i: users) {
-        if(i.getTeacher() == teacher)
-            temp.push_back(i);
+    for(vector<User>::iterator i = users.begin() ; i != users.end() ; i++) {
+        if((*i).getTeacher() == teacher) {
+        	temp.push_back(*i);
+        }
     }
     return temp;
 }
+ */
 //returns true if at least one lesson is rescheduled
 bool Company::rescheduleLessons(std::vector<Lesson *> lessons, User &user, Teacher &subst) {
 	vector<Reservation*> reservs = user.getReservations();
 	vector<Reservation*> rejects;
 	for(auto i: lessons) {
-		for(auto j: reservs) {
-			if(i == j) {
-				auto l = find(subst.getLessons().begin(),subst.getLessons().end(),i);
+		for (auto j= reservs.begin(); j != reservs.end(); j++) {
+			if(i == *j) {
+				auto l = find(subst.getLessons().begin(),subst.getLessons().end(),i); //try to find if the teacher already has a class scheduled for the same time
 				if(l == subst.getLessons().end()) {
-					subst.setLesson(i);
+					subst.setLesson(i);   //if not, add to his/her lessons
 				}
 				else {
-					rejects.push_back(j);
-					//remove from user reservations
+					rejects.push_back(*j); //add to the rejected lessons
+					reservs.erase(j); //remove from user reservations
+					j--;
 				}
 			}
 		}
 	}
+
+	user.setReservations(reservs); //set the reservations with the changes made;
+
 	if(!rejects.empty()) {
 		cout << "The user: " << user.getName() << "has the following lessons unscheduled:" << endl;
 		int n = 1;
 		for (auto i: rejects) {
 			cout << "Lesson nº " << n << ":\t Day/Month: " << i->getDay() << "/" << i->getMonth() << "\t Time: "
 				 << i->getStartingHour() << ":" << i->getStartingHour() + i->getDuration() << endl;
-			//free reservation memory
+			free(i);
 		}
 	}
 

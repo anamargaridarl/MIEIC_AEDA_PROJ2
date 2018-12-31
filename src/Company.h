@@ -256,7 +256,7 @@ public:
 
     bool removeActiveTeacher(std::string teacher);
 
-    std::vector<User&> getTeacherStudents(std::string teacher) const;
+    //std::vector<User&> getTeacherStudents(std::string teacher);
 
     bool rescheduleLessons(std::vector<Lesson*> Lessons, User & user,Teacher &subst);
 };
