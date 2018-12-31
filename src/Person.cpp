@@ -643,6 +643,15 @@ bool operator<(User u1, User u2)
 }
 
 
+void User::editTeacher(std::string newTeacher)
+{
+    assignedTeacher = newTeacher;
+}
+
+void User::editReservations(std:: vector<Reservation*>r)
+{
+    reservations = r;
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////

@@ -247,6 +247,8 @@ public:
     void editAdress(std::string adress);
     void editNIF(int NIF);
 	void deleteUser();
+	void editTeacher(std::string newTeacher);
+	void editReservations(std:: vector<Reservation*>r);
     friend bool operator<(User r1, User r2);
 
 
