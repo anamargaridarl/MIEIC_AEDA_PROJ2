@@ -659,9 +659,9 @@ bool Company::removeActiveTeacher(std::string teacher) {
 			}
 			teachers.erase(temp);
 			temp.addStudent(); 		// add a student to the substitute teacher
-			rescheduleLessons(mLessons,i,temp); // reschedule the possible lessons
+			//rescheduleLessons(mLessons,i,temp); // reschedule the possible lessons
 			teachers.insert(temp);
-			i.editTeacher(temp.getName()); //change assignTeacher in User (TO BE UPDATED)
+			//i.editTeacher(temp.getName()); //change assignTeacher in User (TO BE UPDATED)
 		}
 		return true;
 	}

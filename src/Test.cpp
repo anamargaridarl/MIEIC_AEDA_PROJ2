@@ -96,11 +96,11 @@ int main() {
 	cout << "Tests finished" << endl;
 
 	//FAILING
-	/*
+
 	cout << endl << "Test 8: " << endl;
 	c1.removeActiveTeacher("Alberto");
-	//c1.showTeachers();
-	c1.showUsers();
-	*/
+	c1.showTeachers();
+	//c1.showUsers();
+
 	return 0;
 }
