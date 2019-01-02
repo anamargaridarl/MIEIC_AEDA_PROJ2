@@ -95,6 +95,7 @@ bool Company::makeLesson(int month,int day,double startingHour,string userName)
 
 	try {
 		User u = getUser(userName); // Gets the user
+		string teacherName = u.getTeacher();
 		Teacher temp(teacherName,0,"");
 		tabTeach::iterator it = teachers.find(temp); //Gets the teacher
 		if(it == teachers.end()) {
@@ -206,7 +207,7 @@ bool Company::registerUser(string name, int age,bool isGold,string gender, strin
 		teachers.erase(t2);
 		t2.addStudent();
 		teachers.insert(t2);
-		User newUser(name,age,gender,isGold,teachers[i2].getName(), adress, nif);
+		User newUser(name,age,gender,isGold,t2.getName(), adress, nif);
 		users.insert(newUser);
 		return true;
 	}
@@ -929,7 +930,7 @@ void Company::changeName(string name, string newName, int flag)
 	if (flag == 0)
 	{
 		//needs new implementation
-		getTeacher(name).editName(newName);
+//		getTeacher(name).editName(newName);
 	}
 	else
 	{
@@ -945,7 +946,7 @@ void Company::changeAge(string name, int newAge, int flag)
 	if (flag == 0)
 	{
 		//needs new implementation
-		getTeacher(name).editAge(newAge);
+//		getTeacher(name).editAge(newAge);
 	}
 	else
 	{
@@ -961,7 +962,7 @@ void Company::changeGender(string name, string newgender, int flag)
 	if (flag == 0)
 	{
 		//needs new implementation
-		getTeacher(name).editGender(newgender);
+//		getTeacher(name).editGender(newgender);
 	}
 	else
 	{
@@ -1049,6 +1050,7 @@ std::string NoActiveTeachersLeft::what() const {
 
 std::string InvalidNIF::what() const {
 	return "Invalid NIF: " + to_string(nif);
+}
   
 std::string NoSupporterID::what() const
 {

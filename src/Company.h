@@ -397,13 +397,13 @@ public:
     std::string what() const;
 };
 
-class NoActiveTeachersLeft
-{
+class NoActiveTeachersLeft {
 private:
 	std::string name;
 public:
-	NoActiveTeachersLeft(std::string name) {this->name = name;}
-
+	NoActiveTeachersLeft(std::string name) { this->name = name; }
+	std::string what()const;
+};
 
 class InvalidNIF
 {
@@ -424,13 +424,14 @@ public:
     std::string what() const;
 };
 
-class NoCourtID
-{
+class NoCourtID {
 private:
 	unsigned ID;
 public:
-	NoCourtID(unsigned ID): ID(ID){};
+	NoCourtID(unsigned ID) : ID(ID) {};
+
 	std::string what() const;
+
 };
 
 #endif /* SRC_COMPANY_H_ */

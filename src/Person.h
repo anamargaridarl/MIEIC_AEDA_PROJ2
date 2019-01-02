@@ -105,7 +105,7 @@ public:
 	 * @return
 	 */
 	bool operator == (const Person &p1);
-	~Person();
+//	~Person();
 	void editGender(std::string gender);
 	void editAge(int age);
 	void editName(std::string name);
@@ -342,9 +342,6 @@ public:
 	void setStatus(bool newstat);
 
 	void cleanNStudents();
-
-
-	~Teacher();
 
 private:
 	std::vector<Lesson*> lessons; /**< vector of the lessons */
