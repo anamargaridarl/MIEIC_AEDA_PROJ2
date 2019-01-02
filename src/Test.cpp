@@ -1,4 +1,4 @@
-#include "cute.h"
+/*#include "cute.h"
 #include "ide_listener.h"
 #include "xml_listener.h"
 #include "cute_runner.h"
@@ -25,3 +25,4 @@ int main(int argc, char const *argv[]) {
     ano.getMonth(2).getDay(4).setSchedule(9, 2);
     return 0;
 }
+*/

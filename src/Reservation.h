@@ -109,6 +109,7 @@ public:
 	 * @return the hour
 	 */
 	std::string getHourFormat(double hour);
+	bool operator== ( Reservation & r);
 };
 
 /**

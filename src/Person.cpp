@@ -129,13 +129,31 @@ void Person::show()
 	cout << "Gender: " << gender << endl;
 }
 
+void Person::editName(string name) {
+
+	this->name = name;
+}
+
+void Person::editGender(string gender)
+{
+	this->gender=gender;
+}
+
+void Person::editAge(int age)
+{
+	this->age = age;
+}
+
 ////////////////////////////////////////////////////////////////////////////
 double calculateEndHour(double startinghour, int duration)
 {
 	return startinghour + 0.5*duration;
 }
 
+Person::~Person()
+{
 
+}
 
 ////////////////////////////////////////////////////////////////////////////
 //////////////////Teacher///////////////////////////////////////////////////
@@ -257,6 +275,10 @@ void Teacher::cleanVectors()
 	lessons.clear();
 }
 
+Teacher::~Teacher()
+{
+
+}
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -269,10 +291,12 @@ User::User()
 }
 
 
-User::User(string name,int age,string gender, bool isGold, string assignedTeacher):Person(name,age,gender)
+User::User(string name,int age,string gender, bool isGold, string assignedTeacher, string address, int nif):Person(name,age,gender)
 {
 	this->isGold = isGold;
 	this->assignedTeacher = assignedTeacher;
+	this->address = address;
+	this->NIF =nif;
 	reports.resize(12);
 	invoices.resize(12);
 }
@@ -287,12 +311,21 @@ void User::stopGold()
 	isGold = false;
 }
 
-bool User::getisGold()
+bool User::getisGold() const
 {
 	return isGold;
 }
 
-Report User::getReport(int month)
+int User::getNIF() const
+{
+	return NIF;
+}
+string User::getAddress() const
+{
+	return address;
+}
+
+Report User::getReport(int month) const
 {
 	if(month > 12) // Checks if it's a possible month
 		throw(IncorrectMonth());
@@ -305,7 +338,7 @@ Report User::getReport(int month)
 		return *reports.at(month -1);
 }
 
-Invoice User::getInvoice(int month)
+Invoice User::getInvoice(int month) const
 {
 	if(month > 12) // Checks if it's a possible month
 			throw(IncorrectMonth());
@@ -367,17 +400,21 @@ void User::setReservation(Reservation* reservation)
 		reservations.push_back(reservation);
 }
 
-vector<Reservation*> User::getReservations()
+vector<Reservation*> User::getReservations() const
 {
 	return reservations;
 }
+unsigned int User::getReservationSize() const
+{
+    return reservations.size();
+}
 
-string User::getTeacher()
+string User::getTeacher() const
 {
 	return this->assignedTeacher;
 }
 
-vector<Invoice*> User::getInvoices()
+vector<Invoice*> User::getInvoices() const
 {
 	return invoices;
 }
@@ -391,6 +428,10 @@ void User::storeInfo(ofstream &outfile, int &indentation)
 	indentp(outfile,indentation); // Saves the assigned Teacher
 	outfile << "\"assigned Teacher\": "<< "\""<< assignedTeacher <<"\"" << "," <<  endl;
 	indentp(outfile,indentation);
+	outfile << "\"NIF\": "<< "\""<< NIF <<"\"" << "," <<  endl;
+	indentp(outfile,indentation);
+	outfile << "\"address\": "<< "\""<< address <<"\"" << "," <<  endl;
+
 
 	outfile<< "\"reports\": "; // Saves all the reports
 	outfile << "["<< endl;
@@ -468,7 +509,21 @@ void User::loadClass(std::ifstream &inpfile) {
 			savingString = savingString.substr(0, savingString.find(",") - 1);
 			this->assignedTeacher = savingString;
 		}
-		//Saves the reports
+
+		if (savingString.find("\"address\": ") != string::npos) {
+			savingString = savingString.substr(savingString.find(":") + 3);
+			savingString = savingString.substr(0, savingString.find(",") - 1);
+			this->address = savingString;
+		}
+
+        if (savingString.find("\"NIF\": ") != string::npos) {
+            savingString = savingString.substr(savingString.find(":") + 3);
+            savingString = savingString.substr(0, savingString.find(",") - 1);
+            this->NIF = stoi(savingString);
+        }
+
+
+        //Saves the reports
 		if (savingString.find("\"reports\": ") != string::npos) {
 			while (getline(inpfile, savingString) && (savingString.find("]") == string::npos)) {
 				Report *I = new Report();
@@ -526,6 +581,8 @@ void User::show()
 
 	cout << "isGold: " << a<< endl;
 	cout <<"Assigned Teacher: "<< assignedTeacher << endl;
+	cout << "Adress: "<< address << endl;
+    cout <<"NIF: " << NIF << endl;
 
 }
 
@@ -540,6 +597,60 @@ void User::cleanVectors()
 void User::cleanReservations()
 {
 	reservations.clear();
+}
+
+void User::editIsGold(bool isGold)
+{
+	this->isGold = isGold;
+}
+
+void User::editAdress(string adress)
+{
+	this->address = adress;
+}
+
+void User::editNIF(int NIF)
+{
+	this->NIF = NIF;
+}
+
+
+
+void User::deleteUser()
+{
+    for(size_t i = 0; i< reports.size(); i++)
+    {
+        delete reports.at(i);
+    }
+
+    for(size_t i = 0; i< invoices.size(); i++)
+    {
+        delete invoices.at(i);
+    }
+	for(size_t i = 0; i< reservations.size(); i++)
+	{
+		delete reservations.at(i);
+	}
+
+}
+
+bool operator<(User u1, User u2)
+{
+    if (u1.getReservationSize() == u2.getReservationSize()) {
+        return u1.getName() < u2.getName();
+    } else
+        return (u1.getReservationSize() > u2.getReservationSize());
+}
+
+
+void User::editTeacher(std::string newTeacher)
+{
+    assignedTeacher = newTeacher;
+}
+
+void User::editReservations(std:: vector<Reservation*>r)
+{
+    reservations = r;
 }
 
 

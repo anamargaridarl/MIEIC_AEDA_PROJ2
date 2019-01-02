@@ -12,17 +12,30 @@
 #include "Calendar.h"
 #include "Court.h"
 #include "Date.h"
+#include <set>
 #include "Supporter.h"
 /**
  * The company itself, operation all of the rest
  */
 
+/*
+struct Comp {
+
+    bool operator()(const User &u1,const User &u2) {
+
+
+    	if (u1.getReservationSize() == u2.getReservationSize()) {
+            return u1.getName() < u2.getName();
+        } else
+            return (u1.getReservationSize() > u2.getReservationSize());
+    }
+};*/
 
 class Company
 {
 private:
 	std::vector<Court> tennisCourts; /**< vector with all the Courts */
-	std::vector<User> users; /**< vector with all the Users */
+	std::set<User> users; /**< vector with all the Users */
 	std::vector<Teacher> teachers; /**< vector with all the Users */
 	std::priority_queue<Supporter> techSupport;
 	double cardValue;
@@ -66,7 +79,7 @@ public:
 	 * @brief Getter of the current Users.
 	 * @return vector of Users
 	 */
-	std::vector <User> getUsers();
+	std::set <User> getUsers();
 	//tested
 
 	/**
@@ -80,7 +93,9 @@ public:
 	 * @param userName - name of the User
 	 * @return a reference to the user
 	 */
-	User& getUser(std::string userName);
+
+	void reAddUser(User u);
+	User getUser(std::string userName);
 
 
 	/**
@@ -99,7 +114,7 @@ public:
 	 * @param teacherName - the name of the Teacher
 	 * @return if it was successful created
 	 */
-	bool makeLesson(int month,int day,double startingHour,std::string userName,std::string teacherName);
+	bool makeLesson(int month,int day,double startingHour,std::string userName);
 	//tested
 
 	/**
@@ -122,7 +137,7 @@ public:
 	 * @param gender - the gender of the User
 	 * @return if the user was succesfully created
 	 */
-	bool registerUser(std::string name, int age,bool isGold,std::string gender);
+	bool registerUser(std::string name, int age,bool isGold,std::string gender,std::string adress, int nif);
 	//tested
 
 	/**
@@ -241,6 +256,16 @@ public:
      */
     void showTeacherLessons (std::string teacher);
     void showDate();
+    void changeName(std::string name, std::string newName, int flag);
+    void changeAge(std::string name, int newAge, int flag);
+	void changeGender(std::string name, std::string newgender, int flag);
+    void changeisGold(std::string name, bool isGold);
+    //not implemented in main
+    void changeNIF(std::string name, int newNIF);
+    void changeAddress(std::string name, std::string newAdress);
+	void changeReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
+	void deleteUser(std::string name);
+    bool checkNIF(int nif);
 
     void scheduleRepair(int day, int month, unsigned ID);
 
@@ -251,9 +276,22 @@ public:
     void listAllRepairers() const;
 };
 
+
+
+
 /**
  * When a user does not exist
  */
+
+class NoReservation
+{
+private:
+	std::string name;
+public:
+	NoReservation(std::string name) { this->name=name;}
+	std::string what()const;
+};
+
 
 class NoUserRegistered
 {
@@ -333,6 +371,18 @@ public:
 	InvalidDate(int day, int month) { this->day = day, this->month = month;}
 	std::string what() const;
 };
+
+
+
+class InvalidNIF
+{
+private:
+	int nif;
+public:
+	InvalidNIF(int nif) { this->nif=nif;}
+	std::string what()const;
+};
+
 
 class NoSupporterID
 {
