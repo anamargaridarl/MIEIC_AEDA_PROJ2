@@ -12,34 +12,45 @@
 #include "Calendar.h"
 #include "Court.h"
 #include "Date.h"
+#include <unordered_set>
+#include "picosha2.h"
 #include <set>
 #include "Supporter.h"
+
+struct teacherHash
+{
+	size_t operator() (const Teacher & t1) const
+	{
+		size_t result =0;
+		std::string hash = picosha2::hash256_hex_string(t1.getName());
+		for(auto i: hash)
+			result += i*10;
+		return result;
+	}
+
+	bool operator() (const Teacher & t1, const Teacher & t2) const
+	{
+		return t1.getName() == t2.getName();
+	}
+};
+
+
+
 /**
  * The company itself, operation all of the rest
  */
 
-/*
-struct Comp {
+typedef std::unordered_set<Teacher,teacherHash,teacherHash> tabTeach;
 
-    bool operator()(const User &u1,const User &u2) {
-
-
-    	if (u1.getReservationSize() == u2.getReservationSize()) {
-            return u1.getName() < u2.getName();
-        } else
-            return (u1.getReservationSize() > u2.getReservationSize());
-    }
-};*/
 
 class Company
 {
 private:
 	std::vector<Court> tennisCourts; /**< vector with all the Courts */
+	tabTeach teachers;
 	std::set<User> users; /**< vector with all the Users */
-	std::vector<Teacher> teachers; /**< vector with all the Users */
 	std::priority_queue<Supporter> techSupport;
 	double cardValue;
-	int year; /**< current Year */
 	Date date; /**< Current date*/
 
 	void updateAvailableDays();
@@ -86,7 +97,7 @@ public:
 	 * @brief Getter of the current Teachers.
 	 * @return vector of Teachers
 	 */
-	std::vector<Teacher> getTeachers();
+	std::vector<Teacher> getTeachers(); //returns the teachers working for the company, currently
 
 	/**
 	 * @brief Getter of a specific User
@@ -98,12 +109,6 @@ public:
 	User getUser(std::string userName);
 
 
-	/**
-	 * @brief Getter of a specific User
-	 * @param userName - name of the User
-	 * @return a reference to the user
-	 */
-	Teacher& getTeacher(std::string teacherName);
 
 	/**
 	 * Reserving the Court, User and Teacher for a new Lesson.
@@ -157,7 +162,7 @@ public:
 	 * @return if if was made sucessfuly
 	 */
 	bool makeUserReport(int month,std::string userName,std::string teacherName);
-	//partially tested, needs to verify that invoice is saved properly
+
 
 
 
@@ -168,7 +173,7 @@ public:
 	 * @return if if was made sucessfuly
 	 */
 
-	//partially tested, needs to verify that invoice is saved properly
+
 	bool makeUserInvoice(std::string userName, int month);
 
 	/**
@@ -255,7 +260,17 @@ public:
      * @param teacher - name of the Teacher
      */
     void showTeacherLessons (std::string teacher);
+
     void showDate();
+
+
+    bool changeTeacherStatus(std::string teacher,bool newstat);
+
+    bool removeActiveTeacher(std::string teacher);
+
+    //std::vector<User&> getTeacherStudents(std::string teacher);
+
+    bool rescheduleLessons(std::vector<Lesson *> lessons, std::vector<Reservation *> &reservs, Teacher &subst, std::string username);
     void changeName(std::string name, std::string newName, int flag);
     void changeAge(std::string name, int newAge, int flag);
 	void changeGender(std::string name, std::string newgender, int flag);
@@ -372,6 +387,22 @@ public:
 	std::string what() const;
 };
 
+
+class InactiveTeacher
+{
+private:
+    std::string name;
+public:
+    InactiveTeacher(std::string name) {this->name = name;}
+    std::string what() const;
+};
+
+class NoActiveTeachersLeft
+{
+private:
+	std::string name;
+public:
+	NoActiveTeachersLeft(std::string name) {this->name = name;}
 
 
 class InvalidNIF

@@ -41,12 +41,12 @@ string Person::getName() const
 	return name;
 }
 
-int Person::getAge()
+int Person::getAge() const
 {
 	return age;
 }
 
-string Person::getGender()
+string Person::getGender() const
 {
 	return gender;
 }
@@ -122,7 +122,7 @@ void Person::loadClass(std::ifstream &inpfile)
 
 }
 
-void Person::show()
+void Person::show() const
 {
 	cout << "Name: " << name << endl;
 	cout << "Age: " << age << endl;
@@ -166,6 +166,7 @@ Teacher::Teacher()
 Teacher::Teacher(string name, int age, string gender):Person(name,age,gender)
 {
 	nStudents = 0;
+	active = true;
 }
 
 void Teacher::setLesson(Lesson* lesson)
@@ -186,12 +187,12 @@ void Teacher::setLesson(Lesson* lesson)
 	this->lessons.push_back(lesson);
 }
 
-vector<Lesson*> Teacher::getLessons()
+vector<Lesson*> Teacher::getLessons() const
 {
 	return lessons;
 }
 
-int Teacher::getnStudents()
+int Teacher::getnStudents() const
 {
 	return nStudents;
 }
@@ -207,6 +208,9 @@ void Teacher::storeInfo(ofstream &outfile, int &indentation)
 
 	indentp(outfile,indentation); // Stores the number of Students
 	outfile << "\"nStudents\": "<< "\"" << nStudents  << "\""  << "," << endl;
+
+	indentp(outfile,indentation); // Stores the current status on the Company
+	outfile << "\"active\": "<< "\"" << active  << "\""  << "," << endl;
 
 	indentp(outfile,indentation);
 	outfile<< "\"lessons\": "; // Saves its lessons
@@ -245,6 +249,14 @@ void Teacher::loadClass(std::ifstream &inpfile)
 		this->nStudents = stoi(savingString);
 	}
 
+	getline(inpfile, savingString); // Reads the number of Students
+	if (savingString.find("\"active\": ") != string::npos)
+	{
+		savingString = savingString.substr(savingString.find(":") + 3);
+		savingString = savingString.substr(0, savingString.find(",") - 1);
+		this->active = savingString == "1";
+	}
+
 	getline(inpfile, savingString); //lessons
 		// Gets their lessons
 		if(savingString.find("lessons") != string::npos)
@@ -264,16 +276,29 @@ void Teacher::loadClass(std::ifstream &inpfile)
 
 }
 
-void Teacher::show()
+void Teacher::show() const
 {
 	Person::show();
 	cout << "Number of students: "<< nStudents << endl;
+	cout << "Working at the company currently: " << (active ? "True" : "False") << endl;
 }
 
 void Teacher::cleanVectors()
 {
 	lessons.clear();
 }
+
+
+bool Teacher::getStatus() const {
+	return active;
+}
+
+void Teacher::setStatus(bool newstat) {
+	active = newstat;
+}
+
+void Teacher::cleanNStudents() {
+    nStudents = 0;
 
 Teacher::~Teacher()
 {
@@ -651,6 +676,11 @@ void User::editTeacher(std::string newTeacher)
 void User::editReservations(std:: vector<Reservation*>r)
 {
     reservations = r;
+}
+
+
+void User::setReservations(std::vector<Reservation *> reservs) {
+	this->reservations = reservs;
 }
 
 

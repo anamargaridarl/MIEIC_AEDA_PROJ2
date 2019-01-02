@@ -48,13 +48,13 @@ public:
 	 * @brief Getter of the age of the person
 	 * @return age of the person
 	 */
-	int getAge();
+	int getAge() const;
 
 	/**
 	 * @brief Getter of the gender of the person
 	 * @return gender of the person
 	 */
-	std::string getGender();
+	std::string getGender() const;
 
 	/**
 	 * @brief Setter of the name of the person
@@ -92,7 +92,7 @@ public:
 	/**
 	 * @brief Showing the information of the person on the screen
 	 */
-	virtual void show();
+	virtual void show() const;
 
 	/**
 	 * @brief cleaning all vectors inside the person
@@ -242,14 +242,15 @@ public:
 	 * @brief cleaning the Reservations
 	 */
 	void cleanReservations();
+	void setReservations(std::vector<Reservation*> reservs);
 	//~User();
 	void editIsGold(bool isGold);
-    void editAdress(std::string adress);
-    void editNIF(int NIF);
+  void editAdress(std::string adress);
+  void editNIF(int NIF);
 	void deleteUser();
 	void editTeacher(std::string newTeacher);
 	void editReservations(std:: vector<Reservation*>r);
-    friend bool operator<(User r1, User r2);
+  friend bool operator<(User r1, User r2);
 
 
 private:
@@ -295,7 +296,7 @@ public:
 	 * @brief Getter of the lessons
 	 * @return vector of lessons
 	 */
-	std::vector<Lesson*> getLessons();
+	std::vector<Lesson*> getLessons() const;
 
 	/**
 	 *
@@ -314,7 +315,10 @@ public:
 	 * @brief Getter of the number of students
 	 * @return numeber of students
 	 */
-	int getnStudents();
+	int getnStudents() const ;
+
+	//getter of the teacher working status
+	bool getStatus() const;
 
 	/**
 	 *
@@ -326,16 +330,26 @@ public:
 	/**
 	 * @brief Showing the information of the user on the screen
 	 */
-	void show();
+	void show() const;
 
 	/**
 	 * @brief Cleaning all the vectors of the Teacher
 	 */
 	void cleanVectors();
+
+
+	//sets the teacher status with the param 'newstat'
+	void setStatus(bool newstat);
+
+	void cleanNStudents();
+
+
 	~Teacher();
+
 private:
 	std::vector<Lesson*> lessons; /**< vector of the lessons */
 	int nStudents;	/**< number of students */
+	bool active; /**< true if is a current employee of the company */
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
