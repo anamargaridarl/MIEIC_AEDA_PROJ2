@@ -95,7 +95,7 @@ Date Date::operator ++()
 	return *this;
 }
 
-void Date::indent(std::ofstream &outfile, int identation)
+void Date::indent(std::ofstream &outfile, int identation) const
 {
 	for(int i = 0; i < identation; i++)
 	{
@@ -104,7 +104,7 @@ void Date::indent(std::ofstream &outfile, int identation)
 }
 
 
-void Date::storeInfo(std::ofstream &outfile, int indentation)
+void Date::storeInfo(std::ofstream &outfile, int indentation) const
 {
 	indent(outfile, indentation);
 	outfile << "{" << endl;
@@ -163,4 +163,37 @@ unsigned int Date::getYear() {
 std::string BadDate::what()
 {
 	return "Data does not exist!";
+}
+
+bool Date::operator==(Date d)
+{
+	return this->getDay() == d.getDay() && this->getMonth() == d.getMonth() && this->getYear() == d.getYear();
+}
+
+int Date::operator-(Date d)
+{
+    int thisM= this->getMonth(), thisY = this->getYear();
+    int dM = d.getMonth(), dY = d.getYear();
+    if(this->getMonth() <= 2)
+    {
+        thisM += 12;
+        thisY -= 1;
+    }
+    if(d.getMonth()<=2)
+    {
+        dM += 12;
+        dY -= 1;
+    }
+    int thisJDN = (int)(floor((146097*thisY))/400 + floor((153 * thisM + 8)/5)+this->getDay());
+    int dJDN = (int)(floor((146097*dY))/400 + floor((153 * dM + 8)/5)+d.getDay());
+    return thisJDN - dJDN;
+}
+
+
+
+bool operator<(Date d1, Date d2)
+{
+    int d1JDN = (1461 * (d1.getYear() + 4800 + (d1.getMonth() - 14)/12))/4 +(367 * (d1.getMonth() - 2 - 12 * ((d1.getMonth() - 14)/12)))/12 - (3 * ((d1.getYear()+ 4900 + (d1.getMonth() - 14)/12)/100))/4 + d1.getDay() - 32075;
+    int d2JDN = (1461 * (d2.getYear() + 4800 + (d2.getMonth() - 14)/12))/4 +(367 * (d2.getMonth() - 2 - 12 * ((d2.getMonth() - 14)/12)))/12 - (3 * ((d2.getYear()+ 4900 + (d2.getMonth() - 14)/12)/100))/4 + d2.getDay() - 32075;
+    return d1JDN < d2JDN;
 }

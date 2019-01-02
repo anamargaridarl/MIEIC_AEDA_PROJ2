@@ -6,8 +6,10 @@
  */
 
 #include "Company.h"
+#include <string>
 
 using namespace std;
+static unsigned maxRepairs = 4;
 
 Company::Company(double cardValue, Date d)
 {
@@ -39,7 +41,7 @@ vector<Court> Company::getCourts()
 	return tennisCourts;
 }
 
-vector<User> Company::getUsers()
+set<User> Company::getUsers()
 {
 	return users;
 }
@@ -54,19 +56,37 @@ vector<Teacher> Company::getTeachers()
 	return temp;
 }
 
-User& Company::getUser(string userName)
+void Company::deleteUser(string name)
 {
-	User u(userName,0,"",false,"");
-	// Finds the User
-	vector<User>::iterator it = find(users.begin(),users.end(),u);
-	if(it != users.end())
-		return *it;
-	else
+	User u = this->getUser(name);
+	u.deleteUser();
+}
+
+User Company::getUser(string userName) {
+
+	set<User>::iterator it = users.begin();
+
+		while (it != users.end()) {
+			if (it->getName() == userName) {
+				User a = *it;
+				users.erase(it);
+				return a;
+			} else it++;
+		}
+
 		throw NoUserRegistered(userName);
+
+
+
+}
+
+void Company::reAddUser(User u) //only used in main
+{
+	users.insert(u);
 }
 
 
-bool Company::makeLesson(int month,int day,double startingHour,string userName,string teacherName)
+bool Company::makeLesson(int month,int day,double startingHour,string userName)
 {
 	// Checks if its a possible date
 	if(month < date.getMonth() || (month == date.getMonth() && day < date.getDay())) {
@@ -74,7 +94,7 @@ bool Company::makeLesson(int month,int day,double startingHour,string userName,s
 	}
 
 	try {
-		User& u = getUser(userName); // Gets the user
+		User u = getUser(userName); // Gets the user
 		Teacher temp(teacherName,0,"");
 		tabTeach::iterator it = teachers.find(temp); //Gets the teacher
 		if(it == teachers.end()) {
@@ -89,9 +109,11 @@ bool Company::makeLesson(int month,int day,double startingHour,string userName,s
 			if(j.reserveClass(month,day,startingHour,u,temp)) {
 				teachers.erase(it);
 				teachers.insert(temp);
+        users.insert(u);
 				return true;
 			}
 		}
+		users.insert(u);
 		return false;
 	}
 	catch(NoUserRegistered &u) { // If the user doesn't exist
@@ -124,11 +146,15 @@ bool Company::makeFree(int month,int day,double startingHour, int duration,strin
 	}
 
 	try {
-		User& u = getUser(username); // Gets the user
-		for(auto i: tennisCourts) //Reserves the first available court
+		User u;
+		u= getUser(username); // Gets the user
+		for(size_t j =0; j<tennisCourts.size();j++) //Reserves the first available court
 		{
-			if(i.reserveFree(month,day,startingHour,duration,u))
+			if(tennisCourts[j].reserveFree(month,day,startingHour,duration,u)) {
+				users.insert(u);
 				return true;
+			}
+
 		}
 		return false;
 	}
@@ -138,12 +164,36 @@ bool Company::makeFree(int month,int day,double startingHour, int duration,strin
 	}
 }
 
-bool Company::registerUser(string name, int age,bool isGold,string gender)
+bool Company::checkNIF(int nif) {
+
+    set<User>::iterator it = users.begin();
+
+    while (it != users.end()) {
+        if (it->getNIF() == nif || to_string(nif).size() != 9) {
+        	cout << to_string(nif).size() << endl;
+            return false;
+        }
+        else it++;
+    }
+
+    if(to_string(nif).size() != 9)
+    	return false;
+	else
+    return true;
+
+}
+
+bool Company::registerUser(string name, int age,bool isGold,string gender, string adress, int nif)
 {
 	if (age <0) //Checks if it's a possible age
 		throw(InvalidAge(age));
+	if(!checkNIF(nif))
+		throw(InvalidNIF(nif));
 	try {
-		User& u = getUser(name); //Checks if there's a user already registered
+
+		User u;
+		u= getUser(name);
+		users.insert(u);//Checks if there's a user already registered
 		throw(AlreadyRegisteredUser(name));
 	}
 	catch(NoUserRegistered &u) {
@@ -156,8 +206,8 @@ bool Company::registerUser(string name, int age,bool isGold,string gender)
 		teachers.erase(t2);
 		t2.addStudent();
 		teachers.insert(t2);
-		User newuser(name,age,gender,isGold,t2.getName());
-		users.push_back(newuser);
+		User newUser(name,age,gender,isGold,teachers[i2].getName(), adress, nif);
+		users.insert(newUser);
 		return true;
 	}
 	catch(AlreadyRegisteredUser &u) {
@@ -211,13 +261,14 @@ bool Company::makeUserReport(int month,string userName,string teacherName)
 {
 	try
 	{
-	 	User& u = getUser(userName); //Gets the User
+	 	User u = getUser(userName); //Gets the User
 		Teacher temp(teacherName,0,"");
 		tabTeach::iterator it = teachers.find(temp);
 		if(it == teachers.end())
 			throw (NoTeacherRegistered(teacherName));
 	 	Report* newr = new Report(userName,teacherName,u.getReservations());
 		u.setReport(newr,month);
+		users.insert(u);
 	}
 	catch(NoUserRegistered &u) //Checks if the user doesn't exist
 	{
@@ -246,10 +297,11 @@ bool Company::makeUserInvoice(string userName,int month)
 {
 	try
 	{
-		User& u = getUser(userName); // Gets the user
+		User u = getUser(userName); // Gets the user
 		// Makes the invoice and saves it
 		Invoice* newinvoice = new Invoice(u.getName(),u.getTeacher(),u.getReservations(), u.getisGold());
 		u.setInvoice(newinvoice,month);
+		users.insert(u);
 	}
 	catch(NoUserRegistered &u) //Checks if the user exists
 	{
@@ -294,6 +346,7 @@ bool Company::showReport(string name, int month)
 		cout << e.what() << endl;
 		return false;
 	}
+	users.insert(u);
 	return true;
 }
 
@@ -321,6 +374,7 @@ bool Company::showInvoice(string name,int month)
 		cout << e.what() << endl;
 		return false;
 	}
+	users.insert(u);
 	return true;
 }
 
@@ -355,17 +409,14 @@ void Company::storeInfo(std::ofstream &outfile, int indent) {
 	indentation(outfile, indent); //Saves the users in the company
 	outfile << "\"users\": [" << endl;
 	indent++;
-	for(unsigned int i = 0; i < this->users.size(); i++)
+	for(set<User>::iterator it = users.begin(); it != users.end(); it++)
 	{
-		this->users[i].storeInfo(outfile, indent);
-		if(i+1 != this->users.size()) {
-			indentation(outfile, indent);
-			outfile << "," << endl;
-		}
-		else
-		{
-			//outfile << endl;
-		}
+		User a;
+		a = *it;
+		a.storeInfo(outfile, indent);
+		indentation(outfile, indent);
+		outfile << "," << endl;
+
 	}
 	indent--;
 	indentation(outfile, indent);
@@ -424,7 +475,7 @@ void Company::readInfo(std::ifstream &infile) {
 				}
 				User u;
 				u.loadClass(infile);
-				users.push_back(u);
+				users.insert(u);
 			}
 		}
 
@@ -462,18 +513,24 @@ void Company::readInfo(std::ifstream &infile) {
 Company Company::operator++() {
 	++this->date; //Increments the date
 	if(date.getDay() == 1) { //Checks if the date changes month and year in order to do Invoices and Reports
-		for(auto i:users) {
+		set<User>::iterator it;
+		for(it = users.begin(); it !=users.end(); it++)
+		{
+			User a = *it;
+      
 			if(date.getMonth() == 1) {
-				i.cleanVectors();
+				a.cleanVectors();
 			}
 			if(date.getMonth() != 1)
 			{
-				makeUserReport(date.getMonth()-1,i.getName(),i.getTeacher());
-				makeUserInvoice(i.getName(),date.getMonth()-1);
+				makeUserReport(date.getMonth()-1,a.getName(),a.getTeacher());
+				makeUserInvoice(a.getName(),date.getMonth()-1);
 			} else{
 				ofstream outfile(to_string((int)this->cardValue - 1) + "-" + to_string(this->date.getYear()-1) + ".json");
 			}
-			i.cleanReservations();
+
+			a.cleanReservations();
+			users.insert(a);
 		}
 		for(auto i:teachers) {
 			Teacher temp = i;
@@ -482,19 +539,19 @@ Company Company::operator++() {
 			teachers.insert(temp);
 		}
 	}
+	this->updateAvailableDays();
 	return *this;
 }
 
-bool compareUser (User &u1,User &u2) { //Compares 2 users
-    return u1.getName() < u2.getName();
-}
 void Company::showUsers() { //Shows all users
 
-    sort(users.begin(),users.end(),compareUser);
-	for(size_t i = 0; i< users.size();i++) {
-		cout << "User no. " << i+1 << ":" << endl;
-		users[i].show();
+	set<User>::iterator it = users.begin();
+	for (size_t i = 0; i < users.size(); i++) {
+		User a = *it;
+		cout << "User no. " << i + 1 << ":" << endl;
+		a.show();
 		cout << endl;
+		it++;
 	}
 }
 
@@ -537,6 +594,7 @@ void Company::showUser(std::string name) {
 		User u = getUser(name); //Gets a specific user
 		u.show();
 		cout << endl;
+		users.insert(u);
 	}
 	catch (NoUserRegistered &e) //Checks if the user exists
 	{
@@ -562,6 +620,7 @@ void Company::showCourts() {
 void Company::showUserReservations(std::string name) {
 	try {
 		User u = getUser(name);
+		users.insert(u);
 		vector <Reservation*> reservations = u.getReservations();
 		for(size_t i =0;i<reservations.size(); i++) {
 			cout << "Reservation number " << i+1 << ": " << endl;
@@ -736,9 +795,214 @@ bool Company::rescheduleLessons(std::vector<Lesson *> lessons, std::vector<Reser
 	}
 }
 
+void Company::scheduleRepair(int day, int month, unsigned ID)
+{
+	if(this->tennisCourts.size() > ID)
+		throw NoCourtID(ID);
+	Date d(day, month, this->date.getYear());
+	vector<Supporter> aux;
+	while(!this->techSupport.empty())
+	{
+		Supporter sup = this->techSupport.top();
+		this->techSupport.pop();
+		if(sup.checkAvailability(d) && sup.numRepairs() < maxRepairs)
+		{
+			sup.scheduleRepair(d, this->date, ID);
+			this->techSupport.push(sup);
+			for(auto &i: aux)
+			{
+				this->techSupport.push(i);
+			}
+			return;
+		} else
+		{
+			aux.push_back(sup);
+		}
+	}
+	for(const auto &i: aux)
+	{
+		this->techSupport.push(i);
+	}
+	throw NoSupporterAvailable(day, month);
+
+}
+
+void Company::addRepairer(std::string name, std::string gender)
+{
+	Supporter ts(name, gender);
+	this->techSupport.push(ts);
+}
+
+
+void Company::removeRepairer(unsigned id)
+{
+	vector<Supporter> aux;
+	while(!this->techSupport.empty())
+	{
+		Supporter sup = this->techSupport.top();
+		this->techSupport.pop();
+		if(sup.getID() == id)
+		{
+			for(auto &i: aux)
+			{
+				this->techSupport.push(i);
+			}
+			for(auto i: sup.getRepairDates())
+			{
+				try
+				{
+					this->scheduleRepair(i.getRepairDate().getDay(), i.getRepairDate().getMonth(), i.getSupID());
+				}
+				catch(NoSupporterAvailable &e)
+				{
+					cout << e.what();
+				}
+
+			}
+			return;
+		} else
+		{
+			aux.push_back(sup);
+		}
+	}
+
+	for(const auto &i: aux)
+	{
+		this->techSupport.push(i);
+	}
+	throw NoSupporterID(id);
+}
+
+void Company::listAllRepairers() const
+{
+	if(this->techSupport.empty())
+	    cout << "The company does not possess any Repairers" << endl;
+	else
+    {
+	    priority_queue<Supporter> copy = this->techSupport;
+	    while(!copy.empty())
+        {
+	        cout << copy.top();
+	        copy.pop();
+        }
+    }
+}
+
+void Company::updateAvailableDays()
+{
+    vector<Supporter> aux;
+    while(!this->techSupport.empty())
+    {
+        Supporter sup = this->techSupport.top();
+        --sup;
+        aux.push_back(sup);
+        this->techSupport.pop();
+    }
+    for(const auto &i: aux)
+    {
+        this->techSupport.push(i);
+    }
+}
+
+void Company::changeReservation(string name, unsigned int duration, int month, int day, double startingHour)
+{
+	//need testing after function changeReservation
+
+	Reservation a(month,day,startingHour,0,duration);
+	User b = getUser(name);
+
+	vector<Reservation *> res= b.getReservations();
+	vector<Reservation *>::iterator it;
+	it = find(res.begin(), res.end(), &a);
+
+	if(it != res.end())
+	{
+		//it->changereservation
+		users.insert(b);
+	} else
+		throw(NoReservation(name));
+}
+
+
+void Company::changeName(string name, string newName, int flag)
+{
+	if (flag == 0)
+	{
+		//needs new implementation
+		getTeacher(name).editName(newName);
+	}
+	else
+	{
+		User a = getUser(name);
+		a.editName(newName);
+		users.insert(a);
+	}
+
+}
+
+void Company::changeAge(string name, int newAge, int flag)
+{
+	if (flag == 0)
+	{
+		//needs new implementation
+		getTeacher(name).editAge(newAge);
+	}
+	else
+	{
+		User a = getUser(name);
+		a.editAge(newAge);
+		users.insert(a);
+	}
+
+}
+
+void Company::changeGender(string name, string newgender, int flag)
+{
+	if (flag == 0)
+	{
+		//needs new implementation
+		getTeacher(name).editGender(newgender);
+	}
+	else
+	{
+		User a = getUser(name);
+		a.editGender(newgender);
+		users.insert(a);
+	}
+}
+
+void Company::changeisGold(string name, bool isGold)
+{
+	User a = getUser(name);
+	a.editIsGold(isGold);
+	users.insert(a);
+}
+
+//need to implement in main
+void Company::changeNIF(std::string name, int newNIF)
+{
+	if(!checkNIF(newNIF))
+		throw(InvalidNIF(newNIF));
+
+    User a = getUser(name);
+    a.editNIF(newNIF);
+    users.insert(a);
+}
+void Company::changeAddress(std::string name, std::string newAdress)
+{
+	User a = getUser(name);
+	a.editAdress(newAdress);
+	users.insert(a);
+}
+
 
 
 //Exception Handling
+
+string NoReservation::what() const
+{
+	return "No Reservation available under user: " + name + "under those conditions";
+}
 
 string NoUserRegistered::what() const
 {
@@ -748,6 +1012,11 @@ string NoUserRegistered::what() const
 string NoTeacherRegistered::what() const
 {
 	return "The teacher with name: " + name + ", is not registered in the system. Please register first.";
+}
+
+std::string NoSupporterAvailable::what() const
+{
+	return "There are no supporters available at " + to_string(this->day) + " of " + to_string(this->month) + " \n";
 }
 
 string InvalidAge::what() const
@@ -769,6 +1038,7 @@ std::string InvalidDate::what() const {
 	return "The date given is invalid. Day " + to_string(day) + " of month " + to_string(month) + " has passed.";
 }
 
+
 std::string InactiveTeacher::what() const {
 	return "The teacher with name: " + name + ", is not currently working for the company.";
 }
@@ -776,3 +1046,17 @@ std::string InactiveTeacher::what() const {
 std::string NoActiveTeachersLeft::what() const {
 	return "The teacher with name: " + name + ", is the last teacher available. Cannot be removed.";
 }
+
+std::string InvalidNIF::what() const {
+	return "Invalid NIF: " + to_string(nif);
+  
+std::string NoSupporterID::what() const
+{
+	return "The supporter with the ID " + to_string(this->ID) + " is not registered in this company\n";
+}
+
+std::string NoCourtID::what() const
+{
+	return "The Court with the ID " + to_string(this->ID) + " is not registered in this company\n";
+}
+

@@ -51,7 +51,7 @@ public:
 	 * @param duration - duration of the free
 	 * @return if the reservation was successfull
 	 */
-	bool reserveFree(int month, int day, double startingHour, int duration, User &user);
+	bool reserveFree(int month, int day, double startingHour, int duration, User& user);
 
 	/**
 	 *

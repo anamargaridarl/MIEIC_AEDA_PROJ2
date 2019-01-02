@@ -16,6 +16,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include "stdlib.h"
 
 /**
  * The class that stores the information of the people in the company
@@ -104,6 +105,10 @@ public:
 	 * @return
 	 */
 	bool operator == (const Person &p1);
+	~Person();
+	void editGender(std::string gender);
+	void editAge(int age);
+	void editName(std::string name);
 private:
 	std::string name; /**< name of the person */
 	int age;	/**< age of the person */
@@ -131,7 +136,7 @@ public:
 	 * @param isGold - does the person have the Gold Card
 	 * @param assignedTeacher - the teacher assigned to the person
 	 */
-	User(std::string name,int age, std::string gender, bool isGold, std::string assignedTeacher);
+	User(std::string name,int age, std::string gender, bool isGold, std::string assignedTeacher, std::string address, int nif);
 
 	/**
 	 * @brief Make a person have a Gold Card
@@ -148,33 +153,37 @@ public:
 	 * Does this User have a Gold Card
 	 * @return if the user is gold
 	 */
-	bool getisGold();
+
+	int getNIF() const;
+	std::string getAddress() const;
+	unsigned int getReservationSize() const;
+	bool getisGold() const;
 
 	/**
 	 * Getter of the Report of a Specific Month
 	 * @param month - month wanted
 	 * @return the report of said month
 	 */
-	Report getReport(int month);
+	Report getReport(int month) const;
 
 	/**
 	 * Getter of the Invoice of a Specific Month
 	 * @param month - month wanted
 	 * @return the Invoice of said month
 	 */
-	Invoice getInvoice(int month);
+	Invoice getInvoice(int month) const;
 
 	/**
 	 * @brief Getter of all the invoices
 	 * @return vector of Invoices
 	 */
-	std::vector<Invoice*> getInvoices();
+	std::vector<Invoice*> getInvoices() const;
 
 	/**
 	 * @brief Getter of all the Reservation
 	 * @return vector of Reservations
 	 */
-	std::vector<Reservation*> getReservations();
+	std::vector<Reservation*> getReservations() const;
 
 	/**
 	 * @brief Getter of the assigned teacher
@@ -233,12 +242,21 @@ public:
 	 * @brief cleaning the Reservations
 	 */
 	void cleanReservations();
-
-	//void editTeacher(std::string newteach);
-
 	void setReservations(std::vector<Reservation*> reservs);
+	//~User();
+	void editIsGold(bool isGold);
+  void editAdress(std::string adress);
+  void editNIF(int NIF);
+	void deleteUser();
+	void editTeacher(std::string newTeacher);
+	void editReservations(std:: vector<Reservation*>r);
+  friend bool operator<(User r1, User r2);
+
+
 private:
 	bool isGold; /**< does the user have a Gold Card? */
+	int NIF;
+	std::string address;
 	std::string assignedTeacher; /**< name of the assigned teacher*/
 	std::vector<Report*> reports; /**< vector of the reports */
 	std::vector<Reservation*> reservations; /**< vector of the reservations */
@@ -319,10 +337,14 @@ public:
 	 */
 	void cleanVectors();
 
+
 	//sets the teacher status with the param 'newstat'
 	void setStatus(bool newstat);
 
 	void cleanNStudents();
+
+
+	~Teacher();
 
 private:
 	std::vector<Lesson*> lessons; /**< vector of the lessons */

@@ -8,11 +8,14 @@
 #ifndef SRC_COMPANY_H_
 #define SRC_COMPANY_H_
 
+#include <queue>
 #include "Calendar.h"
 #include "Court.h"
 #include "Date.h"
 #include <unordered_set>
 #include "picosha2.h"
+#include <set>
+#include "Supporter.h"
 
 struct teacherHash
 {
@@ -31,20 +34,26 @@ struct teacherHash
 	}
 };
 
+
+
 /**
  * The company itself, operation all of the rest
  */
 
 typedef std::unordered_set<Teacher,teacherHash,teacherHash> tabTeach;
 
+
 class Company
 {
 private:
 	std::vector<Court> tennisCourts; /**< vector with all the Courts */
-	std::vector<User> users; /**< vector with all the Users */
 	tabTeach teachers;
+	std::set<User> users; /**< vector with all the Users */
+	std::priority_queue<Supporter> techSupport;
 	double cardValue;
 	Date date; /**< Current date*/
+
+	void updateAvailableDays();
 public:
 	/**
 	 *
@@ -81,7 +90,7 @@ public:
 	 * @brief Getter of the current Users.
 	 * @return vector of Users
 	 */
-	std::vector <User> getUsers();
+	std::set <User> getUsers();
 	//tested
 
 	/**
@@ -95,7 +104,9 @@ public:
 	 * @param userName - name of the User
 	 * @return a reference to the user
 	 */
-	User& getUser(std::string userName);
+
+	void reAddUser(User u);
+	User getUser(std::string userName);
 
 
 
@@ -108,7 +119,7 @@ public:
 	 * @param teacherName - the name of the Teacher
 	 * @return if it was successful created
 	 */
-	bool makeLesson(int month,int day,double startingHour,std::string userName,std::string teacherName);
+	bool makeLesson(int month,int day,double startingHour,std::string userName);
 	//tested
 
 	/**
@@ -131,7 +142,7 @@ public:
 	 * @param gender - the gender of the User
 	 * @return if the user was succesfully created
 	 */
-	bool registerUser(std::string name, int age,bool isGold,std::string gender);
+	bool registerUser(std::string name, int age,bool isGold,std::string gender,std::string adress, int nif);
 	//tested
 
 	/**
@@ -252,6 +263,7 @@ public:
 
     void showDate();
 
+
     bool changeTeacherStatus(std::string teacher,bool newstat);
 
     bool removeActiveTeacher(std::string teacher);
@@ -259,11 +271,42 @@ public:
     //std::vector<User&> getTeacherStudents(std::string teacher);
 
     bool rescheduleLessons(std::vector<Lesson *> lessons, std::vector<Reservation *> &reservs, Teacher &subst, std::string username);
+    void changeName(std::string name, std::string newName, int flag);
+    void changeAge(std::string name, int newAge, int flag);
+	void changeGender(std::string name, std::string newgender, int flag);
+    void changeisGold(std::string name, bool isGold);
+    //not implemented in main
+    void changeNIF(std::string name, int newNIF);
+    void changeAddress(std::string name, std::string newAdress);
+	void changeReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
+	void deleteUser(std::string name);
+    bool checkNIF(int nif);
+
+    void scheduleRepair(int day, int month, unsigned ID);
+
+    void addRepairer(std::string name, std::string gender);
+
+    void removeRepairer(unsigned id);
+
+    void listAllRepairers() const;
 };
+
+
+
 
 /**
  * When a user does not exist
  */
+
+class NoReservation
+{
+private:
+	std::string name;
+public:
+	NoReservation(std::string name) { this->name=name;}
+	std::string what()const;
+};
+
 
 class NoUserRegistered
 {
@@ -271,6 +314,15 @@ private:
 	std::string name;
 public:
 	NoUserRegistered(std::string name) { this->name=name;}
+	std::string what()const;
+};
+
+class NoSupporterAvailable
+{
+	unsigned day;
+	unsigned month;
+public:
+	NoSupporterAvailable(unsigned day, unsigned month):day(day), month(month) {}
 	std::string what()const;
 };
 
@@ -335,6 +387,7 @@ public:
 	std::string what() const;
 };
 
+
 class InactiveTeacher
 {
 private:
@@ -350,6 +403,33 @@ private:
 	std::string name;
 public:
 	NoActiveTeachersLeft(std::string name) {this->name = name;}
+
+
+class InvalidNIF
+{
+private:
+	int nif;
+public:
+	InvalidNIF(int nif) { this->nif=nif;}
+	std::string what()const;
+};
+
+
+class NoSupporterID
+{
+private:
+    unsigned ID;
+public:
+    NoSupporterID(unsigned ID):ID(ID){};
+    std::string what() const;
+};
+
+class NoCourtID
+{
+private:
+	unsigned ID;
+public:
+	NoCourtID(unsigned ID): ID(ID){};
 	std::string what() const;
 };
 

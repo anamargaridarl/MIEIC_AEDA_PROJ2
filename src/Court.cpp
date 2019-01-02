@@ -95,7 +95,7 @@ bool Court::reserveClass(int m, int d, double sH, User &user, Teacher &teacher)
 	return true;
 }
 
-bool Court::reserveFree(int m, int d, double sH, int dur, User &user)
+bool Court::reserveFree(int m, int d, double sH, int dur, User& user)
 {
 	if(dur > 4 ) //Checks if the reservation is too big
 	{
@@ -126,7 +126,7 @@ bool Court::reserveFree(int m, int d, double sH, int dur, User &user)
 	}
 	reserveCourt(m, d, sH, dur); // Reserves the Court
 	Reservation * reserv = new Free(m, d, sH, price, dur);
-	user.setReservation(reserv); // Saves the reservation on the user
+	user.setReservation(reserv);// Saves the reservation on the user
 	return true;
 }
 
