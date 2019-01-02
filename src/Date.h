@@ -45,14 +45,14 @@ public:
 	 * @param outfile - the file to write information
 	 * @param indent - current indentation
 	 */
-	void storeInfo(std::ofstream &outfile, int indentation);
+	void storeInfo(std::ofstream &outfile, int indentation) const;
 
 	/**
 	 * @brief Indenting the file
 	 * @param outfile - the file to write information
 	 * @param indent - current indentation
 	 */
-	void indent(std::ofstream&outfile, int identation);
+	void indent(std::ofstream&outfile, int identation) const;
 
 	/**
 	 *
@@ -79,6 +79,11 @@ public:
 	 */
 	unsigned int getYear();
 
+	bool operator==(Date d);
+
+    int operator-(Date d);
+
+    friend bool operator<(Date d1, Date d2);
 };
 
 

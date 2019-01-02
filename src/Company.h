@@ -8,10 +8,12 @@
 #ifndef SRC_COMPANY_H_
 #define SRC_COMPANY_H_
 
+#include <queue>
 #include "Calendar.h"
 #include "Court.h"
 #include "Date.h"
 #include <set>
+#include "Supporter.h"
 /**
  * The company itself, operation all of the rest
  */
@@ -35,9 +37,12 @@ private:
 	std::vector<Court> tennisCourts; /**< vector with all the Courts */
 	std::set<User> users; /**< vector with all the Users */
 	std::vector<Teacher> teachers; /**< vector with all the Users */
+	std::priority_queue<Supporter> techSupport;
 	double cardValue;
 	int year; /**< current Year */
 	Date date; /**< Current date*/
+
+	void updateAvailableDays();
 public:
 	/**
 	 *
@@ -262,6 +267,13 @@ public:
 	void deleteUser(std::string name);
     bool checkNIF(int nif);
 
+    void scheduleRepair(int day, int month, unsigned ID);
+
+    void addRepairer(std::string name, std::string gender);
+
+    void removeRepairer(unsigned id);
+
+    void listAllRepairers() const;
 };
 
 
@@ -287,6 +299,15 @@ private:
 	std::string name;
 public:
 	NoUserRegistered(std::string name) { this->name=name;}
+	std::string what()const;
+};
+
+class NoSupporterAvailable
+{
+	unsigned day;
+	unsigned month;
+public:
+	NoSupporterAvailable(unsigned day, unsigned month):day(day), month(month) {}
 	std::string what()const;
 };
 
@@ -352,6 +373,7 @@ public:
 };
 
 
+
 class InvalidNIF
 {
 private:
@@ -361,5 +383,23 @@ public:
 	std::string what()const;
 };
 
+
+class NoSupporterID
+{
+private:
+    unsigned ID;
+public:
+    NoSupporterID(unsigned ID):ID(ID){};
+    std::string what() const;
+};
+
+class NoCourtID
+{
+private:
+	unsigned ID;
+public:
+	NoCourtID(unsigned ID): ID(ID){};
+	std::string what() const;
+};
 
 #endif /* SRC_COMPANY_H_ */

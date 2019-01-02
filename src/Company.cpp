@@ -9,6 +9,7 @@
 #include <string>
 
 using namespace std;
+static unsigned maxRepairs = 4;
 
 Company::Company(double cardValue, Date d)
 {
@@ -506,6 +507,7 @@ Company Company::operator++() {
 			teachers[i].cleanVectors();
 		}
 	}
+	this->updateAvailableDays();
 	return *this;
 }
 
@@ -612,6 +614,114 @@ void Company::showDate()
 	cout << date.getDay() << "-" << date.getMonth() << "-"<< date.getYear() << endl << endl;
 }
 
+void Company::scheduleRepair(int day, int month, unsigned ID)
+{
+	if(this->tennisCourts.size() > ID)
+		throw NoCourtID(ID);
+	Date d(day, month, this->date.getYear());
+	vector<Supporter> aux;
+	while(!this->techSupport.empty())
+	{
+		Supporter sup = this->techSupport.top();
+		this->techSupport.pop();
+		if(sup.checkAvailability(d) && sup.numRepairs() < maxRepairs)
+		{
+			sup.scheduleRepair(d, this->date, ID);
+			this->techSupport.push(sup);
+			for(auto &i: aux)
+			{
+				this->techSupport.push(i);
+			}
+			return;
+		} else
+		{
+			aux.push_back(sup);
+		}
+	}
+	for(const auto &i: aux)
+	{
+		this->techSupport.push(i);
+	}
+	throw NoSupporterAvailable(day, month);
+
+}
+
+void Company::addRepairer(std::string name, std::string gender)
+{
+	Supporter ts(name, gender);
+	this->techSupport.push(ts);
+}
+
+
+void Company::removeRepairer(unsigned id)
+{
+	vector<Supporter> aux;
+	while(!this->techSupport.empty())
+	{
+		Supporter sup = this->techSupport.top();
+		this->techSupport.pop();
+		if(sup.getID() == id)
+		{
+			for(auto &i: aux)
+			{
+				this->techSupport.push(i);
+			}
+			for(auto i: sup.getRepairDates())
+			{
+				try
+				{
+					this->scheduleRepair(i.getRepairDate().getDay(), i.getRepairDate().getMonth(), i.getSupID());
+				}
+				catch(NoSupporterAvailable &e)
+				{
+					cout << e.what();
+				}
+
+			}
+			return;
+		} else
+		{
+			aux.push_back(sup);
+		}
+	}
+
+	for(const auto &i: aux)
+	{
+		this->techSupport.push(i);
+	}
+	throw NoSupporterID(id);
+}
+
+void Company::listAllRepairers() const
+{
+	if(this->techSupport.empty())
+	    cout << "The company does not possess any Repairers" << endl;
+	else
+    {
+	    priority_queue<Supporter> copy = this->techSupport;
+	    while(!copy.empty())
+        {
+	        cout << copy.top();
+	        copy.pop();
+        }
+    }
+}
+
+void Company::updateAvailableDays()
+{
+    vector<Supporter> aux;
+    while(!this->techSupport.empty())
+    {
+        Supporter sup = this->techSupport.top();
+        --sup;
+        aux.push_back(sup);
+        this->techSupport.pop();
+    }
+    for(const auto &i: aux)
+    {
+        this->techSupport.push(i);
+    }
+}
 
 void Company::changeReservation(string name, unsigned int duration, int month, int day, double startingHour)
 {
@@ -723,6 +833,11 @@ string NoTeacherRegistered::what() const
 	return "The teacher with name: " + name + ", is not registered in the system. Please register first.";
 }
 
+std::string NoSupporterAvailable::what() const
+{
+	return "There are no supporters available at " + to_string(this->day) + " of " + to_string(this->month) + " \n";
+}
+
 string InvalidAge::what() const
 {
 	return "This age is invalid: " + to_string(this->age);
@@ -742,6 +857,16 @@ std::string InvalidDate::what() const {
 	return "The date given is invalid. Day " + to_string(day) + " of month " + to_string(month) + " has passed.";
 }
 
+
 std::string InvalidNIF::what() const {
 	return "Invalid NIF: " + to_string(nif);
+  
+std::string NoSupporterID::what() const
+{
+	return "The supporter with the ID " + to_string(this->ID) + " is not registered in this company\n";
+}
+
+std::string NoCourtID::what() const
+{
+	return "The Court with the ID " + to_string(this->ID) + " is not registered in this company\n";
 }
