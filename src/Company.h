@@ -268,8 +268,6 @@ public:
 
     bool removeActiveTeacher(std::string teacher);
 
-    //std::vector<User&> getTeacherStudents(std::string teacher);
-
     bool rescheduleLessons(std::vector<Lesson *> lessons, std::vector<Reservation *> &reservs, Teacher &subst, std::string username);
     void changeName(std::string name, std::string newName, int flag);
     void changeAge(std::string name, int newAge, int flag);
@@ -278,7 +276,7 @@ public:
     //not implemented in main
     void changeNIF(std::string name, int newNIF);
     void changeAddress(std::string name, std::string newAdress);
-	void changeReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
+	//void changeReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
 	void deleteUser(std::string name);
     bool checkNIF(int nif);
 
@@ -289,6 +287,17 @@ public:
     void removeRepairer(unsigned id);
 
     void listAllRepairers() const;
+
+    //get the scheduled reservation of a given user, if possible
+	std::vector<Reservation*>::iterator getScheduledReservation(std::string userName, std::vector <Reservation*> reservs, int month,int day, double startingHour, unsigned int duration);
+    //get the scheduled lesson of a given teacher, if possible
+	std::vector<Lesson*>::iterator getScheduledLesson(std::string teacherName, std::vector<Lesson*> lessons, int month,int day,double startingHour, unsigned int duration);
+
+    bool modifyReservation(std::string username, int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,
+						   unsigned int newDuration);
+
+    bool deleteReservation(std::string username, int month, int day, double startingHour, unsigned int duration);
+
 };
 
 
@@ -432,6 +441,34 @@ public:
 
 	std::string what() const;
 
+};
+
+/*
+class NoScheduledLesson
+{
+private:
+	std::string teacherName;
+public:
+	NoScheduledLesson(std::string teacherName) {this->teacherName = teacherName;}
+	std::string what() const;
+};
+
+class ReservationAlreadyExists
+{
+private:
+	std::string name;
+public:
+	ReservationAlreadyExists(std::string name) {this->name = name;}
+	std::string what() const;
+};
+*/
+class TeacherUnavailable
+{
+private:
+	std::string name;
+public:
+	TeacherUnavailable(std::string name) {this->name = name;}
+	std::string what() const;
 };
 
 #endif /* SRC_COMPANY_H_ */
