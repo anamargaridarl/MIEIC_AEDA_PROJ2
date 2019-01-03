@@ -104,8 +104,8 @@ bool Court::reserveClass(int m, int d, double sH, User &user, Teacher &teacher)
 		price*=0.85;
 	}
 
-	Reservation * lesson = new Lesson(m, d, sH, price, dur);
-	Lesson* teacherLesson = new Lesson(m, d, sH, price, dur);
+	Reservation * lesson = new Lesson(m, d, sH, price, dur,teacher.getName());
+	Lesson* teacherLesson = new Lesson(m, d, sH, price, dur,teacher.getName());
 	user.setReservation(lesson); // Saves the reservation in the User
 	teacher.setLesson(teacherLesson); // Saves the reservation in the Teacher
 	return true;

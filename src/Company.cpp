@@ -994,7 +994,7 @@ vector<Reservation*>::iterator Company::getScheduledReservation(std::string user
 			return i;
 		}
 	}
-	return reservs.end();
+	throw(NoReservation(username));
 }
 
 vector<Lesson*>::iterator Company::getScheduledLesson(std::string teacherName, vector<Lesson*> lessons, int month, int day, double startingHour, unsigned int duration) {
@@ -1011,31 +1011,34 @@ vector<Lesson*>::iterator Company::getScheduledLesson(std::string teacherName, v
 bool Company::modifyReservation(std::string username, int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,
 								unsigned int newDuration) {
 	User u;
+	Teacher temp;
+	Reservation* res = NULL;
+	Lesson* les = NULL;
 	try {
 		u = getUser(username); //try and get the user
 		vector<Reservation*> reservs = u.getReservations(); // retrieve the reservations
-		vector<Reservation*>::iterator it = getScheduledReservation(username,reservs,month,day,startingHour,duration); // get the position on the vector
-		if(it  == reservs.end()) {  //if isnt found, throw an exception
-			throw(NoReservation(username));
+		vector<Reservation*>::iterator itRes = getScheduledReservation(username, reservs, month, day, startingHour, duration); // get the position on the vector
+		res = *itRes;
+
+		if(getScheduledReservation(username,reservs,newMonth,newDay,newStartHour,newDuration) != reservs.end()) {
+			throw ReservationAlreadyExists(username);
 		}
-		if(!(*it)->getTeacher().empty()) { // if the reservation is a lesson
-			Teacher temp(u.getTeacher(),0,"");		//retrieve the teacher associated
-			for(auto i: teachers) {
-				if(temp == i) {
-					temp = i;
-				}
-			}
+
+		if(!res->getTeacher().empty()) { // if the reservation is a lesson
+			//temp = getTeacher(u.getName());
 			vector<Lesson*> lessons = temp.getLessons(); // retrieve the teachers lessons
-			vector<Lesson*>::iterator les = getScheduledLesson(temp.getName(),temp.getLessons(),month,day,startingHour,duration);
-			Lesson newl(newMonth,newDay,newStartHour,0,newDuration,temp.getName());
+			vector<Lesson*>::iterator itLesson = getScheduledLesson(temp.getName(),temp.getLessons(),month,day,startingHour,duration);
+			les = *itLesson;
+
+
 			if(getScheduledLesson(temp.getName(),lessons,newMonth,newDay,newStartHour,newDuration) != lessons.end()) { // check if the teacher already has a lesson scheduled for the new date
 				throw TeacherUnavailable(temp.getName());
 			}
-			lessons.erase(les);				//do the necessary modifications and modify the lesson
-			reservs.erase(it);
-			teachers.erase(temp);
+			lessons.erase(itLesson);				//do the necessary modifications and modify the lesson
+			reservs.erase(itRes);
 
 			//check court availability and change lesson
+
 			//change lesson in lessons and reservs
 
 			u.setReservations(reservs);
@@ -1046,8 +1049,10 @@ bool Company::modifyReservation(std::string username, int month, int day, double
 			return true;
 		}
 		else { // if its a free reservation
-			reservs.erase(it);
+			reservs.erase(itRes);
+
 			//check court availability and change free
+
 			//change free in reservs
 
 			u.setReservations(reservs);
@@ -1064,37 +1069,49 @@ bool Company::modifyReservation(std::string username, int month, int day, double
 		cout << t.what() << endl;
 		return false;
 	}
+	catch(ReservationAlreadyExists & r) {
+		users.insert(u);
+		teachers.insert(temp);
+		cout << r.what() << endl;
+		return false;
+	}
 }
 
 bool Company::deleteReservation(std::string username, int month, int day, double startingHour, unsigned int duration) {
 
+	User u;
+	Teacher temp;
+	Reservation* res = NULL;
+	Lesson* les = NULL;
 	try {
-		User u = getUser(username);
+		u = getUser(username); //try and get the user
 		vector<Reservation*> reservs = u.getReservations(); // retrieve the reservations
-		vector<Reservation*>::iterator it = getScheduledReservation(username,reservs,month,day,startingHour,duration); // get the position on the vector
-		if(it  == reservs.end()) {  //if isnt found, throw an exception
-			throw(NoReservation(username));
-		}
-		if(!(*it)->getTeacher().empty()) { // if the reservation is a lesson
-			Teacher temp(u.getTeacher(),0,"");		//retrieve the teacher associated
-			for(auto i: teachers) {
-				if(temp == i) {
-					temp = i;
-				}
-			}
+		vector<Reservation*>::iterator itRes = getScheduledReservation(username, reservs, month, day, startingHour, duration); // get the position on the vector
+		res = *itRes;
+
+		if(!res->getTeacher().empty()) { // if the reservation is a lesson
+			//temp = getTeacher(u.getName());
 			vector<Lesson*> lessons = temp.getLessons(); // retrieve the teachers lessons
-			vector<Lesson*>::iterator les = getScheduledLesson(temp.getName(),temp.getLessons(),month,day,startingHour,duration);
-			lessons.erase(les);				//do the necessary modifications and modify the lesson
-			reservs.erase(it);
-			teachers.erase(temp);
+			vector<Lesson*>::iterator itLesson = getScheduledLesson(temp.getName(),temp.getLessons(),month,day,startingHour,duration);
+			les = *itLesson;
+
+			lessons.erase(itLesson);				//remove from users' reservation and teachers' lessons
+			reservs.erase(itRes);
+
+			//remove in court
+
 			u.setReservations(reservs);
 			temp.setLessons(lessons);
+
 			teachers.insert(temp); // confirm procedure
 			users.insert(u); //confirm procedure
 			return true;
 		}
 		else { // if its a free reservation
-			reservs.erase(it);
+			reservs.erase(itRes);
+
+			//remove in court
+
 			u.setReservations(reservs);
 			users.insert(u);
 			return true;
@@ -1174,12 +1191,12 @@ std::string NoCourtID::what() const
 /*
 std::string NoScheduledLesson::what() const {
 	return "The lesson is not scheduled with teacher: " + this->teacherName;
-}
+}*/
 
 std::string ReservationAlreadyExists::what() const {
 	return "There is already a reservation made at that time for the user: " + this->name;
 }
-*/
+
 
 std::string TeacherUnavailable::what() const {
 	return "The teacher: " + this->name + " is not available at that time." ;

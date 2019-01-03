@@ -135,7 +135,7 @@ class NoCourtfound{
 	int day;
 
 public:
-	NoCourtfound(int month, int day, double StartingHour):month(month), day(day), startingHour(startingHour);
+	NoCourtfound(int month, int day, double StartingHour):month(month), day(day), startingHour(startingHour) {}
 	std::string what() const;
 };
 

@@ -452,7 +452,7 @@ public:
 	NoScheduledLesson(std::string teacherName) {this->teacherName = teacherName;}
 	std::string what() const;
 };
-
+*/
 class ReservationAlreadyExists
 {
 private:
@@ -461,7 +461,7 @@ public:
 	ReservationAlreadyExists(std::string name) {this->name = name;}
 	std::string what() const;
 };
-*/
+
 class TeacherUnavailable
 {
 private:
