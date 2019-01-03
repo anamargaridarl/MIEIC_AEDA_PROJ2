@@ -1052,6 +1052,17 @@ void Company::deleteUser(string name)
 	u.deleteUser();
 }
 
+
+void Company::listAvailableRepairers(unsigned daysUntilAvailable) const
+{
+	priority_queue<Supporter> copy = this->techSupport;
+	while (!copy.empty())
+	{
+		if(copy.top().getDaysUntilAvailable() < daysUntilAvailable)
+			cout << copy.top();
+		copy.pop();
+	}
+}
 //---------------------------------------------------------------------------------------------------------
 
 //Exception Handling

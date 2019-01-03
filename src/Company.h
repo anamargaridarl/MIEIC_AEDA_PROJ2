@@ -283,6 +283,8 @@ public:
     void addRepairer(std::string name, std::string gender);
     void removeRepairer(unsigned id);
     void listAllRepairers() const;
+
+    void listAvailableRepairers(unsigned daysUntilAvailable) const;
 };
 
 
