@@ -18,6 +18,22 @@ Court::Court(int year):currentYear(Year(year))
 Court::Court() {}
 
 
+bool Court::isOccupied(int month, int day, double startingHour, int duration)
+{
+	// Checks the schedule for the specified month
+	if(!this->currentYear.getMonth(month).getDay(day).checkSchedule(startingHour, duration))
+	{
+		throw(CourtReserved(month, day, startingHour));
+	}
+}
+
+void Court::modifyReservation( int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,unsigned int newDuration)
+{
+	this->currentYear.getMonth(month).getDay(day).unsetSchedule(startingHour, duration);
+	occupied(newMonth, newDay, newStartHour, newDuration);
+	this->currentYear.getMonth(newMonth).getDay(day).setSchedule(newStartHour, newDuration);
+}
+
 void Court::occupied(int month, int day, double startingHour, int duration)
 {
     // Checks the schedule for the specified month
@@ -88,8 +104,8 @@ bool Court::reserveClass(int m, int d, double sH, User &user, Teacher &teacher)
 		price*=0.85;
 	}
 
-	Reservation * lesson = new Lesson(m, d, sH, price, dur,teacher.getName());
-	Lesson* teacherLesson = new Lesson(m, d, sH, price, dur,teacher.getName());
+	Reservation * lesson = new Lesson(m, d, sH, price, dur);
+	Lesson* teacherLesson = new Lesson(m, d, sH, price, dur);
 	user.setReservation(lesson); // Saves the reservation in the User
 	teacher.setLesson(teacherLesson); // Saves the reservation in the Teacher
 	return true;
@@ -323,4 +339,10 @@ void Court::readInfo(std::ifstream &infile)
 int Court::getMaxUsers() const
 {
 	return maxUsers;
+}
+
+std::string NoCourtfound::what() const
+{
+	return "No Court has a reservation for the " + to_string(this->day) + " of the month " + to_string(this->month) + " at "
+		   + to_string(this->startingHour) + '\n';
 }

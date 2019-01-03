@@ -45,6 +45,7 @@ public:
 	 */
 	void setSchedule(double startingHours, int duration);
 
+	void unsetSchedule(double startingHours, int duration);
 	/**
 	 * @brief Set the schedule
 	 * @param schedule - vector of the schedule
