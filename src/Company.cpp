@@ -989,12 +989,22 @@ void Company::changeAddress(std::string name, std::string newAdress)
 vector<Reservation*>::iterator Company::getScheduledReservation(std::string username,vector<Reservation*> reservs, int month, int day, double startingHour,
 										unsigned int duration) {
 	Reservation res(month,day,startingHour,0,duration);
-	return (find(reservs.begin(),reservs.end(),res));
+	for(auto i = reservs.begin(); i != reservs.end(); i++) {
+		if(**i == res) {
+			return i;
+		}
+	}
+	return reservs.end();
 }
 
 vector<Lesson*>::iterator Company::getScheduledLesson(std::string teacherName, vector<Lesson*> lessons, int month, int day, double startingHour, unsigned int duration) {
 		Lesson l(month, day, startingHour, 0, duration, teacherName);
-		return find(lessons.begin(),lessons.end(),l);
+		for(auto i = lessons.begin(); i!= lessons.end(); i++) {
+			if(**i == l) {
+				return i;
+			}
+		}
+		return lessons.end();
 }
 
 
