@@ -1013,7 +1013,6 @@ bool Company::modifyReservation(std::string username, int month, int day, double
 	User u;
 	Teacher temp;
 	Reservation* res = NULL;
-	Lesson* les = NULL;
 	try {
 		u = getUser(username); //try and get the user
 		vector<Reservation*> reservs = u.getReservations(); // retrieve the reservations
@@ -1028,18 +1027,23 @@ bool Company::modifyReservation(std::string username, int month, int day, double
 			//temp = getTeacher(u.getName());
 			vector<Lesson*> lessons = temp.getLessons(); // retrieve the teachers lessons
 			vector<Lesson*>::iterator itLesson = getScheduledLesson(temp.getName(),temp.getLessons(),month,day,startingHour,duration);
-			les = *itLesson;
 
 
 			if(getScheduledLesson(temp.getName(),lessons,newMonth,newDay,newStartHour,newDuration) != lessons.end()) { // check if the teacher already has a lesson scheduled for the new date
 				throw TeacherUnavailable(temp.getName());
 			}
-			lessons.erase(itLesson);				//do the necessary modifications and modify the lesson
-			reservs.erase(itRes);
 
 			//check court availability and change lesson
 
 			//change lesson in lessons and reservs
+			(*itLesson)->setMonth(newMonth);
+			(*itLesson)->setDay(newDay);
+			(*itLesson)->setStartHour(newStartHour);
+			(*itLesson)->setDuration(newDuration);
+			(*itRes)->setMonth(newMonth);
+			(*itRes)->setDay(newDay);
+			(*itRes)->setStartHour(newStartHour);
+			(*itRes)->setDuration(newDuration);
 
 			u.setReservations(reservs);
 			temp.setLessons(lessons);
@@ -1049,7 +1053,6 @@ bool Company::modifyReservation(std::string username, int month, int day, double
 			return true;
 		}
 		else { // if its a free reservation
-			reservs.erase(itRes);
 
 			//check court availability and change free
 
@@ -1082,7 +1085,6 @@ bool Company::deleteReservation(std::string username, int month, int day, double
 	User u;
 	Teacher temp;
 	Reservation* res = NULL;
-	Lesson* les = NULL;
 	try {
 		u = getUser(username); //try and get the user
 		vector<Reservation*> reservs = u.getReservations(); // retrieve the reservations
@@ -1093,7 +1095,6 @@ bool Company::deleteReservation(std::string username, int month, int day, double
 			//temp = getTeacher(u.getName());
 			vector<Lesson*> lessons = temp.getLessons(); // retrieve the teachers lessons
 			vector<Lesson*>::iterator itLesson = getScheduledLesson(temp.getName(),temp.getLessons(),month,day,startingHour,duration);
-			les = *itLesson;
 
 			lessons.erase(itLesson);				//remove from users' reservation and teachers' lessons
 			reservs.erase(itRes);
