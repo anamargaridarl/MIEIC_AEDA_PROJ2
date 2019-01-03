@@ -73,17 +73,18 @@ int Menu(const int cardValue,Company &C) {
     cout << "1.Add Person                             " << endl; // Adds a new Person
     cout << "2.Add Reservation                        " << endl; // Adds a new Reservation
     cout << "3.Change Information                     " << endl;
-    cout << "4.Add Court                              " << endl; // Adds a new Court
-    cout << "5.Show Person                            " << endl; // Shows a person or all people of a class
-    cout << "6.Show Courts                            " << endl; // Shows courts information
-    cout << "7.Increment day                          " << endl; // Increments the day
-    cout << "8.Exit                                   " << endl; // Exit
+    cout << "4.Add Court                              " << endl;// Adds a new Court
+    cout << "5.Repair                                 " << endl;
+    cout << "6.Show Person                            " << endl; // Shows a person or all people of a class
+    cout << "7.Show Courts                            " << endl; // Shows courts information
+    cout << "8.Increment day                          " << endl; // Increments the day
+    cout << "9.Exit                                   " << endl; // Exit
     cout << "-----------------------------------------" << endl;
 
     string flag;
     cin >> flag;
 
-    while (flag != "1" && flag != "2" && flag != "3" && flag != "4" && flag != "5" && flag != "6" && flag != "7" && flag != "8") {
+    while (flag != "1" && flag != "2" && flag != "3" && flag != "4" && flag != "5" && flag != "6" && flag != "7" && flag != "8" && flag != "9") {
         cin.clear();
         cin.ignore(1000, '\n');
         cout << " Error...Try again: " << endl;
@@ -531,7 +532,30 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
             	C.createCourt();
             	break;
             }
-            case 5: //Shows the person
+            case 5: //Repair
+            {
+                cout << "----------------------------------------------"<< endl;
+                cout << "1.Add Repairer                                " << endl;
+                cout << "2.Schedule Repair" << endl;
+                cout << "3.Show Repairers" << endl;
+                cout << "4.Go back" << endl;
+                cout << "----------------------------------------------"<< endl;
+
+                cin >> flagCase;
+
+                while (flagCase != "1" && flagCase != "2" && flagCase != "3" && flagCase != "4") {
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                    cout << "Error...Try again: " << endl;
+                    cin >> flagCase;
+                }
+                ///////////////////////////////////////////////////////////////
+
+                flagAux = stoi(flagCase);
+                
+                break;
+            }
+            case 6: //Shows the person
             {
                 ///////////////////////////////////////////////////////////////
 
@@ -553,7 +577,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                 }
                 ///////////////////////////////////////////////////////////////
 
-                flagAux = stoi(flagOptions);
+                flagAux = stoi(flagCase);
 
                 switch (flagAux) {
                     case 1://all teachers and Users
@@ -658,16 +682,16 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                 break;
             }
-            case 6: //show courts
+            case 7: //show courts
             {
             	C.showCourts();
             	break;
             }
-            case 7: {
+            case 8: {
                 ++C;
                 break;
             }
-            case 8: { // Does the user want to save the information?
+            case 9: { // Does the user want to save the information?
                 cout << "Save and exit? " << endl;
                 cout << "1.Yes 0.No" << endl;
                 cin >> flagCase;

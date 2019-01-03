@@ -1,4 +1,4 @@
-#include "Calendar.h"
+/*#include "Calendar.h"
 #include "Company.h"
 using namespace std;
 
@@ -42,7 +42,7 @@ int main() {
 	c1.storeInfo(outfile,0);
 	cout << "Test finished" << endl;
 
-	/*
+
 	//FAILING
 	 //Reading info from json
 	cout << "Test 5: " << endl;
@@ -54,7 +54,7 @@ int main() {
 	c1.showUsers();
 	c1.showTeachers();
 	c1.showDate();
-	*/
+
 
 	//Try to register a teacher with a invalid name
 	cout << "Test 6: " << endl;
