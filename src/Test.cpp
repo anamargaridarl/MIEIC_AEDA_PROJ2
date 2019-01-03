@@ -30,8 +30,8 @@ int main() {
 
 	//Adding users and check for assigned teachers
 	cout << "Test 3" << endl;
-	c1.registerUser("Manel",30,true,"Frango");
-	c1.registerUser("Nando",23,false,"Calhau");
+	c1.registerUser("Manel",30,true,"Frango","Rua do bacalhau",007);
+	c1.registerUser("Nando",23,false,"Calhau","Avenida da calle",112);
 	c1.showUsers();
 
 	//Parse info to json
@@ -63,13 +63,13 @@ int main() {
 
 	//Reserve lessons
 	cout << "Test 7: " << endl;
-	if(c1.makeLesson(12,23,10,"Manel","Alberto")) {
+	if(c1.makeLesson(12,23,10,"Manel")) {
 		cout << "Lesson 1 scheduled" << endl;
 	}
-	if(c1.makeLesson(12,2,10,"Manel","Alberto")) {
+	if(c1.makeLesson(12,2,10,"Manel")) {
 		cout << "Lesson 2 scheduled" << endl;
 	}
-	if(c1.makeLesson(12,3,8,"Nando","Pedro")) {
+	if(c1.makeLesson(12,3,8,"Nando")) {
 		cout << "Lesson 3 scheduled" << endl;
 	}
 	cout << "7.a. " << endl;
@@ -104,4 +104,3 @@ int main() {
 
 	return 0;
 }
-*/
