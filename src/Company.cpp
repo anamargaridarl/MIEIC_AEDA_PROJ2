@@ -790,13 +790,17 @@ void Company::storeInfo(std::ofstream &outfile, int indent) {
 	indentation(outfile, indent); //Saves the users in the company
 	outfile << "\"users\": [" << endl;
 	indent++;
-	for(set<User>::iterator it = users.begin(); it != users.end(); it++)
+	for(set<User>::iterator it = users.begin(); it != users.end(); )
 	{
 		User a;
 		a = *it;
 		a.storeInfo(outfile, indent);
 		indentation(outfile, indent);
-		outfile << "," << endl;
+        it++;
+        if( it != this->users.end()) {
+            indentation(outfile, indent);
+            outfile << "," << endl;
+        }
 
 	}
 	indent--;
@@ -822,8 +826,29 @@ void Company::storeInfo(std::ofstream &outfile, int indent) {
 	indent--;
 	indentation(outfile, indent);
 	outfile << "]," << endl;
+
+	indentation(outfile, indent); //Saves the repairer in the company
+	outfile << "\"repairers\": [" << endl;
+	indent++;
+	priority_queue<Supporter> temp = techSupport;
+	while(!techSupport.empty())
+	{
+		Supporter s = techSupport.top();
+		s.storeInfo(outfile, indent);
+		techSupport.pop();
+
+		if(!techSupport.empty()) {
+			indentation(outfile, indent);
+			outfile << "," << endl;
+		}
+	}
+	indent--;
+	indentation(outfile, indent);
+	outfile << "]," << endl;
+
 	indentation(outfile, indent); //Saves value of the card
 	outfile << "\"cardValue\": " << this->cardValue <<  "," << endl;
+
 	indentation(outfile, indent); //Saves the date information
 	outfile << "\"Date\": " << endl;
 	indent++;
@@ -832,19 +857,24 @@ void Company::storeInfo(std::ofstream &outfile, int indent) {
 	indent--;
 	indentation(outfile, indent);
 	outfile << "}" << endl;
+
+
 }
 
 void Company::readInfo(std::ifstream &infile) {
 	string savingString;
+
 	while (getline(infile, savingString)) { //Gets all the tennis courts
+
 		if (savingString.find("tennisCourts") != string::npos) {
 			while (getline(infile, savingString)) {
+			if (savingString.find(']') != string::npos) {
+					break;
+				}
+
 				Court c;
 				c.readInfo(infile);
 				tennisCourts.push_back(c);
-				if (savingString.find(']') != string::npos) {
-					break;
-				}
 			}
 		}
 
@@ -873,6 +903,21 @@ void Company::readInfo(std::ifstream &infile) {
 
 			}
 		}
+
+		//Gets all the repairers info
+		if (savingString.find("repairers") != string::npos) {
+			while (getline(infile, savingString)) {
+				if (savingString.find(']') != string::npos) {
+					break;
+				}
+				Supporter t;
+				t.readInfo(infile);
+				techSupport.push(t);
+				getline(infile,savingString);
+
+			}
+		}
+
 
 		//Gets the card Value
 		if (savingString.find("cardValue") != string::npos) {

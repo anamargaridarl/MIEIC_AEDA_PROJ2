@@ -106,7 +106,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
     float duration;
     string adress;
     int nif;
-    int n;
+    int n,id;
 
     /*Used to handle options in menu*/
     int flagMenu = 0;
@@ -534,16 +534,17 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
             }
             case 5: //Repair
             {
-                cout << "----------------------------------------------"<< endl;
+                cout << "---------------------------------------------- "<< endl;
                 cout << "1.Add Repairer                                " << endl;
-                cout << "2.Schedule Repair" << endl;
-                cout << "3.Show Repairers" << endl;
-                cout << "4.Go back" << endl;
+                cout << "2.Schedule Repair                             " << endl;
+                cout << "3.Show Repairers                              " << endl;
+                cout << "4.Delete Repairers                              " << endl;
+                cout << "5.Go back" << endl;
                 cout << "----------------------------------------------"<< endl;
 
                 cin >> flagCase;
 
-                while (flagCase != "1" && flagCase != "2" && flagCase != "3" && flagCase != "4") {
+                while (flagCase != "1" && flagCase != "2" && flagCase != "3" && flagCase != "4" && flagCase != "5") {
                     cin.clear();
                     cin.ignore(1000, '\n');
                     cout << "Error...Try again: " << endl;
@@ -552,7 +553,58 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                 ///////////////////////////////////////////////////////////////
 
                 flagAux = stoi(flagCase);
-                
+
+                switch(flagAux)
+                {
+                    case 1:
+                    {
+                        cin.ignore();
+                        cout << "Name"<< endl;
+                        getline(cin, name);
+
+                        cout << "Gender" << endl;
+                        cin>>gender;
+
+                        C.addRepairer(name, gender);
+                        break;
+                    }
+                    case 2:
+                    {
+                        cout << "Court ID" << endl;
+                        cin >> flagNumbers;
+                        id = stoi(isNumber(flagNumbers));
+
+                        cout << "Day" << endl;
+                        cin >> flagNumbers;
+                        d = stoi(isNumber(flagNumbers));
+
+                        cout << "Month" << endl;
+                        cin >> flagNumbers;
+                        m = stoi(isNumber(flagNumbers));
+
+                        C.scheduleRepair(d,m,id);
+                        break;
+
+                    }
+                    case 3:
+                    {
+                        C.listAllRepairers();
+                        break;
+                    }
+                    case 4:
+                    {
+                        cout << "Supporter ID" << endl;
+                        cin >> flagNumbers;
+                        id = stoi(isNumber(flagNumbers));
+
+                        C.removeRepairer(id);
+                        break;
+                    }
+                    case 5:
+                    {
+                        break;
+                    }
+                }
                 break;
             }
             case 6: //Shows the person
@@ -786,7 +838,8 @@ int main() {
         case 2: //load company
         {
 
-            cout << "Card Value of the company? " << endl;
+
+cout << "Card Value of the company? " << endl;
             cin >> aux;
             cv = stoi(isNumber(aux));
 
