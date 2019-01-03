@@ -528,25 +528,30 @@ std::vector<User&> Company::getTeacherStudents(std::string teacher)  {
     return temp;
 }
  */
+
+/*
 //returns true if at least one lesson is rescheduled
-bool Company::rescheduleLessons(std::vector<Lesson *> lessons, std::vector<Reservation *> &reservs, Teacher &subst, string username) {
+bool Company::rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &subst, string username) {
 
 	vector<Reservation*> rejects;
-	for(auto i: lessons) {
-		for (auto j= reservs.begin(); j != reservs.end(); j++) {
-			if(i == *j) {
-				auto l = find(subst.getLessons().begin(),subst.getLessons().end(),i); //try to find if the teacher already has a class scheduled for the same time
-				if(l == subst.getLessons().end()) {
-					subst.setLesson(i);   //if not, add to his/her lessons
-				}
-				else {
-					rejects.push_back(*j); //add to the rejected lessons
-					reservs.erase(j); //remove from user reservations
-					j--;
-				}
+	for (auto j= reservs.begin(); j != reservs.end(); j++) {
+		vector<Lesson*> lsns = subst.getLessons();
+		bool found = false;
+		for(auto i : lsns) {
+			if (**j == *i) {
+				rejects.push_back(*j); //add to the rejected lessons
+				reservs.erase(j); //remove from user reservations
+				j--;
+				found = true;
+				break;
 			}
 		}
+		if(!found) {
+			lsns.push_back(dynamic_cast<Lesson *>(*j));
+		}
 	}
+
+	subst.setLessons(lsns);
 
 	if(!rejects.empty()) {
 		cout << "The user: " << username << "has the following lessons unscheduled:" << endl;
@@ -558,14 +563,10 @@ bool Company::rescheduleLessons(std::vector<Lesson *> lessons, std::vector<Reser
 		}
 	}
 
-	if(rejects.size() == lessons.size()) {
-		return false;
-	}
-	else {
-		return true;
-	}
+	return !(rejects.size() == lessons.size());
 }
-//----------------------------------------------------------------------------------------------------------------
+*/
+ //----------------------------------------------------------------------------------------------------------------
 
 bool Company::showReport(string name, int month)
 {
@@ -978,9 +979,10 @@ void Company::removeRepairer(unsigned id)
 	throw NoSupporterID(id);
 }
 
+
 //remove the teacher from active status and reassign his/her students to another teach and reschedule all possible lessons
 bool Company::removeActiveTeacher(std::string teacher) {
-	try {
+	/*try {
 		Teacher rem_teacher(teacher,0,"");
 		tabTeach::iterator it = teachers.find(rem_teacher);
 		if(it == teachers.end())
@@ -989,7 +991,6 @@ bool Company::removeActiveTeacher(std::string teacher) {
 			throw (InactiveTeacher(teacher));
 
 		rem_teacher = *it;
-		//get the students that will need to have another teacher assigned
 		//get the removed teacher's lessons to be rescheduled
 		vector<Lesson*> mLessons = rem_teacher.getLessons();
 		teachers.erase(it);
@@ -1023,12 +1024,11 @@ bool Company::removeActiveTeacher(std::string teacher) {
 				teachers.erase(new_teacher);
 				new_teacher.addStudent();// add a student to the substitute teacher
 				std::vector<Reservation *> reservs = i.getReservations();
-				rescheduleLessons(mLessons, reservs, new_teacher,i.getName()); // reschedule the possible lessons
+				rescheduleLessons(reservs, new_teacher,i.getName()); // reschedule the possible lessons
 				teachers.insert(new_teacher);
 
-				/*needs bst to work*/
-				users.erase(i);
 				User u = i;
+				users.erase(i);
 				u.editTeacher(new_teacher.getName());//ana side
 				u.editReservations(reservs); //ana side
 				users.insert(u);
@@ -1043,13 +1043,26 @@ bool Company::removeActiveTeacher(std::string teacher) {
 	catch(InactiveTeacher &i) {
 		cout << i.what() << endl;
 		return false;
-	}
+	}*/
+	return false;
 }
+
 
 void Company::deleteUser(string name)
 {
 	User u = this->getUser(name);
 	u.deleteUser();
+}
+
+Teacher Company::getTeacher(std::string teacherName) {
+	for(auto i: teachers) {
+		if (i.getName() == teacherName) {
+			Teacher temp = i;
+			teachers.erase(i);
+			return temp;
+		}
+	}
+	throw(NoTeacherRegistered(teacherName));
 }
 
 //---------------------------------------------------------------------------------------------------------

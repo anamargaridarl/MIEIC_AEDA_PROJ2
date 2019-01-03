@@ -108,6 +108,8 @@ public:
 	void reAddUser(User u);
 	User getUser(std::string userName);
 
+	Teacher getTeacher(std::string teacherName);
+
 
 
 	/**
@@ -266,7 +268,7 @@ public:
 
     bool changeTeacherStatus(std::string teacher,bool newstat);
     bool removeActiveTeacher(std::string teacher);
-    bool rescheduleLessons(std::vector<Lesson *> lessons, std::vector<Reservation *> &reservs, Teacher &subst, std::string username);
+    bool rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &subst, std::string username);
 
     void changeName(std::string name, std::string newName, int flag);
     void changeAge(std::string name, int newAge, int flag);
