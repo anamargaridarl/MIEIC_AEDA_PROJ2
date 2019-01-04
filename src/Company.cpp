@@ -1034,29 +1034,56 @@ bool Company::modifyReservation(std::string username, int month, int day, double
 			}
 
 			//check court availability and change lesson
-
+			bool flag = true;
+			for(auto i: this->tennisCourts)
+            {
+			    if(i.isOccupied(month, day, startingHour, duration))
+                {
+			        i.modifyReservation(month, day, startingHour, duration, newMonth, newDay, newStartHour, newDuration);
+			        flag = false;
+                    break;
+                }
+            }
+			if(flag)
+			    throw NoCourtfound(month, day, startingHour);
 			//change lesson in lessons and reservs
 			(*itLesson)->setMonth(newMonth);
 			(*itLesson)->setDay(newDay);
 			(*itLesson)->setStartHour(newStartHour);
 			(*itLesson)->setDuration(newDuration);
-			(*itRes)->setMonth(newMonth);
-			(*itRes)->setDay(newDay);
-			(*itRes)->setStartHour(newStartHour);
-			(*itRes)->setDuration(newDuration);
+            (*itRes)->setMonth(newMonth);
+            (*itRes)->setDay(newDay);
+            (*itRes)->setStartHour(newStartHour);
+            (*itRes)->setDuration(newDuration);
 
-			u.setReservations(reservs);
-			temp.setLessons(lessons);
+            teachers.insert(temp); // confirm procedure
+            u.setReservations(reservs);
+            temp.setLessons(lessons);
 
-			teachers.insert(temp); // confirm procedure
-			users.insert(u); //confirm procedure
-			return true;
-		}
+            users.insert(u); //confirm procedure
+            return true;
+        }
 		else { // if its a free reservation
 
-			//check court availability and change free
+            //check court availability and change free
 
-			//change free in reservs
+            bool flag = true;
+            for(auto i: this->tennisCourts)
+            {
+                if(i.isOccupied(month, day, startingHour, duration))
+                {
+                    i.modifyReservation(month, day, startingHour, duration, newMonth, newDay, newStartHour, newDuration);
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag)
+                throw NoCourtfound(month, day, startingHour);
+            //change free in reservs
+            (*itRes)->setMonth(newMonth);
+            (*itRes)->setDay(newDay);
+            (*itRes)->setStartHour(newStartHour);
+            (*itRes)->setDuration(newDuration);
 
 			u.setReservations(reservs);
 			users.insert(u);
@@ -1078,6 +1105,18 @@ bool Company::modifyReservation(std::string username, int month, int day, double
 		cout << r.what() << endl;
 		return false;
 	}
+	catch (NoCourtfound &c){
+	    users.insert(u);
+	    if(!res->getTeacher().empty())
+	        teachers.insert(temp);
+	    cout << c.what() << endl;
+	}
+	catch (CourtReserved & c){
+	    users.insert(u);
+	    if(!res->getTeacher().empty())
+	        teachers.insert(temp);
+	    cout << c.what() << endl;
+	}
 }
 
 bool Company::deleteReservation(std::string username, int month, int day, double startingHour, unsigned int duration) {
@@ -1096,20 +1135,45 @@ bool Company::deleteReservation(std::string username, int month, int day, double
 			vector<Lesson*> lessons = temp.getLessons(); // retrieve the teachers lessons
 			vector<Lesson*>::iterator itLesson = getScheduledLesson(temp.getName(),temp.getLessons(),month,day,startingHour,duration);
 
+            bool flag = true;
+            for(auto i: this->tennisCourts)
+            {
+                if(i.isOccupied(month, day, startingHour, duration))
+                {
+                    i.unsetReservation(month, day, startingHour, duration);
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag)
+                throw NoCourtfound(month, day, startingHour);
 			lessons.erase(itLesson);				//remove from users' reservation and teachers' lessons
-			reservs.erase(itRes);
+            reservs.erase(itRes);
 
-			//remove in court
+            //remove in court
 
-			u.setReservations(reservs);
-			temp.setLessons(lessons);
+            u.setReservations(reservs);
+            temp.setLessons(lessons);
 
-			teachers.insert(temp); // confirm procedure
-			users.insert(u); //confirm procedure
+            teachers.insert(temp); // confirm procedure
+
+            users.insert(u); //confirm procedure
 			return true;
 		}
 		else { // if its a free reservation
-			reservs.erase(itRes);
+            bool flag = true;
+            for(auto i: this->tennisCourts)
+            {
+                if(i.isOccupied(month, day, startingHour, duration))
+                {
+                    i.unsetReservation(month, day, startingHour, duration);
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag)
+                throw NoCourtfound(month, day, startingHour);
+            reservs.erase(itRes);
 
 			//remove in court
 
@@ -1122,6 +1186,12 @@ bool Company::deleteReservation(std::string username, int month, int day, double
 		cout << u.what() << endl;
 		return false;
 	}
+    catch (NoCourtfound &c){
+        users.insert(u);
+        if(!res->getTeacher().empty())
+            teachers.insert(temp);
+        cout << c.what() << endl;
+    }
 }
 
 

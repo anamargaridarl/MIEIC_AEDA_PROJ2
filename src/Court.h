@@ -100,6 +100,8 @@ public:
 	bool isOccupied(int month, int day, double startingHour, int duration);
 
 	void modifyReservation( int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,unsigned int newDuration);
+
+	void unsetReservation(int month, int day, double startingHour, unsigned int duration);
 private:
 
 	/**

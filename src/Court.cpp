@@ -21,17 +21,24 @@ Court::Court() {}
 bool Court::isOccupied(int month, int day, double startingHour, int duration)
 {
 	// Checks the schedule for the specified month
-	if(!this->currentYear.getMonth(month).getDay(day).checkSchedule(startingHour, duration))
-	{
-		throw(CourtReserved(month, day, startingHour));
-	}
+	return (this->currentYear.getMonth(month).getDay(day).checkSchedule(startingHour, duration));
 }
 
 void Court::modifyReservation( int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,unsigned int newDuration)
 {
 	this->currentYear.getMonth(month).getDay(day).unsetSchedule(startingHour, duration);
-	occupied(newMonth, newDay, newStartHour, newDuration);
+	if(	isOccupied(newMonth, newDay, newStartHour, newDuration))
+    {
+		this->currentYear.getMonth(month).getDay(day).setSchedule(startingHour, duration);
+		throw CourtReserved(newMonth, newDay, newDuration);
+	}
+
 	this->currentYear.getMonth(newMonth).getDay(day).setSchedule(newStartHour, newDuration);
+}
+
+void Court::unsetReservation(int month, int day, double startingHour, unsigned int duration)
+{
+	this->currentYear.getMonth(month).getDay(day).unsetSchedule(startingHour, duration);
 }
 
 void Court::occupied(int month, int day, double startingHour, int duration)
@@ -343,6 +350,6 @@ int Court::getMaxUsers() const
 
 std::string NoCourtfound::what() const
 {
-	return "No Court has a reservation for the " + to_string(this->day) + " of the month " + to_string(this->month) + " at "
+	return "The Courts have no reservation for the " + to_string(this->day) + " of the month " + to_string(this->month) + " at "
 		   + to_string(this->startingHour) + '\n';
 }
