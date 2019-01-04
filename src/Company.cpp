@@ -1259,10 +1259,6 @@ std::string NoCourtID::what() const
 {
 	return "The Court with the ID " + to_string(this->ID) + " is not registered in this company\n";
 }
-/*
-std::string NoScheduledLesson::what() const {
-	return "The lesson is not scheduled with teacher: " + this->teacherName;
-}*/
 
 std::string ReservationAlreadyExists::what() const {
 	return "There is already a reservation made at that time for the user: " + this->name;

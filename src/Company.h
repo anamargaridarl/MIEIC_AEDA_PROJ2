@@ -443,16 +443,6 @@ public:
 
 };
 
-/*
-class NoScheduledLesson
-{
-private:
-	std::string teacherName;
-public:
-	NoScheduledLesson(std::string teacherName) {this->teacherName = teacherName;}
-	std::string what() const;
-};
-*/
 class ReservationAlreadyExists
 {
 private:
