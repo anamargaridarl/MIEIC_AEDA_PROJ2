@@ -99,18 +99,4 @@ public:
 	std::string getHourFormat(double hour);
 };
 
-/**
- * When the grade is not valid
- */
-
-class InvalidGrade
-{
-private:
-	int grade;
-public:
-	InvalidGrade(int grade) {this->grade = grade;}
-	int getGrade() const { return grade;}
-	friend std::ostream & operator<<(std::ostream &os,const InvalidGrade &ig);
-};
-
 #endif /* SRC_REPORT_H_ */
