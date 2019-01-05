@@ -982,7 +982,7 @@ void Company::removeRepairer(unsigned id)
 
 //remove the teacher from active status and reassign his/her students to another teach and reschedule all possible lessons
 bool Company::removeActiveTeacher(std::string teacher) {
-	/*try {
+	try {
 		Teacher rem_teacher(teacher,0,"");
 		tabTeach::iterator it = teachers.find(rem_teacher);
 		if(it == teachers.end())
@@ -1047,33 +1047,41 @@ bool Company::removeActiveTeacher(std::string teacher) {
 }
 
 //returns true if at least one lesson is rescheduled
-bool Company::rescheduleLessons(std::vector<Lesson *> lessons, std::vector<Reservation *> &reservs, Teacher &subst, string username) {
+bool Company::rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &subst, string username) {
 
-	vector<Reservation*> rejects;
-	for(auto i: lessons) {
-		for (auto j= reservs.begin(); j != reservs.end(); j++) {
-			if(i == *j) {
-				auto l = find(subst.getLessons().begin(),subst.getLessons().end(),i); //try to find if the teacher already has a class scheduled for the same time
-				if(l == subst.getLessons().end()) {
-					subst.setLesson(i);   //if not, add to his/her lessons
-				}
-				else {
-					rejects.push_back(*j); //add to the rejected lessons
-					reservs.erase(j); //remove from user reservations
-					j--;
-				}
+	vector<Reservation *> rejects;
+	vector<Lesson *> lsns = subst.getLessons();
+	for (auto j = reservs.begin(); j != reservs.end(); j++) {
+		bool found = false;
+		for (auto i : lsns) {
+			if (**j == *i) {
+				rejects.push_back(*j); //add to the rejected lessons
+				reservs.erase(j); //remove from user reservations
+				j--;
+				found = true;
+				break;
 			}
 		}
-	catch(NoTeacherRegistered &t) {
-		cout << t.what() << endl;
-		return false;
+		if (!found) {
+			lsns.push_back(dynamic_cast<Lesson *>(*j));
+		}
 	}
-	catch(InactiveTeacher &i) {
-		cout << i.what() << endl;
-		return false;
-	}*/
-	return false;
+
+	subst.setLessons(lsns);
+
+	if (!rejects.empty()) {
+		cout << "The user: " << username << "has the following lessons unscheduled:" << endl;
+		int n = 1;
+		for (auto i: rejects) {
+			cout << "Lesson nº " << n << ":\t Day/Month: " << i->getDay() << "/" << i->getMonth() << "\t Time: "
+				 << i->getStartingHour() << ":" << i->getStartingHour() + i->getDuration() << endl;
+			free(i);
+		}
+	}
+
+	return !(rejects.size() == lsns.size());
 }
+
 
 
 void Company::deleteUser(string name)
