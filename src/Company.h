@@ -287,6 +287,10 @@ public:
     void listAllRepairers() const;
 
     void listAvailableRepairers(unsigned daysUntilAvailable) const;
+
+    void unscheduleRepair(unsigned id, unsigned day, unsigned month);
+
+    void rescheduleRepair(unsigned id, unsigned day, unsigned month, unsigned newDay, unsigned newMonth);
 };
 
 
@@ -430,6 +434,16 @@ public:
 
 	std::string what() const;
 
+};
+
+class NoRepair{
+private:
+	unsigned day;
+	unsigned month;
+	unsigned id;
+public:
+	NoRepair(unsigned day, unsigned month, unsigned id): day(day), month(month), id(id){};
+	std::string what() const;
 };
 
 #endif /* SRC_COMPANY_H_ */

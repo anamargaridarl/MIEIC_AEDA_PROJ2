@@ -1076,6 +1076,44 @@ Teacher Company::getTeacher(std::string teacherName) {
 	throw(NoTeacherRegistered(teacherName));
 }
 
+
+void Company::unscheduleRepair(unsigned id, unsigned day, unsigned month)
+{
+	vector<Supporter> aux;
+	Repair rp(0, Date(day, month, this->date.getYear()));
+	while(!this->techSupport.empty())
+	{
+		Supporter sup = this->techSupport.top();
+		this->techSupport.pop();
+		auto it = sup.getRepairDates().find(rp);
+		if(it != sup.getRepairDates().end())
+		{
+			if(it->getSupID() == id)
+			{
+				sup.getRepairDates().erase(it);
+				for(const auto &i: aux)
+				{
+					this->techSupport.push(i);
+					return;
+				}
+			}
+		}
+		aux.push_back(sup);
+	}
+	for(const auto &i: aux)
+	{
+		this->techSupport.push(i);
+		return;
+	}
+	throw NoRepair(day, month, id);
+}
+
+void Company::rescheduleRepair(unsigned id, unsigned day, unsigned month, unsigned newDay, unsigned newMonth)
+{
+	Company::unscheduleRepair(id, day, month);
+	Company::scheduleRepair(newDay, newMonth, id);
+}
+
 //---------------------------------------------------------------------------------------------------------
 
 //Exception Handling
@@ -1142,3 +1180,8 @@ std::string NoCourtID::what() const
 	return "The Court with the ID " + to_string(this->ID) + " is not registered in this company\n";
 }
 
+std::string NoRepair::what() const
+{
+	return "No Repair scheduled to the date of " + to_string(this->month) + " on the " + to_string(this->day) + " for the" +
+	+ " Court Number " + to_string(this->id);
+}
