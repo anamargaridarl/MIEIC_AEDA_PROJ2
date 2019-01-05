@@ -19,14 +19,14 @@
 
 using namespace std;
 
-string name, gender, assignedT, address;
-int age;
+string name, gender, assignedT, address, newname;
 bool isGold;
-int m, d, strH;
-float duration;
+int age, m, d, strH;
+float duration, newduration;
 string adress;
-int nif;
-int n, id;
+int nif,n,id;
+int newm, newd, newstrH;
+
 
 /*Used to handle options in menu*/
 int flagMenu = 0;
@@ -617,12 +617,78 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     }
 
                 } else if (flagAux == 3) { //edit reservation
-                    cout << "to complete" << endl;
 
-                } else if (flagAux == 4) { //delete reservation
-                    cout << "to complete" << endl;
+                    cin.ignore();
+                    cout << "User name: " << endl;
+                    getline(cin,name);
 
-                } else if (flagAux == 5) { //go back
+                    cout << "Month: " <<endl;
+                    cin>> flagCase;
+                    m = stoi(isNumber(flagNumbers));
+
+                    cout << "Day: "<< endl;
+                    cin>> flagCase;
+                    d = stoi(isNumber(flagNumbers));
+
+                    cout << "Starting Hour: " <<endl;
+                    cin>> flagCase;
+                    strH = stoi(isNumber(flagNumbers));
+
+                    cout << "Duration: "<< endl;
+                    cin>> flagCase;
+                    duration = stoi(isNumber(flagNumbers));
+
+                    cin.ignore();
+                    cout << "New User name: " << endl;
+                    getline(cin,newname);
+
+                    cout << "New Month: " <<endl;
+                    cin>> flagCase;
+                    newm = stoi(isNumber(flagNumbers));
+
+                    cout << "New Day: "<< endl;
+                    cin>> flagCase;
+                    newd = stoi(isNumber(flagNumbers));
+
+                    cout << "New Starting Hour: "<< endl;
+                    cin>> flagCase;
+                    newstrH = stoi(isNumber(flagNumbers));
+
+                    cout << "New Duration: "<< endl;
+                    cin>> flagCase;
+                    newduration = stoi(isNumber(flagNumbers));
+
+
+                    C.modifyReservation(name,m,d,strH,duration,newm,newd,newstrH,newduration);
+
+
+
+                }
+                else if (flagAux == 4) { //delete reservation
+
+                        cin.ignore();
+                        cout << "User name: " << endl;
+                        getline(cin,name);
+
+                        cout << "Month: " <<endl;
+                        cin>> flagCase;
+                        m = stoi(isNumber(flagNumbers));
+
+                        cout << "Day: "<< endl;
+                        cin>> flagCase;
+                        d = stoi(isNumber(flagNumbers));
+
+                        cout << "Starting Hour: " <<endl;
+                        cin>> flagCase;
+                        strH = stoi(isNumber(flagNumbers));
+
+                        cout << "Duration: "<< endl;
+                        cin>> flagCase;
+                        duration = stoi(isNumber(flagNumbers));
+
+                        C.deleteReservation(name,m,d,strH,duration);
+                    }
+                    else if (flagAux == 5) { //go back
                     break;
                 }
                 break;
@@ -724,8 +790,6 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     }
                     case 4:
                     {
-                        int newm, newd;
-
                         cout << "New Day" << endl;
                         cin >> flagNumbers;
                         newd = stoi(isNumber(flagNumbers));

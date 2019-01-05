@@ -295,9 +295,7 @@ public:
 
     bool deleteReservation(std::string username, int month, int day, double startingHour, unsigned int duration);
     void listAvailableRepairers(unsigned daysUntilAvailable) const;
-
     void unscheduleRepair(unsigned id, unsigned day, unsigned month);
-
     void rescheduleRepair(unsigned id, unsigned day, unsigned month, unsigned newDay, unsigned newMonth);
 };
 
