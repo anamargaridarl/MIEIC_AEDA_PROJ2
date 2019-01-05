@@ -1305,44 +1305,6 @@ bool Company::deleteReservation(std::string username, int month, int day, double
         cout << c.what() << endl;
     }
 }
-//------------------------------------------------------------------------------------------------------------
-
-/*
-//returns true if at least one lesson is rescheduled
-bool Company::rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &subst, string username) {
-	vector<Reservation*> rejects;
-	for (auto j= reservs.begin(); j != reservs.end(); j++) {
-		vector<Lesson*> lsns = subst.getLessons();
-		bool found = false;
-		for(auto i : lsns) {
-			if (**j == *i) {
-				rejects.push_back(*j); //add to the rejected lessons
-				reservs.erase(j); //remove from user reservations
-				j--;
-				found = true;
-				break;
-			}
-		}
-		if(!found) {
-			lsns.push_back(dynamic_cast<Lesson *>(*j));
-		}
-	}
-	subst.setLessons(lsns);
-	if(!rejects.empty()) {
-		cout << "The user: " << username << "has the following lessons unscheduled:" << endl;
-		int n = 1;
-		for (auto i: rejects) {
-			cout << "Lesson nº " << n << ":\t Day/Month: " << i->getDay() << "/" << i->getMonth() << "\t Time: "
-				 << i->getStartingHour() << ":" << i->getStartingHour() + i->getDuration() << endl;
-			free(i);
-		}
-	}
-	return !(rejects.size() == lessons.size());
-}
-*/
-
-
-
 //---------------------------------------------------------------------------------------------------------
 
 //Exception Handling
