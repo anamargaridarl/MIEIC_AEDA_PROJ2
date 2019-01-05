@@ -1,7 +1,7 @@
 //
 // Created by andrefmrocha on 10/30/18.
 //
-
+/*
 #include "Court.h"
 #include "Person.h"
 #include "Date.h"
@@ -13,7 +13,7 @@ int main()
 {
  /*   Date d(1, 1, 1);
     Date d2(1, 1, 2);
-    cout << d2 - d;*/
+    cout << d2 - d;
     Company c;
     c.addRepairer("Joao", "M");
     c.addRepairer("Joao", "M");
@@ -34,4 +34,4 @@ int main()
     sp1.readInfo(infile);
     ofstream outfile1("Support2.json");
     sp1.storeInfo(outfile1, 0);
-}
+}*/

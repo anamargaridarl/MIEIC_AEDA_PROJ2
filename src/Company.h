@@ -108,6 +108,8 @@ public:
 	void reAddUser(User u);
 	User getUser(std::string userName);
 
+	Teacher getTeacher(std::string teacherName);
+
 
 
 	/**
@@ -265,27 +267,24 @@ public:
 
 
     bool changeTeacherStatus(std::string teacher,bool newstat);
-
     bool removeActiveTeacher(std::string teacher);
+    bool rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &subst, std::string username);
 
     bool rescheduleLessons(std::vector<Lesson *> lessons, std::vector<Reservation *> &reservs, Teacher &subst, std::string username);
     void changeName(std::string name, std::string newName, int flag);
     void changeAge(std::string name, int newAge, int flag);
 	void changeGender(std::string name, std::string newgender, int flag);
     void changeisGold(std::string name, bool isGold);
-    //not implemented in main
+    bool checkNIF(int nif);
     void changeNIF(std::string name, int newNIF);
     void changeAddress(std::string name, std::string newAdress);
 	//void changeReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
 	void deleteUser(std::string name);
-    bool checkNIF(int nif);
+
 
     void scheduleRepair(int day, int month, unsigned ID);
-
     void addRepairer(std::string name, std::string gender);
-
     void removeRepairer(unsigned id);
-
     void listAllRepairers() const;
 
     //get the scheduled reservation of a given user, if possible
@@ -297,7 +296,11 @@ public:
 						   unsigned int newDuration);
 
     bool deleteReservation(std::string username, int month, int day, double startingHour, unsigned int duration);
+    void listAvailableRepairers(unsigned daysUntilAvailable) const;
 
+    void unscheduleRepair(unsigned id, unsigned day, unsigned month);
+
+    void rescheduleRepair(unsigned id, unsigned day, unsigned month, unsigned newDay, unsigned newMonth);
 };
 
 
@@ -457,7 +460,17 @@ class TeacherUnavailable
 private:
 	std::string name;
 public:
-	TeacherUnavailable(std::string name) {this->name = name;}
+  TeacherUnavailable(std::string name) {this->name = name;}
+  std::string what() const;
+};
+
+class NoRepair{
+private:
+	unsigned day;
+	unsigned month;
+	unsigned id;
+public:
+	NoRepair(unsigned day, unsigned month, unsigned id): day(day), month(month), id(id){};
 	std::string what() const;
 };
 

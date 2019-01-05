@@ -19,6 +19,329 @@
 
 using namespace std;
 
+string name, gender, assignedT, address;
+int age;
+bool isGold;
+int m, d, strH;
+float duration;
+string adress;
+int nif;
+int n, id;
+
+/*Used to handle options in menu*/
+int flagMenu = 0;
+int flagAux;
+int flagAux2;
+string flagCase;
+string flagOptions;
+string flagNumbers;
+
+string isNumber(string flagNumbers) {
+
+    bool isNumber = false;
+
+    while (!isNumber) {
+        for (string::const_iterator k = flagNumbers.begin(); k != flagNumbers.end(); ++k)
+            isNumber = isdigit(*k);
+
+        if (!isNumber) {
+            cout << "Unavailable option. Try again" << endl;
+            cin >> flagNumbers;
+        }
+    }
+
+    return flagNumbers;
+}
+
+bool editPerson(Company &C)
+{
+    cout << "1.User" << endl;
+    cout << "2.Teacher" << endl;
+    cout << "3.Back" << endl;
+
+    cin >> flagCase;
+
+    while (flagCase != "1" && flagCase != "2" && flagCase != "3") {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << " Error...Try again: " << endl;
+        cin >> flagCase;
+    }
+
+    string newGN;
+
+    flagAux = stoi(flagCase);
+
+    ///------------------------------------------------------------
+    if (flagAux == 1) { //edit user
+        cout << "1.Edit Name" << endl;
+        cout << "2.Age " << endl;
+        cout << "3.Gender " << endl;
+        cout << "4.GoldCard " << endl;
+        cout << "5.Address " << endl;
+        cout << "6.NIF " << endl;
+
+        cin >> flagOptions;
+
+        while (flagOptions != "0" && flagOptions != "1" && flagOptions != "2" && flagOptions != "3" &&
+               flagOptions != "4" && flagOptions != "5" &&
+               flagOptions != "6") {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << " Error...Try again: " << endl;
+            cin >> flagOptions;
+        }
+
+        flagAux2 = stoi(flagOptions);
+
+        cin.ignore();
+        cout << "Name:" << endl;
+        getline(cin, name);
+
+        switch (flagAux2) {
+            case 1: {
+                //cin.ignore();
+                cout << "New Name" << endl;
+                getline(cin, newGN);
+                try {
+                    C.changeName(name, newGN, 1);
+                }
+                catch (NoUserRegistered &u) {
+                    cout << u.what() << endl;
+                }
+                break;
+            }
+            case 2: {
+                cout << "New Age" << endl;
+                cin >> flagNumbers;
+                age = stoi(isNumber(flagNumbers));
+                try {
+                    C.changeAge(name, age, 1);
+                }
+                catch (NoUserRegistered &u) {
+                    cout << u.what() << endl;
+                }
+                break;
+            }
+            case 3: {
+                cout << "New Gender" << endl;
+                cin >> newGN;
+                try {
+                    C.changeGender(name, newGN, 1);
+                }
+                catch (NoUserRegistered &u) {
+                    cout << u.what() << endl;
+                }
+                break;
+            }
+            case 4: {
+                cout << "Change Gold Status: (1-add card, 0-remove gold card)" << endl;
+                cin >> isGold;
+                C.changeisGold(name, isGold);
+                break;
+            }
+            case 5: {
+                cin.ignore();
+                cout << "Change address" << endl;
+                getline(cin, address);
+                try {
+                    C.changeAddress(name, address);
+                }
+                catch (NoUserRegistered &u) {
+                    cout << u.what() << endl;
+                }
+                break;
+            }
+            case 6: {
+                cout << "Change NIF" << endl;
+                cin >> flagNumbers;
+                nif = stoi(isNumber(flagNumbers));
+                try {
+                    C.changeNIF(name, nif);
+                }
+                catch (NoUserRegistered &u) {
+                    cout << u.what() << endl;
+                }
+                catch (InvalidNIF &u) {
+                    cout << u.what() << endl;
+                }
+                break;
+            }
+
+
+        }
+
+        ///------------------------------------------------------------
+    } else if (flagAux == 2) { //edit teacher
+        cout << "1.Edit Name" << endl;
+        cout << "2.Age " << endl;
+        cout << "3.Gender " << endl;
+        //need to had more categories after merge
+
+        cin >> flagOptions;
+
+        while (flagOptions != "0" && flagOptions != "1" && flagOptions != "2" && flagOptions != "3") {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << " Error...Try again: " << endl;
+            cin >> flagOptions;
+        }
+
+        flagAux2 = stoi(flagOptions);
+
+        cin.ignore();
+        cout << "Name:" << endl;
+        getline(cin, name);
+
+
+        switch (flagAux2) {
+            case 1: {
+                cout << "New Name" << endl;
+                getline(cin, newGN);
+                C.changeName(name, newGN, 0);
+                break;
+            }
+            case 2: {
+                cout << "New Age" << endl;
+                cin >> flagNumbers;
+                age = stoi(isNumber(flagNumbers));
+                C.changeAge(name, age, 0);
+                break;
+            }
+            case 3: {
+                cout << "New Gender" << endl;
+                cin >> newGN;
+                C.changeGender(name, newGN, 0);
+                break;
+            }
+        }
+    } else {
+        return true;
+    }
+
+    return false;
+}
+
+
+bool showPerson(Company &C)
+{
+    cout << "----------------------------------------------" << endl;
+    //Chooses what information he wants
+    cout << "1.Show all Teachers and Users" << endl;
+    cout << "2.Show User (information/report/invoice/schedule)" << endl;
+    cout << "3.Show Teacher (information/schedule)" << endl;
+    cout << "4.Go back" << endl;
+    cout << "----------------------------------------------" << endl;
+
+    cin >> flagCase;
+
+    while (flagCase != "1" && flagCase != "2" && flagCase != "3") {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Error...Try again: " << endl;
+        cin >> flagCase;
+    }
+    ///////////////////////////////////////////////////////////////
+
+    flagAux = stoi(flagCase);
+
+    switch (flagAux) {
+        case 1://all teachers and Users
+        {
+            C.showTeachers();
+            C.showUsers();
+            break;
+        }
+        case 2: //show user
+        {
+            cout << "----------------------------------------------" << endl;
+            cout << "1.Show Information" << endl;
+            cout << endl;
+            cout << "----------------------------------------------" << endl;
+            cout << "Consult invoice or report of specific month" << endl;
+            cout << "----------------------------------------------" << endl;
+            cout << "2.Show Report" << endl;
+            cout << "3.Show Invoice" << endl;
+            cout << "----------------------------------------------" << endl;
+            cout << endl;
+            cout << "4.Show Schedule" << endl;
+            cout << "----------------------------------------------" << endl;
+
+            cin >> flagOptions;
+
+            while (flagOptions != "1" && flagOptions != "2" && flagOptions != "3" &&
+                   flagOptions != "4") {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << "Error...Try again: " << endl;
+                cin >> flagOptions;
+            }
+
+            flagAux2 = stoi(flagOptions);
+            cin.ignore();
+            cout << "Name of User: " << endl;
+            getline(cin, name);
+
+
+            if (flagAux2 == 1)
+                C.showUser(name);
+
+            if (flagAux2 == 2) {
+                cout << "Month: " << endl;
+                cin >> flagNumbers;
+                m = stoi(isNumber(flagNumbers));
+
+                C.showReport(name, m);
+            } else if (flagAux2 == 3) {
+                cout << "Month: " << endl;
+                cin >> flagNumbers;
+                m = stoi(isNumber(flagNumbers));
+                C.showInvoice(name, m);
+            } else if (flagAux2 == 4) {
+                C.showUserReservations(name);
+            }
+        }
+        case 3: //show teacher
+        {
+
+            cout << "1.Show Information" << endl;
+            cout << "2.Show Schedule" << endl;
+
+            cin >> flagOptions;
+
+            while (flagOptions != "1" && flagOptions != "2") {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                cout << "Error...Try again: " << endl;
+                cin >> flagOptions;
+            }
+
+            flagAux2 = stoi(flagOptions);
+            cin.ignore();
+            cout << "Name of User: " << endl;
+            getline(cin, name);
+
+            if (flagAux2 == 1) {
+                C.showTeacher(name);
+            } else if (flagAux2 == 2) {
+                C.showTeacherLessons(name);
+            }
+
+            break;
+        }
+        case 4: //go back
+        {
+            return true;
+        }
+
+    }
+
+    return false;
+
+}
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // The first load of the Company
 int MainIntro() {
@@ -31,49 +354,48 @@ int MainIntro() {
     cout << "3.Exit                                   " << endl;
     cout << "--------------------------------------------" << endl;
 
-    int flag;
+    string flag;
     cin >> flag;
 
-    while (flag != 1 && flag != 2 && flag != 3) {
+    while (flag != "1" && flag != "2" && flag != "3") {
         cin.clear();
         cin.ignore(1000, '\n');
         cout << "Error...Try again: " << endl;
         cin >> flag;
     }
 
-    return flag;
+    return stoi(flag);
 
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Constant Menu shown after each operation
-int Menu(const int cardValue,Company &C) {
+int Menu(const int cardValue, Company &C) {
     cout << "-------------Company " << cardValue << "-----------------------" << endl;
-    cout << "           "; C.showDate();
+    cout << "           ";
+    C.showDate();
     cout << "Choose option:                           " << endl;
     cout << "                                         " << endl;
-    cout << "1.Add Person                             " << endl; // Adds a new Person
-    cout << "2.Add Reservation                        " << endl; // Adds a new Reservation
-    cout << "3.Change Information                     " << endl;
-    cout << "4.Add Court                              " << endl; // Adds a new Court
-    cout << "5.Show Person                            " << endl; // Shows a person or all people of a class
-    cout << "6.Show Courts                            " << endl; // Shows courts information
-    cout << "7.Increment day                          " << endl; // Increments the day
-    cout << "8.Exit                                   " << endl; // Exit
+    cout << "1.Person                                 " << endl;
+    cout << "2.Reservation                            " << endl;
+    cout << "3.Court                                  " << endl;
+    cout << "4.Repair                                 " << endl;
+    cout << "5.Increment day                          " << endl;
+    cout << "6.Exit                                   " << endl;
     cout << "-----------------------------------------" << endl;
 
-    int flag;
+    string flag;
     cin >> flag;
 
-    while (flag != 1 && flag != 2 && flag != 3 && flag != 4 && flag != 5 && flag != 6 && flag != 7 && flag != 8) {
+    while (flag != "1" && flag != "2" && flag != "3" && flag != "4" && flag != "5" && flag != "6") {
         cin.clear();
         cin.ignore(1000, '\n');
         cout << " Error...Try again: " << endl;
         cin >> flag;
     }
 
-    return flag;
+    return stoi(flag);
 
 }
 
@@ -81,19 +403,7 @@ int Menu(const int cardValue,Company &C) {
 
 int DevelopCompany(Company &C, unsigned int cardValue) {
 
-    string name, gender, assignedT, address;
-    int age;
-    bool isGold;
-    int m, d, strH;
-    float duration;
-    int save;
-    string adress;
-    int nif;
-
-    int flagMenu = 0;
-
     while (true) {
-
 
         flagMenu = Menu(cardValue, C);
 
@@ -101,42 +411,53 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
             case 1: //Add Person
             {
                 /////////////////////////////////////////////////////////////
-                int flagP;
 
-            	cout << "----------------------------------------------"<< endl;
+
+                cout << "----------------------------------------------" << endl;
                 cout << "1.Add User" << endl;
                 cout << "2.Add Teacher" << endl;
-                cout << "3.Go back" << endl;
-            	cout << "----------------------------------------------"<< endl;
+                cout << "3.Edit Infomation" << endl;
+                cout << "4.Show Infomation" << endl;
+                cout << "5.Remove Person" << endl;
+                cout << "6.Go back" << endl;
+                cout << "----------------------------------------------" << endl;
 
-                cin >> flagP;
+                cin >> flagCase;
 
-                while (flagP != 1 && flagP != 2 && flagP != 3) {
+                while (flagCase != "1" && flagCase != "2" && flagCase != "3" && flagCase != "4" && flagCase != "5" &&
+                       flagCase != "6") {
                     cin.clear();
                     cin.ignore(1000, '\n');
                     cout << "Error...Try again: " << endl;
-                    cin >> flagP;
-                }
-                /////////////////////////////////////////////////////////////
-                if (flagP == 1) // If there's no Teachers, there can't be Users
-                {
-                	 if (C.getTeachers().empty()) {
-                 cout << " Can't added Users. Company needs teachers first."      << endl;
-                 break;
-                	 }
+                    cin >> flagCase;
                 }
 
-                if (flagP != 3) //Add User or Teacher
+                flagAux = stoi(flagCase);
+
+                /////////////////////////////////////////////////////////////
+                if (flagAux == 1) // If there's no Teachers, there can't be Users
+                {
+                    if (C.getTeachers().empty()) {
+                        cout << " Can't added Users. Company needs teachers first." << endl;
+                        break;
+                    }
+                }
+
+                //---------------------------------------------------------------------------------
+                if (flagAux == 1 || flagAux == 2) //Add User or Teacher
                 {
                     cin.ignore();
                     cout << "Name: " << endl;
                     getline(cin, name);
                     cout << "Age: " << endl;
-                    cin >> age;
+                    cin >> flagNumbers;
+
+                    age = stoi(isNumber(flagNumbers));
+
                     cout << "Gender" << endl;
                     cin >> gender;
 
-                    if (flagP == 1) //Add User
+                    if (flagAux == 1) //Add User
                     {
                         cout << "Gold Card?" << endl;
                         cout << "Option: 1.yes 0.no " << endl;
@@ -145,491 +466,299 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cout << "Address:" << endl;
                         getline(cin, adress);
                         cout << "NIF:" << endl;
-                        cin >>nif;
+                        cin >> flagNumbers;
+
+                        nif = stoi(isNumber(flagNumbers));
 
 
                         //Finally register the User
-                        try
-                        {
-                            if(!C.registerUser(name, age, isGold, gender,adress,nif))
+                        try {
+                            if (!C.registerUser(name, age, isGold, gender, adress, nif))
                                 cout << " Error adding User. Try again" << endl;
                         }
-                        catch(InvalidNIF &u)
-                        {
+                        catch (InvalidNIF &u) {
                             cout << u.what() << endl;
                             cout << " Error adding User. Try again" << endl;
                         }
-                        catch(InvalidAge &u)
-                        {
+                        catch (InvalidAge &u) {
                             cout << u.what() << endl;
                             cout << " Error adding User. Try again" << endl;
 
                         }
 
 
-
-                    } else if (flagP == 2) //Add Teacher
+                    } else if (flagAux == 2) //Add Teacher
                     { // Or the Teacher
                         if (!(C.registerTeacher(name, age, gender)))
                             cout << " Error adding User. Try again" << endl;
                     }
                 }
+
+                //---------------------------------------------------------------------------------
+                if (flagAux == 3) { //edit User or Teacher
+                    if(editPerson(C))
+                        break;
+                }
+                    //---------------------------------------------------------------------------------
+                else if (flagAux == 4) //show information teacher and user
+                {
+                    if(showPerson(C))
+                        break;
+                }
+                    //---------------------------------------------------------------------------------
+                else if (flagAux == 5) //remove user or teacher
+                {
+                    cout << "1.User" << endl;
+                    cout << "2.Teacher" << endl;
+                    cout << "3.Back" << endl;
+
+                    cin >> flagOptions;
+
+                    while (flagOptions != "1" && flagOptions != "2" && flagOptions != "3") {
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        cout << " Error...Try again: " << endl;
+                        cin >> flagOptions;
+                    }
+
+
+                    flagAux2 = stoi(flagOptions);
+                    cout << "Name: " << endl;
+                    cin >> name;
+
+
+                    if (flagAux2 == 1) {
+                        C.deleteUser(name);
+                    } else if (flagAux2 == 2) {
+                        C.removeActiveTeacher(name);
+                    } else {
+                        break;
+                    }
+
+                } else break;
+
                 break;
             }
-            case 2: //add reservation
+            case 2: // reservation
             {
                 ///////////////////////////////////////////////////////////////
-                int flagR;
-
-            	cout << "----------------------------------------------"<< endl;
+                cout << "----------------------------------------------" << endl;
                 cout << "1.Add Free class" << endl;
                 cout << "2.Add Lesson" << endl;
-                cout << "3.Go back" << endl;
-            	cout << "----------------------------------------------"<< endl;
+                cout << "3.Edit Reservation" << endl;
+                cout << "4.Remove Reservation" << endl;
+                cout << "5.Go back" << endl;
+                cout << "----------------------------------------------" << endl;
 
-                cin >> flagR;
+                cin >> flagCase;
 
-                while (flagR != 1 && flagR != 2 && flagR != 3) {
+                while (flagCase != "1" && flagCase != "2" && flagCase != "3" && flagCase != "4" && flagCase != "5") {
                     cin.clear();
                     cin.ignore(1000, '\n');
                     cout << " Error...Try again: " << endl;
-                    cin >> flagR;
+                    cin >> flagCase;
                 }
                 ///////////////////////////////////////////////////////////////
+                flagAux = stoi(flagCase);
 
-                if (flagR != 3) //Add Lesson or Free Class
+                if (flagAux == 1 || flagAux == 2) //Add Lesson or Free Class
                 {
 
                     cout << "Month: " << endl; //Gets the information for the reservations
-                    cin >> m;
+                    cin >> flagNumbers;
+                    m = stoi(isNumber(flagNumbers));
+
                     cout << "Day: " << endl;
-                    cin >> d;
+                    cin >> flagNumbers;
+                    d = stoi(isNumber(flagNumbers));
+
                     cout << "Starting Hour: " << endl;
-                    cin >> strH;
+                    cin >> flagNumbers;
+                    strH = stoi(isNumber(flagNumbers));
+
                     cin.ignore();
                     cout << "Name of User: " << endl;
-                    getline(cin,name);
+                    getline(cin, name);
 
-                    if(C.getCourts().empty())
-                    {
-                    	cout << "Try again... No courts added to the company" << endl;
-                    	break;
+                    if (C.getCourts().empty()) {
+                        cout << "Try again... No courts added to the company" << endl;
+                        break;
                     }
 
-                    if (flagR == 1) //Add Free Class
+                    if (flagAux == 1) //Add Free Class
                     {
-                    	int n;
-                    	cout << "How many players? "<< endl;
-                    	cin >> n;
-                    	if(n > 4)
-                    	{
-                    		cout << "The court can't support that many people" << endl;
-                    		break;
-                    	}
+                        cout << "How many players? " << endl;
+                        cin >> flagNumbers;
+                        n = stoi(isNumber(flagNumbers));
+
+                        if (n > 4) {
+                            cout << "The court can't support that many people" << endl;
+                            break;
+                        }
                         cout << "Duration" << endl;
                         cout << "(write the number of periods of half an hour)" << endl;
                         cout << "1h --> 2; 2h30 --> 5" << endl;
-                        cin >> duration;
+                        cin >> flagNumbers;
+                        duration = stoi(isNumber(flagNumbers));
                         //Tries to make the reservation
                         if (!C.makeFree(m, d, strH, duration, name))
                             cout << " Error adding Free class. Try again" << endl;
 
-                    } else if (flagR == 2) //Add Lesson
+                    } else if (flagAux == 2) //Add Lesson
                     {
                         try {
                             // Tries to make the reservation
                             if (!C.makeLesson(m, d, strH, name))
                                 cout << " Error adding Lesson. Try again" << endl;
                         }
-                        catch(NoUserRegistered &u) { // If the user doesn't exist
+                        catch (NoUserRegistered &u) { // If the user doesn't exist
                             cout << u.what() << endl;
                         }
                     }
-                }
 
-                break;
-            }
-            case 3: { //edit information
-                int flagR;
-
-                cout << "----------------------------------------------" << endl;
-                cout << "1.Person: Edit Basic Information" << endl;
-                cout << "2.Person: Delete    " << endl;
-                cout << "3.Reservation: Edit Information" << endl;
-                cout << "4.Reservation: Delete" << endl;
-                cout << "5.Go back" << endl;
-                cout << "----------------------------------------------" << endl;
-
-                cin >> flagR;
-
-                while (flagR != 1 && flagR != 2 && flagR != 3) {
-                    cin.clear();
-                    cin.ignore(1000, '\n');
-                    cout << " Error...Try again: " << endl;
-                    cin >> flagR;
-                }
-                ///----------------------------------------------------------------
-                if (flagR == 1) { //edit person basic information
-
-                    int flagP;
-
-                    cout << "1.User" << endl;
-                    cout << "2.Teacher" << endl;
-                    cout << "3.Back" << endl;
-
-                    cin >> flagP;
-
-                    while (flagP != 1 && flagP != 2 && flagP != 3) {
-                        cin.clear();
-                        cin.ignore(1000, '\n');
-                        cout << " Error...Try again: " << endl;
-                        cin >> flagP;
-                    }
-
-                    int flagM;
-                    string newGN;
-
-                ///----------------------------------------------------------------
-                    ///------------------------------------------------------------
-                    if (flagP == 1) { //edit user
-                        cout << "1.Edit Name" << endl;
-                        cout << "2.Age " << endl;
-                        cout << "3.Gender " << endl;
-                        cout << "4.GoldCard " << endl;
-                        cout << "5.Address " << endl;
-                        cout << "6.NIF " << endl;
-
-                        cin >> flagM;
-
-                        while (flagM != 0 && flagM != 1 && flagM != 2 && flagM != 3 && flagM != 4 && flagM != 5 &&
-                               flagM != 6) {
-                            cin.clear();
-                            cin.ignore(1000, '\n');
-                            cout << " Error...Try again: " << endl;
-                            cin >> flagM;
-                        }
-
-                        cin.ignore();
-                        cout << "Name:" << endl;
-                        getline(cin, name);
-
-                        switch (flagM) {
-                            case 1: {
-                                //cin.ignore();
-                                cout << "New Name" << endl;
-                                getline(cin, newGN);
-                                try{
-                                    C.changeName(name, newGN, 1);
-                                }
-                                catch(NoUserRegistered &u)
-                                {
-                                    cout << u.what() << endl;
-                                }
-                                break;
-                            }
-                            case 2: {
-                                cout << "New Age" << endl;
-                                cin >> age;
-                                try{
-                                    C.changeAge(name, age, 1);
-                                }
-                                catch(NoUserRegistered &u)
-                                {
-                                    cout << u.what() << endl;
-                                }
-                                break;
-                            }
-                            case 3: {
-                                cout << "New Gender" << endl;
-                                cin >> newGN;
-                                try{
-                                    C.changeGender(name, newGN, 1);
-                                }
-                                catch(NoUserRegistered &u)
-                                {
-                                    cout << u.what() << endl;
-                                }
-                                break;
-                            }
-                            case 4: {
-                                cout << "Change Gold Status: (1-add card, 0-remove gold card)" << endl;
-                                cin >> isGold;
-                                C.changeisGold(name, isGold);
-                                break;
-                            }
-                            case 5: {
-                                cin.ignore();
-                                cout << "Change address" << endl;
-                                getline(cin, address);
-                                try {
-                                    C.changeAddress(name, address);
-                                }
-                                catch(NoUserRegistered &u)
-                                {
-                                    cout << u.what() << endl;
-                                }
-                                break;
-                            }
-                            case 6: {
-                                cout << "Change NIF" << endl;
-                                cin >> nif;
-                                try {
-                                    C.changeNIF(name, nif);
-                                }
-                                catch(NoUserRegistered &u)
-                                {
-                                    cout << u.what() << endl;
-                                }
-                                catch(InvalidNIF &u)
-                                {
-                                    cout << u.what() << endl;
-                                }
-                                break;
-                            }
-
-
-                        }
-
-                    ///------------------------------------------------------------
-                    } else if(flagP == 2){ //edit teacher
-                        cout << "1.Edit Name" << endl;
-                        cout << "2.Age " << endl;
-                        cout << "3.Gender " << endl;
-                        //need to had more categories after merge
-
-                        cin >> flagM;
-
-                        while (flagM != 0 && flagM != 1 && flagM != 2 && flagM != 3) {
-                            cin.clear();
-                            cin.ignore(1000, '\n');
-                            cout << " Error...Try again: " << endl;
-                            cin >> flagM;
-                        }
-
-                        cin.ignore();
-                        cout << "Name:" << endl;
-                        getline(cin, name);
-
-
-                        switch (flagM) {
-                            case 1: {
-                                cout << "New Name" << endl;
-                                getline(cin, newGN);
-                                C.changeName(name, newGN, 0);
-                                break;
-                            }
-                            case 2: {
-                                cout << "New Age" << endl;
-                                cin >> age;
-                                C.changeAge(name, age, 0);
-                                break;
-                            }
-                            case 3: {
-                                cout << "New Gender" << endl;
-                                cin >> newGN;
-                                C.changeGender(name, newGN, 0);
-                                break;
-                            }
-                        }
-                    }else
-                        {
-                        break;
-                    }
-
-                ///------------------------------------------------------------
-                } else if (flagR == 2) { //delete person
-
-                    int flagP;
-
-                    cout << "1.User" << endl;
-                    cout << "2.Teacher" << endl;
-                    cout << "3.Back" << endl;
-
-                    cin >> flagP;
-
-                    while (flagP != 1 && flagR != 2 && flagR != 3) {
-                        cin.clear();
-                        cin.ignore(1000, '\n');
-                        cout << " Error...Try again: " << endl;
-                        cin >> flagP;
-                    }
-
-                    cout << "Name: " << endl;
-                    cin >> name;
-
-                    if (flagP == 1) {
-                        C.deleteUser(name);
-                    } else if(flagP == 2) {
-                        //delete teacher
-                    }
-                    else
-                    {
-                        break;
-                    }
-
-                ///------------------------------------------------------------
-                } else if (flagR == 3) { //edit reservation
+                } else if (flagAux == 3) { //edit reservation
                     cout << "to complete" << endl;
-                ///------------------------------------------------------------
-                } else if (flagR == 4) { //delete reservation
+
+                } else if (flagAux == 4) { //delete reservation
                     cout << "to complete" << endl;
-                ///------------------------------------------------------------
-                } else if (flagR == 5) { //go back
+
+                } else if (flagAux == 5) { //go back
                     break;
                 }
-                ///------------------------------------------------------------
+                break;
             }
-            case 4: //Adds the Courts
+            case 3: //Courts
             {
-            	C.createCourt();
-            	break;
-            }
-            case 5: //Shows the person
-            {
-                ///////////////////////////////////////////////////////////////
-                int flagR;
 
-            	cout << "----------------------------------------------"<< endl;
-                //Chooses what information he wants
-                cout << "1.Show all Teachers and Users" << endl;
-                cout << "2.Show User (information/report/invoice/schedule)" << endl;
-                cout << "3.Show Teacher (information/schedule)" << endl;
-                cout << "4.Go back" << endl;
-            	cout << "----------------------------------------------"<< endl;
+                cout << "---------------------------------------------- " << endl;
+                cout << "1.Add Court                               " << endl;
+                cout << "2.Show Court                             " << endl;
+                cout << "3.Go back                         " << endl;
 
-                cin >> flagR;
+                cin >> flagCase;
 
-                while (flagR != 1 && flagR != 2 && flagR != 3 && flagR != 4) {
+                while (flagCase != "1" && flagCase != "2" && flagCase != "3" ) {
                     cin.clear();
                     cin.ignore(1000, '\n');
                     cout << "Error...Try again: " << endl;
-                    cin >> flagR;
+                    cin >> flagCase;
                 }
                 ///////////////////////////////////////////////////////////////
 
-                switch (flagR) {
-                    case 1://all teachers and Users
-                    {
-                        C.showTeachers();
-                        C.showUsers();
+                flagAux = stoi(flagCase);
+
+                switch(flagAux)
+                {
+                    case 1: {
+                        C.createCourt();
                         break;
                     }
-                    case 2: //show user
+                    case 2:
                     {
-                    	int flagR;
-
-                    	cout << "----------------------------------------------"<< endl;
-                    	cout << "1.Show Information" << endl;
-                    	cout << endl;
-                    	cout << "----------------------------------------------"<< endl;
-                    	cout << "Consult invoice or report of specific month" << endl;
-                     	cout << "----------------------------------------------"<< endl;
-                    	cout << "2.Show Report" << endl;
-                        cout << "3.Show Invoice" << endl;
-                        cout << "----------------------------------------------"<< endl;
-                        cout << endl;
-                    	cout << "4.Show Schedule" << endl;
-                    	cout << "----------------------------------------------"<< endl;
-
-                    	cin >> flagR;
-
-                    	 while (flagR != 1 && flagR != 2 && flagR != 3 && flagR != 4) {
-                    		 cin.clear();
-                    		 cin.ignore(1000, '\n');
-                    		 cout << "Error...Try again: " << endl;
-                    		 cin >> flagR;
-                    	 }
-                        cin.ignore();
-                        cout << "Name of User: " << endl;
-                        getline(cin, name);
-
-
-                        if(flagR == 1)
-                        	C.showUser(name);
-
-                        if (flagR == 2)
-                        {
-                        	 cout << "Month: " << endl;
-                        	 cin>>m;
-                        	C.showReport(name,m);
-                        }
-                        else if(flagR == 3)
-                        {
-                        	cout << "Month: " << endl;
-                        	cin >> m;
-                        	C.showInvoice(name, m);
-                        }
-                        else if(flagR == 4)
-                        {
-                        	C.showUserReservations(name);
-                        }
-
-                        break;
-                    }
-                    case 3: //show teacher
-                    {
-                    	int flagR;
-
-                    	cout << "1.Show Information" << endl;
-                    	cout << "2.Show Schedule" << endl;
-
-                    	cin >> flagR;
-
-                    	while (flagR != 1 && flagR != 2) {
-                    		cin.clear();
-                    		cin.ignore(1000, '\n');
-                    		cout << "Error...Try again: " << endl;
-                    		cin >> flagR;
-                    	}
-                    	cin.ignore();
-                    	cout << "Name of User: " << endl;
-                    	getline(cin, name);
-
-                    	if(flagR ==1)
-                    	{
-                        C.showTeacher(name);
-                    	}
-                    	else if(flagR == 2)
-                    	{
-                    		C.showTeacherLessons(name);
-                    	}
-
-                        break;
-                    }
-                    case 4: //go back
-                    {
+                        C.showCourts();
                         break;
                     }
                 }
 
                 break;
             }
-            case 6: //show courts
+            case 4: //Repair
             {
-            	C.showCourts();
-            	break;
+                cout << "---------------------------------------------- " << endl;
+                cout << "1.Add Repairer                                " << endl;
+                cout << "2.Schedule Repair                             " << endl;
+                cout << "3.Show Repairers                              " << endl;
+                cout << "4.Delete Repairers                              " << endl;
+                cout << "5.Go back" << endl;
+                cout << "----------------------------------------------" << endl;
+
+                cin >> flagCase;
+
+                while (flagCase != "1" && flagCase != "2" && flagCase != "3" && flagCase != "4" &&
+                       flagCase != "5") {
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                    cout << "Error...Try again: " << endl;
+                    cin >> flagCase;
+                }
+                ///////////////////////////////////////////////////////////////
+
+                flagAux = stoi(flagCase);
+
+                switch (flagAux) {
+                    case 1: {
+                        cin.ignore();
+                        cout << "Name" << endl;
+                        getline(cin, name);
+
+                        cout << "Gender" << endl;
+                        cin >> gender;
+
+                        C.addRepairer(name, gender);
+                        break;
+                    }
+                    case 2: {
+                        cout << "Court ID" << endl;
+                        cin >> flagNumbers;
+                        id = stoi(isNumber(flagNumbers));
+
+                        cout << "Day" << endl;
+                        cin >> flagNumbers;
+                        d = stoi(isNumber(flagNumbers));
+
+                        cout << "Month" << endl;
+                        cin >> flagNumbers;
+                        m = stoi(isNumber(flagNumbers));
+
+                        C.scheduleRepair(d, m, id);
+                        break;
+
+                    }
+                    case 3: {
+                        C.listAllRepairers();
+                        break;
+                    }
+                    case 4: {
+                        cout << "Supporter ID" << endl;
+                        cin >> flagNumbers;
+                        id = stoi(isNumber(flagNumbers));
+
+                        C.removeRepairer(id);
+                        break;
+                    }
+                    case 5: {
+                        break;
+                    }
+                }
+                break;
             }
-            case 7: {
+            case 5: {
                 ++C;
                 break;
             }
-            case 8: { // Does the user want to save the information?
+            case 6: { // Does the user want to save the information?
                 cout << "Save and exit? " << endl;
                 cout << "1.Yes 0.No" << endl;
-                cin >> save;
+                cin >> flagCase;
 
-                if(C.getCourts().size() == 0)
-                {
-                	cout << "Company cant be saved without courts assigned to it"<< endl;
+                while (flagCase != "1" && flagCase != "0") {
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                    cout << "Error...Try again: " << endl;
+                    cin >> flagOptions;
                 }
-                else if (save == 1) {
-                	ofstream outfile;
-                	outfile.open((to_string(cardValue) + ".json").c_str());
+
+                flagAux = stoi(flagCase);
+
+                if (C.getCourts().size() == 0) {
+                    cout << "Company cant be saved without courts assigned to it" << endl;
+                } else if (flagAux == 1) {
+                    ofstream outfile;
+                    outfile.open((to_string(cardValue) + ".json").c_str());
                     C.storeInfo(outfile, 0);
                     return 0;
-                }
-                else if (save == 0)
-                	return 0;
+                } else if (flagAux == 0)
+                    return 0;
 
                 break;
 
@@ -644,6 +773,8 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 int main() {
 
     unsigned int year, day, month;
+    string aux;
+    int cv;
     ////////////////////////////////////
 
     int flag = MainIntro();
@@ -651,38 +782,40 @@ int main() {
     switch (flag) {
         case 1: //new Company
         {
-        	bool flag = true;
-        	Date D;
+            bool flag = true;
+            Date D;
 
-        	int cardValue = 1;
-        	ifstream infile;
-        	infile.open((to_string(cardValue) + ".json").c_str());
-        	while(infile.is_open()) // Checks which name can be used for the Json file
-        	{
-        		cardValue++;
-        		infile.close();
-        		infile.open((to_string(cardValue) + ".json").c_str());
+            int cardValue = 1;
+            ifstream infile;
+            infile.open((to_string(cardValue) + ".json").c_str());
+            while (infile.is_open()) // Checks which name can be used for the Json file
+            {
+                cardValue++;
+                infile.close();
+                infile.open((to_string(cardValue) + ".json").c_str());
 
-        	}
-
-        	while(flag)
-        	{ // Asks for the current date
-            cout << "Please enter date (day month year): " << endl;
-            cin >> day;
-            cin >> month;
-            cin >> year;
-
-            try {
-                Date F(day, month, year);
-                D = F; // Checks if it is a possible date
-
-            } catch (BadDate &e) {
-                cout << e.what() << endl;
-                continue;
             }
-             flag = false;
 
-          	}
+            while (flag) { // Asks for the current date
+                cout << "Please enter date (day month year): " << endl;
+                cin >> aux;
+                day = stoi(isNumber(aux));
+                cin >> aux;
+                month = stoi(isNumber(aux));
+                cin >> aux;
+                year = stoi(isNumber(aux));
+
+                try {
+                    Date F(day, month, year);
+                    D = F; // Checks if it is a possible date
+
+                } catch (BadDate &e) {
+                    cout << e.what() << endl;
+                    continue;
+                }
+                flag = false;
+
+            }
 
             Company C(cardValue, D);
 
@@ -694,9 +827,10 @@ int main() {
         case 2: //load company
         {
 
-            int cv;
+
             cout << "Card Value of the company? " << endl;
-            cin >> cv;
+            cin >> aux;
+            cv = stoi(isNumber(aux));
 
             Company C;
 
