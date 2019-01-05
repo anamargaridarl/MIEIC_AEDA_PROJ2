@@ -343,6 +343,10 @@ public:
 
 	void cleanNStudents();
 
+	void setLessons(std::vector<Lesson*> les);
+
+
+
 private:
 	std::vector<Lesson*> lessons; /**< vector of the lessons */
 	int nStudents;	/**< number of students */

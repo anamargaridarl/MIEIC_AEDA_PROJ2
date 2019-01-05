@@ -96,6 +96,12 @@ public:
      * @param duration - duration of the reservation
      */
 	void occupied(int month, int day, double startingHour, int duration);
+
+	bool isOccupied(int month, int day, double startingHour, int duration);
+
+	void modifyReservation( int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,unsigned int newDuration);
+
+	void unsetReservation(int month, int day, double startingHour, unsigned int duration);
 private:
 
 	/**
@@ -122,6 +128,16 @@ private:
 
 public:
 	CourtReserved(int month, int day, double StartingHour);
+	std::string what() const;
+};
+
+class NoCourtfound{
+	double startingHour;
+	int month;
+	int day;
+
+public:
+	NoCourtfound(int month, int day, double StartingHour):month(month), day(day), startingHour(startingHour) {}
 	std::string what() const;
 };
 

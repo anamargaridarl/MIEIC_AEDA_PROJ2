@@ -46,8 +46,10 @@ bool Reservation::operator ==(Reservation &r) const
 		return (this->day == r.getDay() && this->month == r.getMonth() && this->startingHour == r.getStartingHour());
 	}
 
-Lesson::Lesson(int m,int d,double strHr,double p,unsigned int dr) : Reservation(m,d,strHr,p,dr)
-{}
+Lesson::Lesson(int m,int d,double strHr,double p,unsigned int dr,string teacherName) : Reservation(m,d,strHr,p,dr)
+{
+	this->teacherName = teacherName;
+}
 
 double Lesson::getPrice()
 {
@@ -167,6 +169,30 @@ bool Reservation::operator== (Reservation & r)
 			&& startingHour == r.getStartingHour());
 }
 
+std::string Reservation::getTeacher() const {
+	return "";
+}
+
+void Reservation::setMonth(int month) {
+	this->month = month;
+}
+
+void Reservation::setDay(int day) {
+	this->day = day;
+}
+
+void Reservation::setStartHour(double startH) {
+this->startingHour = startH;
+}
+
+void Reservation::setDuration(unsigned int dur) {
+	this->duration = dur;
+}
+
+void Reservation::setPrice(double price) {
+	this->price = price;
+}
+
 void Free::readInfo(std::ifstream &infile)
 {
 	Reservation::readInfo(infile);
@@ -192,6 +218,10 @@ void Free::show() {
 	Reservation::show();
 }
 
+std::string Free::getTeacher() const {
+	return "";
+}
+
 void Lesson::storeInfo(std::ofstream &outfile, int indent)
 {
     Reservation::indent(outfile, indent);
@@ -205,4 +235,9 @@ void Lesson::storeInfo(std::ofstream &outfile, int indent)
 void Lesson::show() {
 	cout << "Lesson : " << endl;
 	Reservation::show();
+	cout << "Teacher: " << teacherName << endl;
+}
+
+std::string Lesson::getTeacher() const {
+	return teacherName;
 }

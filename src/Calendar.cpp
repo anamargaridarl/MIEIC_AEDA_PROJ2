@@ -117,6 +117,17 @@ void Day::setSchedule(double startingHours, int duration)
 	}
 }
 
+void Day::unsetSchedule(double startingHours, int duration)
+{
+	startingHours -= this->startingHour;
+	startingHours*=2;
+	// The vector is filled with true values
+	for(int i = startingHours; i < (startingHours+duration); i++)
+	{
+		this->schedule[i] = false;
+	}
+}
+
 void Day::setSchedule(std::vector<bool> schedule)
 {
     this->schedule = schedule;
