@@ -406,7 +406,7 @@ Company Company::operator++() {
 
 //----------------------------------------------------------------------------------------------------------------
 
-void Company::changeReservation(string name, unsigned int duration, int month, int day, double startingHour)
+/*void Company::changeReservation(string name, unsigned int duration, int month, int day, double startingHour)
 {
 	//need testing after function changeReservation
 
@@ -423,7 +423,7 @@ void Company::changeReservation(string name, unsigned int duration, int month, i
 		users.insert(b);
 	} else
 		throw(NoReservation(name));
-}
+}*/
 
 
 void Company::changeName(string name, string newName, int flag)
@@ -1135,37 +1135,6 @@ void Company::unscheduleRepair(unsigned id, unsigned day, unsigned month)
 	}
 	throw NoRepair(day, month, id);
 }
-
-void Company::listAllRepairers() const
-{
-	if(this->techSupport.empty())
-	    cout << "The company does not possess any Repairers" << endl;
-	else
-    {
-	    priority_queue<Supporter> copy = this->techSupport;
-	    while(!copy.empty())
-        {
-	        cout << copy.top();
-	        copy.pop();
-        }
-    }
-}
-
-void Company::updateAvailableDays()
-{
-    vector<Supporter> aux;
-    while(!this->techSupport.empty())
-    {
-        Supporter sup = this->techSupport.top();
-        --sup;
-        aux.push_back(sup);
-        this->techSupport.pop();
-    }
-    for(const auto &i: aux)
-    {
-        this->techSupport.push(i);
-    }
-}
 /*
 void Company::changeReservation(string name, unsigned int duration, int month, int day, double startingHour)
 {
@@ -1187,60 +1156,6 @@ void Company::changeReservation(string name, unsigned int duration, int month, i
 }
  */
 
-
-void Company::changeName(string name, string newName, int flag)
-{
-	if (flag == 0)
-	{
-		//needs new implementation
-//		getTeacher(name).editName(newName);
-	}
-	else
-	{
-		User a = getUser(name);
-		a.editName(newName);
-		users.insert(a);
-	}
-
-}
-
-void Company::changeAge(string name, int newAge, int flag)
-{
-	if (flag == 0)
-	{
-		//needs new implementation
-//		getTeacher(name).editAge(newAge);
-	}
-	else
-	{
-		User a = getUser(name);
-		a.editAge(newAge);
-		users.insert(a);
-	}
-
-}
-
-void Company::changeGender(string name, string newgender, int flag)
-{
-	if (flag == 0)
-	{
-		//needs new implementation
-//		getTeacher(name).editGender(newgender);
-	}
-	else
-	{
-		User a = getUser(name);
-		a.editGender(newgender);
-		users.insert(a);
-	}
-}
-
-void Company::changeisGold(string name, bool isGold)
-{
-	User a = getUser(name);
-	a.editIsGold(isGold);
-	users.insert(a);
-}
 
 void Company::rescheduleRepair(unsigned id, unsigned day, unsigned month, unsigned newDay, unsigned newMonth)
 {
