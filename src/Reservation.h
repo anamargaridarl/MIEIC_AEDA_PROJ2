@@ -115,6 +115,18 @@ public:
 	 * @return if they're the same
 	 */
 	bool operator== ( Reservation & r);
+
+	virtual std::string getTeacher() const;
+
+	void setMonth (int month);
+
+	void setDay (int day);
+
+	void setStartHour(double startH);
+
+	void setDuration(unsigned int dur);
+
+	void setPrice (double price);
 };
 
 /**
@@ -122,13 +134,14 @@ public:
  */
 
 class Lesson : public Reservation {
+	std::string teacherName;
 public:
 	/**
 	 * @brief Constructor of a lesson
 	 */
 
 	Lesson(){};
-	Lesson(int m,int d,double strHr,double price,unsigned int dr);
+	Lesson(int m,int d,double strHr,double price,unsigned int dr,std::string teacherName);
 
 	/**
 	 * @brief Constructor of a lesson
@@ -138,7 +151,7 @@ public:
 	 * @param price - Price of the lesson
 	 * @param dr - Duration of the lesson
 	 */
-	Lesson(int m,int d,int strHr,double price,unsigned int dr);
+	//Lesson(int m,int d,int strHr,double price,unsigned int dr);
 
 	/**
 	 * @brief Method to obtain the price of the lesson
@@ -165,6 +178,8 @@ public:
 	 * @brief Show the information of the Lesson
 	 */
 	void show();
+
+	std::string getTeacher() const;
 };
 
 class Free : public Reservation {
@@ -210,6 +225,8 @@ public:
 	 * @brief Show the information of the Free
 	 */
 	void show();
+
+	std::string getTeacher() const;
 };
 
 

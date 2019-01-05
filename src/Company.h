@@ -108,6 +108,8 @@ public:
 	void reAddUser(User u);
 	User getUser(std::string userName);
 
+	Teacher getTeacher(std::string teacherName);
+
 
 
 	/**
@@ -282,6 +284,7 @@ public:
      */
     bool removeActiveTeacher(std::string teacher);
 
+
     /**
      * @brief Rescheduling the Lessons of a given teacher
      * @param lessons - the lessons to be changed
@@ -290,7 +293,7 @@ public:
      * @param username - the user
      * @return if it was successful
      */
-    bool rescheduleLessons(std::vector<Lesson *> lessons, std::vector<Reservation *> &reservs, Teacher &subst, std::string username);
+     bool rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &subst, std::string username);
 
     /**
      * @brief Changing the name of a person
@@ -298,6 +301,8 @@ public:
      * @param newName - the new Name
      * @param flag if it is a teacher or a student
      */
+
+  
     void changeName(std::string name, std::string newName, int flag);
 
     /**
@@ -344,9 +349,11 @@ public:
     void changeAddress(std::string name, std::string newAddress);
 
 
-	void changeReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
 
-	/**
+
+	
+	void changeReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
+  /**
 	 * @brief Deleting a User
 	 * @param name - the name of the User
 	 */
@@ -379,11 +386,25 @@ public:
      */
     void listAllRepairers() const;
 
-    /**
+
+    //get the scheduled reservation of a given user, if possible
+	std::vector<Reservation*>::iterator getScheduledReservation(std::string userName, std::vector <Reservation*> reservs, int month,int day, double startingHour, unsigned int duration);
+    //get the scheduled lesson of a given teacher, if possible
+	std::vector<Lesson*>::iterator getScheduledLesson(std::string teacherName, std::vector<Lesson*> lessons, int month,int day,double startingHour, unsigned int duration);
+
+    bool modifyReservation(std::string username, int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,
+						   unsigned int newDuration);
+
+    bool deleteReservation(std::string username, int month, int day, double startingHour, unsigned int duration);
+      /**
      * @brief Listing all Repairers available to in the next days
      * @param daysUntilAvailable - the maximum number of days for the repairer to be available
      */
     void listAvailableRepairers(unsigned daysUntilAvailable) const;
+
+    void unscheduleRepair(unsigned id, unsigned day, unsigned month);
+
+    void rescheduleRepair(unsigned id, unsigned day, unsigned month, unsigned newDay, unsigned newMonth);
 };
 
 
@@ -527,6 +548,34 @@ public:
 
 	std::string what() const;
 
+};
+
+class ReservationAlreadyExists
+{
+private:
+	std::string name;
+public:
+	ReservationAlreadyExists(std::string name) {this->name = name;}
+	std::string what() const;
+};
+
+class TeacherUnavailable
+{
+private:
+	std::string name;
+public:
+  TeacherUnavailable(std::string name) {this->name = name;}
+  std::string what() const;
+};
+
+class NoRepair{
+private:
+	unsigned day;
+	unsigned month;
+	unsigned id;
+public:
+	NoRepair(unsigned day, unsigned month, unsigned id): day(day), month(month), id(id){};
+	std::string what() const;
 };
 
 #endif /* SRC_COMPANY_H_ */
