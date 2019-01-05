@@ -635,4 +635,5 @@ public:
 	std::string what() const;
 };
 
+
 #endif /* SRC_COMPANY_H_ */
