@@ -80,9 +80,14 @@ User Company::getUser(string userName) {
 
 }
 
-void Company::reAddUser(User u) //only used in main
-{
-	users.insert(u);
+vector<Lesson*>::iterator Company::getScheduledLesson(std::string teacherName, vector<Lesson*> lessons, int month, int day, double startingHour, unsigned int duration) {
+    Lesson l(month, day, startingHour, 0, duration, teacherName);
+    for(auto i = lessons.begin(); i!= lessons.end(); i++) {
+        if(**i == l) {
+            return i;
+        }
+    }
+    return lessons.end();
 }
 
 
@@ -516,56 +521,182 @@ bool Company::changeTeacherStatus(std::string teacher, bool newstat) {
 	}
 }
 
+bool Company::modifyReservation(std::string username, int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,
+                                unsigned int newDuration) {
+    User u;
+    Teacher temp;
+    Reservation* res = NULL;
+    try {
+        u = getUser(username); //try and get the user
+        vector<Reservation*> reservs = u.getReservations(); // retrieve the reservations
+        vector<Reservation*>::iterator itRes = getScheduledReservation(username, reservs, month, day, startingHour, duration); // get the position on the vector
+        res = *itRes;
 
-/*
-std::vector<User&> Company::getTeacherStudents(std::string teacher)  {
-    vector<User&> temp;
-    for(vector<User>::iterator i = users.begin() ; i != users.end() ; i++) {
-        if((*i).getTeacher() == teacher) {
-        	temp.push_back(*i);
+        if(getScheduledReservation(username,reservs,newMonth,newDay,newStartHour,newDuration) != reservs.end()) {
+            throw ReservationAlreadyExists(username);
+        }
+
+        if(!res->getTeacher().empty()) { // if the reservation is a lesson
+            temp = getTeacher(u.getName());
+            vector<Lesson*> lessons = temp.getLessons(); // retrieve the teachers lessons
+            vector<Lesson*>::iterator itLesson = getScheduledLesson(temp.getName(),temp.getLessons(),month,day,startingHour,duration);
+
+
+            if(getScheduledLesson(temp.getName(),lessons,newMonth,newDay,newStartHour,newDuration) != lessons.end()) { // check if the teacher already has a lesson scheduled for the new date
+                throw TeacherUnavailable(temp.getName());
+            }
+
+            //check court availability and change lesson
+            bool flag = true;
+            for(auto i: this->tennisCourts)
+            {
+                if(i.isOccupied(month, day, startingHour, duration))
+                {
+                    i.modifyReservation(month, day, startingHour, duration, newMonth, newDay, newStartHour, newDuration);
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag)
+                throw NoCourtfound(month, day, startingHour);
+            //change lesson in lessons and reservs
+            (*itLesson)->setMonth(newMonth);
+            (*itLesson)->setDay(newDay);
+            (*itLesson)->setStartHour(newStartHour);
+            (*itLesson)->setDuration(newDuration);
+            (*itRes)->setMonth(newMonth);
+            (*itRes)->setDay(newDay);
+            (*itRes)->setStartHour(newStartHour);
+            (*itRes)->setDuration(newDuration);
+
+            teachers.insert(temp); // confirm procedure
+            u.setReservations(reservs);
+            temp.setLessons(lessons);
+
+            users.insert(u); //confirm procedure
+            return true;
+        }
+        else { // if its a free reservation
+
+            //check court availability and change free
+
+            bool flag = true;
+            for(auto i: this->tennisCourts)
+            {
+                if(i.isOccupied(month, day, startingHour, duration))
+                {
+                    i.modifyReservation(month, day, startingHour, duration, newMonth, newDay, newStartHour, newDuration);
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag)
+                throw NoCourtfound(month, day, startingHour);
+            //change free in reservs
+            (*itRes)->setMonth(newMonth);
+            (*itRes)->setDay(newDay);
+            (*itRes)->setStartHour(newStartHour);
+            (*itRes)->setDuration(newDuration);
+
+            u.setReservations(reservs);
+            users.insert(u);
+            return true;
         }
     }
-    return temp;
+    catch (NoUserRegistered &u) {
+        cout << u.what() << endl;
+        return false;
+    }
+    catch (TeacherUnavailable &t) {
+        users.insert(u);
+        cout << t.what() << endl;
+        return false;
+    }
+    catch(ReservationAlreadyExists & r) {
+        users.insert(u);
+        teachers.insert(temp);
+        cout << r.what() << endl;
+        return false;
+    }
+    catch (NoCourtfound &c){
+        users.insert(u);
+        if(!res->getTeacher().empty())
+            teachers.insert(temp);
+        cout << c.what() << endl;
+    }
+    catch (CourtReserved & c){
+        users.insert(u);
+        if(!res->getTeacher().empty())
+            teachers.insert(temp);
+        cout << c.what() << endl;
+    }
 }
- */
 
-/*
+
 //returns true if at least one lesson is rescheduled
 bool Company::rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &subst, string username) {
 
-	vector<Reservation*> rejects;
-	for (auto j= reservs.begin(); j != reservs.end(); j++) {
-		vector<Lesson*> lsns = subst.getLessons();
-		bool found = false;
-		for(auto i : lsns) {
-			if (**j == *i) {
-				rejects.push_back(*j); //add to the rejected lessons
-				reservs.erase(j); //remove from user reservations
-				j--;
-				found = true;
-				break;
-			}
-		}
-		if(!found) {
-			lsns.push_back(dynamic_cast<Lesson *>(*j));
-		}
-	}
+    vector<Reservation *> rejects;
+    vector<Lesson *> lsns = subst.getLessons();
+    for (auto j = reservs.begin(); j != reservs.end(); j++) {
+        bool found = false;
+        for (auto i : lsns) {
+            if (**j == *i) {
+                rejects.push_back(*j); //add to the rejected lessons
+                reservs.erase(j); //remove from user reservations
+                j--;
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            lsns.push_back(dynamic_cast<Lesson *>(*j));
+        }
+    }
 
-	subst.setLessons(lsns);
+    subst.setLessons(lsns);
 
-	if(!rejects.empty()) {
-		cout << "The user: " << username << "has the following lessons unscheduled:" << endl;
-		int n = 1;
-		for (auto i: rejects) {
-			cout << "Lesson nº " << n << ":\t Day/Month: " << i->getDay() << "/" << i->getMonth() << "\t Time: "
-				 << i->getStartingHour() << ":" << i->getStartingHour() + i->getDuration() << endl;
-			free(i);
-		}
-	}
+    if (!rejects.empty()) {
+        cout << "The user: " << username << "has the following lessons unscheduled:" << endl;
+        int n = 1;
+        for (auto i: rejects) {
+            cout << "Lesson nº " << n << ":\t Day/Month: " << i->getDay() << "/" << i->getMonth() << "\t Time: "
+                 << i->getStartingHour() << ":" << i->getStartingHour() + i->getDuration() << endl;
+            free(i);
+        }
+    }
 
-	return !(rejects.size() == lessons.size());
+    return !(rejects.size() == lsns.size());
 }
-*/
+
+
+void Company::rescheduleRepair(unsigned id, unsigned day, unsigned month, unsigned newDay, unsigned newMonth)
+{
+    Company::unscheduleRepair(id, day, month);
+    Company::scheduleRepair(newDay, newMonth, id);
+}
+
+
+vector<Reservation*>::iterator Company::getScheduledReservation(std::string username,vector<Reservation*> reservs, int month, int day, double startingHour,
+                                                                unsigned int duration) {
+    Reservation res(month,day,startingHour,0,duration);
+    for(auto i = reservs.begin(); i != reservs.end(); i++) {
+        if(**i == res) {
+            return i;
+        }
+    }
+    throw(NoReservation(username));
+}
+
+vector<Lesson*>::iterator Company::getScheduledLesson(std::string teacherName, vector<Lesson*> lessons, int month, int day, double startingHour, unsigned int duration) {
+    Lesson l(month, day, startingHour, 0, duration, teacherName);
+    for(auto i = lessons.begin(); i!= lessons.end(); i++) {
+        if(**i == l) {
+            return i;
+        }
+    }
+    return lessons.end();
+}
  //----------------------------------------------------------------------------------------------------------------
 
 bool Company::showReport(string name, int month)
@@ -1046,42 +1177,6 @@ bool Company::removeActiveTeacher(std::string teacher) {
     }
 }
 
-//returns true if at least one lesson is rescheduled
-bool Company::rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &subst, string username) {
-
-	vector<Reservation *> rejects;
-	vector<Lesson *> lsns = subst.getLessons();
-	for (auto j = reservs.begin(); j != reservs.end(); j++) {
-		bool found = false;
-		for (auto i : lsns) {
-			if (**j == *i) {
-				rejects.push_back(*j); //add to the rejected lessons
-				reservs.erase(j); //remove from user reservations
-				j--;
-				found = true;
-				break;
-			}
-		}
-		if (!found) {
-			lsns.push_back(dynamic_cast<Lesson *>(*j));
-		}
-	}
-
-	subst.setLessons(lsns);
-
-	if (!rejects.empty()) {
-		cout << "The user: " << username << "has the following lessons unscheduled:" << endl;
-		int n = 1;
-		for (auto i: rejects) {
-			cout << "Lesson nº " << n << ":\t Day/Month: " << i->getDay() << "/" << i->getMonth() << "\t Time: "
-				 << i->getStartingHour() << ":" << i->getStartingHour() + i->getDuration() << endl;
-			free(i);
-		}
-	}
-
-	return !(rejects.size() == lsns.size());
-}
-
 
 
 void Company::deleteUser(string name)
@@ -1100,16 +1195,6 @@ void Company::listAvailableRepairers(unsigned daysUntilAvailable) const
 			cout << copy.top();
 		copy.pop();
 	}
-}
-Teacher Company::getTeacher(std::string teacherName) {
-	for(auto i: teachers) {
-		if (i.getName() == teacherName) {
-			Teacher temp = i;
-			teachers.erase(i);
-			return temp;
-		}
-	}
-	throw(NoTeacherRegistered(teacherName));
 }
 
 
@@ -1142,167 +1227,6 @@ void Company::unscheduleRepair(unsigned id, unsigned day, unsigned month)
 		return;
 	}
 	throw NoRepair(day, month, id);
-}
-/*
-void Company::changeReservation(string name, unsigned int duration, int month, int day, double startingHour)
-{
-	//need testing after function changeReservation
-
-	Reservation a(month,day,startingHour,0,duration);
-	User b = getUser(name);
-
-	vector<Reservation *> res= b.getReservations();
-	vector<Reservation *>::iterator it;
-	it = find(res.begin(), res.end(), &a);
-
-	if(it != res.end())
-	{
-		//it->changereservation
-		users.insert(b);
-	} else
-		throw(NoReservation(name));
-}
- */
-
-
-void Company::rescheduleRepair(unsigned id, unsigned day, unsigned month, unsigned newDay, unsigned newMonth)
-{
-	Company::unscheduleRepair(id, day, month);
-	Company::scheduleRepair(newDay, newMonth, id);
-}
-
-
-vector<Reservation*>::iterator Company::getScheduledReservation(std::string username,vector<Reservation*> reservs, int month, int day, double startingHour,
-										unsigned int duration) {
-	Reservation res(month,day,startingHour,0,duration);
-	for(auto i = reservs.begin(); i != reservs.end(); i++) {
-		if(**i == res) {
-			return i;
-		}
-	}
-	throw(NoReservation(username));
-}
-
-vector<Lesson*>::iterator Company::getScheduledLesson(std::string teacherName, vector<Lesson*> lessons, int month, int day, double startingHour, unsigned int duration) {
-		Lesson l(month, day, startingHour, 0, duration, teacherName);
-		for(auto i = lessons.begin(); i!= lessons.end(); i++) {
-			if(**i == l) {
-				return i;
-			}
-		}
-		return lessons.end();
-}
-
-
-bool Company::modifyReservation(std::string username, int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,
-								unsigned int newDuration) {
-	User u;
-	Teacher temp;
-	Reservation* res = NULL;
-	try {
-		u = getUser(username); //try and get the user
-		vector<Reservation*> reservs = u.getReservations(); // retrieve the reservations
-		vector<Reservation*>::iterator itRes = getScheduledReservation(username, reservs, month, day, startingHour, duration); // get the position on the vector
-		res = *itRes;
-
-		if(getScheduledReservation(username,reservs,newMonth,newDay,newStartHour,newDuration) != reservs.end()) {
-			throw ReservationAlreadyExists(username);
-		}
-
-		if(!res->getTeacher().empty()) { // if the reservation is a lesson
-			temp = getTeacher(u.getName());
-			vector<Lesson*> lessons = temp.getLessons(); // retrieve the teachers lessons
-			vector<Lesson*>::iterator itLesson = getScheduledLesson(temp.getName(),temp.getLessons(),month,day,startingHour,duration);
-
-
-			if(getScheduledLesson(temp.getName(),lessons,newMonth,newDay,newStartHour,newDuration) != lessons.end()) { // check if the teacher already has a lesson scheduled for the new date
-				throw TeacherUnavailable(temp.getName());
-			}
-
-			//check court availability and change lesson
-			bool flag = true;
-			for(auto i: this->tennisCourts)
-            {
-			    if(i.isOccupied(month, day, startingHour, duration))
-                {
-			        i.modifyReservation(month, day, startingHour, duration, newMonth, newDay, newStartHour, newDuration);
-			        flag = false;
-                    break;
-                }
-            }
-			if(flag)
-			    throw NoCourtfound(month, day, startingHour);
-			//change lesson in lessons and reservs
-			(*itLesson)->setMonth(newMonth);
-			(*itLesson)->setDay(newDay);
-			(*itLesson)->setStartHour(newStartHour);
-			(*itLesson)->setDuration(newDuration);
-            (*itRes)->setMonth(newMonth);
-            (*itRes)->setDay(newDay);
-            (*itRes)->setStartHour(newStartHour);
-            (*itRes)->setDuration(newDuration);
-
-            teachers.insert(temp); // confirm procedure
-            u.setReservations(reservs);
-            temp.setLessons(lessons);
-
-            users.insert(u); //confirm procedure
-            return true;
-        }
-		else { // if its a free reservation
-
-            //check court availability and change free
-
-            bool flag = true;
-            for(auto i: this->tennisCourts)
-            {
-                if(i.isOccupied(month, day, startingHour, duration))
-                {
-                    i.modifyReservation(month, day, startingHour, duration, newMonth, newDay, newStartHour, newDuration);
-                    flag = false;
-                    break;
-                }
-            }
-            if(flag)
-                throw NoCourtfound(month, day, startingHour);
-            //change free in reservs
-            (*itRes)->setMonth(newMonth);
-            (*itRes)->setDay(newDay);
-            (*itRes)->setStartHour(newStartHour);
-            (*itRes)->setDuration(newDuration);
-
-			u.setReservations(reservs);
-			users.insert(u);
-			return true;
-		}
-	}
-	catch (NoUserRegistered &u) {
-		cout << u.what() << endl;
-		return false;
-	}
-	catch (TeacherUnavailable &t) {
-		users.insert(u);
-		cout << t.what() << endl;
-		return false;
-	}
-	catch(ReservationAlreadyExists & r) {
-		users.insert(u);
-		teachers.insert(temp);
-		cout << r.what() << endl;
-		return false;
-	}
-	catch (NoCourtfound &c){
-	    users.insert(u);
-	    if(!res->getTeacher().empty())
-	        teachers.insert(temp);
-	    cout << c.what() << endl;
-	}
-	catch (CourtReserved & c){
-	    users.insert(u);
-	    if(!res->getTeacher().empty())
-	        teachers.insert(temp);
-	    cout << c.what() << endl;
-	}
 }
 
 bool Company::deleteReservation(std::string username, int month, int day, double startingHour, unsigned int duration) {
@@ -1379,6 +1303,57 @@ bool Company::deleteReservation(std::string username, int month, int day, double
         cout << c.what() << endl;
     }
 }
+//------------------------------------------------------------------------------------------------------------
+
+/*
+//returns true if at least one lesson is rescheduled
+bool Company::rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &subst, string username) {
+	vector<Reservation*> rejects;
+	for (auto j= reservs.begin(); j != reservs.end(); j++) {
+		vector<Lesson*> lsns = subst.getLessons();
+		bool found = false;
+		for(auto i : lsns) {
+			if (**j == *i) {
+				rejects.push_back(*j); //add to the rejected lessons
+				reservs.erase(j); //remove from user reservations
+				j--;
+				found = true;
+				break;
+			}
+		}
+		if(!found) {
+			lsns.push_back(dynamic_cast<Lesson *>(*j));
+		}
+	}
+	subst.setLessons(lsns);
+	if(!rejects.empty()) {
+		cout << "The user: " << username << "has the following lessons unscheduled:" << endl;
+		int n = 1;
+		for (auto i: rejects) {
+			cout << "Lesson nº " << n << ":\t Day/Month: " << i->getDay() << "/" << i->getMonth() << "\t Time: "
+				 << i->getStartingHour() << ":" << i->getStartingHour() + i->getDuration() << endl;
+			free(i);
+		}
+	}
+	return !(rejects.size() == lessons.size());
+}
+*/
+
+/*void Company::changeReservation(string name, unsigned int duration, int month, int day, double startingHour)
+{
+	//need testing after function changeReservation
+	Reservation a(month,day,startingHour,0,duration);
+	User b = getUser(name);
+	vector<Reservation *> res= b.getReservations();
+	vector<Reservation *>::iterator it;
+	it = find(res.begin(), res.end(), &a);
+	if(it != res.end())
+	{
+		//it->changereservation
+		users.insert(b);
+	} else
+		throw(NoReservation(name));
+}*/
 
 
 //---------------------------------------------------------------------------------------------------------
