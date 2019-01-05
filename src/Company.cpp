@@ -62,6 +62,17 @@ vector<Teacher> Company::getTeachers()
 	return temp;
 }
 
+Teacher Company::getTeacher(std::string teacherName) {
+    for(auto i: teachers) {
+        if (i.getName() == teacherName) {
+            Teacher temp = i;
+            teachers.erase(i);
+            return temp;
+        }
+    }
+    throw(NoTeacherRegistered(teacherName));
+}
+
 User Company::getUser(string userName) {
 
 	set<User>::iterator it = users.begin();
