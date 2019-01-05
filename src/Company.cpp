@@ -1339,21 +1339,6 @@ bool Company::rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &su
 }
 */
 
-/*void Company::changeReservation(string name, unsigned int duration, int month, int day, double startingHour)
-{
-	//need testing after function changeReservation
-	Reservation a(month,day,startingHour,0,duration);
-	User b = getUser(name);
-	vector<Reservation *> res= b.getReservations();
-	vector<Reservation *>::iterator it;
-	it = find(res.begin(), res.end(), &a);
-	if(it != res.end())
-	{
-		//it->changereservation
-		users.insert(b);
-	} else
-		throw(NoReservation(name));
-}*/
 
 
 //---------------------------------------------------------------------------------------------------------
