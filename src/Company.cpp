@@ -1210,7 +1210,7 @@ bool Company::modifyReservation(std::string username, int month, int day, double
 		}
 
 		if(!res->getTeacher().empty()) { // if the reservation is a lesson
-			//temp = getTeacher(u.getName());
+			temp = getTeacher(u.getName());
 			vector<Lesson*> lessons = temp.getLessons(); // retrieve the teachers lessons
 			vector<Lesson*>::iterator itLesson = getScheduledLesson(temp.getName(),temp.getLessons(),month,day,startingHour,duration);
 
@@ -1317,7 +1317,7 @@ bool Company::deleteReservation(std::string username, int month, int day, double
 		res = *itRes;
 
 		if(!res->getTeacher().empty()) { // if the reservation is a lesson
-			//temp = getTeacher(u.getName());
+			temp = getTeacher(u.getName());
 			vector<Lesson*> lessons = temp.getLessons(); // retrieve the teachers lessons
 			vector<Lesson*>::iterator itLesson = getScheduledLesson(temp.getName(),temp.getLessons(),month,day,startingHour,duration);
 
