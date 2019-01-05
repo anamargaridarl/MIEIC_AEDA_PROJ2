@@ -157,6 +157,8 @@ void Supporter::readInfo(std::ifstream &infile)
             savingString = savingString.substr(savingString.find(" ") + 1);
             savingString = savingString.substr(0, savingString.size()-1);
             this->ID = (unsigned)stoul(savingString);
+            if(this->ID > this->currentID)
+                this->currentID = this->ID + 1;
         }
         else if(savingString.find("Gender") != string::npos)
         {
