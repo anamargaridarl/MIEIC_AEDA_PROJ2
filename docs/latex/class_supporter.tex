@@ -1,0 +1,324 @@
+\hypertarget{class_supporter}{}\section{Supporter Class Reference}
+\label{class_supporter}\index{Supporter@{Supporter}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_supporter_a8978fd48c8dee1f7a3b023b5d20de611}\label{class_supporter_a8978fd48c8dee1f7a3b023b5d20de611}} 
+\mbox{\hyperlink{class_supporter_a8978fd48c8dee1f7a3b023b5d20de611}{Supporter}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor of the \mbox{\hyperlink{class_supporter}{Supporter}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_supporter_a930a75166ab9e6104c9a55d025289168}{Supporter}} (const std\+::string \&name, const std\+::string \&gender)
+\begin{DoxyCompactList}\small\item\em Constructor of the \mbox{\hyperlink{class_supporter}{Supporter}}. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{class_supporter_a234ec754b73df8cf526fffbf8724b02c}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Getter for the name of the \mbox{\hyperlink{class_supporter}{Supporter}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_supporter_af192615aa7e4a17969f84448bca88498}{set\+Name}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Setter for the name of the \mbox{\hyperlink{class_supporter}{Supporter}}. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{class_supporter_a8feebeba31cad1469d14063eb7ace9ba}{get\+Gender}} () const
+\begin{DoxyCompactList}\small\item\em Getter for the Gender of the \mbox{\hyperlink{class_supporter}{Supporter}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_supporter_a34cd6cd2dce3597b8e03fd01f21dbd54}{set\+Gender}} (const std\+::string \&gender)
+\begin{DoxyCompactList}\small\item\em Setter for the gender of the \mbox{\hyperlink{class_supporter}{Supporter}}. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_supporter_ab7be7b4977d11b17e42781f0cd901ea2}{get\+Days\+Until\+Available}} () const
+\begin{DoxyCompactList}\small\item\em Getter for the Number of Days Available. \end{DoxyCompactList}\item 
+unsigned \mbox{\hyperlink{class_supporter_aee39413490bb66dc13fd3b96e7d87a81}{num\+Repairs}} () const
+\begin{DoxyCompactList}\small\item\em The number of Repairs done and/or scheduled. \end{DoxyCompactList}\item 
+std\+::set$<$ \mbox{\hyperlink{class_repair}{Repair}} $>$ \& \mbox{\hyperlink{class_supporter_a8fd8a2c698c2ae3979640a213001c20b}{get\+Repair\+Dates}} ()
+\begin{DoxyCompactList}\small\item\em Getter of the repair Dates. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_supporter_abc9023e59feac7f460aac0d182d3175d}{check\+Availability}} (\mbox{\hyperlink{class_date}{Date}} date)
+\begin{DoxyCompactList}\small\item\em Check if the \mbox{\hyperlink{class_supporter}{Supporter}} is available at a given date. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_supporter_ac2880af1ce791e1d05cde3d63e754137}{schedule\+Repair}} (\mbox{\hyperlink{class_date}{Date}} date, \mbox{\hyperlink{class_date}{Date}} current\+Date, unsigned court\+ID)
+\begin{DoxyCompactList}\small\item\em Schedule a new \mbox{\hyperlink{class_repair}{Repair}} for the \mbox{\hyperlink{class_supporter}{Supporter}}. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_supporter_a2b9a149408035ca7e3732ae2cb14fdd1}{get\+ID}} () const
+\begin{DoxyCompactList}\small\item\em Getter for the ID of the \mbox{\hyperlink{class_supporter}{Supporter}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_supporter_a83e75eda663c2dc14a60022e6e8f610f}{store\+Info}} (std\+::ofstream \&outfile, int indentation)
+\begin{DoxyCompactList}\small\item\em The storer of the information of a given \mbox{\hyperlink{class_supporter}{Supporter}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_supporter_a89df253d9584e976d6ab40533f79c3d8}{indent}} (std\+::ofstream \&outfile, int indentation)
+\begin{DoxyCompactList}\small\item\em Indentation of the file stream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_supporter_ada44d7fddeaec2ec925faa375af7b29e}{read\+Info}} (std\+::ifstream \&infile)
+\begin{DoxyCompactList}\small\item\em The parser of the information of a \mbox{\hyperlink{class_supporter}{Supporter}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_supporter}{Supporter}} \mbox{\hyperlink{class_supporter_a16db113edaeb5f727c27b85871d28506}{operator-\/-\/}} ()
+\begin{DoxyCompactList}\small\item\em The operation of reducing the number of days available. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_supporter_ad9883859b49ffaaf1e59f8aee0089e11}{operator$<$}} (const \mbox{\hyperlink{class_supporter}{Supporter}} sp1, const \mbox{\hyperlink{class_supporter}{Supporter}} sp2)
+\begin{DoxyCompactList}\small\item\em The comparation between two supporters for ordering a heap by the number of days until the supporter is available. \end{DoxyCompactList}\item 
+std\+::ostream \& \mbox{\hyperlink{class_supporter_a7f6725df03a27dab255cbcef909e590e}{operator$<$$<$}} (std\+::ostream \&out, const \mbox{\hyperlink{class_supporter}{Supporter}} \&sp)
+\begin{DoxyCompactList}\small\item\em The writing to a stream of information about a given supporter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_supporter_a930a75166ab9e6104c9a55d025289168}\label{class_supporter_a930a75166ab9e6104c9a55d025289168}} 
+\index{Supporter@{Supporter}!Supporter@{Supporter}}
+\index{Supporter@{Supporter}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{Supporter()}{Supporter()}}
+{\footnotesize\ttfamily Supporter\+::\+Supporter (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const std\+::string \&}]{gender }\end{DoxyParamCaption})}
+
+
+
+Constructor of the \mbox{\hyperlink{class_supporter}{Supporter}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ the name of the \mbox{\hyperlink{class_supporter}{Supporter}} \\
+\hline
+{\em gender} & -\/ the gender of the \mbox{\hyperlink{class_supporter}{Supporter}} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_supporter_abc9023e59feac7f460aac0d182d3175d}\label{class_supporter_abc9023e59feac7f460aac0d182d3175d}} 
+\index{Supporter@{Supporter}!check\+Availability@{check\+Availability}}
+\index{check\+Availability@{check\+Availability}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{check\+Availability()}{checkAvailability()}}
+{\footnotesize\ttfamily bool Supporter\+::check\+Availability (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_date}{Date}}}]{date }\end{DoxyParamCaption})}
+
+
+
+Check if the \mbox{\hyperlink{class_supporter}{Supporter}} is available at a given date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date} & -\/ the date of the repair \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ if he is available 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_supporter_ab7be7b4977d11b17e42781f0cd901ea2}\label{class_supporter_ab7be7b4977d11b17e42781f0cd901ea2}} 
+\index{Supporter@{Supporter}!get\+Days\+Until\+Available@{get\+Days\+Until\+Available}}
+\index{get\+Days\+Until\+Available@{get\+Days\+Until\+Available}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{get\+Days\+Until\+Available()}{getDaysUntilAvailable()}}
+{\footnotesize\ttfamily unsigned int Supporter\+::get\+Days\+Until\+Available (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter for the Number of Days Available. 
+
+\begin{DoxyReturn}{Returns}
+the number of days until available 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_supporter_a8feebeba31cad1469d14063eb7ace9ba}\label{class_supporter_a8feebeba31cad1469d14063eb7ace9ba}} 
+\index{Supporter@{Supporter}!get\+Gender@{get\+Gender}}
+\index{get\+Gender@{get\+Gender}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{get\+Gender()}{getGender()}}
+{\footnotesize\ttfamily const std\+::string \& Supporter\+::get\+Gender (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter for the Gender of the \mbox{\hyperlink{class_supporter}{Supporter}}. 
+
+\begin{DoxyReturn}{Returns}
+the actual gender 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_supporter_a2b9a149408035ca7e3732ae2cb14fdd1}\label{class_supporter_a2b9a149408035ca7e3732ae2cb14fdd1}} 
+\index{Supporter@{Supporter}!get\+ID@{get\+ID}}
+\index{get\+ID@{get\+ID}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{get\+I\+D()}{getID()}}
+{\footnotesize\ttfamily unsigned int Supporter\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter for the ID of the \mbox{\hyperlink{class_supporter}{Supporter}}. 
+
+\begin{DoxyReturn}{Returns}
+the actual ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_supporter_a234ec754b73df8cf526fffbf8724b02c}\label{class_supporter_a234ec754b73df8cf526fffbf8724b02c}} 
+\index{Supporter@{Supporter}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}}
+{\footnotesize\ttfamily const std\+::string \& Supporter\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter for the name of the \mbox{\hyperlink{class_supporter}{Supporter}}. 
+
+\begin{DoxyReturn}{Returns}
+the name of the \mbox{\hyperlink{class_supporter}{Supporter}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_supporter_a8fd8a2c698c2ae3979640a213001c20b}\label{class_supporter_a8fd8a2c698c2ae3979640a213001c20b}} 
+\index{Supporter@{Supporter}!get\+Repair\+Dates@{get\+Repair\+Dates}}
+\index{get\+Repair\+Dates@{get\+Repair\+Dates}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{get\+Repair\+Dates()}{getRepairDates()}}
+{\footnotesize\ttfamily set$<$ \mbox{\hyperlink{class_repair}{Repair}} $>$ \& Supporter\+::get\+Repair\+Dates (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter of the repair Dates. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_supporter_a89df253d9584e976d6ab40533f79c3d8}\label{class_supporter_a89df253d9584e976d6ab40533f79c3d8}} 
+\index{Supporter@{Supporter}!indent@{indent}}
+\index{indent@{indent}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{indent()}{indent()}}
+{\footnotesize\ttfamily void Supporter\+::indent (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{indentation }\end{DoxyParamCaption})}
+
+
+
+Indentation of the file stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file stream \\
+\hline
+{\em indentation} & -\/ the current indentantion \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_supporter_aee39413490bb66dc13fd3b96e7d87a81}\label{class_supporter_aee39413490bb66dc13fd3b96e7d87a81}} 
+\index{Supporter@{Supporter}!num\+Repairs@{num\+Repairs}}
+\index{num\+Repairs@{num\+Repairs}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{num\+Repairs()}{numRepairs()}}
+{\footnotesize\ttfamily unsigned Supporter\+::num\+Repairs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+The number of Repairs done and/or scheduled. 
+
+\begin{DoxyReturn}{Returns}
+the actual number of repairs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_supporter_a16db113edaeb5f727c27b85871d28506}\label{class_supporter_a16db113edaeb5f727c27b85871d28506}} 
+\index{Supporter@{Supporter}!operator-\/-\/@{operator-\/-\/}}
+\index{operator-\/-\/@{operator-\/-\/}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{operator-\/-\/()}{operator--()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_supporter}{Supporter}} Supporter\+::operator-\/-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The operation of reducing the number of days available. 
+
+\begin{DoxyReturn}{Returns}
+-\/ the supporter himself 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_supporter_ada44d7fddeaec2ec925faa375af7b29e}\label{class_supporter_ada44d7fddeaec2ec925faa375af7b29e}} 
+\index{Supporter@{Supporter}!read\+Info@{read\+Info}}
+\index{read\+Info@{read\+Info}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{read\+Info()}{readInfo()}}
+{\footnotesize\ttfamily void Supporter\+::read\+Info (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{infile }\end{DoxyParamCaption})}
+
+
+
+The parser of the information of a \mbox{\hyperlink{class_supporter}{Supporter}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infile} & -\/ the file stream \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_supporter_ac2880af1ce791e1d05cde3d63e754137}\label{class_supporter_ac2880af1ce791e1d05cde3d63e754137}} 
+\index{Supporter@{Supporter}!schedule\+Repair@{schedule\+Repair}}
+\index{schedule\+Repair@{schedule\+Repair}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{schedule\+Repair()}{scheduleRepair()}}
+{\footnotesize\ttfamily void Supporter\+::schedule\+Repair (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_date}{Date}}}]{date,  }\item[{\mbox{\hyperlink{class_date}{Date}}}]{current\+Date,  }\item[{unsigned}]{court\+ID }\end{DoxyParamCaption})}
+
+
+
+Schedule a new \mbox{\hyperlink{class_repair}{Repair}} for the \mbox{\hyperlink{class_supporter}{Supporter}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date} & -\/ the date of the \mbox{\hyperlink{class_repair}{Repair}} \\
+\hline
+{\em current\+Date} & -\/ the current \mbox{\hyperlink{class_date}{Date}}, for the calculation of the days until available \\
+\hline
+{\em court\+ID} & -\/ the ID of the \mbox{\hyperlink{class_court}{Court}} assigned \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_supporter_a34cd6cd2dce3597b8e03fd01f21dbd54}\label{class_supporter_a34cd6cd2dce3597b8e03fd01f21dbd54}} 
+\index{Supporter@{Supporter}!set\+Gender@{set\+Gender}}
+\index{set\+Gender@{set\+Gender}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{set\+Gender()}{setGender()}}
+{\footnotesize\ttfamily void Supporter\+::set\+Gender (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{gender }\end{DoxyParamCaption})}
+
+
+
+Setter for the gender of the \mbox{\hyperlink{class_supporter}{Supporter}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gender} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_supporter_af192615aa7e4a17969f84448bca88498}\label{class_supporter_af192615aa7e4a17969f84448bca88498}} 
+\index{Supporter@{Supporter}!set\+Name@{set\+Name}}
+\index{set\+Name@{set\+Name}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{set\+Name()}{setName()}}
+{\footnotesize\ttfamily void Supporter\+::set\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Setter for the name of the \mbox{\hyperlink{class_supporter}{Supporter}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ the new Name of the \mbox{\hyperlink{class_supporter}{Supporter}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_supporter_a83e75eda663c2dc14a60022e6e8f610f}\label{class_supporter_a83e75eda663c2dc14a60022e6e8f610f}} 
+\index{Supporter@{Supporter}!store\+Info@{store\+Info}}
+\index{store\+Info@{store\+Info}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{store\+Info()}{storeInfo()}}
+{\footnotesize\ttfamily void Supporter\+::store\+Info (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{indentation }\end{DoxyParamCaption})}
+
+
+
+The storer of the information of a given \mbox{\hyperlink{class_supporter}{Supporter}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file stream \\
+\hline
+{\em indentation} & -\/ the current indentation \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_supporter_ad9883859b49ffaaf1e59f8aee0089e11}\label{class_supporter_ad9883859b49ffaaf1e59f8aee0089e11}} 
+\index{Supporter@{Supporter}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{operator$<$}{operator<}}
+{\footnotesize\ttfamily bool operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_supporter}{Supporter}}}]{sp1,  }\item[{const \mbox{\hyperlink{class_supporter}{Supporter}}}]{sp2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The comparation between two supporters for ordering a heap by the number of days until the supporter is available. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sp1} & -\/ the first supporter \\
+\hline
+{\em sp2} & -\/ the second supporter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+which supporter is available first 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_supporter_a7f6725df03a27dab255cbcef909e590e}\label{class_supporter_a7f6725df03a27dab255cbcef909e590e}} 
+\index{Supporter@{Supporter}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Supporter@{Supporter}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const \mbox{\hyperlink{class_supporter}{Supporter}} \&}]{sp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The writing to a stream of information about a given supporter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & -\/ the stream itself \\
+\hline
+{\em sp} & -\/ the supporter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the stream itself 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Supporter.\+h\item 
+Supporter.\+cpp\end{DoxyCompactItemize}

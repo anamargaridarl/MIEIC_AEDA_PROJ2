@@ -1,0 +1,163 @@
+\hypertarget{class_invoice}{}\section{Invoice Class Reference}
+\label{class_invoice}\index{Invoice@{Invoice}}
+
+
+{\ttfamily \#include $<$Invoice.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_invoice_a25d6ad261479340ac3775e21f03eef90}\label{class_invoice_a25d6ad261479340ac3775e21f03eef90}} 
+\mbox{\hyperlink{class_invoice_a25d6ad261479340ac3775e21f03eef90}{Invoice}} ()
+\begin{DoxyCompactList}\small\item\em Class Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_invoice_a6db408ae47f1a40911c51b769b428034}{Invoice}} (std\+::string name, std\+::string teacher\+Name, std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$ reservs, bool is\+Gold)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_invoice_a049d93832eedd6c40a0b5a686771bdb6}{get\+Price}} () const
+\begin{DoxyCompactList}\small\item\em Getter of the price of the month. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$ $>$ \mbox{\hyperlink{class_invoice_a98ede540a39d22c91a3bc6c5b28116fd}{get\+Reservs}} ()
+\begin{DoxyCompactList}\small\item\em Getter of the reservations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_invoice_a326f9548d517f1f432939e0c8231a84e}{store\+Info}} (std\+::ofstream \&outfile, int indent)
+\begin{DoxyCompactList}\small\item\em Store in the information of the \mbox{\hyperlink{class_court}{Court}} to a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_invoice_a08ce5090cf11e9f74820810d3796dea2}{indentation}} (std\+::ofstream \&outfile, int indent)
+\begin{DoxyCompactList}\small\item\em Indenting the file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_invoice_aae19e485510f08c56be425b4634246ed}{read\+Info}} (std\+::ifstream \&infile)
+\begin{DoxyCompactList}\small\item\em Reading the information of a \mbox{\hyperlink{class_date}{Date}} from a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{class_invoice_a1ff3da2cc7abd9df37b2936772ce9ff7}{operator$<$$<$}} (std\+::ostream \&out, \mbox{\hyperlink{class_invoice}{Invoice}} inv)
+\begin{DoxyCompactList}\small\item\em Writer of the invoice to the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{class_invoice}{Invoice}} of the month for the user 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_invoice_a6db408ae47f1a40911c51b769b428034}\label{class_invoice_a6db408ae47f1a40911c51b769b428034}} 
+\index{Invoice@{Invoice}!Invoice@{Invoice}}
+\index{Invoice@{Invoice}!Invoice@{Invoice}}
+\subsubsection{\texorpdfstring{Invoice()}{Invoice()}}
+{\footnotesize\ttfamily Invoice\+::\+Invoice (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{std\+::string}]{teacher\+Name,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$}]{reservs,  }\item[{bool}]{is\+Gold }\end{DoxyParamCaption})}
+
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ name of \mbox{\hyperlink{class_user}{User}} \\
+\hline
+{\em teacher\+Name} & -\/ name of \mbox{\hyperlink{class_teacher}{Teacher}} \\
+\hline
+{\em reservs} & -\/ The reservations \\
+\hline
+{\em is\+Gold} & -\/ if the user has a Gold Card \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_invoice_a049d93832eedd6c40a0b5a686771bdb6}\label{class_invoice_a049d93832eedd6c40a0b5a686771bdb6}} 
+\index{Invoice@{Invoice}!get\+Price@{get\+Price}}
+\index{get\+Price@{get\+Price}!Invoice@{Invoice}}
+\subsubsection{\texorpdfstring{get\+Price()}{getPrice()}}
+{\footnotesize\ttfamily double Invoice\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter of the price of the month. 
+
+\begin{DoxyReturn}{Returns}
+the price to pay 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_invoice_a98ede540a39d22c91a3bc6c5b28116fd}\label{class_invoice_a98ede540a39d22c91a3bc6c5b28116fd}} 
+\index{Invoice@{Invoice}!get\+Reservs@{get\+Reservs}}
+\index{get\+Reservs@{get\+Reservs}!Invoice@{Invoice}}
+\subsubsection{\texorpdfstring{get\+Reservs()}{getReservs()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$ $>$ Invoice\+::get\+Reservs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter of the reservations. 
+
+\begin{DoxyReturn}{Returns}
+vector of reservations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_invoice_a08ce5090cf11e9f74820810d3796dea2}\label{class_invoice_a08ce5090cf11e9f74820810d3796dea2}} 
+\index{Invoice@{Invoice}!indentation@{indentation}}
+\index{indentation@{indentation}!Invoice@{Invoice}}
+\subsubsection{\texorpdfstring{indentation()}{indentation()}}
+{\footnotesize\ttfamily void Invoice\+::indentation (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{indent }\end{DoxyParamCaption})}
+
+
+
+Indenting the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_invoice_aae19e485510f08c56be425b4634246ed}\label{class_invoice_aae19e485510f08c56be425b4634246ed}} 
+\index{Invoice@{Invoice}!read\+Info@{read\+Info}}
+\index{read\+Info@{read\+Info}!Invoice@{Invoice}}
+\subsubsection{\texorpdfstring{read\+Info()}{readInfo()}}
+{\footnotesize\ttfamily void Invoice\+::read\+Info (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{infile }\end{DoxyParamCaption})}
+
+
+
+Reading the information of a \mbox{\hyperlink{class_date}{Date}} from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infile} & -\/ file to read the information from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_invoice_a326f9548d517f1f432939e0c8231a84e}\label{class_invoice_a326f9548d517f1f432939e0c8231a84e}} 
+\index{Invoice@{Invoice}!store\+Info@{store\+Info}}
+\index{store\+Info@{store\+Info}!Invoice@{Invoice}}
+\subsubsection{\texorpdfstring{store\+Info()}{storeInfo()}}
+{\footnotesize\ttfamily void Invoice\+::store\+Info (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{indent }\end{DoxyParamCaption})}
+
+
+
+Store in the information of the \mbox{\hyperlink{class_court}{Court}} to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_invoice_a1ff3da2cc7abd9df37b2936772ce9ff7}\label{class_invoice_a1ff3da2cc7abd9df37b2936772ce9ff7}} 
+\index{Invoice@{Invoice}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Invoice@{Invoice}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{\mbox{\hyperlink{class_invoice}{Invoice}}}]{inv }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Writer of the invoice to the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & -\/ where to write it to \\
+\hline
+{\em inv} & -\/ The actual invoice \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the stream itself 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Invoice.\+h\item 
+Invoice.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,122 @@
+\hypertarget{class_month}{}\section{Month Class Reference}
+\label{class_month}\index{Month@{Month}}
+
+
+{\ttfamily \#include $<$Calendar.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_month_a36882c55ece9c4210ec1b01bd665ec89}\label{class_month_a36882c55ece9c4210ec1b01bd665ec89}} 
+\mbox{\hyperlink{class_month_a36882c55ece9c4210ec1b01bd665ec89}{Month}} ()
+\begin{DoxyCompactList}\small\item\em Class Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_month_a4abb71ddcd1dfed172a828d8598bbdc7}{Month}} (int month, int days)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_day}{Day}} \& \mbox{\hyperlink{class_month_aea6a1844798c684548c1de899cf620b2}{get\+Day}} (int day)
+\item 
+int \mbox{\hyperlink{class_month_a5bc7c527734f8bc303fea424cd265357}{get\+Month}} ()
+\item 
+int \mbox{\hyperlink{class_month_a901b9af10fe3f3dab931927c2ab77440}{get\+No\+Days}} ()
+\begin{DoxyCompactList}\small\item\em Getter of the Number of days. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_month_a816bb5d0a2d54283ece6924a7b54df36}{set\+Days}} (std\+::vector$<$ \mbox{\hyperlink{class_day}{Day}} $>$ days)
+\begin{DoxyCompactList}\small\item\em Setter of the days. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_month_a9f6e8f474768770ae897e53177eb1797}{set\+Month}} (int month)
+\begin{DoxyCompactList}\small\item\em Setter of the month. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The whole month of reservations 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_month_a4abb71ddcd1dfed172a828d8598bbdc7}\label{class_month_a4abb71ddcd1dfed172a828d8598bbdc7}} 
+\index{Month@{Month}!Month@{Month}}
+\index{Month@{Month}!Month@{Month}}
+\subsubsection{\texorpdfstring{Month()}{Month()}}
+{\footnotesize\ttfamily Month\+::\+Month (\begin{DoxyParamCaption}\item[{int}]{month,  }\item[{int}]{days }\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ the current month \\
+\hline
+{\em days} & -\/ number of days \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_month_aea6a1844798c684548c1de899cf620b2}\label{class_month_aea6a1844798c684548c1de899cf620b2}} 
+\index{Month@{Month}!get\+Day@{get\+Day}}
+\index{get\+Day@{get\+Day}!Month@{Month}}
+\subsubsection{\texorpdfstring{get\+Day()}{getDay()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_day}{Day}} \& Month\+::get\+Day (\begin{DoxyParamCaption}\item[{int}]{day }\end{DoxyParamCaption})}
+
+Getter of the day 
+\begin{DoxyParams}{Parameters}
+{\em day} & -\/ the day wanted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the day 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_month_a5bc7c527734f8bc303fea424cd265357}\label{class_month_a5bc7c527734f8bc303fea424cd265357}} 
+\index{Month@{Month}!get\+Month@{get\+Month}}
+\index{get\+Month@{get\+Month}!Month@{Month}}
+\subsubsection{\texorpdfstring{get\+Month()}{getMonth()}}
+{\footnotesize\ttfamily int Month\+::get\+Month (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter of the month \begin{DoxyReturn}{Returns}
+the month 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_month_a901b9af10fe3f3dab931927c2ab77440}\label{class_month_a901b9af10fe3f3dab931927c2ab77440}} 
+\index{Month@{Month}!get\+No\+Days@{get\+No\+Days}}
+\index{get\+No\+Days@{get\+No\+Days}!Month@{Month}}
+\subsubsection{\texorpdfstring{get\+No\+Days()}{getNoDays()}}
+{\footnotesize\ttfamily int Month\+::get\+No\+Days (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter of the Number of days. 
+
+\begin{DoxyReturn}{Returns}
+number of days 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_month_a816bb5d0a2d54283ece6924a7b54df36}\label{class_month_a816bb5d0a2d54283ece6924a7b54df36}} 
+\index{Month@{Month}!set\+Days@{set\+Days}}
+\index{set\+Days@{set\+Days}!Month@{Month}}
+\subsubsection{\texorpdfstring{set\+Days()}{setDays()}}
+{\footnotesize\ttfamily void Month\+::set\+Days (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_day}{Day}} $>$}]{days }\end{DoxyParamCaption})}
+
+
+
+Setter of the days. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em days} & -\/ vector of days \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_month_a9f6e8f474768770ae897e53177eb1797}\label{class_month_a9f6e8f474768770ae897e53177eb1797}} 
+\index{Month@{Month}!set\+Month@{set\+Month}}
+\index{set\+Month@{set\+Month}!Month@{Month}}
+\subsubsection{\texorpdfstring{set\+Month()}{setMonth()}}
+{\footnotesize\ttfamily void Month\+::set\+Month (\begin{DoxyParamCaption}\item[{int}]{month }\end{DoxyParamCaption})}
+
+
+
+Setter of the month. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ the month \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Calendar.\+h\item 
+Calendar.\+cpp\end{DoxyCompactItemize}

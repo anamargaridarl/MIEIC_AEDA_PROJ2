@@ -1,0 +1,416 @@
+\hypertarget{class_user}{}\section{User Class Reference}
+\label{class_user}\index{User@{User}}
+
+
+{\ttfamily \#include $<$Person.\+h$>$}
+
+Inheritance diagram for User\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_user}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_user_a4a0137053e591fbb79d9057dd7d2283d}\label{class_user_a4a0137053e591fbb79d9057dd7d2283d}} 
+\mbox{\hyperlink{class_user_a4a0137053e591fbb79d9057dd7d2283d}{User}} ()
+\begin{DoxyCompactList}\small\item\em Constructor of the class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_user_afb81317eadcdbe867c09baea47e31e96}{User}} (std\+::string name, int age, std\+::string gender, bool is\+Gold, std\+::string assigned\+Teacher, std\+::string address, int nif)
+\begin{DoxyCompactList}\small\item\em Constructor of the class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_user_a1ddb4cbabc84ef92ac92bfe6f9385d39}\label{class_user_a1ddb4cbabc84ef92ac92bfe6f9385d39}} 
+void \mbox{\hyperlink{class_user_a1ddb4cbabc84ef92ac92bfe6f9385d39}{make\+Gold}} ()
+\begin{DoxyCompactList}\small\item\em Make a person have a Gold Card. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_user_a88a8b41f134b21aeb702c481ffee0ef4}\label{class_user_a88a8b41f134b21aeb702c481ffee0ef4}} 
+void \mbox{\hyperlink{class_user_a88a8b41f134b21aeb702c481ffee0ef4}{stop\+Gold}} ()
+\begin{DoxyCompactList}\small\item\em Stop a person from having a Gold Card. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_user_aef1759300db1bca3c84af6af79f00365}{get\+Address}} () const
+\begin{DoxyCompactList}\small\item\em Getting the address of a person. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_user_ad87b45e028489ed785fa82a4c9fc6739}{get\+Reservation\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Getting the size of Reservations vector. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_user_abd33fb93abc0209808bab9ffc6c2482c}{getis\+Gold}} () const
+\item 
+int \mbox{\hyperlink{class_user_a5e98c1820005dd6915bccd75bd573cea}{get\+N\+IF}} () const
+\begin{DoxyCompactList}\small\item\em Getting the N\+IF of said user. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_report}{Report}} \mbox{\hyperlink{class_user_a655a16e4a6e044d973b54073cdb4bc96}{get\+Report}} (int month) const
+\item 
+\mbox{\hyperlink{class_invoice}{Invoice}} \mbox{\hyperlink{class_user_a82cb8a4c8f92d2a31fb2e8b0cff001f6}{get\+Invoice}} (int month) const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_invoice}{Invoice}} $\ast$ $>$ \mbox{\hyperlink{class_user_ab633b50f8af608b0058c66fa5ced8494}{get\+Invoices}} () const
+\begin{DoxyCompactList}\small\item\em Getter of all the invoices. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$ $>$ \mbox{\hyperlink{class_user_a52c283b101a310a3be644bb9f8552f34}{get\+Reservations}} () const
+\begin{DoxyCompactList}\small\item\em Getter of all the \mbox{\hyperlink{class_reservation}{Reservation}}. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_user_aafe37a3bb0e14e669e42f2fee9e0ce29}{get\+Teacher}} () const
+\begin{DoxyCompactList}\small\item\em Getter of the assigned teacher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_ad0432b83c7379ca57ed782d2929f3b8a}{set\+Invoice}} (\mbox{\hyperlink{class_invoice}{Invoice}} $\ast$invoice, int month)
+\item 
+void \mbox{\hyperlink{class_user_a0cdc359989bc67c3a135737cf1232a49}{set\+Report}} (\mbox{\hyperlink{class_report}{Report}} $\ast$report, int month)
+\item 
+void \mbox{\hyperlink{class_user_ab0e9dba3828977748ad6316eb346a854}{set\+Reservation}} (\mbox{\hyperlink{class_reservation}{Reservation}} $\ast$reservation)
+\begin{DoxyCompactList}\small\item\em Setter of the reservation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_aac5ff0f6899f3ce56d1b2d12ed557c79}{store\+Info}} (std\+::ofstream \&outfile, int \&indentation)
+\begin{DoxyCompactList}\small\item\em Store in the information of the \mbox{\hyperlink{class_user}{User}} to a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_abc12a9ca668bd860a3d6d2ae4791997d}{load\+Class}} (std\+::ifstream \&inpfile)
+\begin{DoxyCompactList}\small\item\em Reading the information of a \mbox{\hyperlink{class_user}{User}} from a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_user_ac8a201055d02b313721e56c4c0f6af82}\label{class_user_ac8a201055d02b313721e56c4c0f6af82}} 
+void \mbox{\hyperlink{class_user_ac8a201055d02b313721e56c4c0f6af82}{show}} ()
+\begin{DoxyCompactList}\small\item\em Showing the information of the user on the screen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_user_a3ccbaec58dd37260a34dfa84496b30bd}\label{class_user_a3ccbaec58dd37260a34dfa84496b30bd}} 
+void \mbox{\hyperlink{class_user_a3ccbaec58dd37260a34dfa84496b30bd}{clean\+Vectors}} ()
+\begin{DoxyCompactList}\small\item\em cleaning all vectors inside the \mbox{\hyperlink{class_user}{User}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_user_ab0637e7ec103b32d040a0bc97be0f178}\label{class_user_ab0637e7ec103b32d040a0bc97be0f178}} 
+void \mbox{\hyperlink{class_user_ab0637e7ec103b32d040a0bc97be0f178}{clean\+Reservations}} ()
+\begin{DoxyCompactList}\small\item\em cleaning the Reservations \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_user_a69d12edf2fb136601b7b9558f1c7b1e2}\label{class_user_a69d12edf2fb136601b7b9558f1c7b1e2}} 
+void {\bfseries set\+Reservations} (std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$ reservs)
+\item 
+void \mbox{\hyperlink{class_user_a092c80f086767a8c204320b6517bfc58}{edit\+Is\+Gold}} (bool is\+Gold)
+\begin{DoxyCompactList}\small\item\em Editing if a \mbox{\hyperlink{class_user}{User}} is Gold. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_a9d826d552e81ecc17828be848e02519b}{edit\+Adress}} (std\+::string address)
+\begin{DoxyCompactList}\small\item\em Changing the Address of a user. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_a470738d77c8d53ab5c41cdcd74497a82}{edit\+N\+IF}} (int N\+IF)
+\begin{DoxyCompactList}\small\item\em Changing the N\+IF of a user. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_user_ab29f666469897568a6c592869cc0a4f9}\label{class_user_ab29f666469897568a6c592869cc0a4f9}} 
+void \mbox{\hyperlink{class_user_ab29f666469897568a6c592869cc0a4f9}{delete\+User}} ()
+\begin{DoxyCompactList}\small\item\em Deleting a \mbox{\hyperlink{class_user}{User}} info. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_a3161559f3e7b4c29b8a60a51f3d002ad}{edit\+Teacher}} (std\+::string new\+Teacher)
+\begin{DoxyCompactList}\small\item\em Editing the name of a \mbox{\hyperlink{class_teacher}{Teacher}} assigned. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_a0f8f72211ae7a56e413ad70358f96a19}{edit\+Reservations}} (std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$r)
+\begin{DoxyCompactList}\small\item\em C\+Hanging the reservations of a user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_user_a87114b6342ed4dc307aa3a185258b4c0}{operator$<$}} (\mbox{\hyperlink{class_user}{User}} r1, \mbox{\hyperlink{class_user}{User}} r2)
+\begin{DoxyCompactList}\small\item\em Comparing two users, a comparison done firstly by number of reservations and then by size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The users of the court 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_user_afb81317eadcdbe867c09baea47e31e96}\label{class_user_afb81317eadcdbe867c09baea47e31e96}} 
+\index{User@{User}!User@{User}}
+\index{User@{User}!User@{User}}
+\subsubsection{\texorpdfstring{User()}{User()}}
+{\footnotesize\ttfamily User\+::\+User (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{age,  }\item[{std\+::string}]{gender,  }\item[{bool}]{is\+Gold,  }\item[{std\+::string}]{assigned\+Teacher,  }\item[{std\+::string}]{address,  }\item[{int}]{nif }\end{DoxyParamCaption})}
+
+
+
+Constructor of the class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ name of the person \\
+\hline
+{\em age} & -\/ age of the person \\
+\hline
+{\em gender} & -\/ gender of the person \\
+\hline
+{\em is\+Gold} & -\/ does the person have the Gold Card \\
+\hline
+{\em assigned\+Teacher} & -\/ the teacher assigned to the person \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_user_a9d826d552e81ecc17828be848e02519b}\label{class_user_a9d826d552e81ecc17828be848e02519b}} 
+\index{User@{User}!edit\+Adress@{edit\+Adress}}
+\index{edit\+Adress@{edit\+Adress}!User@{User}}
+\subsubsection{\texorpdfstring{edit\+Adress()}{editAdress()}}
+{\footnotesize\ttfamily void User\+::edit\+Adress (\begin{DoxyParamCaption}\item[{std\+::string}]{address }\end{DoxyParamCaption})}
+
+
+
+Changing the Address of a user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em adress} & -\/ the new Address \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_a092c80f086767a8c204320b6517bfc58}\label{class_user_a092c80f086767a8c204320b6517bfc58}} 
+\index{User@{User}!edit\+Is\+Gold@{edit\+Is\+Gold}}
+\index{edit\+Is\+Gold@{edit\+Is\+Gold}!User@{User}}
+\subsubsection{\texorpdfstring{edit\+Is\+Gold()}{editIsGold()}}
+{\footnotesize\ttfamily void User\+::edit\+Is\+Gold (\begin{DoxyParamCaption}\item[{bool}]{is\+Gold }\end{DoxyParamCaption})}
+
+
+
+Editing if a \mbox{\hyperlink{class_user}{User}} is Gold. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Gold} & -\/ new Gold Status \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_a470738d77c8d53ab5c41cdcd74497a82}\label{class_user_a470738d77c8d53ab5c41cdcd74497a82}} 
+\index{User@{User}!edit\+N\+IF@{edit\+N\+IF}}
+\index{edit\+N\+IF@{edit\+N\+IF}!User@{User}}
+\subsubsection{\texorpdfstring{edit\+N\+I\+F()}{editNIF()}}
+{\footnotesize\ttfamily void User\+::edit\+N\+IF (\begin{DoxyParamCaption}\item[{int}]{N\+IF }\end{DoxyParamCaption})}
+
+
+
+Changing the N\+IF of a user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em N\+IF} & -\/ the new N\+IF \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_a0f8f72211ae7a56e413ad70358f96a19}\label{class_user_a0f8f72211ae7a56e413ad70358f96a19}} 
+\index{User@{User}!edit\+Reservations@{edit\+Reservations}}
+\index{edit\+Reservations@{edit\+Reservations}!User@{User}}
+\subsubsection{\texorpdfstring{edit\+Reservations()}{editReservations()}}
+{\footnotesize\ttfamily void User\+::edit\+Reservations (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$}]{r }\end{DoxyParamCaption})}
+
+
+
+C\+Hanging the reservations of a user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_a3161559f3e7b4c29b8a60a51f3d002ad}\label{class_user_a3161559f3e7b4c29b8a60a51f3d002ad}} 
+\index{User@{User}!edit\+Teacher@{edit\+Teacher}}
+\index{edit\+Teacher@{edit\+Teacher}!User@{User}}
+\subsubsection{\texorpdfstring{edit\+Teacher()}{editTeacher()}}
+{\footnotesize\ttfamily void User\+::edit\+Teacher (\begin{DoxyParamCaption}\item[{std\+::string}]{new\+Teacher }\end{DoxyParamCaption})}
+
+
+
+Editing the name of a \mbox{\hyperlink{class_teacher}{Teacher}} assigned. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Teacher} & -\/ the new name of the teacher assigned \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_aef1759300db1bca3c84af6af79f00365}\label{class_user_aef1759300db1bca3c84af6af79f00365}} 
+\index{User@{User}!get\+Address@{get\+Address}}
+\index{get\+Address@{get\+Address}!User@{User}}
+\subsubsection{\texorpdfstring{get\+Address()}{getAddress()}}
+{\footnotesize\ttfamily string User\+::get\+Address (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getting the address of a person. 
+
+\begin{DoxyReturn}{Returns}
+the current address 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_user_a82cb8a4c8f92d2a31fb2e8b0cff001f6}\label{class_user_a82cb8a4c8f92d2a31fb2e8b0cff001f6}} 
+\index{User@{User}!get\+Invoice@{get\+Invoice}}
+\index{get\+Invoice@{get\+Invoice}!User@{User}}
+\subsubsection{\texorpdfstring{get\+Invoice()}{getInvoice()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_invoice}{Invoice}} User\+::get\+Invoice (\begin{DoxyParamCaption}\item[{int}]{month }\end{DoxyParamCaption}) const}
+
+Getter of the \mbox{\hyperlink{class_invoice}{Invoice}} of a Specific \mbox{\hyperlink{class_month}{Month}} 
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ month wanted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{class_invoice}{Invoice}} of said month 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_user_ab633b50f8af608b0058c66fa5ced8494}\label{class_user_ab633b50f8af608b0058c66fa5ced8494}} 
+\index{User@{User}!get\+Invoices@{get\+Invoices}}
+\index{get\+Invoices@{get\+Invoices}!User@{User}}
+\subsubsection{\texorpdfstring{get\+Invoices()}{getInvoices()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_invoice}{Invoice}} $\ast$ $>$ User\+::get\+Invoices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter of all the invoices. 
+
+\begin{DoxyReturn}{Returns}
+vector of Invoices 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_user_abd33fb93abc0209808bab9ffc6c2482c}\label{class_user_abd33fb93abc0209808bab9ffc6c2482c}} 
+\index{User@{User}!getis\+Gold@{getis\+Gold}}
+\index{getis\+Gold@{getis\+Gold}!User@{User}}
+\subsubsection{\texorpdfstring{getis\+Gold()}{getisGold()}}
+{\footnotesize\ttfamily bool User\+::getis\+Gold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Does this \mbox{\hyperlink{class_user}{User}} have a Gold Card \begin{DoxyReturn}{Returns}
+if the user is gold 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_user_a5e98c1820005dd6915bccd75bd573cea}\label{class_user_a5e98c1820005dd6915bccd75bd573cea}} 
+\index{User@{User}!get\+N\+IF@{get\+N\+IF}}
+\index{get\+N\+IF@{get\+N\+IF}!User@{User}}
+\subsubsection{\texorpdfstring{get\+N\+I\+F()}{getNIF()}}
+{\footnotesize\ttfamily int User\+::get\+N\+IF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getting the N\+IF of said user. 
+
+\begin{DoxyReturn}{Returns}
+the current N\+IF 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_user_a655a16e4a6e044d973b54073cdb4bc96}\label{class_user_a655a16e4a6e044d973b54073cdb4bc96}} 
+\index{User@{User}!get\+Report@{get\+Report}}
+\index{get\+Report@{get\+Report}!User@{User}}
+\subsubsection{\texorpdfstring{get\+Report()}{getReport()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_report}{Report}} User\+::get\+Report (\begin{DoxyParamCaption}\item[{int}]{month }\end{DoxyParamCaption}) const}
+
+Getter of the \mbox{\hyperlink{class_report}{Report}} of a Specific \mbox{\hyperlink{class_month}{Month}} 
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ month wanted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the report of said month 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_user_a52c283b101a310a3be644bb9f8552f34}\label{class_user_a52c283b101a310a3be644bb9f8552f34}} 
+\index{User@{User}!get\+Reservations@{get\+Reservations}}
+\index{get\+Reservations@{get\+Reservations}!User@{User}}
+\subsubsection{\texorpdfstring{get\+Reservations()}{getReservations()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$ $>$ User\+::get\+Reservations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter of all the \mbox{\hyperlink{class_reservation}{Reservation}}. 
+
+\begin{DoxyReturn}{Returns}
+vector of Reservations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_user_ad87b45e028489ed785fa82a4c9fc6739}\label{class_user_ad87b45e028489ed785fa82a4c9fc6739}} 
+\index{User@{User}!get\+Reservation\+Size@{get\+Reservation\+Size}}
+\index{get\+Reservation\+Size@{get\+Reservation\+Size}!User@{User}}
+\subsubsection{\texorpdfstring{get\+Reservation\+Size()}{getReservationSize()}}
+{\footnotesize\ttfamily unsigned int User\+::get\+Reservation\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getting the size of Reservations vector. 
+
+\begin{DoxyReturn}{Returns}
+the number of reservations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_user_aafe37a3bb0e14e669e42f2fee9e0ce29}\label{class_user_aafe37a3bb0e14e669e42f2fee9e0ce29}} 
+\index{User@{User}!get\+Teacher@{get\+Teacher}}
+\index{get\+Teacher@{get\+Teacher}!User@{User}}
+\subsubsection{\texorpdfstring{get\+Teacher()}{getTeacher()}}
+{\footnotesize\ttfamily string User\+::get\+Teacher (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter of the assigned teacher. 
+
+\begin{DoxyReturn}{Returns}
+the name of the teacher 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_user_abc12a9ca668bd860a3d6d2ae4791997d}\label{class_user_abc12a9ca668bd860a3d6d2ae4791997d}} 
+\index{User@{User}!load\+Class@{load\+Class}}
+\index{load\+Class@{load\+Class}!User@{User}}
+\subsubsection{\texorpdfstring{load\+Class()}{loadClass()}}
+{\footnotesize\ttfamily void User\+::load\+Class (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{inpfile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reading the information of a \mbox{\hyperlink{class_user}{User}} from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infile} & -\/ file to read the information from \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_person_af07a032df8d56dddade4dc43960b536b}{Person}}.
+
+\mbox{\Hypertarget{class_user_ad0432b83c7379ca57ed782d2929f3b8a}\label{class_user_ad0432b83c7379ca57ed782d2929f3b8a}} 
+\index{User@{User}!set\+Invoice@{set\+Invoice}}
+\index{set\+Invoice@{set\+Invoice}!User@{User}}
+\subsubsection{\texorpdfstring{set\+Invoice()}{setInvoice()}}
+{\footnotesize\ttfamily void User\+::set\+Invoice (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_invoice}{Invoice}} $\ast$}]{invoice,  }\item[{int}]{month }\end{DoxyParamCaption})}
+
+Setter of the \mbox{\hyperlink{class_invoice}{Invoice}} 
+\begin{DoxyParams}{Parameters}
+{\em invoice} & -\/ invoice to save \\
+\hline
+{\em month} & -\/ the month of the invoice \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_a0cdc359989bc67c3a135737cf1232a49}\label{class_user_a0cdc359989bc67c3a135737cf1232a49}} 
+\index{User@{User}!set\+Report@{set\+Report}}
+\index{set\+Report@{set\+Report}!User@{User}}
+\subsubsection{\texorpdfstring{set\+Report()}{setReport()}}
+{\footnotesize\ttfamily void User\+::set\+Report (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_report}{Report}} $\ast$}]{report,  }\item[{int}]{month }\end{DoxyParamCaption})}
+
+Setter of the report 
+\begin{DoxyParams}{Parameters}
+{\em report} & -\/ report to save \\
+\hline
+{\em month} & -\/ the month of the report \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_ab0e9dba3828977748ad6316eb346a854}\label{class_user_ab0e9dba3828977748ad6316eb346a854}} 
+\index{User@{User}!set\+Reservation@{set\+Reservation}}
+\index{set\+Reservation@{set\+Reservation}!User@{User}}
+\subsubsection{\texorpdfstring{set\+Reservation()}{setReservation()}}
+{\footnotesize\ttfamily void User\+::set\+Reservation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_reservation}{Reservation}} $\ast$}]{reservation }\end{DoxyParamCaption})}
+
+
+
+Setter of the reservation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reservation} & -\/ the reservation to save \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_aac5ff0f6899f3ce56d1b2d12ed557c79}\label{class_user_aac5ff0f6899f3ce56d1b2d12ed557c79}} 
+\index{User@{User}!store\+Info@{store\+Info}}
+\index{store\+Info@{store\+Info}!User@{User}}
+\subsubsection{\texorpdfstring{store\+Info()}{storeInfo()}}
+{\footnotesize\ttfamily void User\+::store\+Info (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int \&}]{indentation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Store in the information of the \mbox{\hyperlink{class_user}{User}} to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_person_a80f87df3f644706c2ad8fc8b800fdd95}{Person}}.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_user_a87114b6342ed4dc307aa3a185258b4c0}\label{class_user_a87114b6342ed4dc307aa3a185258b4c0}} 
+\index{User@{User}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!User@{User}}
+\subsubsection{\texorpdfstring{operator$<$}{operator<}}
+{\footnotesize\ttfamily bool operator$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_user}{User}}}]{r1,  }\item[{\mbox{\hyperlink{class_user}{User}}}]{r2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Comparing two users, a comparison done firstly by number of reservations and then by size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r1} & the first user \\
+\hline
+{\em r2} & the second user \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the first is smaller than the second 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Person.\+h\item 
+Person.\+cpp\end{DoxyCompactItemize}
