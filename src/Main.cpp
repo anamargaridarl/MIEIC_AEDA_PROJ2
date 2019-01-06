@@ -700,6 +700,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                 cout << "1.Add Court                               " << endl;
                 cout << "2.Show Court                             " << endl;
                 cout << "3.Go back                         " << endl;
+                cout << "---------------------------------------------- " << endl;
 
                 cin >> flagCase;
 
@@ -709,7 +710,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     cout << "Error...Try again: " << endl;
                     cin >> flagCase;
                 }
-                ///////////////////////////////////////////////////////////////
+
 
                 flagAux = stoi(flagCase);
 
@@ -749,7 +750,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     cout << "Error...Try again: " << endl;
                     cin >> flagCase;
                 }
-                ///////////////////////////////////////////////////////////////
+
 
                 flagAux = stoi(flagCase);
 
@@ -813,9 +814,10 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         C.rescheduleRepair(id,m,d,newd,newm);
                     }
                     case 5: {
-
+                        cout << "---------------------------------------------- " << endl;
                         cout << "1. Show all" << endl;
                         cout << "2. Show Until Day"<< endl;
+                        cout << "---------------------------------------------- " << endl;
 
                         cin >> flagCase;
 
