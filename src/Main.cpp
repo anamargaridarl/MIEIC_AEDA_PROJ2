@@ -781,12 +781,24 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         break;
                     }
                     case 2: {
-                        C.scheduleRepair(d, m, id);
+                        try{
+                            C.scheduleRepair(d, m, id);
+                        }
+                        catch(NoSupporterAvailable &u)
+                        {
+                            cout << u.what() << endl;
+                        }
                         break;
                     }
                     case 3:
                     {
-                        C.unscheduleRepair(id,m,d);
+                        try{
+                            C.unscheduleRepair(id,m,d);
+                        }
+                        catch(NoRepair &u)
+                        {
+                            cout << u.what() << endl;
+                        }
                     }
                     case 4:
                     {
