@@ -119,27 +119,24 @@ bool Company::makeLesson(int month,int day,double startingHour,string userName)
 		return false;
 	}
 
+	User u;
+	Teacher temp;
 	try {
-		User u = getUser(userName); // Gets the user
-		string teacherName = u.getTeacher();
-		Teacher temp(teacherName,0,"");
-		tabTeach::iterator it = teachers.find(temp); //Gets the teacher
-		if(it == teachers.end()) {
-			throw (NoTeacherRegistered(teacherName));
-		}
-		temp = *it;
+		u = getUser(userName); // Gets the user
+		temp = getTeacher(u.getTeacher());
+
 		if(!temp.getStatus()) {
-			throw (InactiveTeacher(teacherName));
+			throw (InactiveTeacher(temp.getName()));
 		}
 		for(auto j : tennisCourts) // Finds the first court where it can reserve the Class
 		{
 			if(j.reserveClass(month,day,startingHour,u,temp)) {
-				teachers.erase(it);
 				teachers.insert(temp);
-        users.insert(u);
+        		users.insert(u);
 				return true;
 			}
 		}
+		teachers.insert(temp);
 		users.insert(u);
 		return false;
 	}
@@ -149,11 +146,14 @@ bool Company::makeLesson(int month,int day,double startingHour,string userName)
 	}
 	catch(NoTeacherRegistered &t) // If the teacher doesn't exist
 	{
+		users.insert(u);
 		cout << t.what() << endl;
 		return false;
 	}
 	catch(InactiveTeacher &i) //if the teacher find is inactive
 	{
+		users.insert(u);
+		teachers.insert(temp);
 		cout << i.what() << endl;
 		return false;
 	}
@@ -183,6 +183,7 @@ bool Company::makeFree(int month,int day,double startingHour, int duration,strin
 			}
 
 		}
+		users.insert(u);
 		return false;
 	}
 	catch(NoUserRegistered &u) { //Checks if the user is registered
@@ -224,7 +225,7 @@ bool Company::registerUser(string name, int age,bool isGold,string gender, strin
 		throw(AlreadyRegisteredUser(name));
 	}
 	catch(NoUserRegistered &u) {
-		Teacher t2("",0,"");
+		Teacher t2 = *teachers.begin();
 		for(auto i: teachers)
 		{ //Adds a teacher to the student
 			if (t2.getnStudents() >= i.getnStudents() && i.getStatus())
@@ -248,33 +249,33 @@ bool Company::registerTeacher(string teacherName, int age,string gender)
 {
 	if (age <0) //Checks if it's a possible age
 		throw(InvalidAge(age));
-	Teacher temp(teacherName,age,gender);
+	Teacher temp;
 	try {
-		tabTeach::iterator it = teachers.find(temp); //try to find if the wanted teacher is already registered
-		if(it == teachers.end()) {  //if not, proceeds to check for other available teacher to substitute
-            bool subst = false;
-		    for(auto i: teachers) {
-                if(i.getName() != "" && !i.getStatus())    //search the teachers table to find a available one
-                {
-                    temp = i;
-                    subst = true;
-                    break;
-                }
-            }
-		    if(!subst)                                     //if there is none, create a teacher with the wanted parameter
-		        throw (NoTeacherRegistered(teacherName));
-        }
-		if(it->getStatus())                                //if the teacher is found and already in service, an exception is thrown
+		temp = getTeacher(teacherName); //try to find if the wanted teacher is already registered
+
+		if(temp.getStatus())                                //if the teacher is found and already in service, an exception is thrown
 			throw(AlreadyRegisteredTeacher(teacherName));
-		else{                                           //if the teacher is found and is inactive
-			temp = *it;
+		else {                                           //if the teacher is found and is inactive
+			temp.setStatus(true);
+			teachers.insert(temp);
+			return true;
 		}
-        teachers.erase(temp);                           //alter the information and set the teacher back to activity
-        temp.setStatus(true);
-        teachers.insert(temp);
-        return true;
     }
 	catch(NoTeacherRegistered &t) {
+		bool subst = false;
+		for(auto i: teachers) {
+			if(i.getName() != "" && !i.getStatus())    //search the teachers table to find a available one
+			{
+				temp = i;
+				subst = true;
+				break;
+			}
+		}
+		if(!subst) {    //if there is none, create a teacher with the wanted parameter
+			temp.editName(teacherName);
+			temp.editAge(age);
+			temp.editGender(gender);
+		}
 		teachers.insert(temp);
 		return true;
 	}
@@ -286,13 +287,12 @@ bool Company::registerTeacher(string teacherName, int age,string gender)
 
 bool Company::makeUserReport(int month,string userName,string teacherName)
 {
+	User u;
+	Teacher temp;
 	try
 	{
-	 	User u = getUser(userName); //Gets the User
-		Teacher temp(teacherName,0,"");
-		tabTeach::iterator it = teachers.find(temp);
-		if(it == teachers.end())
-			throw (NoTeacherRegistered(teacherName));
+	 	u = getUser(userName); //Gets the User
+		temp = getTeacher(teacherName);
 	 	Report* newr = new Report(userName,teacherName,u.getReservations());
 		u.setReport(newr,month);
 		users.insert(u);
@@ -304,16 +304,21 @@ bool Company::makeUserReport(int month,string userName,string teacherName)
 	}
 	catch(NoTeacherRegistered &t) //Checks if the teacher doesn't exist
 	{
+		users.insert(u);
 		cout << t.what() << endl;
 		return false;
 	}
 	catch(IncorrectMonth &e) //Checks if the month exists
 	{
+		users.insert(u);
+		teachers.insert(temp);
 		cout << e.what() << endl;
 		return false;
 	}
 	catch (ReportAlreadyExists &r) //Checks if there's already report for that day
 	{
+		users.insert(u);
+		teachers.insert(temp);
 		cout << r.what() << endl;
 		return false;
 	}
@@ -322,9 +327,10 @@ bool Company::makeUserReport(int month,string userName,string teacherName)
 
 bool Company::makeUserInvoice(string userName,int month)
 {
+	User u;
 	try
 	{
-		User u = getUser(userName); // Gets the user
+		u = getUser(userName); // Gets the user
 		// Makes the invoice and saves it
 		Invoice* newinvoice = new Invoice(u.getName(),u.getTeacher(),u.getReservations(), u.getisGold());
 		u.setInvoice(newinvoice,month);
@@ -337,11 +343,13 @@ bool Company::makeUserInvoice(string userName,int month)
 	}
 	catch(IncorrectMonth &e) //Checks if the month doesn't exist
 	{
+		users.insert(u);
 		cout << e.what() << endl;
 		return false;
 	}
 	catch (InvoiceAlreadyExists &i) //Checks if the invoice exists
 	{
+		users.insert(u);
 		cout << i.what() << endl;
 		return false;
 	}
@@ -432,32 +440,13 @@ Company Company::operator++() {
 
 //----------------------------------------------------------------------------------------------------------------
 
-/*void Company::changeReservation(string name, unsigned int duration, int month, int day, double startingHour)
-{
-	//need testing after function changeReservation
-
-	Reservation a(month,day,startingHour,0,duration);
-	User b = getUser(name);
-
-	vector<Reservation *> res= b.getReservations();
-	vector<Reservation *>::iterator it;
-	it = find(res.begin(), res.end(), &a);
-
-	if(it != res.end())
-	{
-		//it->changereservation
-		users.insert(b);
-	} else
-		throw(NoReservation(name));
-}*/
-
-
 void Company::changeName(string name, string newName, int flag)
 {
 	if (flag == 0)
 	{
-		//needs new implementation
-//		getTeacher(name).editName(newName);
+		Teacher temp = getTeacher(name);
+		temp.editName(newName);
+		teachers.insert(temp);
 	}
 	else
 	{
@@ -472,8 +461,9 @@ void Company::changeAge(string name, int newAge, int flag)
 {
 	if (flag == 0)
 	{
-		//needs new implementation
-//		getTeacher(name).editAge(newAge);
+		Teacher temp = getTeacher(name);
+		temp.editAge(newAge);
+		teachers.insert(temp);
 	}
 	else
 	{
@@ -488,8 +478,9 @@ void Company::changeGender(string name, string newgender, int flag)
 {
 	if (flag == 0)
 	{
-		//needs new implementation
-//		getTeacher(name).editGender(newgender);
+		Teacher temp = getTeacher(name);
+		temp.editName(newgender);
+		teachers.insert(temp);
 	}
 	else
 	{
@@ -521,25 +512,6 @@ void Company::changeAddress(std::string name, std::string newAdress)
 	User a = getUser(name);
 	a.editAdress(newAdress);
 	users.insert(a);
-}
-
-
-bool Company::changeTeacherStatus(std::string teacher, bool newstat) {
-	try {
-		Teacher temp(teacher,0,"");
-		tabTeach::iterator it = teachers.find(temp);
-		if(it == teachers.end())
-			throw (NoTeacherRegistered(teacher));
-		temp = *it;
-		teachers.erase(it);
-		temp.setStatus(newstat);
-		teachers.insert(temp);
-		return true;
-	}
-	catch(NoTeacherRegistered &t) {
-		cout << t.what() << endl;
-		return false;
-	}
 }
 
 bool Company::modifyReservation(std::string username, int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,
@@ -590,11 +562,11 @@ bool Company::modifyReservation(std::string username, int month, int day, double
             (*itRes)->setStartHour(newStartHour);
             (*itRes)->setDuration(newDuration);
 
-            teachers.insert(temp); // confirm procedure
             u.setReservations(reservs);
-            temp.setLessons(lessons);
+			temp.setLessons(lessons);
 
-            users.insert(u); //confirm procedure
+			teachers.insert(temp);
+			users.insert(u);
             return true;
         }
         else { // if its a free reservation
@@ -660,19 +632,21 @@ bool Company::rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &su
     vector<Reservation *> rejects;
     vector<Lesson *> lsns = subst.getLessons();
     for (auto j = reservs.begin(); j != reservs.end(); j++) {
-        bool found = false;
-        for (auto i : lsns) {
-            if (**j == *i) {
-                rejects.push_back(*j); //add to the rejected lessons
-                reservs.erase(j); //remove from user reservations
-                j--;
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            lsns.push_back(dynamic_cast<Lesson *>(*j));
-        }
+        if(!(**j).getTeacher().empty()) {
+			bool found = false;
+			for (auto i : lsns) {
+				if (**j == *i) {
+					rejects.push_back(*j); //add to the rejected lessons
+					reservs.erase(j); //remove from user reservations
+					j--;
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				lsns.push_back(dynamic_cast<Lesson *>(*j));
+			}
+		}
     }
 
     subst.setLessons(lsns);
@@ -687,7 +661,7 @@ bool Company::rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &su
         }
     }
 
-    return !(rejects.size() == lsns.size());
+    return rejects.size() != lsns.size();
 }
 
 
@@ -718,11 +692,13 @@ bool Company::showReport(string name, int month)
 	}
 	catch (IncorrectMonth &e) //Checks if the month is possible
 	{
+		users.insert(u);
 		cout << e.what() << endl;
 		return false;
 	}
 	catch (ReportNotAvailable &e) //Checks if the report is available
 	{
+		users.insert(u);
 		cout << e.what() << endl;
 		return false;
 	}
@@ -746,11 +722,13 @@ bool Company::showInvoice(string name,int month)
 	}
 	catch (IncorrectMonth &e) //Checks if the month exists
 	{
+		users.insert(u);
 		cout << e.what() << endl;
 		return false;
 	}
 	catch (InvoiceNotAvailable &e) //Checks if the invoice is available
 	{
+		users.insert(u);
 		cout << e.what() << endl;
 		return false;
 	}
@@ -791,11 +769,9 @@ void Company::showTeachers() { //Shows all teachers
 
 void Company::showTeacher(std::string teacher) {
 	try {
-		Teacher temp(teacher,0,"");
-		tabTeach::iterator t = teachers.find(temp); //Gets a specific teacher
-		if(t == teachers.end())
-			throw(NoTeacherRegistered(teacher));
-		(*t).show();
+		Teacher temp = getTeacher(teacher);
+		teachers.insert(temp);
+		temp.show();
 		cout << endl;
 	}
 	catch (NoTeacherRegistered &e) //Checks if the teacher exists
@@ -851,11 +827,9 @@ void Company::showUserReservations(std::string name) {
 
 void Company::showTeacherLessons(std::string teacher) {
 	try {
-		Teacher temp(teacher,0,"");
-		tabTeach::iterator t = teachers.find(temp);
-		if(t == teachers.end())
-			throw(NoTeacherRegistered(teacher));
-		vector <Lesson*> lessons = (*t).getLessons();
+		Teacher temp = getTeacher(teacher);
+		teachers.insert(temp);
+		vector <Lesson*> lessons = temp.getLessons();
 		int n =0;
 		for(auto i: lessons) {
 			n++;
@@ -1115,23 +1089,15 @@ void Company::removeRepairer(unsigned id)
 
 //remove the teacher from active status and reassign his/her students to another teach and reschedule all possible lessons
 bool Company::removeActiveTeacher(std::string teacher) {
+	Teacher rem_teacher;
 	try {
-		Teacher rem_teacher(teacher,0,"");
-		tabTeach::iterator it = teachers.find(rem_teacher);
-		if(it == teachers.end())
-			throw (NoTeacherRegistered(teacher));
-		if(!(*it).getStatus())
+		rem_teacher = getTeacher(teacher);
+
+		if(!rem_teacher.getStatus())
 			throw (InactiveTeacher(teacher));
 
-		rem_teacher = *it;
 		//get the removed teacher's lessons to be rescheduled
 		vector<Lesson*> mLessons = rem_teacher.getLessons();
-		teachers.erase(it);
-		//remove the teacher active status
-		rem_teacher.setStatus(false); // set to inactivity
-		rem_teacher.cleanVectors(); // clear lessons
-		rem_teacher.cleanNStudents(); //clear nº students assigned
-		teachers.insert(rem_teacher); // keep the record
 
 		Teacher new_teacher(teacher,0,"");
 		bool found_active = false;
@@ -1143,8 +1109,17 @@ bool Company::removeActiveTeacher(std::string teacher) {
 				break;
 			}
 		}
+
 		if(!found_active)				//if there are none an exception is thrown
+		{
 			throw (NoActiveTeachersLeft(teacher));
+		}
+
+		//remove the teacher active status
+		rem_teacher.setStatus(false); // set to inactivity
+		rem_teacher.cleanVectors(); // clear lessons
+		rem_teacher.cleanNStudents(); //clear nº students assigned
+		teachers.insert(rem_teacher); // keep in the record
 
 		for(auto i: users)							//reassign another teacher to each student affected
 		{												//distribuiting accordingly across the rest of the teachers
@@ -1174,8 +1149,14 @@ bool Company::removeActiveTeacher(std::string teacher) {
         return false;
     }
     catch(InactiveTeacher &i) {
+    	teachers.insert(rem_teacher);
         cout << i.what() << endl;
         return false;
+    }
+    catch(NoActiveTeachersLeft &a) {
+    	teachers.insert(rem_teacher);
+    	cout << a.what() << endl;
+    	return false;
     }
 }
 
@@ -1262,14 +1243,11 @@ bool Company::deleteReservation(std::string username, int month, int day, double
 			lessons.erase(itLesson);				//remove from users' reservation and teachers' lessons
             reservs.erase(itRes);
 
-            //remove in court
-
             u.setReservations(reservs);
             temp.setLessons(lessons);
 
-            teachers.insert(temp); // confirm procedure
-
-            users.insert(u); //confirm procedure
+            teachers.insert(temp);
+            users.insert(u);
 			return true;
 		}
 		else { // if its a free reservation
@@ -1285,9 +1263,8 @@ bool Company::deleteReservation(std::string username, int month, int day, double
             }
             if(flag)
                 throw NoCourtfound(month, day, startingHour);
-            reservs.erase(itRes);
 
-			//remove in court
+            reservs.erase(itRes);
 
 			u.setReservations(reservs);
 			users.insert(u);
