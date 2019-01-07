@@ -563,8 +563,9 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         break;
 
                     flagAux2 = stoi(flagOptions);
+                    cin.ignore();
                     cout << "Name: " << endl;
-                    cin >> name;
+                    getline(cin,name);
 
                     if (flagAux2 == 1) {
                         try{
