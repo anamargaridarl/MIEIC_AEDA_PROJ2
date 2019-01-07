@@ -109,6 +109,9 @@ bool editPerson(Company &C)
                 catch (NoUserRegistered &u) {
                     cout << u.what() << endl;
                 }
+                catch (NoTeacherRegistered &t) {
+                	cout << t.what() << endl;
+                }
                 break;
             }
             case 2: {
@@ -121,6 +124,9 @@ bool editPerson(Company &C)
                 catch (NoUserRegistered &u) {
                     cout << u.what() << endl;
                 }
+				catch (NoTeacherRegistered &t) {
+					cout << t.what() << endl;
+				}
                 break;
             }
             case 3: {
@@ -132,6 +138,9 @@ bool editPerson(Company &C)
                 catch (NoUserRegistered &u) {
                     cout << u.what() << endl;
                 }
+				catch (NoTeacherRegistered &t) {
+					cout << t.what() << endl;
+				}
                 break;
             }
             case 4: {
