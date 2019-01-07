@@ -51,22 +51,6 @@ string Person::getGender() const
 	return gender;
 }
 
-void Person::setName(string name)
-{
-	this->name=name;
-}
-
-void Person::setAge(int age)
-{
-	this->age=age;
-}
-
-void  Person::setGender(string gender)
-{
-	this->gender=gender;
-}
-
-
 void Person::storeInfo(ofstream &outfile, int &indentation)
 {
 	indentp(outfile,indentation);
@@ -157,6 +141,7 @@ double calculateEndHour(double startinghour, int duration)
 Teacher::Teacher()
 {
 	nStudents=0;
+	active = true;
 }
 
 Teacher::Teacher(string name, int age, string gender):Person(name,age,gender)

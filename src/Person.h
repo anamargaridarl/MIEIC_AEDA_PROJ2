@@ -57,24 +57,6 @@ public:
 	std::string getGender() const;
 
 	/**
-	 * @brief Setter of the name of the person
-	 * @param name - name of the person
-	 */
-	void setName(std::string name);
-
-	/**
-	 * @brief Setter of the age of the person
-	 * @param age - age of the person
-	 */
-	void setAge(int age);
-
-	/**
-	 * @brief Setter of the gender of the person
-	 * @param gender - gender of the person
-	 */
-	void setGender(std::string gender);
-
-	/**
 	 *
 	 * @brief Store in the information of the Person to a file
 	 * @param outfile - the file to write information
