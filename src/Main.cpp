@@ -23,7 +23,6 @@ string name, gender, assignedT, address, newname;
 bool isGold;
 int age, m, d, strH;
 float duration, newduration;
-string adress;
 int nif,n,id;
 int newm, newd, newstrH;
 
@@ -35,6 +34,24 @@ int flagAux2;
 string flagCase;
 string flagOptions;
 string flagNumbers;
+
+string spaceAtEnd(string name)
+{
+   string copy = name;
+   int pos;
+
+   if(copy.find(' ') != string::npos)
+   {
+       pos = copy.find(' ');
+       if(pos == copy.size() - 1 ) {
+           copy  = copy.substr(0, copy.size() - 1);
+           return copy;
+       }
+       else return copy;
+   }
+   else
+       return copy;
+}
 
 string isNumber(string flagNumbers) {
 
@@ -104,7 +121,7 @@ bool editPerson(Company &C)
                 cout << "New Name" << endl;
                 getline(cin, newGN);
                 try {
-                    C.changeName(name, newGN, 1);
+                    C.changeName(spaceAtEnd(name), newGN, 1);
                 }
                 catch (NoUserRegistered &u) {
                     cout << u.what() << endl;
@@ -146,7 +163,7 @@ bool editPerson(Company &C)
             case 4: {
                 cout << "Change Gold Status: (1-add card, 0-remove gold card)" << endl;
                 cin >> isGold;
-                C.changeisGold(name, isGold);
+                C.changeisGold(spaceAtEnd(name), isGold);
                 break;
             }
             case 5: {
@@ -154,7 +171,7 @@ bool editPerson(Company &C)
                 cout << "Change address" << endl;
                 getline(cin, address);
                 try {
-                    C.changeAddress(name, address);
+                    C.changeAddress(spaceAtEnd(name), spaceAtEnd(address));
                 }
                 catch (NoUserRegistered &u) {
                     cout << u.what() << endl;
@@ -166,7 +183,7 @@ bool editPerson(Company &C)
                 cin >> flagNumbers;
                 nif = stoi(isNumber(flagNumbers));
                 try {
-                    C.changeNIF(name, nif);
+                    C.changeNIF(spaceAtEnd(name), nif);
                 }
                 catch (NoUserRegistered &u) {
                     cout << u.what() << endl;
@@ -207,20 +224,20 @@ bool editPerson(Company &C)
             case 1: {
                 cout << "New Name" << endl;
                 getline(cin, newGN);
-                C.changeName(name, newGN, 0);
+                C.changeName(spaceAtEnd(name), spaceAtEnd(newGN), 0);
                 break;
             }
             case 2: {
                 cout << "New Age" << endl;
                 cin >> flagNumbers;
                 age = stoi(isNumber(flagNumbers));
-                C.changeAge(name, age, 0);
+                C.changeAge(spaceAtEnd(name), age, 0);
                 break;
             }
             case 3: {
                 cout << "New Gender" << endl;
                 cin >> newGN;
-                C.changeGender(name, newGN, 0);
+                C.changeGender(spaceAtEnd(name), spaceAtEnd(newGN), 0);
                 break;
             }
         }
@@ -235,7 +252,6 @@ bool editPerson(Company &C)
 bool showPerson(Company &C)
 {
     cout << "----------------------------------------------" << endl;
-    //Chooses what information he wants
     cout << "1.Show all Teachers and Users" << endl;
     cout << "2.Show User (information/report/invoice/schedule)" << endl;
     cout << "3.Show Teacher (information/schedule)" << endl;
@@ -244,7 +260,7 @@ bool showPerson(Company &C)
 
     cin >> flagCase;
 
-    while (flagCase != "1" && flagCase != "2" && flagCase != "3") {
+    while (flagCase != "1" && flagCase != "2" && flagCase != "3" && flagCase != "4") {
         cin.clear();
         cin.ignore(1000, '\n');
         cout << "Error...Try again: " << endl;
@@ -275,11 +291,14 @@ bool showPerson(Company &C)
             cout << endl;
             cout << "4.Show Schedule" << endl;
             cout << "----------------------------------------------" << endl;
+            cout << "5.Go back" << endl;
+            cout << "----------------------------------------------" << endl;
 
             cin >> flagOptions;
 
             while (flagOptions != "1" && flagOptions != "2" && flagOptions != "3" &&
-                   flagOptions != "4") {
+                   flagOptions != "4"  &&
+                   flagOptions != "5") {
                 cin.clear();
                 cin.ignore(1000, '\n');
                 cout << "Error...Try again: " << endl;
@@ -288,12 +307,15 @@ bool showPerson(Company &C)
 
             flagAux2 = stoi(flagOptions);
             cin.ignore();
+
+            if(flagAux2 == 5)
+                break;
+
             cout << "Name of User: " << endl;
             getline(cin, name);
 
-
             if (flagAux2 == 1)
-                C.showUser(name);
+                C.showUser(spaceAtEnd(name));
 
             if (flagAux2 == 2) {
                 cout << "Month: " << endl;
@@ -305,35 +327,42 @@ bool showPerson(Company &C)
                 cout << "Month: " << endl;
                 cin >> flagNumbers;
                 m = stoi(isNumber(flagNumbers));
-                C.showInvoice(name, m);
+                C.showInvoice(spaceAtEnd(name), m);
             } else if (flagAux2 == 4) {
-                C.showUserReservations(name);
+                C.showUserReservations(spaceAtEnd(name));
             }
+            break;
         }
         case 3: //show teacher
         {
 
             cout << "1.Show Information" << endl;
             cout << "2.Show Schedule" << endl;
+            cout << "3.Go back" << endl;
 
             cin >> flagOptions;
 
-            while (flagOptions != "1" && flagOptions != "2") {
+            while (flagOptions != "1" && flagOptions != "2" && flagOptions != "3") {
                 cin.clear();
                 cin.ignore(1000, '\n');
                 cout << "Error...Try again: " << endl;
                 cin >> flagOptions;
             }
 
+
             flagAux2 = stoi(flagOptions);
+
+            if (flagAux2 == 3)
+                break;
+
             cin.ignore();
             cout << "Name of User: " << endl;
             getline(cin, name);
 
             if (flagAux2 == 1) {
-                C.showTeacher(name);
+                C.showTeacher(spaceAtEnd(name));
             } else if (flagAux2 == 2) {
-                C.showTeacherLessons(name);
+                C.showTeacherLessons(spaceAtEnd(name));
             }
 
             break;
@@ -473,7 +502,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cin >> isGold;
                         cin.ignore();
                         cout << "Address:" << endl;
-                        getline(cin, adress);
+                        getline(cin, address);
                         cout << "NIF:" << endl;
                         cin >> flagNumbers;
 
@@ -482,7 +511,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                         //Finally register the User
                         try {
-                            if (!C.registerUser(name, age, isGold, gender, adress, nif))
+                            if (!C.registerUser(spaceAtEnd(name), age, isGold, spaceAtEnd(gender),spaceAtEnd(address), nif))
                                 cout << " Error adding User. Try again" << endl;
                         }
                         catch (InvalidNIF &u) {
@@ -498,7 +527,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                     } else if (flagAux == 2) //Add Teacher
                     { // Or the Teacher
-                        if (!(C.registerTeacher(name, age, gender)))
+                        if (!(C.registerTeacher(spaceAtEnd(name), age, spaceAtEnd(gender))))
                             cout << " Error adding User. Try again" << endl;
                     }
                 }
@@ -530,18 +559,23 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cin >> flagOptions;
                     }
 
+                    if(flagAux2 == 3)
+                        break;
 
                     flagAux2 = stoi(flagOptions);
                     cout << "Name: " << endl;
                     cin >> name;
 
-
                     if (flagAux2 == 1) {
-                        C.deleteUser(name);
+                        try{
+                            C.deleteUser(spaceAtEnd(name));
+                        }
+                        catch(NoUserRegistered &u)
+                        {
+                            cout << u.what() << endl;
+                        }
                     } else if (flagAux2 == 2) {
-                        C.removeActiveTeacher(name);
-                    } else {
-                        break;
+                        C.removeActiveTeacher(spaceAtEnd(name));
                     }
 
                 } else break;
@@ -610,14 +644,14 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cin >> flagNumbers;
                         duration = stoi(isNumber(flagNumbers));
                         //Tries to make the reservation
-                        if (!C.makeFree(m, d, strH, duration, name))
+                        if (!C.makeFree(m, d, strH, duration, spaceAtEnd(name)))
                             cout << " Error adding Free class. Try again" << endl;
 
                     } else if (flagAux == 2) //Add Lesson
                     {
                         try {
                             // Tries to make the reservation
-                            if (!C.makeLesson(m, d, strH, name))
+                            if (!C.makeLesson(m, d, strH, spaceAtEnd(name)))
                                 cout << " Error adding Lesson. Try again" << endl;
                         }
                         catch (NoUserRegistered &u) { // If the user doesn't exist
@@ -668,7 +702,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     newduration = stoi(isNumber(flagNumbers));
 
 
-                    C.modifyReservation(name,m,d,strH,duration,newm,newd,newstrH,newduration);
+                    C.modifyReservation(spaceAtEnd(name),m,d,strH,duration,newm,newd,newstrH,newduration);
 
 
 
@@ -695,7 +729,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cin>> flagCase;
                         duration = stoi(isNumber(flagNumbers));
 
-                        C.deleteReservation(name,m,d,strH,duration);
+                        C.deleteReservation(spaceAtEnd(name),m,d,strH,duration);
                     }
                     else if (flagAux == 5) { //go back
                     break;
@@ -787,7 +821,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cout << "Gender" << endl;
                         cin >> gender;
 
-                        C.addRepairer(name, gender);
+                        C.addRepairer(spaceAtEnd(name), spaceAtEnd(gender));
                         break;
                     }
                     case 2: {
