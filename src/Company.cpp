@@ -1076,13 +1076,16 @@ void Company::readInfo(std::ifstream &infile) {
 		//Gets all the repairers info
 		if (savingString.find("repairers") != string::npos) {
 			while (getline(infile, savingString)) {
-				if (savingString.find(']') != string::npos) {
+				if (savingString.find("],") != string::npos) {
 					break;
 				}
-				Supporter t;
-				t.readInfo(infile);
-				techSupport.push(t);
-				getline(infile,savingString);
+				if(savingString.find("{") != string::npos)
+				{
+					Supporter t;
+					t.readInfo(infile);
+					techSupport.push(t);
+//					getline(infile,savingString);
+				}
 
 			}
 		}

@@ -210,7 +210,7 @@ void Lesson::readInfo(std::ifstream &infile)
         if(savingString.find("teacherName") != string::npos)
         {
             savingString = savingString.substr(savingString.find(" ") + 2);
-            savingString = savingString.substr(0, savingString.size() - 3);
+            savingString = savingString.substr(0, savingString.size() - 2);
             this->teacherName = savingString;
             break;
         }
