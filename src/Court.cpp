@@ -57,11 +57,6 @@ void Court::reserveCourt(int m, int d, double sH, int dur)
 
 }
 
-void Court::setMaxUsers(int users)
-{
-	this->maxUsers = users;
-}
-
 bool Court::reserveClass(int m, int d, double sH, User &user, Teacher &teacher)
 {
     // Classes take 1 hour, so duration = 2

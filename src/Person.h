@@ -45,18 +45,6 @@ public:
 	std::string getName() const;
 
 	/**
-	 * @brief Getter of the age of the person
-	 * @return age of the person
-	 */
-	int getAge() const;
-
-	/**
-	 * @brief Getter of the gender of the person
-	 * @return gender of the person
-	 */
-	std::string getGender() const;
-
-	/**
 	 *
 	 * @brief Store in the information of the Person to a file
 	 * @param outfile - the file to write information
@@ -136,23 +124,6 @@ public:
 	User(std::string name,int age, std::string gender, bool isGold, std::string assignedTeacher, std::string address, int nif, bool active);
 
 	/**
-	 * @brief Make a person have a Gold Card
-	 */
-	void makeGold();
-
-	/**
-	 * @brief Stop a person from having a Gold Card
-	 *
-	 */
-	void stopGold();
-
-	/**
-	 * @brief Getting the address of a person
-	 * @return the current address
-	 */
-	std::string getAddress() const;
-
-	/**
 	 * @brief Getting the size of Reservations vector
 	 * @return the number of reservations
 	 */
@@ -183,12 +154,6 @@ public:
 	 * @return the Invoice of said month
 	 */
 	Invoice getInvoice(int month) const;
-
-	/**
-	 * @brief Getter of all the invoices
-	 * @return vector of Invoices
-	 */
-	std::vector<Invoice*> getInvoices() const;
 
 	/**
 	 * @brief Getter of all the Reservation

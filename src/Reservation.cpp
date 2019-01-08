@@ -173,26 +173,6 @@ std::string Reservation::getTeacher() const {
 	return "";
 }
 
-void Reservation::setMonth(int month) {
-	this->month = month;
-}
-
-void Reservation::setDay(int day) {
-	this->day = day;
-}
-
-void Reservation::setStartHour(double startH) {
-this->startingHour = startH;
-}
-
-void Reservation::setDuration(unsigned int dur) {
-	this->duration = dur;
-}
-
-void Reservation::setPrice(double price) {
-	this->price = price;
-}
-
 void Reservation::setTeacher(std::string teacher) {
 
 }
