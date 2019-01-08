@@ -954,15 +954,21 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                 if (flagAux == 0)
                     return 0;
 
-                else if (C.getCourts().size() == 0) {
-                    cout << "Company cant be saved without courts assigned to it" << endl;
-
-                    ofstream outfile;
-                    outfile.open((to_string(cardValue) + ".json").c_str());
-                    C.storeInfo(outfile, 0);
-                    return 0;
+                else if (flagAux == 1)
+                {
+                    if(C.getCourts().size() == 0) {
+                        cout << "Company cant be saved without courts assigned to it" << endl;
+                    }
+                    else {
+                        ofstream outfile;
+                        outfile.open((to_string(cardValue) + ".json").c_str());
+                        C.storeInfo(outfile, 0);
+                        return 0;
+                    }
 
                 }
+
+                break;
             }
 
         }

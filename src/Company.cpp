@@ -412,15 +412,11 @@ Company Company::operator++() {
 			users.erase(it);
 			if(date.getMonth() == 1) {
 				a.cleanVectors();
-			}
-			if(date.getMonth() != 1)
-			{
-				makeUserReport(date.getMonth()-1,a.getName(),a.getTeacher());
-				makeUserInvoice(a.getName(),date.getMonth()-1);
-			} else{
-				ofstream outfile(to_string((int)this->cardValue - 1) + "-" + to_string(this->date.getYear()-1) + ".json");
+
 			}
 
+            makeUserReport(date.getMonth()-1,a.getName(),a.getTeacher());
+            makeUserInvoice(a.getName(),date.getMonth()-1);
 			a.cleanReservations();
 			users.insert(a);
 		}

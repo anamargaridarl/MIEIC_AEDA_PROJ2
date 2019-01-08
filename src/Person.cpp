@@ -607,7 +607,16 @@ void User::cleanVectors()
 
 void User::cleanReservations()
 {
-	reservations.clear();
+
+	for (size_t i = 0; i < reservations.size(); i++)
+    {
+	    if(reservations.at(i)->getMonth() == i)
+        {
+	        reservations.erase(reservations.begin()+i);
+	        i--;
+        }
+    }
+
 }
 
 void User::editIsGold(bool isGold)
