@@ -204,6 +204,17 @@ void Free::readInfo(std::ifstream &infile)
 
 void Lesson::readInfo(std::ifstream &infile)
 {
+    string savingString;
+    while(getline(infile, savingString))
+    {
+        if(savingString.find("teacherName") != string::npos)
+        {
+            savingString = savingString.substr(savingString.find(" ") + 2);
+            savingString = savingString.substr(0, savingString.size() - 3);
+            this->teacherName = savingString;
+            break;
+        }
+    }
 	Reservation::readInfo(infile);
 }
 
@@ -233,6 +244,8 @@ void Lesson::storeInfo(std::ofstream &outfile, int indent)
     indent++;
     Reservation::indent(outfile, indent); // Stores if it's a lesson before saving the information
     outfile << "\"type\": " << "\"lesson\", " << endl;
+    Reservation::indent(outfile, indent);
+    outfile << "\"teacherName\": \"" << this->teacherName << "\", " << endl;
     Reservation::storeInfo(outfile, indent);
 }
 
