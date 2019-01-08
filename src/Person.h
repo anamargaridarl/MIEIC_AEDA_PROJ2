@@ -217,7 +217,7 @@ public:
 	/**
 	 * @brief cleaning the Reservations
 	 */
-	void cleanReservations();
+	void cleanReservations(int month);
 	void setReservations(std::vector<Reservation*> reservs);
 	//~User();
 	/**
@@ -377,7 +377,7 @@ public:
 	 * @param les
 	 */
 	void setLessons(std::vector<Lesson*> les);
-
+	void cleanReservation(int month);
 
 
 private:

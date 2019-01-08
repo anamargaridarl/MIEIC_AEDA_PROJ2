@@ -181,7 +181,7 @@ public:
 	 * @param teacherName - the name of the teacher
 	 * @return if if was made sucessfuly
 	 */
-	bool makeUserReport(int month,std::string userName,std::string teacherName);
+	void makeUserReport(User &a,int month,std::string userName,std::string teacherName);
 
 
 
@@ -192,7 +192,7 @@ public:
 	 * @param month - the name of the user
 	 * @return if if was made sucessfuly
 	 */
-	bool makeUserInvoice(std::string userName, int month);
+	void makeUserInvoice(User &a, std::string userName, int month);
 
 	/**
 	 * @brief Method to show a specific Report.

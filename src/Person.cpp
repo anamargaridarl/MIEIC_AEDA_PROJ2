@@ -256,6 +256,23 @@ void Teacher::show() const
 	cout << "Working at the company currently: " << (active ? "True" : "False") << endl;
 }
 
+void Teacher::cleanReservation(int month)
+{
+	if(month == 1)
+		month = 12;
+	else
+		month -=1;
+
+	for (size_t i = 0; i < lessons.size(); i++)
+	{
+		if(lessons.at(i)->getMonth() == month)
+		{
+			lessons.erase(lessons.begin()+i);
+			i--;
+		}
+	}
+}
+
 void Teacher::cleanVectors()
 {
 	lessons.clear();
@@ -605,12 +622,16 @@ void User::cleanVectors()
 	invoices.resize(12);
 }
 
-void User::cleanReservations()
+void User::cleanReservations(int month)
 {
+	if(month == 1)
+		month = 12;
+	else
+		month -=1;
 
 	for (size_t i = 0; i < reservations.size(); i++)
     {
-	    if(reservations.at(i)->getMonth() == i)
+	    if(reservations.at(i)->getMonth() == month)
         {
 	        reservations.erase(reservations.begin()+i);
 	        i--;

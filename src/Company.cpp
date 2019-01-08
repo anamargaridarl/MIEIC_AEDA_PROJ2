@@ -47,7 +47,8 @@ vector<Teacher> Company::getTeachers()
 }
 
 Teacher Company::getTeacher(std::string teacherName) {
-    for(auto i: teachers) {
+
+	for(auto i: teachers) {
         if (i.getName() == teacherName) {
             Teacher temp = i;
             teachers.erase(i);
@@ -282,75 +283,47 @@ bool Company::registerTeacher(string teacherName, int age,string gender)
 	}
 }
 
-bool Company::makeUserReport(int month,string userName,string teacherName)
+void Company::makeUserReport(User &a, int month,string userName,string teacherName)
 {
-	User u;
 	Teacher temp;
 	try
 	{
-	 	u = getUser(userName); //Gets the User
 		temp = getTeacher(teacherName);
-	 	Report* newr = new Report(userName,teacherName,u.getReservations());
-		u.setReport(newr,month);
-		users.insert(u);
-	}
-	catch(NoUserRegistered &u) //Checks if the user doesn't exist
-	{
-		cout << u.what() << endl;
-		return false;
-	}
-	catch(NoTeacherRegistered &t) //Checks if the teacher doesn't exist
-	{
-		users.insert(u);
-		cout << t.what() << endl;
-		return false;
+	 	Report* newr = new Report(userName,teacherName,a.getReservations());
+		a.setReport(newr,month);
 	}
 	catch(IncorrectMonth &e) //Checks if the month exists
 	{
-		users.insert(u);
 		teachers.insert(temp);
 		cout << e.what() << endl;
-		return false;
 	}
 	catch (ReportAlreadyExists &r) //Checks if there's already report for that day
 	{
-		users.insert(u);
 		teachers.insert(temp);
 		cout << r.what() << endl;
-		return false;
 	}
-	return true;
+
+	teachers.insert(temp);
+
 }
 
-bool Company::makeUserInvoice(string userName,int month)
+void Company::makeUserInvoice(User &a, string userName,int month)
 {
-	User u;
 	try
 	{
-		u = getUser(userName); // Gets the user
 		// Makes the invoice and saves it
-		Invoice* newinvoice = new Invoice(u.getName(),u.getTeacher(),u.getReservations(), u.getisGold());
-		u.setInvoice(newinvoice,month);
-		users.insert(u);
-	}
-	catch(NoUserRegistered &u) //Checks if the user exists
-	{
-		cout << u.what() << endl;
-		return false;
+		Invoice* newinvoice = new Invoice(a.getName(),a.getTeacher(),a.getReservations(), a.getisGold());
+		a.setInvoice(newinvoice,month);
 	}
 	catch(IncorrectMonth &e) //Checks if the month doesn't exist
 	{
-		users.insert(u);
 		cout << e.what() << endl;
-		return false;
 	}
 	catch (InvoiceAlreadyExists &i) //Checks if the invoice exists
 	{
-		users.insert(u);
 		cout << i.what() << endl;
-		return false;
 	}
-	return true;
+
 }
 
 void Company::scheduleRepair(int day, int month, unsigned ID)
@@ -412,17 +385,22 @@ Company Company::operator++() {
 			users.erase(it);
 			if(date.getMonth() == 1) {
 				a.cleanVectors();
+				makeUserReport(a, 12,a.getName(),a.getTeacher());
+				makeUserInvoice(a, a.getName(),12);
 
 			}
+			else {
+				makeUserReport(a, date.getMonth()-1,a.getName(),a.getTeacher());
+				makeUserInvoice(a, a.getName(),date.getMonth()-1);
+			}
 
-            makeUserReport(date.getMonth()-1,a.getName(),a.getTeacher());
-            makeUserInvoice(a.getName(),date.getMonth()-1);
-			a.cleanReservations();
+
+			a.cleanReservations(date.getMonth());
 			users.insert(a);
 		}
 		for(auto i:teachers) {
 			Teacher temp = i;
-			temp.cleanVectors();
+			temp.cleanReservation(date.getMonth());
 			teachers.erase(i);
 			teachers.insert(temp);
 		}
