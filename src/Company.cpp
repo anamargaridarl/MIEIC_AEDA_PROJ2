@@ -212,7 +212,7 @@ bool Company::checkNIF(int nif) {
 
 }
 
-bool Company::registerUser(string name, int age,bool isGold,string gender, string adress, int nif)
+bool Company::registerUser(string name, int age,bool isGold,string gender, string adress, int nif, bool active)
 {
 	if (age <0) //Checks if it's a possible age
 		throw(InvalidAge(age));
@@ -222,8 +222,15 @@ bool Company::registerUser(string name, int age,bool isGold,string gender, strin
 
 		User u;
 		u= getUser(name);
-		users.insert(u);//Checks if there's a user already registered
-		throw(AlreadyRegisteredUser(name));
+		if(u.isActive() == false)
+        {
+			u.changeActive(true);
+			users.insert(u);
+			return true;
+        } else {
+			users.insert(u);//Checks if there's a user already registered
+			throw (AlreadyRegisteredUser(name));
+		}
 	}
 	catch(NoUserRegistered &u) {
 		Teacher t2 = *teachers.begin();
@@ -235,7 +242,7 @@ bool Company::registerUser(string name, int age,bool isGold,string gender, strin
 		teachers.erase(t2);
 		t2.addStudent();
 		teachers.insert(t2);
-		User newUser(name,age,gender,isGold,t2.getName(), adress, nif);
+		User newUser(name,age,gender,isGold,t2.getName(), adress, nif, true);
 		users.insert(newUser);
 		return true;
 	}
@@ -1218,6 +1225,7 @@ void Company::deleteUser(string name)
 	}
 	u = this->getUser(name);
 	u.deleteUser();
+	users.insert(u);
 }
 
 

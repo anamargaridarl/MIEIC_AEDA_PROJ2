@@ -511,7 +511,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                         //Finally register the User
                         try {
-                            if (!C.registerUser(spaceAtEnd(name), age, isGold, spaceAtEnd(gender),spaceAtEnd(address), nif))
+                            if (!C.registerUser(spaceAtEnd(name), age, isGold, spaceAtEnd(gender),spaceAtEnd(address), nif,true) )
                                 cout << " Error adding User. Try again" << endl;
                         }
                         catch (InvalidNIF &u) {

@@ -118,7 +118,7 @@ public:
 	 * @param isGold - does the person have the Gold Card
 	 * @param assignedTeacher - the teacher assigned to the person
 	 */
-	User(std::string name,int age, std::string gender, bool isGold, std::string assignedTeacher, std::string address, int nif);
+	User(std::string name,int age, std::string gender, bool isGold, std::string assignedTeacher, std::string address, int nif, bool active);
 
 	/**
 	 * @brief Make a person have a Gold Card
@@ -233,11 +233,14 @@ public:
 	void editTeacher(std::string newTeacher);
 	void editReservations(std:: vector<Reservation*>r);
   friend bool operator<(User r1, User r2);
+  bool isActive();
+    bool changeActive(bool active);
 
 
 private:
 	bool isGold; /**< does the user have a Gold Card? */
 	int NIF;
+	bool active;
 	std::string address;
 	std::string assignedTeacher; /**< name of the assigned teacher*/
 	std::vector<Report*> reports; /**< vector of the reports */
