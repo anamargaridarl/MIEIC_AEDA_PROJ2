@@ -119,16 +119,6 @@ public:
 
 	virtual std::string getTeacher() const;
 
-	void setMonth (int month);
-
-	void setDay (int day);
-
-	void setStartHour(double startH);
-
-	void setDuration(unsigned int dur);
-
-	void setPrice (double price);
-
 	/**
 	 * @brief Set the teacher of the Lesson
 	 * @param teacher - the name of the teacher

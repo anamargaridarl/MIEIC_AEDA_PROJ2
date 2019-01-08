@@ -82,12 +82,6 @@ public:
 	 */
 	int getMaxUsers()const;
 
-	/**
-	 * @brief Setter of the maximum of users
-	 * @param users - number of maximum users
-	 */
-	void setMaxUsers(int users);
-
     /**
      * @brief Check if the Court is already reserved at the given time
      * @param month - month of the reservation

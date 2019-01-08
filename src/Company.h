@@ -93,12 +93,6 @@ public:
 	Company(double cardValue, Date d);
 
 	/**
-	 * @brief getter of Maximum of users in all courts
-	 * @return maximum of users in all courts
-	 */
-	int getMaxUser()const;
-
-	/**
 	 * @brief Creating a new Court
 	 */
 	void createCourt();
@@ -109,14 +103,6 @@ public:
 	 * @return vector of Courts
 	 */
 	std::vector<Court> getCourts();
-	//tested
-
-	/**
-	 * @brief Getter of the current Users.
-	 * @return vector of Users
-	 */
-	std::set <User> getUsers();
-	//tested
 
 	/**
 	 * @brief Getter of the current Teachers.
@@ -127,12 +113,15 @@ public:
 	/**
 	 * @brief Getter of a specific User
 	 * @param userName - name of the User
-	 * @return a reference to the user
+	 * @return the user
 	 */
-
-	void reAddUser(User u);
 	User getUser(std::string userName);
 
+	/**
+	 * @brief Getter of a specific Teacher
+	 * @param teacherName - name of the Teacher
+	 * @return the teacher
+	 */
 	Teacher getTeacher(std::string teacherName);
 
 
@@ -291,15 +280,6 @@ public:
      */
     void showDate();
 
-
-    /**
-     * @brief Changing the status of teacher
-     * @param teacher - the name of said teacher
-     * @param newstat - the status wanted to maintain
-     * @return if the teacher was found and changed
-     */
-    bool changeTeacherStatus(std::string teacher,bool newstat);
-
     /**
      * @brief Removal of an active Teacher
      * @param teacher - the name of said teacher
@@ -370,11 +350,6 @@ public:
      */
     void changeAddress(std::string name, std::string newAddress);
 
-
-
-
-	
-	void changeReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
   /**
 	 * @brief Deleting a User
 	 * @param name - the name of the User
@@ -551,15 +526,6 @@ private:
 public:
 	AlreadyRegisteredTeacher(std::string name) { this->name=name;}
 	std::string what()const;
-};
-
-class InvalidDate
-{
-	int month;
-	int day;
-public:
-	InvalidDate(int day, int month) { this->day = day, this->month = month;}
-	std::string what() const;
 };
 
 

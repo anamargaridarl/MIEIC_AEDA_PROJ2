@@ -41,15 +41,7 @@ string Person::getName() const
 	return name;
 }
 
-int Person::getAge() const
-{
-	return age;
-}
 
-string Person::getGender() const
-{
-	return gender;
-}
 
 void Person::storeInfo(ofstream &outfile, int &indentation)
 {
@@ -311,16 +303,6 @@ User::User(string name,int age,string gender, bool isGold, string assignedTeache
 	this->active = active;
 }
 
-void User::makeGold()
-{
-	isGold = true;
-}
-
-void User::stopGold()
-{
-	isGold = false;
-}
-
 bool User::getisGold() const
 {
 	return isGold;
@@ -329,10 +311,6 @@ bool User::getisGold() const
 int User::getNIF() const
 {
 	return NIF;
-}
-string User::getAddress() const
-{
-	return address;
 }
 
 bool User::isActive() const
@@ -432,11 +410,6 @@ unsigned int User::getReservationSize() const
 string User::getTeacher() const
 {
 	return this->assignedTeacher;
-}
-
-vector<Invoice*> User::getInvoices() const
-{
-	return invoices;
 }
 
 void User::storeInfo(ofstream &outfile, int &indentation)

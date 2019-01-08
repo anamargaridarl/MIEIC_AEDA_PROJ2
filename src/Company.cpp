@@ -17,17 +17,6 @@ Company::Company(double cardValue, Date d)
 	date=d;
 }
 
-int Company::getMaxUser() const
-{
-	int maxusers=0;
-	// The number of max Users is calculated
-	for(auto i : tennisCourts)
-	{
-		maxusers += i.getMaxUsers();
-	}
-	return maxusers;
-}
-
 void Company::createCourt()
 {
 	// Creates a new Court and saves it
@@ -45,11 +34,6 @@ void Company::addRepairer(std::string name, std::string gender)
 vector<Court> Company::getCourts()
 {
 	return tennisCourts;
-}
-
-set<User> Company::getUsers()
-{
-	return users;
 }
 
 vector<Teacher> Company::getTeachers()
@@ -1431,11 +1415,6 @@ string AlreadyRegisteredTeacher::what() const
 {
 	return "There is already a registered teacher with the name: " + this->name;
 }
-
-std::string InvalidDate::what() const {
-	return "The date given is invalid. Day " + to_string(day) + " of month " + to_string(month) + " has passed.";
-}
-
 
 std::string InactiveTeacher::what() const {
 	return "The teacher with name: " + name + ", is not currently working for the company.";
