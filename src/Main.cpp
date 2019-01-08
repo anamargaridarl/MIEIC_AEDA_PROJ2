@@ -511,7 +511,8 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                         //Finally register the User
                         try {
-                            if (!C.registerUser(spaceAtEnd(name), age, isGold, spaceAtEnd(gender),spaceAtEnd(address), nif,true) )
+                            if (!C.registerUser(spaceAtEnd(name), age, isGold, spaceAtEnd(gender), spaceAtEnd(address),
+                                                nif, true))
                                 cout << " Error adding User. Try again" << endl;
                         }
                         catch (InvalidNIF &u) {
@@ -534,13 +535,13 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                 //---------------------------------------------------------------------------------
                 if (flagAux == 3) { //edit User or Teacher
-                    if(editPerson(C))
+                    if (editPerson(C))
                         break;
                 }
                     //---------------------------------------------------------------------------------
                 else if (flagAux == 4) //show information teacher and user
                 {
-                    if(showPerson(C))
+                    if (showPerson(C))
                         break;
                 }
                     //---------------------------------------------------------------------------------
@@ -559,20 +560,19 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cin >> flagOptions;
                     }
 
-                    if(flagAux2 == 3)
+                    if (flagAux2 == 3)
                         break;
 
                     flagAux2 = stoi(flagOptions);
                     cin.ignore();
                     cout << "Name: " << endl;
-                    getline(cin,name);
+                    getline(cin, name);
 
                     if (flagAux2 == 1) {
-                        try{
+                        try {
                             C.deleteUser(spaceAtEnd(name));
                         }
-                        catch(NoUserRegistered &u)
-                        {
+                        catch (NoUserRegistered &u) {
                             cout << u.what() << endl;
                         }
                     } else if (flagAux2 == 2) {
@@ -664,71 +664,68 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                     cin.ignore();
                     cout << "User name: " << endl;
-                    getline(cin,name);
+                    getline(cin, name);
 
-                    cout << "Month: " <<endl;
-                    cin>> flagNumbers;
+                    cout << "Month: " << endl;
+                    cin >> flagNumbers;
                     m = stoi(isNumber(flagNumbers));
 
-                    cout << "Day: "<< endl;
-                    cin>> flagNumbers;
+                    cout << "Day: " << endl;
+                    cin >> flagNumbers;
                     d = stoi(isNumber(flagNumbers));
 
-                    cout << "Starting Hour: " <<endl;
-                    cin>> flagNumbers;
+                    cout << "Starting Hour: " << endl;
+                    cin >> flagNumbers;
                     strH = stoi(isNumber(flagNumbers));
 
-                    cout << "Duration: "<< endl;
-                    cin>> flagNumbers;
+                    cout << "Duration: " << endl;
+                    cin >> flagNumbers;
                     duration = stoi(isNumber(flagNumbers));
 
-                    cout << "New Month: " <<endl;
-                    cin>> flagNumbers;
+                    cout << "New Month: " << endl;
+                    cin >> flagNumbers;
                     newm = stoi(isNumber(flagNumbers));
 
-                    cout << "New Day: "<< endl;
-                    cin>> flagNumbers;
+                    cout << "New Day: " << endl;
+                    cin >> flagNumbers;
                     newd = stoi(isNumber(flagNumbers));
 
-                    cout << "New Starting Hour: "<< endl;
-                    cin>> flagNumbers;
+                    cout << "New Starting Hour: " << endl;
+                    cin >> flagNumbers;
                     newstrH = stoi(isNumber(flagNumbers));
 
-                    cout << "New Duration: "<< endl;
-                    cin>> flagNumbers;
+                    cout << "New Duration: " << endl;
+                    cin >> flagNumbers;
                     newduration = stoi(isNumber(flagNumbers));
 
 
-                    C.modifyReservation(spaceAtEnd(name),m,d,strH,duration,newm,newd,newstrH,newduration);
+                    C.modifyReservation(spaceAtEnd(name), m, d, strH, duration, newm, newd, newstrH, newduration);
 
 
+                } else if (flagAux == 4) { //delete reservation
 
-                }
-                else if (flagAux == 4) { //delete reservation
+                    cin.ignore();
+                    cout << "User name: " << endl;
+                    getline(cin, name);
 
-                        cin.ignore();
-                        cout << "User name: " << endl;
-                        getline(cin,name);
+                    cout << "Month: " << endl;
+                    cin >> flagNumbers;
+                    m = stoi(isNumber(flagNumbers));
 
-                        cout << "Month: " <<endl;
-                        cin>> flagNumbers;
-                        m = stoi(isNumber(flagNumbers));
+                    cout << "Day: " << endl;
+                    cin >> flagNumbers;
+                    d = stoi(isNumber(flagNumbers));
 
-                        cout << "Day: "<< endl;
-                        cin>> flagNumbers;
-                        d = stoi(isNumber(flagNumbers));
+                    cout << "Starting Hour: " << endl;
+                    cin >> flagNumbers;
+                    strH = stoi(isNumber(flagNumbers));
 
-                        cout << "Starting Hour: " <<endl;
-                        cin>> flagNumbers;
-                        strH = stoi(isNumber(flagNumbers));
+                    cout << "Duration: " << endl;
+                    cin >> flagNumbers;
+                    duration = stoi(isNumber(flagNumbers));
 
-                        cout << "Duration: "<< endl;
-                        cin>> flagNumbers;
-                        duration = stoi(isNumber(flagNumbers));
-
-                        C.deleteReservation(spaceAtEnd(name),m,d,strH,duration);
-                    }
-                    else if (flagAux == 5) { //go back
+                    C.deleteReservation(spaceAtEnd(name), m, d, strH, duration);
+                } else if (flagAux == 5) { //go back
                     break;
                 }
                 break;
@@ -744,7 +741,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                 cin >> flagCase;
 
-                while (flagCase != "1" && flagCase != "2" && flagCase != "3" ) {
+                while (flagCase != "1" && flagCase != "2" && flagCase != "3") {
                     cin.clear();
                     cin.ignore(1000, '\n');
                     cout << "Error...Try again: " << endl;
@@ -754,14 +751,12 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                 flagAux = stoi(flagCase);
 
-                switch(flagAux)
-                {
+                switch (flagAux) {
                     case 1: {
                         C.createCourt();
                         break;
                     }
-                    case 2:
-                    {
+                    case 2: {
                         C.showCourts();
                         break;
                     }
@@ -794,8 +789,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                 flagAux = stoi(flagCase);
 
-                if(flagAux == 2 || flagAux == 3 || flagAux == 4)
-                {
+                if (flagAux == 2 || flagAux == 3 || flagAux == 4) {
                     cout << "Court ID" << endl;
                     cin >> flagNumbers;
                     id = stoi(isNumber(flagNumbers));
@@ -822,29 +816,39 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         break;
                     }
                     case 2: {
-                        try{
+
+                        try {
                             C.scheduleRepair(d, m, id);
                         }
-                        catch(NoSupporterAvailable &u)
+                        catch (NoSupporterAvailable &u) {
+                            cout << u.what() << endl;
+                        }
+                        catch(NoCourtID &u)
                         {
                             cout << u.what() << endl;
                         }
-                        break;
-                    }
-                    case 4:
-                    {
-                        try{
-                            C.unscheduleRepair(id,m,d);
-                        }
-                        catch(NoRepair &u)
+                        catch(BadDate &u)
                         {
                             cout << u.what() << endl;
                         }
 
                         break;
                     }
-                    case 3:
-                    {
+                    case 4: {
+                        try {
+                            C.unscheduleRepair(id, m, d);
+                        }
+                        catch (NoRepair &u) {
+                            cout << u.what() << endl;
+                        }
+                        catch(BadDate &u)
+                        {
+                            cout << u.what() << endl;
+                        }
+
+                        break;
+                    }
+                    case 3: {
                         cout << "New Day" << endl;
                         cin >> flagNumbers;
                         newd = stoi(isNumber(flagNumbers));
@@ -854,19 +858,19 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         newm = stoi(isNumber(flagNumbers));
 
 
-                        C.rescheduleRepair(id,m,d,newd,newm);
+                        C.rescheduleRepair(id, m, d, newd, newm);
 
                         break;
                     }
                     case 5: {
                         cout << "---------------------------------------------- " << endl;
                         cout << "1. Show all" << endl;
-                        cout << "2. Show Until Day"<< endl;
+                        cout << "2. Show Until Day" << endl;
                         cout << "---------------------------------------------- " << endl;
 
                         cin >> flagCase;
 
-                        while (flagCase != "1" && flagCase != "2" ) {
+                        while (flagCase != "1" && flagCase != "2") {
                             cin.clear();
                             cin.ignore(1000, '\n');
                             cout << "Error...Try again: " << endl;
@@ -875,10 +879,9 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                         flagAux2 = stoi(flagCase);
 
-                        if(flagAux2 == 1)
-                        C.listAllRepairers();
-                        else
-                        {
+                        if (flagAux2 == 1)
+                            C.listAllRepairers();
+                        else {
                             cout << "How many days until available? " << endl;
                             cin >> flagCase;
 
@@ -893,11 +896,10 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cin >> flagNumbers;
                         id = stoi(isNumber(flagNumbers));
 
-                        try{
+                        try {
                             C.removeRepairer(id);
                         }
-                        catch(NoSupporterID &u)
-                        {
+                        catch (NoSupporterID &u) {
                             cout << u.what() << endl;
                         }
 
@@ -927,24 +929,24 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                 flagAux = stoi(flagCase);
 
-                if (C.getCourts().size() == 0) {
+                if (flagAux == 0)
+                    return 0;
+
+                else if (C.getCourts().size() == 0) {
                     cout << "Company cant be saved without courts assigned to it" << endl;
-                } else if (flagAux == 1) {
+
                     ofstream outfile;
                     outfile.open((to_string(cardValue) + ".json").c_str());
                     C.storeInfo(outfile, 0);
                     return 0;
-                } else if (flagAux == 0)
-                    return 0;
 
-                break;
-
+                }
             }
+
         }
-
     }
-
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int main() {

@@ -715,6 +715,10 @@ void Company::rescheduleRepair(unsigned id, unsigned day, unsigned month, unsign
    {
        cout << u.what() << endl;
    }
+   catch(BadDate &u)
+   {
+       cout << u.what() << endl;
+   }
 
     try{
         scheduleRepair(newDay, newMonth, id);
@@ -727,7 +731,10 @@ void Company::rescheduleRepair(unsigned id, unsigned day, unsigned month, unsign
     {
         cout << u.what() << endl;
     }
-
+    catch(BadDate &u)
+    {
+        cout << u.what() << endl;
+    }
 }
 
 
