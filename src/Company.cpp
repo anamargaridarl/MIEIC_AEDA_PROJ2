@@ -446,6 +446,20 @@ void Company::changeName(string name, string newName, int flag)
 	if (flag == 0)
 	{
 		Teacher temp = getTeacher(name);
+		for(auto i: temp.getLessons()) {
+			i->setTeacher(newName);
+		}
+		for(auto i: users) {
+			if(i.getTeacher() == name) {
+				User u = i;
+				users.erase(u);
+				for(auto j: u.getReservations()) {
+					j->setTeacher(newName);
+				}
+				u.editTeacher(newName);
+				users.insert(u);
+			}
+		}
 		temp.editName(newName);
 		teachers.insert(temp);
 	}
@@ -1195,6 +1209,14 @@ bool Company::removeActiveTeacher(std::string teacher) {
 void Company::deleteUser(string name)
 {
 	User u = this->getUser(name);
+	users.insert(u);
+	Teacher temp = getTeacher(u.getTeacher());
+	temp.removeStudent();
+	teachers.insert(temp);
+	for(auto i : u.getReservations()) {
+		deleteReservation(name,i->getMonth(),i->getDay(),i->getStartingHour(),i->getDuration());
+	}
+	u = this->getUser(name);
 	u.deleteUser();
 }
 
@@ -1278,6 +1300,9 @@ bool Company::deleteReservation(std::string username, int month, int day, double
 
             lessons.erase(itLesson);				//remove from users' reservation and teachers' lessons
             reservs.erase(itRes);
+
+            delete *itLesson;
+            delete *itRes;
 
             u.setReservations(reservs);
             temp.setLessons(lessons);

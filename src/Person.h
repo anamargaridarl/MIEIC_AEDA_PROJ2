@@ -325,6 +325,8 @@ public:
 
 	void cleanNStudents();
 
+	void removeStudent();
+
 	void setLessons(std::vector<Lesson*> les);
 
 

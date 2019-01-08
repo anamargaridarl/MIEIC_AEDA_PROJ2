@@ -286,6 +286,10 @@ void Teacher::setLessons(vector<Lesson*> les) {
 	this->lessons = les;
 }
 
+void Teacher::removeStudent() {
+	nStudents--;
+}
+
 ////////////////////////////////////////////////////////////////////////////
 //////////////////User//////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
@@ -632,10 +636,6 @@ void User::deleteUser()
     {
         delete invoices.at(i);
     }
-	for(size_t i = 0; i< reservations.size(); i++)
-	{
-		delete reservations.at(i);
-	}
 
 }
 
