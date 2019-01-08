@@ -152,7 +152,7 @@ public:
 	 * @param gender - the gender of the User
 	 * @return if the user was succesfully created
 	 */
-	bool registerUser(std::string name, int age,bool isGold,std::string gender,std::string adress, int nif);
+	bool registerUser(std::string name, int age,bool isGold,std::string gender,std::string adress, int nif, bool active);
 	//tested
 
 	/**

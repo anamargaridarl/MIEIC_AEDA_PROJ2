@@ -286,6 +286,10 @@ void Teacher::setLessons(vector<Lesson*> les) {
 	this->lessons = les;
 }
 
+void Teacher::removeStudent() {
+	nStudents--;
+}
+
 ////////////////////////////////////////////////////////////////////////////
 //////////////////User//////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
@@ -296,7 +300,7 @@ User::User()
 }
 
 
-User::User(string name,int age,string gender, bool isGold, string assignedTeacher, string address, int nif):Person(name,age,gender)
+User::User(string name,int age,string gender, bool isGold, string assignedTeacher, string address, int nif, bool active):Person(name,age,gender)
 {
 	this->isGold = isGold;
 	this->assignedTeacher = assignedTeacher;
@@ -304,6 +308,7 @@ User::User(string name,int age,string gender, bool isGold, string assignedTeache
 	this->NIF =nif;
 	reports.resize(12);
 	invoices.resize(12);
+	this->active = active;
 }
 
 void User::makeGold()
@@ -328,6 +333,16 @@ int User::getNIF() const
 string User::getAddress() const
 {
 	return address;
+}
+
+bool User::isActive()
+{
+	return active;
+}
+
+bool User::changeActive(bool active)
+{
+	this->active == active;
 }
 
 Report User::getReport(int month) const
@@ -436,6 +451,9 @@ void User::storeInfo(ofstream &outfile, int &indentation)
 	outfile << "\"NIF\": "<< "\""<< NIF <<"\"" << "," <<  endl;
 	indentp(outfile,indentation);
 	outfile << "\"address\": "<< "\""<< address <<"\"" << "," <<  endl;
+	indentp(outfile,indentation);
+	outfile << "\"active\": "<< "\""<< active << "\""<< "," << endl;
+	indentp(outfile,indentation);
 
 
 	outfile<< "\"reports\": "; // Saves all the reports
@@ -527,6 +545,16 @@ void User::loadClass(std::ifstream &inpfile) {
             this->NIF = stoi(savingString);
         }
 
+		if (savingString.find("\"active\": ") != string::npos) {
+			savingString = savingString.substr(savingString.find(":") + 3);
+			savingString = savingString.substr(0, savingString.find(",") - 1);
+
+			int i = stoi(savingString);
+			if (i == 1)
+				this->active = true;
+			else
+				this->active = false;
+		}
 
         //Saves the reports
 		if (savingString.find("\"reports\": ") != string::npos) {
@@ -589,6 +617,11 @@ void User::show()
 	cout << "Adress: "<< address << endl;
     cout <<"NIF: " << NIF << endl;
 
+    if(active)
+   		cout << "Active: " << "true" << endl;
+    else
+		cout << "Active: " << "false" << endl;
+
 }
 
 void User::cleanVectors()
@@ -623,28 +656,22 @@ void User::editNIF(int NIF)
 
 void User::deleteUser()
 {
-    for(size_t i = 0; i< reports.size(); i++)
-    {
-        delete reports.at(i);
-    }
-
-    for(size_t i = 0; i< invoices.size(); i++)
-    {
-        delete invoices.at(i);
-    }
-	for(size_t i = 0; i< reservations.size(); i++)
-	{
-		delete reservations.at(i);
-	}
-
+  cleanVectors();
+  this->active = false;
 }
 
 bool operator<(User u1, User u2)
 {
-    if (u1.getReservationSize() == u2.getReservationSize()) {
-        return u1.getName() < u2.getName();
-    } else
-        return (u1.getReservationSize() > u2.getReservationSize());
+	if(u1.isActive() && u2.isActive() ) {
+		if (u1.getReservationSize() == u2.getReservationSize()) {
+			return u1.getName() < u2.getName();
+		} else
+			return (u1.getReservationSize() > u2.getReservationSize());
+	}
+	else if( !(u1.isActive()) && u2.isActive() )
+		return false;
+	else
+		return true;
 }
 
 
