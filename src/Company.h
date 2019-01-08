@@ -408,32 +408,6 @@ public:
      */
     void listAllRepairers() const;
 
-
-    //get the scheduled reservation of a given user, if possible
-    /**
-     * @brief Get a scheduled Reservation of a given user
-     * @param userName - the name of the User
-     * @param reservs - the reservations of a given user
-     * @param month - the month of the reservation
-     * @param day - the day of the reservation
-     * @param startingHour - the starting hour of the reservation
-     * @param duration - the duration of the reservation
-     * @return - an iterator pointing to the reservation
-     */
-	std::vector<Lesson*>::iterator getScheduledLesson(std::string teacherName, std::vector<Lesson*> lessons, int month,int day,double startingHour, unsigned int duration);
-
-	/**
-    * @brief Get a scheduled Reservation of a given teacher
-    * @param userName - the name of the Teacher
-    * @param reservs - the reservations of a given Teacher
-    * @param month - the month of the lesson
-    * @param day - the day of the lesson
-    * @param startingHour - the starting hour of the lesson
-    * @param duration - the duration of the lesson
-    * @return - an iterator pointing to the lesson
-    */
-	std::vector<Reservation*>::iterator getScheduledReservation(std::string userName, std::vector <Reservation*> reservs, int month,int day, double startingHour, unsigned int duration);
-
 	/**
 	 * @brief modifying the time of a given Reservation
 	 * @param username - the name of the user
