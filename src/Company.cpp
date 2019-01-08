@@ -853,16 +853,10 @@ void Company::showUser(std::string name) {
 }
 
 void Company::showCourts() {
-	int n=0; //Checks for all available courts at a given day
 	for(size_t i=0; i<tennisCourts.size();i++) {
-		try{
-			tennisCourts[i].occupied(date.getMonth(),date.getDay(),8,12);
-			n++;
-		}
-		catch(CourtReserved &c)
-		{}
+		cout << "Court ID:" << (i+1) << " - ";
+		this->tennisCourts[i].hoursleft(this->date.getMonth(), this->date.getDay());
 	}
-	cout << "There are still " << n << " totally empty courts for today." << endl;
 	cout << "There is a maximum of " << tennisCourts[0].getMaxUsers() << " per court." << endl;
 	cout << endl;
 }

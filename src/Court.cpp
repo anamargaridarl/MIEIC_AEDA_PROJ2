@@ -348,6 +348,21 @@ int Court::getMaxUsers() const
 	return maxUsers;
 }
 
+double Court::hoursleft(int month, int day)
+{
+	double counter = 0;
+	for(const auto &i: 	this->currentYear.getMonth(month).getDay(day).getSchedule())
+	{
+		if(i == false)
+			counter += 1;
+	}
+	counter /= 2;
+
+	cout << "There are still " << counter << " hours left on this court" << endl;
+}
+
+
+
 std::string NoCourtfound::what() const
 {
 	return "The Courts have no reservation for the " + to_string(this->day) + " of the month " + to_string(this->month) + " at "

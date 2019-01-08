@@ -102,6 +102,8 @@ public:
 	void modifyReservation( int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,unsigned int newDuration);
 
 	void unsetReservation(int month, int day, double startingHour, unsigned int duration);
+
+	double hoursleft(int month, int day);
 private:
 
 	/**
