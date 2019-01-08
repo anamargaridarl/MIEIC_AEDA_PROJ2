@@ -1363,6 +1363,29 @@ bool Company::deleteReservation(std::string username, int month, int day, double
         cout << c.what() << endl;
     }
 }
+
+void Company::changeRepairerName(unsigned id, std::string newName)
+{
+	vector<Supporter> aux;
+	while(!this->techSupport.empty())
+	{
+		Supporter sup = this->techSupport.top();
+		this->techSupport.pop();
+		if(sup.getID() == id)
+		{
+			sup.setName(newName);
+			this->techSupport.push(sup);
+			for(const auto &i: aux)
+				this->techSupport.push(i);
+			return;
+		}
+		aux.push_back(sup);
+	}
+	for(const auto &i: aux)
+		this->techSupport.push(i);
+
+	throw NoSupporterID(id);
+}
 //---------------------------------------------------------------------------------------------------------
 
 //Exception Handling

@@ -298,6 +298,8 @@ public:
     void listAvailableRepairers(unsigned daysUntilAvailable) const;
     void unscheduleRepair(unsigned id, unsigned day, unsigned month);
     void rescheduleRepair(unsigned id, unsigned day, unsigned month, unsigned newDay, unsigned newMonth);
+
+    void changeRepairerName(unsigned id, std::string newName);
 };
 
 
