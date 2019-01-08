@@ -834,6 +834,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         {
                             cout << u.what() << endl;
                         }
+                        break;
 
                     }
                     case 3: {
