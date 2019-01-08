@@ -91,8 +91,8 @@ User Company::getUser(string userName) {
 
 }
 
-vector<Reservation*>::iterator Company::getScheduledReservation( vector<Reservation*> &reservs, int month, int day, double startingHour,
-                                                                unsigned int duration) {
+vector<Reservation*>::iterator Company::getScheduledReservation( vector<Reservation*> &reservs, const int &month, const int &day, const double &startingHour,
+                                                                const unsigned int &duration) {
     Reservation res(month,day,startingHour,0,duration);
     for(auto i = reservs.begin(); i != reservs.end(); i++) {
         if(**i == res) {
@@ -102,7 +102,8 @@ vector<Reservation*>::iterator Company::getScheduledReservation( vector<Reservat
     return reservs.end();
 }
 
-vector<Lesson*>::iterator Company::getScheduledLesson(std::string teacherName, vector<Lesson*> &lessons, int month, int day, double startingHour, unsigned int duration) {
+vector<Lesson*>::iterator Company::getScheduledLesson(std::string teacherName, vector<Lesson*> &lessons, const int &month, const int &day, const double &startingHour,
+													  const unsigned int &duration) {
     Lesson l(month, day, startingHour, 0, duration, teacherName);
     for(auto i = lessons.begin(); i!= lessons.end(); i++) {
         if(**i == l) {

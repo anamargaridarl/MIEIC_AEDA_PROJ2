@@ -56,9 +56,11 @@ private:
 	void updateAvailableDays();
 
 	//get the scheduled reservation of a given user, if possible
-	std::vector<Reservation*>::iterator getScheduledReservation( std::vector <Reservation*> &reservs, int month,int day, double startingHour, unsigned int duration);
+	std::vector<Reservation*>::iterator getScheduledReservation( std::vector <Reservation*> &reservs,const int &month, const int &day, const double &startingHour,
+																 const unsigned int &duration);
 	//get the scheduled lesson of a given teacher, if possible
-	std::vector<Lesson*>::iterator getScheduledLesson(std::string teacherName, std::vector<Lesson*> &lessons, int month,int day,double startingHour, unsigned int duration);
+	std::vector<Lesson*>::iterator getScheduledLesson(std::string teacherName, std::vector<Lesson*> &lessons, const int &month, const int &day, const double &startingHour,
+													  const unsigned int &durationn);
 
 public:
 	/**
