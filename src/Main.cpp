@@ -768,18 +768,19 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
             {
                 cout << "---------------------------------------------- " << endl;
                 cout << "1.Add Repairer                                " << endl;
-                cout << "2.Schedule Repair                             " << endl;
-                cout << "3.Reschedule Repair" << endl;
-                cout << "4.Unschedule Repair" << endl;
-                cout << "5.Show Repairers                              " << endl;
-                cout << "6.Delete Repairers                              " << endl;
-                cout << "7.Go back" << endl;
+                cout << "2.Edit name" << endl;
+                cout << "3.Schedule Repair                             " << endl;
+                cout << "4.Reschedule Repair" << endl;
+                cout << "5.Unschedule Repair" << endl;
+                cout << "6.Show Repairers                              " << endl;
+                cout << "7.Delete Repairers                              " << endl;
+                cout << "8.Go back" << endl;
                 cout << "----------------------------------------------" << endl;
 
                 cin >> flagCase;
 
                 while (flagCase != "1" && flagCase != "2" && flagCase != "3" && flagCase != "4" &&
-                       flagCase != "5" && flagCase != "6" && flagCase != "7") {
+                       flagCase != "5" && flagCase != "6" && flagCase != "7"  && flagCase != "8") {
                     cin.clear();
                     cin.ignore(1000, '\n');
                     cout << "Error...Try again: " << endl;
@@ -789,7 +790,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                 flagAux = stoi(flagCase);
 
-                if (flagAux == 2 || flagAux == 3 || flagAux == 4) {
+                if (flagAux == 3 || flagAux == 4 || flagAux == 5) {
                     cout << "Court ID" << endl;
                     cin >> flagNumbers;
                     id = stoi(isNumber(flagNumbers));
@@ -815,7 +816,27 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         C.addRepairer(spaceAtEnd(name), spaceAtEnd(gender));
                         break;
                     }
-                    case 2: {
+                    case 2:
+                    {
+                        cout << "ID" << endl;
+                        cin >> flagNumbers;
+
+                        flagAux = stoi(isNumber(flagNumbers));
+
+                        cin.ignore();
+                        cout << "New Name" << endl;
+                        getline(cin, name);
+
+                        try{
+                            C.changeRepairerName(id,name);
+                        }
+                        catch(NoSupporterID &u)
+                        {
+                            cout << u.what() << endl;
+                        }
+
+                    }
+                    case 3: {
 
                         try {
                             C.scheduleRepair(d, m, id);
@@ -834,7 +855,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                         break;
                     }
-                    case 4: {
+                    case 5: {
                         try {
                             C.unscheduleRepair(id, m, d);
                         }
@@ -848,7 +869,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                         break;
                     }
-                    case 3: {
+                    case 4: {
                         cout << "New Day" << endl;
                         cin >> flagNumbers;
                         newd = stoi(isNumber(flagNumbers));
@@ -862,7 +883,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                         break;
                     }
-                    case 5: {
+                    case 6: {
                         cout << "---------------------------------------------- " << endl;
                         cout << "1. Show all" << endl;
                         cout << "2. Show Until Day" << endl;
@@ -891,7 +912,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         }
                         break;
                     }
-                    case 6: {
+                    case 7: {
                         cout << "Supporter ID" << endl;
                         cin >> flagNumbers;
                         id = stoi(isNumber(flagNumbers));
@@ -905,7 +926,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                         break;
                     }
-                    case 7: {
+                    case 8: {
                         break;
                     }
                 }
