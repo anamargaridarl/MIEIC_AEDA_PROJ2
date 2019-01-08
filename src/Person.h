@@ -402,8 +402,15 @@ public:
 	 */
 	void cleanNStudents();
 
+	/**
+	 * @brief Remove a single student from the Teacher's counter of students
+	 */
 	void removeStudent();
 
+	/**
+	 * @brief Setter of the lessons of the Teacher
+	 * @param les
+	 */
 	void setLessons(std::vector<Lesson*> les);
 
 

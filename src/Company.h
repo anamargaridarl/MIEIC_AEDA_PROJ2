@@ -55,10 +55,27 @@ private:
 
 	void updateAvailableDays();
 
-	//get the scheduled reservation of a given user, if possible
-	std::vector<Reservation*>::iterator getScheduledReservation( std::vector <Reservation*> &reservs,const int &month, const int &day, const double &startingHour,
-																 const unsigned int &duration);
-	//get the scheduled lesson of a given teacher, if possible
+	/**
+	 * @brief Get the scheduled reservation at a given moment of time
+	 * @param reservs - the vectors of reservations
+	 * @param month - the month of the reservation
+	 * @param day - the day of the reservation
+	 * @param startingHour - the starting Hour of the reservation
+	 * @param duration - the duration of the reservation
+	 * @return - the iterator to the wanted reservation
+	 */
+	std::vector<Reservation*>::iterator getScheduledReservation( std::vector <Reservation*> &reservs,const int &month, const int &day, const double &startingHour,const unsigned int &duration);
+
+    /**
+     * @brief Get the scheduled lesson at a given moment of time
+     * @param reservs - the vectors of lesson
+     * @param month - the month of the lesson
+     * @param day - the day of the lesson
+     * @param startingHour - the starting Hour of the lesson
+     * @param duration - the duration of the lesson
+     * @return - the iterator to the wanted lesson
+     */
+
 	std::vector<Lesson*>::iterator getScheduledLesson(std::string teacherName, std::vector<Lesson*> &lessons, const int &month, const int &day, const double &startingHour,
 													  const unsigned int &durationn);
 
@@ -182,8 +199,6 @@ public:
 	 * @param month - the name of the user
 	 * @return if if was made sucessfuly
 	 */
-
-
 	bool makeUserInvoice(std::string userName, int month);
 
 	/**
@@ -201,7 +216,7 @@ public:
 	 * @param month - month they want
 	 * @return if it was properly shown
 	 */
-	//needs invoices to be prpperly saved to be tested
+	//needs invoices to be properly saved to be tested
 	bool showInvoice(std::string name,int month);
 	//to implement
 
@@ -310,8 +325,6 @@ public:
      * @param newName - the new Name
      * @param flag if it is a teacher or a student
      */
-
-  
     void changeName(std::string name, std::string newName, int flag);
 
     /**
@@ -407,7 +420,6 @@ public:
      * @param duration - the duration of the reservation
      * @return - an iterator pointing to the reservation
      */
-    //get the scheduled lesson of a given teacher, if possible
 	std::vector<Lesson*>::iterator getScheduledLesson(std::string teacherName, std::vector<Lesson*> lessons, int month,int day,double startingHour, unsigned int duration);
 
 	/**
@@ -472,6 +484,11 @@ public:
 	 */
     void rescheduleRepair(unsigned id, unsigned day, unsigned month, unsigned newDay, unsigned newMonth);
 
+    /**
+     * @brief Change the name of a repairer
+     * @param id - the id of the repairer
+     * @param newName - the new name of the repairer
+     */
     void changeRepairerName(unsigned id, std::string newName);
 };
 

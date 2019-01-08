@@ -97,13 +97,31 @@ public:
      */
 	void occupied(int month, int day, double startingHour, int duration);
 
+	/**
+	 * @brief Checks if the court is occupied at a given time
+	 * @param month - the month of the reservation
+	 * @param day - the day of the reservation
+	 * @param startingHour - the starting hour of the reservation
+	 * @param duration - the duration of reservation
+	 * @return - if it is occupied
+	 */
 	bool isOccupied(int month, int day, double startingHour, int duration);
 
-	void modifyReservation( int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,unsigned int newDuration);
-
+	/**
+	 * @brief Unschedule a given reservation
+	 * @param month - the month of the reservation
+	 * @param day - the day of the reservation
+	 * @param startingHour - the starting hour of the reservation
+	 * @param duration - the duration of the reservation
+	 */
 	void unsetReservation(int month, int day, double startingHour, unsigned int duration);
 
-	double hoursleft(int month, int day);
+	/**
+	 * @brief The number of hours left at a given time at a court
+	 * @param month - the month of the day to be checked
+	 * @param day - the day itself
+	 */
+	void hoursleft(int month, int day);
 private:
 
 	/**

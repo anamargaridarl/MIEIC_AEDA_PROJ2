@@ -129,6 +129,10 @@ public:
 
 	void setPrice (double price);
 
+	/**
+	 * @brief Set the teacher of the Lesson
+	 * @param teacher - the name of the teacher
+	 */
 	virtual void setTeacher(std::string teacher);
 };
 
@@ -183,8 +187,16 @@ public:
 	 */
 	void show();
 
+	/**
+	 * @brief Getter for the teacher of the Lesson
+	 * @return - the name of the of teacher
+	 */
 	std::string getTeacher() const;
 
+	/**
+	 * @brief Setter for the teacher of the lesson
+	 * @param teacher - the name of the teacher
+	 */
 	void setTeacher(std::string teacher);
 };
 
@@ -232,6 +244,10 @@ public:
 	 */
 	void show();
 
+	/**
+	 * @brief Dummy getter for the teacher
+	 * @return - nothing
+	 */
 	std::string getTeacher() const;
 };
 

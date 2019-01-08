@@ -24,18 +24,6 @@ bool Court::isOccupied(int month, int day, double startingHour, int duration)
 	return !(this->currentYear.getMonth(month).getDay(day).checkSchedule(startingHour, duration));
 }
 
-void Court::modifyReservation( int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,unsigned int newDuration)
-{
-	this->currentYear.getMonth(month).getDay(day).unsetSchedule(startingHour, duration);
-	if(	isOccupied(newMonth, newDay, newStartHour, newDuration))
-    {
-		this->currentYear.getMonth(month).getDay(day).setSchedule(startingHour, duration);
-		throw CourtReserved(newMonth, newDay, newDuration);
-	}
-
-	this->currentYear.getMonth(newMonth).getDay(day).setSchedule(newStartHour, newDuration);
-}
-
 void Court::unsetReservation(int month, int day, double startingHour, unsigned int duration)
 {
 	this->currentYear.getMonth(month).getDay(day).unsetSchedule(startingHour, duration);
@@ -348,7 +336,7 @@ int Court::getMaxUsers() const
 	return maxUsers;
 }
 
-double Court::hoursleft(int month, int day)
+void Court::hoursleft(int month, int day)
 {
 	double counter = 0;
 	for(const auto &i: 	this->currentYear.getMonth(month).getDay(day).getSchedule())
