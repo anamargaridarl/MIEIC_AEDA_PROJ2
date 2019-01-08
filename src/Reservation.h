@@ -22,6 +22,7 @@ private:
 	int month; /**< Month of said reservation */
 	int day; /**< Day of said reservation */
 	double startingHour; /**< Starting Hour of said reservation */
+
 public:
 	/**
 	 * @brief Constructor of Class
@@ -122,6 +123,8 @@ public:
 	void setDuration(unsigned int dur);
 
 	void setPrice (double price);
+
+	virtual void setTeacher(std::string teacher);
 };
 
 /**
@@ -130,6 +133,7 @@ public:
 
 class Lesson : public Reservation {
 	std::string teacherName;
+
 public:
 	/**
 	 * @brief Constructor of a lesson
@@ -175,6 +179,8 @@ public:
 	void show();
 
 	std::string getTeacher() const;
+
+	void setTeacher(std::string teacher);
 };
 
 class Free : public Reservation {

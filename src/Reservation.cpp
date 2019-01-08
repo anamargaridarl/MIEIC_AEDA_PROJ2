@@ -193,6 +193,10 @@ void Reservation::setPrice(double price) {
 	this->price = price;
 }
 
+void Reservation::setTeacher(std::string teacher) {
+
+}
+
 void Free::readInfo(std::ifstream &infile)
 {
 	Reservation::readInfo(infile);
@@ -240,4 +244,8 @@ void Lesson::show() {
 
 std::string Lesson::getTeacher() const {
 	return teacherName;
+}
+
+void Lesson::setTeacher(std::string teacher) {
+this->teacherName = teacher;
 }
