@@ -359,7 +359,7 @@ bool Company::makeUserInvoice(string userName,int month)
 
 void Company::scheduleRepair(int day, int month, unsigned ID)
 {
-	if(this->tennisCourts.size() > ID)
+	if(this->tennisCourts.size() < ID)
 		throw NoCourtID(ID);
 	Date d(day, month, this->date.getYear());
 	vector<Supporter> aux;
