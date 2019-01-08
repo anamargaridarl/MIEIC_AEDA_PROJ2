@@ -233,8 +233,8 @@ public:
 	void editTeacher(std::string newTeacher);
 	void editReservations(std:: vector<Reservation*>r);
   friend bool operator<(User r1, User r2);
-  bool isActive();
-    bool changeActive(bool active);
+  bool isActive() const;
+    void changeActive(bool active);
 
 
 private:

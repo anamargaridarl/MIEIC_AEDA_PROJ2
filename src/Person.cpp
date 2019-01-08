@@ -335,14 +335,14 @@ string User::getAddress() const
 	return address;
 }
 
-bool User::isActive()
+bool User::isActive() const
 {
 	return active;
 }
 
-bool User::changeActive(bool active)
+void User::changeActive(bool active)
 {
-	this->active == active;
+	this->active = active;
 }
 
 Report User::getReport(int month) const

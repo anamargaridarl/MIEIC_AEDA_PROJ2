@@ -198,7 +198,7 @@ bool Company::checkNIF(int nif) {
 	set<User>::iterator it = users.begin();
 
 	while (it != users.end()) {
-		if (it->getNIF() == nif || to_string(nif).size() != 9) {
+		if ( (it->getNIF() == nif && it->isActive() ) || to_string(nif).size() != 9) {
 			cout << to_string(nif).size() << endl;
 			return false;
 		}
@@ -212,7 +212,7 @@ bool Company::checkNIF(int nif) {
 
 }
 
-bool Company::registerUser(string name, int age,bool isGold,string gender, string adress, int nif, bool active)
+bool Company::registerUser(string name, int age,bool isGold,string gender, string address, int nif, bool active)
 {
 	if (age <0) //Checks if it's a possible age
 		throw(InvalidAge(age));
@@ -224,6 +224,11 @@ bool Company::registerUser(string name, int age,bool isGold,string gender, strin
 		u= getUser(name);
 		if(u.isActive() == false)
         {
+			u.editAge(age);
+			u.editAdress(address);
+			u.editNIF(nif);
+			u.editIsGold(isGold);
+			u.editGender(gender);
 			u.changeActive(true);
 			users.insert(u);
 			return true;
@@ -242,7 +247,7 @@ bool Company::registerUser(string name, int age,bool isGold,string gender, strin
 		teachers.erase(t2);
 		t2.addStudent();
 		teachers.insert(t2);
-		User newUser(name,age,gender,isGold,t2.getName(), adress, nif, true);
+		User newUser(name,age,gender,isGold,t2.getName(), address, nif, true);
 		users.insert(newUser);
 		return true;
 	}
