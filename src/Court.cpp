@@ -58,7 +58,7 @@ CourtReserved::CourtReserved(int month, int day, double sH)
 }
 
 string CourtReserved::what()const{
-	return "The court is not available on the day " + to_string(this->day) + " of the month " + to_string(this->month) + " at "
+	return "No court is available on the day " + to_string(this->day) + " of the month " + to_string(this->month) + " at "
 			+ to_string(this->startingHour) + '\n';
 
 }
