@@ -88,8 +88,23 @@ public:
 	 */
 	bool operator == (const Person &p1);
 //	~Person();
+
+	/**
+	 * @brief Changing the gender of said person
+	 * @param gender - the new Gender
+	 */
 	void editGender(std::string gender);
+
+	/**
+	 * @brief Changing the age of said person
+	 * @param age - the new age
+	 */
 	void editAge(int age);
+
+	/**
+	 * @brief Changing the name of said person
+	 * @param name - the new name
+	 */
 	void editName(std::string name);
 private:
 	std::string name; /**< name of the person */
@@ -132,14 +147,28 @@ public:
 	void stopGold();
 
 	/**
+	 * @brief Getting the address of a person
+	 * @return the current address
+	 */
+	std::string getAddress() const;
+
+	/**
+	 * @brief Getting the size of Reservations vector
+	 * @return the number of reservations
+	 */
+	unsigned int getReservationSize() const;
+
+	/**
 	 * Does this User have a Gold Card
 	 * @return if the user is gold
 	 */
-
-	int getNIF() const;
-	std::string getAddress() const;
-	unsigned int getReservationSize() const;
 	bool getisGold() const;
+
+	/**
+	 * @brief Getting the NIF of said user
+	 * @return the current NIF
+	 */
+	int getNIF() const;
 
 	/**
 	 * Getter of the Report of a Specific Month
@@ -226,22 +255,61 @@ public:
 	void cleanReservations();
 	void setReservations(std::vector<Reservation*> reservs);
 	//~User();
+	/**
+	 * @brief Editing if a User is Gold
+	 * @param isGold - new Gold Status
+	 */
 	void editIsGold(bool isGold);
-  void editAdress(std::string adress);
-  void editNIF(int NIF);
+
+	/**
+	 * @brief Changing the Address of a user
+	 * @param adress - the new Address
+	 */
+  	void editAdress(std::string address);
+
+  	/**
+  	 * @brief Changing the NIF of a user
+  	 * @param NIF - the new NIF
+  	 */
+ 	void editNIF(int NIF);
+
+ 	/**
+ 	 * @brief Deleting a User info
+ 	 */
 	void deleteUser();
+
+
+	/**
+	 * @brief Editing the name of a Teacher assigned
+	 * @param newTeacher - the new name of the teacher assigned
+	 */
 	void editTeacher(std::string newTeacher);
+
+	/**
+	 * @brief CHanging the reservations of a user
+	 * @param r
+	 */
 	void editReservations(std:: vector<Reservation*>r);
-  friend bool operator<(User r1, User r2);
+
+	/**
+	 * @brief Comparing two users, a comparison done firstly by number of reservations
+	 * and then by size
+	 * @param r1 the first user
+	 * @param r2 the second user
+	 * @return if the first is smaller than the second
+	 */
+  	friend bool operator<(User r1, User r2);
+
   bool isActive() const;
     void changeActive(bool active);
 
 
+
 private:
 	bool isGold; /**< does the user have a Gold Card? */
-	int NIF;
+	int NIF; /**< The NIF of a user*/
+	std::string address; /**< The address of said user*/
 	bool active;
-	std::string address;
 	std::string assignedTeacher; /**< name of the assigned teacher*/
 	std::vector<Report*> reports; /**< vector of the reports */
 	std::vector<Reservation*> reservations; /**< vector of the reservations */
@@ -323,9 +391,15 @@ public:
 	void cleanVectors();
 
 
-	//sets the teacher status with the param 'newstat'
+	/**
+	 * @brief Sets the new status of the teacher
+	 * @param newstat - the new status
+	 */
 	void setStatus(bool newstat);
 
+	/**
+	 * @brief Clears the Number of students the teacher has
+	 */
 	void cleanNStudents();
 
 	void removeStudent();

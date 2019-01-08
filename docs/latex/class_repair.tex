@@ -1,0 +1,131 @@
+\hypertarget{class_repair}{}\section{Repair Class Reference}
+\label{class_repair}\index{Repair@{Repair}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_repair_afeed75d242ccedc8eb754e7f045423b1}\label{class_repair_afeed75d242ccedc8eb754e7f045423b1}} 
+\mbox{\hyperlink{class_repair_afeed75d242ccedc8eb754e7f045423b1}{Repair}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for repairs. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_repair_ac02c65d28404cac9a7d1795bd1196f9e}{Repair}} (unsigned int sup\+ID, const \mbox{\hyperlink{class_date}{Date}} \&repair\+Date)
+\begin{DoxyCompactList}\small\item\em Constructor for a new \mbox{\hyperlink{class_repair}{Repair}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_date}{Date}} \mbox{\hyperlink{class_repair_ab877a9f5af222debc30790047ef3a098}{get\+Repair\+Date}} () const
+\begin{DoxyCompactList}\small\item\em Getter of the repair \mbox{\hyperlink{class_date}{Date}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_repair_a7c75483403ed47f71668740115a38f71}{set\+Repair\+Date}} (const \mbox{\hyperlink{class_date}{Date}} \&repair\+Date)
+\begin{DoxyCompactList}\small\item\em Setter of the \mbox{\hyperlink{class_repair}{Repair}} \mbox{\hyperlink{class_date}{Date}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_repair_a22397013bb177a54a104cabdbb578900}{set\+Sup\+ID}} (unsigned int sup\+ID)
+\begin{DoxyCompactList}\small\item\em Setter of the \mbox{\hyperlink{class_supporter}{Supporter}} ID. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_repair_a0aa4bf5af38b5f4b96bfcadfa8b60318}{get\+Sup\+ID}} () const
+\begin{DoxyCompactList}\small\item\em Getter for the support ID associated with the \mbox{\hyperlink{class_repair}{Repair}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_repair_ab74b8c54a490123a54720449488f95e8}{operator$<$}} (\mbox{\hyperlink{class_repair}{Repair}} r1, \mbox{\hyperlink{class_repair}{Repair}} r2)
+\begin{DoxyCompactList}\small\item\em Comparison of two repairs, they are compared by their dates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_repair_ac02c65d28404cac9a7d1795bd1196f9e}\label{class_repair_ac02c65d28404cac9a7d1795bd1196f9e}} 
+\index{Repair@{Repair}!Repair@{Repair}}
+\index{Repair@{Repair}!Repair@{Repair}}
+\subsubsection{\texorpdfstring{Repair()}{Repair()}}
+{\footnotesize\ttfamily Repair\+::\+Repair (\begin{DoxyParamCaption}\item[{unsigned int}]{sup\+ID,  }\item[{const \mbox{\hyperlink{class_date}{Date}} \&}]{repair\+Date }\end{DoxyParamCaption})}
+
+
+
+Constructor for a new \mbox{\hyperlink{class_repair}{Repair}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sup\+ID} & -\/ the ID of the support \\
+\hline
+{\em repair\+Date} & -\/ the date of the repair \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_repair_ab877a9f5af222debc30790047ef3a098}\label{class_repair_ab877a9f5af222debc30790047ef3a098}} 
+\index{Repair@{Repair}!get\+Repair\+Date@{get\+Repair\+Date}}
+\index{get\+Repair\+Date@{get\+Repair\+Date}!Repair@{Repair}}
+\subsubsection{\texorpdfstring{get\+Repair\+Date()}{getRepairDate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_date}{Date}} Repair\+::get\+Repair\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter of the repair \mbox{\hyperlink{class_date}{Date}}. 
+
+\begin{DoxyReturn}{Returns}
+the date itself 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_repair_a0aa4bf5af38b5f4b96bfcadfa8b60318}\label{class_repair_a0aa4bf5af38b5f4b96bfcadfa8b60318}} 
+\index{Repair@{Repair}!get\+Sup\+ID@{get\+Sup\+ID}}
+\index{get\+Sup\+ID@{get\+Sup\+ID}!Repair@{Repair}}
+\subsubsection{\texorpdfstring{get\+Sup\+I\+D()}{getSupID()}}
+{\footnotesize\ttfamily unsigned int Repair\+::get\+Sup\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter for the support ID associated with the \mbox{\hyperlink{class_repair}{Repair}}. 
+
+\begin{DoxyReturn}{Returns}
+the ID of the \mbox{\hyperlink{class_supporter}{Supporter}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_repair_a7c75483403ed47f71668740115a38f71}\label{class_repair_a7c75483403ed47f71668740115a38f71}} 
+\index{Repair@{Repair}!set\+Repair\+Date@{set\+Repair\+Date}}
+\index{set\+Repair\+Date@{set\+Repair\+Date}!Repair@{Repair}}
+\subsubsection{\texorpdfstring{set\+Repair\+Date()}{setRepairDate()}}
+{\footnotesize\ttfamily void Repair\+::set\+Repair\+Date (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_date}{Date}} \&}]{repair\+Date }\end{DoxyParamCaption})}
+
+
+
+Setter of the \mbox{\hyperlink{class_repair}{Repair}} \mbox{\hyperlink{class_date}{Date}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em repair\+Date} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_repair_a22397013bb177a54a104cabdbb578900}\label{class_repair_a22397013bb177a54a104cabdbb578900}} 
+\index{Repair@{Repair}!set\+Sup\+ID@{set\+Sup\+ID}}
+\index{set\+Sup\+ID@{set\+Sup\+ID}!Repair@{Repair}}
+\subsubsection{\texorpdfstring{set\+Sup\+I\+D()}{setSupID()}}
+{\footnotesize\ttfamily void Repair\+::set\+Sup\+ID (\begin{DoxyParamCaption}\item[{unsigned int}]{sup\+ID }\end{DoxyParamCaption})}
+
+
+
+Setter of the \mbox{\hyperlink{class_supporter}{Supporter}} ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sup\+ID} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_repair_ab74b8c54a490123a54720449488f95e8}\label{class_repair_ab74b8c54a490123a54720449488f95e8}} 
+\index{Repair@{Repair}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Repair@{Repair}}
+\subsubsection{\texorpdfstring{operator$<$}{operator<}}
+{\footnotesize\ttfamily bool operator$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_repair}{Repair}}}]{r1,  }\item[{\mbox{\hyperlink{class_repair}{Repair}}}]{r2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Comparison of two repairs, they are compared by their dates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r1} & -\/ the first repair \\
+\hline
+{\em r2} & -\/ the second repair \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the first repair is first of the second 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Repair.\+h\item 
+Repair.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,303 @@
+\hypertarget{class_reservation}{}\section{Reservation Class Reference}
+\label{class_reservation}\index{Reservation@{Reservation}}
+
+
+{\ttfamily \#include $<$Reservation.\+h$>$}
+
+Inheritance diagram for Reservation\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_reservation}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_reservation_a63b283053695e6f50fa44c50da2b3de5}\label{class_reservation_a63b283053695e6f50fa44c50da2b3de5}} 
+\mbox{\hyperlink{class_reservation_a63b283053695e6f50fa44c50da2b3de5}{Reservation}} ()
+\begin{DoxyCompactList}\small\item\em Constructor of Class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_reservation_a917852588c2eca452e19b59a18fb372c}{Reservation}} (int month, int day, double starting\+Hour, double \mbox{\hyperlink{class_reservation_a82e197bd30e7949ee9b8616ee4eacf83}{price}}, unsigned int \mbox{\hyperlink{class_reservation_a1a311bb23edebfa226f9c744aefdc7b1}{duration}})
+\begin{DoxyCompactList}\small\item\em Constructor of Class. \end{DoxyCompactList}\item 
+virtual double \mbox{\hyperlink{class_reservation_a62cdb2f1a24e2fce92fb9f024ae9f494}{get\+Price}} ()
+\begin{DoxyCompactList}\small\item\em Method to obtain the price of the reservation. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_reservation_a28da7b16dadfeb33bf5351cabc8dbb0b}{get\+Starting\+Hour}} ()
+\begin{DoxyCompactList}\small\item\em Method to obtain the Starting Hour of the reservation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_reservation_a9d91ef1230af46952cb5422ae769bfa1}{get\+Duration}} ()
+\begin{DoxyCompactList}\small\item\em Method to obtain the duration of the reservation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_reservation_adbc454654e7e861d80c8740f85e0fb10}{get\+Month}} ()
+\begin{DoxyCompactList}\small\item\em Method to obtain the month of the reservation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_reservation_a22d66f6cc7532b775d5a05338ad6b196}{get\+Day}} ()
+\begin{DoxyCompactList}\small\item\em Method to obtain the day of the reservation. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_reservation_ae033fc48c694b375e0cc68215f7dcfdb}{operator==}} (\mbox{\hyperlink{class_reservation}{Reservation}} \&r) const
+\begin{DoxyCompactList}\small\item\em Implementation of the equal operator. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_reservation_a8ec83fe2eb15294c3a51a9998ed17df7}{store\+Info}} (std\+::ofstream \&outfile, int \mbox{\hyperlink{class_reservation_a480981ed050bae19bc74bbb0bbb459f9}{indent}})
+\begin{DoxyCompactList}\small\item\em Store in the information of the reservation to a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_reservation_a480981ed050bae19bc74bbb0bbb459f9}{indent}} (std\+::ofstream \&outfile, int indent)
+\begin{DoxyCompactList}\small\item\em Indenting the file. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_reservation_acff32024a350c2156af9f74522c59b7b}{read\+Info}} (std\+::ifstream \&infile)
+\begin{DoxyCompactList}\small\item\em Reading the information of a \mbox{\hyperlink{class_reservation}{Reservation}} from a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_reservation_a16fb0d030a178a997adef3f439665723}\label{class_reservation_a16fb0d030a178a997adef3f439665723}} 
+virtual void \mbox{\hyperlink{class_reservation_a16fb0d030a178a997adef3f439665723}{show}} ()
+\begin{DoxyCompactList}\small\item\em Showing the information of the \mbox{\hyperlink{class_reservation}{Reservation}}. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_reservation_a36aa0b30371103b07aa331b33e6109d1}{get\+Hour\+Format}} (double hour)
+\begin{DoxyCompactList}\small\item\em get the format of the Hour as wanted \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_reservation_a228b1145e4b553c2f98d958a84de5ac1}{operator==}} (\mbox{\hyperlink{class_reservation}{Reservation}} \&r)
+\begin{DoxyCompactList}\small\item\em Comparison between two dates. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_reservation_a70e2ac8be972694f0a5fcf87d26e7e78}\label{class_reservation_a70e2ac8be972694f0a5fcf87d26e7e78}} 
+virtual std\+::string {\bfseries get\+Teacher} () const
+\item 
+\mbox{\Hypertarget{class_reservation_a9c96fba7c2da34d8edcf9cbbdc906fee}\label{class_reservation_a9c96fba7c2da34d8edcf9cbbdc906fee}} 
+void {\bfseries set\+Month} (int month)
+\item 
+\mbox{\Hypertarget{class_reservation_a82dafec642b54ee9c5bfe1828bb7db80}\label{class_reservation_a82dafec642b54ee9c5bfe1828bb7db80}} 
+void {\bfseries set\+Day} (int day)
+\item 
+\mbox{\Hypertarget{class_reservation_a5ee29168d8b238016732a3d04991bf40}\label{class_reservation_a5ee29168d8b238016732a3d04991bf40}} 
+void {\bfseries set\+Start\+Hour} (double startH)
+\item 
+\mbox{\Hypertarget{class_reservation_abcf269d2f718f33bea8f4f90e8248d11}\label{class_reservation_abcf269d2f718f33bea8f4f90e8248d11}} 
+void {\bfseries set\+Duration} (unsigned int dur)
+\item 
+\mbox{\Hypertarget{class_reservation_ac6ebe4b7db1ae78f11af83527f9405a6}\label{class_reservation_ac6ebe4b7db1ae78f11af83527f9405a6}} 
+void {\bfseries set\+Price} (double \mbox{\hyperlink{class_reservation_a82e197bd30e7949ee9b8616ee4eacf83}{price}})
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{class_reservation_a82e197bd30e7949ee9b8616ee4eacf83}{price}}
+\item 
+unsigned int \mbox{\hyperlink{class_reservation_a1a311bb23edebfa226f9c744aefdc7b1}{duration}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The reservation of a court, to be stored on the people that will be on that court 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_reservation_a917852588c2eca452e19b59a18fb372c}\label{class_reservation_a917852588c2eca452e19b59a18fb372c}} 
+\index{Reservation@{Reservation}!Reservation@{Reservation}}
+\index{Reservation@{Reservation}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{Reservation()}{Reservation()}}
+{\footnotesize\ttfamily Reservation\+::\+Reservation (\begin{DoxyParamCaption}\item[{int}]{month,  }\item[{int}]{day,  }\item[{double}]{starting\+Hour,  }\item[{double}]{price,  }\item[{unsigned int}]{duration }\end{DoxyParamCaption})}
+
+
+
+Constructor of Class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ \mbox{\hyperlink{class_month}{Month}} of the reservation \\
+\hline
+{\em day} & -\/ \mbox{\hyperlink{class_day}{Day}} of the reservation \\
+\hline
+{\em starting\+Hour} & -\/ Starting Hour of the reservation \\
+\hline
+{\em price} & -\/ Price of the reservation \\
+\hline
+{\em duration} & -\/ Duration of the reservation \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_reservation_a22d66f6cc7532b775d5a05338ad6b196}\label{class_reservation_a22d66f6cc7532b775d5a05338ad6b196}} 
+\index{Reservation@{Reservation}!get\+Day@{get\+Day}}
+\index{get\+Day@{get\+Day}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{get\+Day()}{getDay()}}
+{\footnotesize\ttfamily int Reservation\+::get\+Day (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Method to obtain the day of the reservation. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_day}{Day}} of the reservation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reservation_a9d91ef1230af46952cb5422ae769bfa1}\label{class_reservation_a9d91ef1230af46952cb5422ae769bfa1}} 
+\index{Reservation@{Reservation}!get\+Duration@{get\+Duration}}
+\index{get\+Duration@{get\+Duration}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{get\+Duration()}{getDuration()}}
+{\footnotesize\ttfamily int Reservation\+::get\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Method to obtain the duration of the reservation. 
+
+\begin{DoxyReturn}{Returns}
+Duration of the reservation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reservation_a36aa0b30371103b07aa331b33e6109d1}\label{class_reservation_a36aa0b30371103b07aa331b33e6109d1}} 
+\index{Reservation@{Reservation}!get\+Hour\+Format@{get\+Hour\+Format}}
+\index{get\+Hour\+Format@{get\+Hour\+Format}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{get\+Hour\+Format()}{getHourFormat()}}
+{\footnotesize\ttfamily string Reservation\+::get\+Hour\+Format (\begin{DoxyParamCaption}\item[{double}]{hour }\end{DoxyParamCaption})}
+
+
+
+get the format of the Hour as wanted 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hour} & -\/ the actual time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the hour 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reservation_adbc454654e7e861d80c8740f85e0fb10}\label{class_reservation_adbc454654e7e861d80c8740f85e0fb10}} 
+\index{Reservation@{Reservation}!get\+Month@{get\+Month}}
+\index{get\+Month@{get\+Month}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{get\+Month()}{getMonth()}}
+{\footnotesize\ttfamily int Reservation\+::get\+Month (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Method to obtain the month of the reservation. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_month}{Month}} of the reservation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reservation_a62cdb2f1a24e2fce92fb9f024ae9f494}\label{class_reservation_a62cdb2f1a24e2fce92fb9f024ae9f494}} 
+\index{Reservation@{Reservation}!get\+Price@{get\+Price}}
+\index{get\+Price@{get\+Price}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{get\+Price()}{getPrice()}}
+{\footnotesize\ttfamily double Reservation\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Method to obtain the price of the reservation. 
+
+\begin{DoxyReturn}{Returns}
+Price of the reservation 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{class_free_a229f009a7535eeba0a6ff4495de8c6bf}{Free}}, and \mbox{\hyperlink{class_lesson_ad7a2f708f870040627a442cdf000683f}{Lesson}}.
+
+\mbox{\Hypertarget{class_reservation_a28da7b16dadfeb33bf5351cabc8dbb0b}\label{class_reservation_a28da7b16dadfeb33bf5351cabc8dbb0b}} 
+\index{Reservation@{Reservation}!get\+Starting\+Hour@{get\+Starting\+Hour}}
+\index{get\+Starting\+Hour@{get\+Starting\+Hour}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{get\+Starting\+Hour()}{getStartingHour()}}
+{\footnotesize\ttfamily double Reservation\+::get\+Starting\+Hour (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Method to obtain the Starting Hour of the reservation. 
+
+\begin{DoxyReturn}{Returns}
+Starting Hour of the reservation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reservation_a480981ed050bae19bc74bbb0bbb459f9}\label{class_reservation_a480981ed050bae19bc74bbb0bbb459f9}} 
+\index{Reservation@{Reservation}!indent@{indent}}
+\index{indent@{indent}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{indent()}{indent()}}
+{\footnotesize\ttfamily void Reservation\+::indent (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{indent }\end{DoxyParamCaption})}
+
+
+
+Indenting the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_reservation_ae033fc48c694b375e0cc68215f7dcfdb}\label{class_reservation_ae033fc48c694b375e0cc68215f7dcfdb}} 
+\index{Reservation@{Reservation}!operator==@{operator==}}
+\index{operator==@{operator==}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Reservation\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_reservation}{Reservation}} \&}]{r }\end{DoxyParamCaption}) const}
+
+
+
+Implementation of the equal operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & -\/ the other reservation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if -\/ the reservation is the same 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reservation_a228b1145e4b553c2f98d958a84de5ac1}\label{class_reservation_a228b1145e4b553c2f98d958a84de5ac1}} 
+\index{Reservation@{Reservation}!operator==@{operator==}}
+\index{operator==@{operator==}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Reservation\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_reservation}{Reservation}} \&}]{r }\end{DoxyParamCaption})}
+
+
+
+Comparison between two dates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & -\/ the outside date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if they\textquotesingle{}re the same 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_reservation_acff32024a350c2156af9f74522c59b7b}\label{class_reservation_acff32024a350c2156af9f74522c59b7b}} 
+\index{Reservation@{Reservation}!read\+Info@{read\+Info}}
+\index{read\+Info@{read\+Info}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{read\+Info()}{readInfo()}}
+{\footnotesize\ttfamily void Reservation\+::read\+Info (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{infile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reading the information of a \mbox{\hyperlink{class_reservation}{Reservation}} from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infile} & -\/ file to read the information from \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{class_free_ad1023c825c9790edf0797e2e69dd2fcf}{Free}}, and \mbox{\hyperlink{class_lesson_a3ac64e2f79bc9e381634d5d30499e8f1}{Lesson}}.
+
+\mbox{\Hypertarget{class_reservation_a8ec83fe2eb15294c3a51a9998ed17df7}\label{class_reservation_a8ec83fe2eb15294c3a51a9998ed17df7}} 
+\index{Reservation@{Reservation}!store\+Info@{store\+Info}}
+\index{store\+Info@{store\+Info}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{store\+Info()}{storeInfo()}}
+{\footnotesize\ttfamily void Reservation\+::store\+Info (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{indent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Store in the information of the reservation to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{class_free_a5eec9da16ebf4f388d16dd270bd93b64}{Free}}, and \mbox{\hyperlink{class_lesson_a645855060ab3c915a6e0875bc5584887}{Lesson}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_reservation_a1a311bb23edebfa226f9c744aefdc7b1}\label{class_reservation_a1a311bb23edebfa226f9c744aefdc7b1}} 
+\index{Reservation@{Reservation}!duration@{duration}}
+\index{duration@{duration}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{duration}{duration}}
+{\footnotesize\ttfamily unsigned int Reservation\+::duration\hspace{0.3cm}{\ttfamily [protected]}}
+
+Duration of said reservation \mbox{\Hypertarget{class_reservation_a82e197bd30e7949ee9b8616ee4eacf83}\label{class_reservation_a82e197bd30e7949ee9b8616ee4eacf83}} 
+\index{Reservation@{Reservation}!price@{price}}
+\index{price@{price}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{price}{price}}
+{\footnotesize\ttfamily double Reservation\+::price\hspace{0.3cm}{\ttfamily [protected]}}
+
+Price associated of the reservation 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Reservation.\+h\item 
+Reservation.\+cpp\end{DoxyCompactItemize}

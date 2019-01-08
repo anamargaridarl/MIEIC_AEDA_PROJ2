@@ -1,0 +1,219 @@
+\hypertarget{class_court}{}\section{Court Class Reference}
+\label{class_court}\index{Court@{Court}}
+
+
+{\ttfamily \#include $<$Court.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_court_a786e4db0ebf50a5aec5bfe0cca58b06a}\label{class_court_a786e4db0ebf50a5aec5bfe0cca58b06a}} 
+\mbox{\hyperlink{class_court_a786e4db0ebf50a5aec5bfe0cca58b06a}{Court}} ()
+\begin{DoxyCompactList}\small\item\em Class Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_court_a594463e426e762163a09290e48d1d437}{Court}} (int year)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_court_afaab22238eff25ec1031017d57a1c008}{reserve\+Class}} (int month, int day, double starting\+Hour, \mbox{\hyperlink{class_user}{User}} \&user, \mbox{\hyperlink{class_teacher}{Teacher}} \&teacher)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_reservation}{Reservation}} of a class. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_court_a7391435bb499b0ba82600fef187a6fcd}{reserve\+Free}} (int month, int day, double starting\+Hour, int duration, \mbox{\hyperlink{class_user}{User}} \&user)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_reservation}{Reservation}} of a free. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_court_a25104f6ccd6fea2d3a33798f2e30451e}{store\+Info}} (std\+::ofstream \&outfile, int indentation)
+\begin{DoxyCompactList}\small\item\em Store in the information of the \mbox{\hyperlink{class_court}{Court}} to a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_court_ae08f3e2f1119073fffc251fc1e725550}{indent}} (std\+::ofstream \&outfile, int identation)
+\begin{DoxyCompactList}\small\item\em Indenting the file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_court_a2d801d3edd9d0280ef0420b131e07f2e}{read\+Info}} (std\+::ifstream \&infile)
+\begin{DoxyCompactList}\small\item\em Reading the information of a \mbox{\hyperlink{class_date}{Date}} from a file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_court_a9992ef2a5d2ee81e8cc7f24f8c917f31}{get\+Max\+Users}} () const
+\begin{DoxyCompactList}\small\item\em Getter of the Maximum of Users. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_court_ae44417638404c3caf4579104e633a2f4}{set\+Max\+Users}} (int users)
+\begin{DoxyCompactList}\small\item\em Setter of the maximum of users. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_court_abb97f1c2df77bd02e788ac7d4709eaa8}{occupied}} (int month, int day, double starting\+Hour, int duration)
+\begin{DoxyCompactList}\small\item\em Check if the \mbox{\hyperlink{class_court}{Court}} is already reserved at the given time. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_court_ae4536a06bcc2aec8a144d134ae64f2e6}\label{class_court_ae4536a06bcc2aec8a144d134ae64f2e6}} 
+bool {\bfseries is\+Occupied} (int month, int day, double starting\+Hour, int duration)
+\item 
+\mbox{\Hypertarget{class_court_ac8ca7155497bdf17742b013b39c7ac3f}\label{class_court_ac8ca7155497bdf17742b013b39c7ac3f}} 
+void {\bfseries modify\+Reservation} (int month, int day, double starting\+Hour, unsigned int duration, int new\+Month, int new\+Day, double new\+Start\+Hour, unsigned int new\+Duration)
+\item 
+\mbox{\Hypertarget{class_court_a5041b8a1dd8463f4b184497a63f718f0}\label{class_court_a5041b8a1dd8463f4b184497a63f718f0}} 
+void {\bfseries unset\+Reservation} (int month, int day, double starting\+Hour, unsigned int duration)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The information of each \mbox{\hyperlink{class_court}{Court}} 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_court_a594463e426e762163a09290e48d1d437}\label{class_court_a594463e426e762163a09290e48d1d437}} 
+\index{Court@{Court}!Court@{Court}}
+\index{Court@{Court}!Court@{Court}}
+\subsubsection{\texorpdfstring{Court()}{Court()}}
+{\footnotesize\ttfamily Court\+::\+Court (\begin{DoxyParamCaption}\item[{int}]{year }\end{DoxyParamCaption})}
+
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em year} & -\/ year of the company \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_court_a9992ef2a5d2ee81e8cc7f24f8c917f31}\label{class_court_a9992ef2a5d2ee81e8cc7f24f8c917f31}} 
+\index{Court@{Court}!get\+Max\+Users@{get\+Max\+Users}}
+\index{get\+Max\+Users@{get\+Max\+Users}!Court@{Court}}
+\subsubsection{\texorpdfstring{get\+Max\+Users()}{getMaxUsers()}}
+{\footnotesize\ttfamily int Court\+::get\+Max\+Users (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter of the Maximum of Users. 
+
+\begin{DoxyReturn}{Returns}
+the maximum of Users 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_court_ae08f3e2f1119073fffc251fc1e725550}\label{class_court_ae08f3e2f1119073fffc251fc1e725550}} 
+\index{Court@{Court}!indent@{indent}}
+\index{indent@{indent}!Court@{Court}}
+\subsubsection{\texorpdfstring{indent()}{indent()}}
+{\footnotesize\ttfamily void Court\+::indent (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{identation }\end{DoxyParamCaption})}
+
+
+
+Indenting the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_court_abb97f1c2df77bd02e788ac7d4709eaa8}\label{class_court_abb97f1c2df77bd02e788ac7d4709eaa8}} 
+\index{Court@{Court}!occupied@{occupied}}
+\index{occupied@{occupied}!Court@{Court}}
+\subsubsection{\texorpdfstring{occupied()}{occupied()}}
+{\footnotesize\ttfamily void Court\+::occupied (\begin{DoxyParamCaption}\item[{int}]{month,  }\item[{int}]{day,  }\item[{double}]{starting\+Hour,  }\item[{int}]{duration }\end{DoxyParamCaption})}
+
+
+
+Check if the \mbox{\hyperlink{class_court}{Court}} is already reserved at the given time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ month of the reservation \\
+\hline
+{\em day} & -\/ day of the reservation \\
+\hline
+{\em starting\+Hour} & -\/ starting Hour of the reservation \\
+\hline
+{\em duration} & -\/ duration of the reservation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_court_a2d801d3edd9d0280ef0420b131e07f2e}\label{class_court_a2d801d3edd9d0280ef0420b131e07f2e}} 
+\index{Court@{Court}!read\+Info@{read\+Info}}
+\index{read\+Info@{read\+Info}!Court@{Court}}
+\subsubsection{\texorpdfstring{read\+Info()}{readInfo()}}
+{\footnotesize\ttfamily void Court\+::read\+Info (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{infile }\end{DoxyParamCaption})}
+
+
+
+Reading the information of a \mbox{\hyperlink{class_date}{Date}} from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infile} & -\/ file to read the information from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_court_afaab22238eff25ec1031017d57a1c008}\label{class_court_afaab22238eff25ec1031017d57a1c008}} 
+\index{Court@{Court}!reserve\+Class@{reserve\+Class}}
+\index{reserve\+Class@{reserve\+Class}!Court@{Court}}
+\subsubsection{\texorpdfstring{reserve\+Class()}{reserveClass()}}
+{\footnotesize\ttfamily bool Court\+::reserve\+Class (\begin{DoxyParamCaption}\item[{int}]{month,  }\item[{int}]{day,  }\item[{double}]{starting\+Hour,  }\item[{\mbox{\hyperlink{class_user}{User}} \&}]{user,  }\item[{\mbox{\hyperlink{class_teacher}{Teacher}} \&}]{teacher }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_reservation}{Reservation}} of a class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ month of the class \\
+\hline
+{\em day} & -\/ day of the class \\
+\hline
+{\em starting\+Hour} & -\/ starting hour of the class \\
+\hline
+{\em user} & -\/ user of the class \\
+\hline
+{\em teacher} & -\/ teacher that gives the class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the reservation was successfull 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_court_a7391435bb499b0ba82600fef187a6fcd}\label{class_court_a7391435bb499b0ba82600fef187a6fcd}} 
+\index{Court@{Court}!reserve\+Free@{reserve\+Free}}
+\index{reserve\+Free@{reserve\+Free}!Court@{Court}}
+\subsubsection{\texorpdfstring{reserve\+Free()}{reserveFree()}}
+{\footnotesize\ttfamily bool Court\+::reserve\+Free (\begin{DoxyParamCaption}\item[{int}]{month,  }\item[{int}]{day,  }\item[{double}]{starting\+Hour,  }\item[{int}]{duration,  }\item[{\mbox{\hyperlink{class_user}{User}} \&}]{user }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_reservation}{Reservation}} of a free. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ month of the free \\
+\hline
+{\em day} & -\/ day of the free \\
+\hline
+{\em starting\+Hour} & -\/ starting hour of the free \\
+\hline
+{\em user} & -\/ user of the free \\
+\hline
+{\em duration} & -\/ duration of the free \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the reservation was successfull 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_court_ae44417638404c3caf4579104e633a2f4}\label{class_court_ae44417638404c3caf4579104e633a2f4}} 
+\index{Court@{Court}!set\+Max\+Users@{set\+Max\+Users}}
+\index{set\+Max\+Users@{set\+Max\+Users}!Court@{Court}}
+\subsubsection{\texorpdfstring{set\+Max\+Users()}{setMaxUsers()}}
+{\footnotesize\ttfamily void Court\+::set\+Max\+Users (\begin{DoxyParamCaption}\item[{int}]{users }\end{DoxyParamCaption})}
+
+
+
+Setter of the maximum of users. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em users} & -\/ number of maximum users \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_court_a25104f6ccd6fea2d3a33798f2e30451e}\label{class_court_a25104f6ccd6fea2d3a33798f2e30451e}} 
+\index{Court@{Court}!store\+Info@{store\+Info}}
+\index{store\+Info@{store\+Info}!Court@{Court}}
+\subsubsection{\texorpdfstring{store\+Info()}{storeInfo()}}
+{\footnotesize\ttfamily void Court\+::store\+Info (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{indentation }\end{DoxyParamCaption})}
+
+
+
+Store in the information of the \mbox{\hyperlink{class_court}{Court}} to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Court.\+h\item 
+Court.\+cpp\end{DoxyCompactItemize}

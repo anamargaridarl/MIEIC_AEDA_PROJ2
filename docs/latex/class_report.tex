@@ -1,0 +1,211 @@
+\hypertarget{class_report}{}\section{Report Class Reference}
+\label{class_report}\index{Report@{Report}}
+
+
+{\ttfamily \#include $<$Report.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_report_ae3150817fcf4ebf814358baf5bd72e8f}\label{class_report_ae3150817fcf4ebf814358baf5bd72e8f}} 
+\mbox{\hyperlink{class_report_ae3150817fcf4ebf814358baf5bd72e8f}{Report}} ()
+\begin{DoxyCompactList}\small\item\em Class Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_report_afb6a4377db483370b342b18211008664}{Report}} (std\+::string user\+Name, std\+::string teacher\+Name, const std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$ \&reservs)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_report_aaeac48b6c10c5bbf240fc518b6d45d05}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Getter of the name of the \mbox{\hyperlink{class_user}{User}}. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_report_af7c52b70f5fe6feae64e44affa6095cd}{get\+Teacher\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Getter of the name of the teacher. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_report_a56fcac206c401ebc51d35fbe907ad729}{get\+Grade}} ()
+\begin{DoxyCompactList}\small\item\em getter of the Grade \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$ $>$ \mbox{\hyperlink{class_report_a2915547d50dfefb1eae33f12ed0942d8}{get\+Lessons}} ()
+\begin{DoxyCompactList}\small\item\em Getter of the name of the Lessons. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_report_a67a10004cf149f202015d55a14efe6c1}{indentation}} (std\+::ofstream \&outfile, int indent)
+\begin{DoxyCompactList}\small\item\em Indenting the file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_report_ad36785f4f4531404a6464c6d5ce5a69b}{read\+Info}} (std\+::ifstream \&infile)
+\begin{DoxyCompactList}\small\item\em Store in the information of the report to a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_report_a47faf2023bd07e59ab0296e8d0b2d512}{store\+Info}} (std\+::ofstream \&outfile, int indent)
+\begin{DoxyCompactList}\small\item\em Reading the information of a \mbox{\hyperlink{class_report}{Report}} from a file. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_report_ac47731e5f3f0f22574223a2a9e5688b5}{get\+Hour\+Format}} (double hour)
+\begin{DoxyCompactList}\small\item\em get the format of the Hour as wanted \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{class_report_a9c2eaa693abfadab4a6e151daee874e4}{operator$<$$<$}} (std\+::ostream \&os, \mbox{\hyperlink{class_report}{Report}} r)
+\begin{DoxyCompactList}\small\item\em Writer of the information of the \mbox{\hyperlink{class_report}{Report}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{class_report}{Report}} of how the user did during this last month 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_report_afb6a4377db483370b342b18211008664}\label{class_report_afb6a4377db483370b342b18211008664}} 
+\index{Report@{Report}!Report@{Report}}
+\index{Report@{Report}!Report@{Report}}
+\subsubsection{\texorpdfstring{Report()}{Report()}}
+{\footnotesize\ttfamily Report\+::\+Report (\begin{DoxyParamCaption}\item[{std\+::string}]{user\+Name,  }\item[{std\+::string}]{teacher\+Name,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$ \&}]{reservs }\end{DoxyParamCaption})}
+
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Name} & -\/ name of the user \\
+\hline
+{\em teacher\+Name} & -\/ name of the teacher \\
+\hline
+{\em reservs} & -\/ the reservations \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_report_a56fcac206c401ebc51d35fbe907ad729}\label{class_report_a56fcac206c401ebc51d35fbe907ad729}} 
+\index{Report@{Report}!get\+Grade@{get\+Grade}}
+\index{get\+Grade@{get\+Grade}!Report@{Report}}
+\subsubsection{\texorpdfstring{get\+Grade()}{getGrade()}}
+{\footnotesize\ttfamily int Report\+::get\+Grade (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+getter of the Grade 
+
+\begin{DoxyReturn}{Returns}
+the grade itself 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_report_ac47731e5f3f0f22574223a2a9e5688b5}\label{class_report_ac47731e5f3f0f22574223a2a9e5688b5}} 
+\index{Report@{Report}!get\+Hour\+Format@{get\+Hour\+Format}}
+\index{get\+Hour\+Format@{get\+Hour\+Format}!Report@{Report}}
+\subsubsection{\texorpdfstring{get\+Hour\+Format()}{getHourFormat()}}
+{\footnotesize\ttfamily string Report\+::get\+Hour\+Format (\begin{DoxyParamCaption}\item[{double}]{hour }\end{DoxyParamCaption})}
+
+
+
+get the format of the Hour as wanted 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hour} & -\/ the actual time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the hour 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_report_a2915547d50dfefb1eae33f12ed0942d8}\label{class_report_a2915547d50dfefb1eae33f12ed0942d8}} 
+\index{Report@{Report}!get\+Lessons@{get\+Lessons}}
+\index{get\+Lessons@{get\+Lessons}!Report@{Report}}
+\subsubsection{\texorpdfstring{get\+Lessons()}{getLessons()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$ $>$ Report\+::get\+Lessons (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter of the name of the Lessons. 
+
+\begin{DoxyReturn}{Returns}
+the vector of reservations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_report_aaeac48b6c10c5bbf240fc518b6d45d05}\label{class_report_aaeac48b6c10c5bbf240fc518b6d45d05}} 
+\index{Report@{Report}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Report@{Report}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}}
+{\footnotesize\ttfamily string Report\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter of the name of the \mbox{\hyperlink{class_user}{User}}. 
+
+\begin{DoxyReturn}{Returns}
+the name of the \mbox{\hyperlink{class_user}{User}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_report_af7c52b70f5fe6feae64e44affa6095cd}\label{class_report_af7c52b70f5fe6feae64e44affa6095cd}} 
+\index{Report@{Report}!get\+Teacher\+Name@{get\+Teacher\+Name}}
+\index{get\+Teacher\+Name@{get\+Teacher\+Name}!Report@{Report}}
+\subsubsection{\texorpdfstring{get\+Teacher\+Name()}{getTeacherName()}}
+{\footnotesize\ttfamily string Report\+::get\+Teacher\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter of the name of the teacher. 
+
+\begin{DoxyReturn}{Returns}
+the name of the teacher 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_report_a67a10004cf149f202015d55a14efe6c1}\label{class_report_a67a10004cf149f202015d55a14efe6c1}} 
+\index{Report@{Report}!indentation@{indentation}}
+\index{indentation@{indentation}!Report@{Report}}
+\subsubsection{\texorpdfstring{indentation()}{indentation()}}
+{\footnotesize\ttfamily void Report\+::indentation (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{indent }\end{DoxyParamCaption})}
+
+
+
+Indenting the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_report_ad36785f4f4531404a6464c6d5ce5a69b}\label{class_report_ad36785f4f4531404a6464c6d5ce5a69b}} 
+\index{Report@{Report}!read\+Info@{read\+Info}}
+\index{read\+Info@{read\+Info}!Report@{Report}}
+\subsubsection{\texorpdfstring{read\+Info()}{readInfo()}}
+{\footnotesize\ttfamily void Report\+::read\+Info (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{infile }\end{DoxyParamCaption})}
+
+
+
+Store in the information of the report to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_report_a47faf2023bd07e59ab0296e8d0b2d512}\label{class_report_a47faf2023bd07e59ab0296e8d0b2d512}} 
+\index{Report@{Report}!store\+Info@{store\+Info}}
+\index{store\+Info@{store\+Info}!Report@{Report}}
+\subsubsection{\texorpdfstring{store\+Info()}{storeInfo()}}
+{\footnotesize\ttfamily void Report\+::store\+Info (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{indent }\end{DoxyParamCaption})}
+
+
+
+Reading the information of a \mbox{\hyperlink{class_report}{Report}} from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infile} & -\/ file to read the information from \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_report_a9c2eaa693abfadab4a6e151daee874e4}\label{class_report_a9c2eaa693abfadab4a6e151daee874e4}} 
+\index{Report@{Report}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Report@{Report}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{\mbox{\hyperlink{class_report}{Report}}}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Writer of the information of the \mbox{\hyperlink{class_report}{Report}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & -\/ the stream \\
+\hline
+{\em r} & -\/ the report itself \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the stream 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Report.\+h\item 
+Report.\+cpp\end{DoxyCompactItemize}

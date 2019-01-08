@@ -1,0 +1,949 @@
+\hypertarget{class_company}{}\section{Company Class Reference}
+\label{class_company}\index{Company@{Company}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_company_a29937dda711b09df306ae7ca9b3d6b42}\label{class_company_a29937dda711b09df306ae7ca9b3d6b42}} 
+\mbox{\hyperlink{class_company_a29937dda711b09df306ae7ca9b3d6b42}{Company}} ()
+\begin{DoxyCompactList}\small\item\em Class Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_company_ac038a4c5e02f13a7bab9b5139990316e}{Company}} (double card\+Value, \mbox{\hyperlink{class_date}{Date}} d)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_company_a837fd39a8f03c20a3ceb8617410956b7}{get\+Max\+User}} () const
+\begin{DoxyCompactList}\small\item\em getter of Maximum of users in all courts \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_company_a10770d690a59f9b4d9f84de6d0f527c9}\label{class_company_a10770d690a59f9b4d9f84de6d0f527c9}} 
+void \mbox{\hyperlink{class_company_a10770d690a59f9b4d9f84de6d0f527c9}{create\+Court}} ()
+\begin{DoxyCompactList}\small\item\em Creating a new \mbox{\hyperlink{class_court}{Court}}. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_court}{Court}} $>$ \mbox{\hyperlink{class_company_afa0ab125a0ba718fe2c13802fe1703be}{get\+Courts}} ()
+\begin{DoxyCompactList}\small\item\em Getter of the current Courts. \end{DoxyCompactList}\item 
+std\+::set$<$ \mbox{\hyperlink{class_user}{User}} $>$ \mbox{\hyperlink{class_company_a06704156dc1962518149b2307e448691}{get\+Users}} ()
+\begin{DoxyCompactList}\small\item\em Getter of the current Users. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_teacher}{Teacher}} $>$ \mbox{\hyperlink{class_company_a000159ce012318a6edf0335447ad8bde}{get\+Teachers}} ()
+\begin{DoxyCompactList}\small\item\em Getter of the current Teachers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_acbd7b1d6be4ae5e3322add41e2be256e}{re\+Add\+User}} (\mbox{\hyperlink{class_user}{User}} u)
+\begin{DoxyCompactList}\small\item\em Getter of a specific \mbox{\hyperlink{class_user}{User}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_company_a1f222b5e97b060c0603c42e64d7567a6}\label{class_company_a1f222b5e97b060c0603c42e64d7567a6}} 
+\mbox{\hyperlink{class_user}{User}} {\bfseries get\+User} (std\+::string user\+Name)
+\item 
+\mbox{\Hypertarget{class_company_a166411c9ee427d89abd9349191434fbf}\label{class_company_a166411c9ee427d89abd9349191434fbf}} 
+\mbox{\hyperlink{class_teacher}{Teacher}} {\bfseries get\+Teacher} (std\+::string teacher\+Name)
+\item 
+bool \mbox{\hyperlink{class_company_a88745d2eaf511e686eccfa14601a302b}{make\+Lesson}} (int month, int day, double starting\+Hour, std\+::string user\+Name)
+\item 
+bool \mbox{\hyperlink{class_company_a56fa75dd66690eae0853a3f3278220e3}{make\+Free}} (int month, int day, double starting\+Hour, int duration, std\+::string username)
+\begin{DoxyCompactList}\small\item\em Reserving the \mbox{\hyperlink{class_court}{Court}}, \mbox{\hyperlink{class_user}{User}} and \mbox{\hyperlink{class_teacher}{Teacher}} for a new \mbox{\hyperlink{class_reservation}{Reservation}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_company_a5ac9ee475217b3b568a447f9d3535c7d}{register\+User}} (std\+::string name, int age, bool is\+Gold, std\+::string gender, std\+::string adress, int nif)
+\begin{DoxyCompactList}\small\item\em Register a new \mbox{\hyperlink{class_user}{User}} to the system. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_company_afd7f0c326672c6bb6a23d5921503bc0d}{register\+Teacher}} (std\+::string teacher\+Name, int age, std\+::string gender)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Register a new \mbox{\hyperlink{class_teacher}{Teacher}} to the system. 
+\end{DoxyItemize}\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_company_acc2aba7c2f4149021e9b93ab423e417b}{make\+User\+Report}} (int month, std\+::string user\+Name, std\+::string teacher\+Name)
+\begin{DoxyCompactList}\small\item\em Make a \mbox{\hyperlink{class_report}{Report}} for a specific user. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_company_a955b07492e04edd5ed83f695ee362ab4}{make\+User\+Invoice}} (std\+::string user\+Name, int month)
+\begin{DoxyCompactList}\small\item\em Make an \mbox{\hyperlink{class_invoice}{Invoice}} for a specific user. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_company_a2c00c88b245aef0e0e52864b585f8f6b}{show\+Report}} (std\+::string name, int month)
+\begin{DoxyCompactList}\small\item\em Method to show a specific \mbox{\hyperlink{class_report}{Report}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_company_ad3d0ab0209f13ca48a83df34564ef055}{show\+Invoice}} (std\+::string name, int month)
+\begin{DoxyCompactList}\small\item\em Method to show a specific \mbox{\hyperlink{class_invoice}{Invoice}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_ac03f62f1accf21eb445a7aa5731b1199}{store\+Info}} (std\+::ofstream \&outfile, int identation)
+\begin{DoxyCompactList}\small\item\em Store in the information of the \mbox{\hyperlink{class_company}{Company}} to a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_aa8b5bbb3b2d49d13f36d4fcdfc0d20d1}{indentation}} (std\+::ofstream \&outfile, int indentation)
+\begin{DoxyCompactList}\small\item\em To indent the file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_a2b97cd4ed80ecab0aa92d0f9c1f81071}{read\+Info}} (std\+::ifstream \&infile)
+\begin{DoxyCompactList}\small\item\em Reads the company information of a file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_company}{Company}} \mbox{\hyperlink{class_company_a80d971b44bc73adbb2bf3317f7747414}{operator++}} ()
+\begin{DoxyCompactList}\small\item\em The operator to go through a day and all its necessary situations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_company_a9446ed52b7e2831b24488072d1e54cde}\label{class_company_a9446ed52b7e2831b24488072d1e54cde}} 
+void \mbox{\hyperlink{class_company_a9446ed52b7e2831b24488072d1e54cde}{show\+Users}} ()
+\begin{DoxyCompactList}\small\item\em shows all Users \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_company_a81e7a22e6ea3e09b3865d44f3d9354f3}\label{class_company_a81e7a22e6ea3e09b3865d44f3d9354f3}} 
+void \mbox{\hyperlink{class_company_a81e7a22e6ea3e09b3865d44f3d9354f3}{show\+Teachers}} ()
+\begin{DoxyCompactList}\small\item\em shows all Teachers \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_company_a1779c78bdc9a4416a482be25b71efcd0}\label{class_company_a1779c78bdc9a4416a482be25b71efcd0}} 
+void \mbox{\hyperlink{class_company_a1779c78bdc9a4416a482be25b71efcd0}{show\+Courts}} ()
+\begin{DoxyCompactList}\small\item\em shows all Courts \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_a664aa9b9bde35eae3a564edec73cf5b3}{show\+User}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em show a specific \mbox{\hyperlink{class_user}{User}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_aa64ff74648761cfe39d4a9fb0c72031f}{show\+Teacher}} (std\+::string teacher)
+\begin{DoxyCompactList}\small\item\em show a specific \mbox{\hyperlink{class_user}{User}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_a428b70dbf9acd5edb34ee131ff1f8613}{show\+User\+Reservations}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Show the Reservations of a specific user. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_aef95f2feab286505091c38db23cd1c90}{show\+Teacher\+Lessons}} (std\+::string teacher)
+\begin{DoxyCompactList}\small\item\em Shows the lessons of the \mbox{\hyperlink{class_teacher}{Teacher}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_company_ad5477594a7c735a070c9076192d0bfe1}\label{class_company_ad5477594a7c735a070c9076192d0bfe1}} 
+void \mbox{\hyperlink{class_company_ad5477594a7c735a070c9076192d0bfe1}{show\+Date}} ()
+\begin{DoxyCompactList}\small\item\em Showing the Current date. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_company_a6ab661c94b41a0b6ef74fec280bf849e}{change\+Teacher\+Status}} (std\+::string teacher, bool newstat)
+\begin{DoxyCompactList}\small\item\em Changing the status of teacher. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_company_ad35562fb6b18125ab7fe30cb79639cf7}{remove\+Active\+Teacher}} (std\+::string teacher)
+\begin{DoxyCompactList}\small\item\em Removal of an active \mbox{\hyperlink{class_teacher}{Teacher}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_company_ae858645003e1a2cd2e38f6db4feda488}{reschedule\+Lessons}} (std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$ \&reservs, \mbox{\hyperlink{class_teacher}{Teacher}} \&subst, std\+::string username)
+\begin{DoxyCompactList}\small\item\em Rescheduling the Lessons of a given teacher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_a51a026758b4b56b4a2e0fa937125480d}{change\+Name}} (std\+::string name, std\+::string new\+Name, int flag)
+\begin{DoxyCompactList}\small\item\em Changing the name of a person. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_ab06a4393f8658aecd365c9425ce85cc3}{change\+Age}} (std\+::string name, int new\+Age, int flag)
+\begin{DoxyCompactList}\small\item\em Changing the age of a person. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_acded77254726ba932810fa4b67136d2e}{change\+Gender}} (std\+::string name, std\+::string newgender, int flag)
+\begin{DoxyCompactList}\small\item\em Changing the Gender of a person. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_ab33cbb2392281b852f32ef6869309d68}{changeis\+Gold}} (std\+::string name, bool is\+Gold)
+\begin{DoxyCompactList}\small\item\em Changing if a person is Gold or not. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_company_a53a891acc19de4d24a82fd9f108cfe68}{check\+N\+IF}} (int nif)
+\begin{DoxyCompactList}\small\item\em Checking if the given value is a proper N\+IF. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_ae7974a9da357a7e7dcbea0d8afd25908}{change\+N\+IF}} (std\+::string name, int new\+N\+IF)
+\begin{DoxyCompactList}\small\item\em Changing the N\+IF of a user. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_aa5eac670a965d063cd700acc09effec7}{change\+Address}} (std\+::string name, std\+::string new\+Address)
+\begin{DoxyCompactList}\small\item\em Changing the Address of a user. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_company_af337b6d41e6e526ad05dea5e75e78cdb}\label{class_company_af337b6d41e6e526ad05dea5e75e78cdb}} 
+void {\bfseries change\+Reservation} (std\+::string name, unsigned int duration, int month, int day, double starting\+Hour)
+\item 
+void \mbox{\hyperlink{class_company_a0d85a33848aad31a2d369179c6f46b08}{delete\+User}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Deleting a \mbox{\hyperlink{class_user}{User}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_a58aa6a7e8812f98fdf7ba4b5da2eb12f}{schedule\+Repair}} (int day, int month, unsigned ID)
+\begin{DoxyCompactList}\small\item\em Scheduling a repair for a given \mbox{\hyperlink{class_court}{Court}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_a0f5c39b78a484f841f71bbcc33946774}{add\+Repairer}} (std\+::string name, std\+::string gender)
+\begin{DoxyCompactList}\small\item\em Add a new Repairer to the company. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_af7f0b784eb184ae92f5c8d0c8bad0f09}{remove\+Repairer}} (unsigned id)
+\begin{DoxyCompactList}\small\item\em Removal of a Repairer from the company. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_company_abbe74aec59b9be5b5c546dcfed9873a0}\label{class_company_abbe74aec59b9be5b5c546dcfed9873a0}} 
+void \mbox{\hyperlink{class_company_abbe74aec59b9be5b5c546dcfed9873a0}{list\+All\+Repairers}} () const
+\begin{DoxyCompactList}\small\item\em Listing all Repairers. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_lesson}{Lesson}} $\ast$ $>$\+::iterator \mbox{\hyperlink{class_company_a1a29eaacb474c8a76528ddfd74b9032a}{get\+Scheduled\+Lesson}} (std\+::string teacher\+Name, std\+::vector$<$ \mbox{\hyperlink{class_lesson}{Lesson}} $\ast$$>$ lessons, int month, int day, double starting\+Hour, unsigned int duration)
+\begin{DoxyCompactList}\small\item\em Get a scheduled \mbox{\hyperlink{class_reservation}{Reservation}} of a given user. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$ $>$\+::iterator \mbox{\hyperlink{class_company_acdb7e7538f6401e24e9a1651bf8aad89}{get\+Scheduled\+Reservation}} (std\+::string user\+Name, std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$ reservs, int month, int day, double starting\+Hour, unsigned int duration)
+\begin{DoxyCompactList}\small\item\em Get a scheduled \mbox{\hyperlink{class_reservation}{Reservation}} of a given teacher. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_company_a0ff732d93249a55653c7b9e3cf191e19}{modify\+Reservation}} (std\+::string username, int month, int day, double starting\+Hour, unsigned int duration, int new\+Month, int new\+Day, double new\+Start\+Hour, unsigned int new\+Duration)
+\begin{DoxyCompactList}\small\item\em modifying the time of a given \mbox{\hyperlink{class_reservation}{Reservation}} \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_company_ad6819fd8a928fd10123ad24ca640325c}{delete\+Reservation}} (std\+::string username, int month, int day, double starting\+Hour, unsigned int duration)
+\begin{DoxyCompactList}\small\item\em deleting the time of a given \mbox{\hyperlink{class_reservation}{Reservation}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_a12366416c26ae1d5046695261374f440}{list\+Available\+Repairers}} (unsigned days\+Until\+Available) const
+\begin{DoxyCompactList}\small\item\em Listing all Repairers available to in the next days. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_a64817eefb5be8a9d23af9e0f651b7f71}{unschedule\+Repair}} (unsigned id, unsigned day, unsigned month)
+\begin{DoxyCompactList}\small\item\em Unscheduling a given \mbox{\hyperlink{class_repair}{Repair}} to a specific \mbox{\hyperlink{class_court}{Court}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_company_aaab5975d45b94e576be7fe6b8d0e73e5}{reschedule\+Repair}} (unsigned id, unsigned day, unsigned month, unsigned new\+Day, unsigned new\+Month)
+\begin{DoxyCompactList}\small\item\em Rescheduling a given \mbox{\hyperlink{class_repair}{Repair}} to a specific \mbox{\hyperlink{class_court}{Court}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_company_ac038a4c5e02f13a7bab9b5139990316e}\label{class_company_ac038a4c5e02f13a7bab9b5139990316e}} 
+\index{Company@{Company}!Company@{Company}}
+\index{Company@{Company}!Company@{Company}}
+\subsubsection{\texorpdfstring{Company()}{Company()}}
+{\footnotesize\ttfamily Company\+::\+Company (\begin{DoxyParamCaption}\item[{double}]{card\+Value,  }\item[{\mbox{\hyperlink{class_date}{Date}}}]{d }\end{DoxyParamCaption})}
+
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & -\/ current date \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_company_a0f5c39b78a484f841f71bbcc33946774}\label{class_company_a0f5c39b78a484f841f71bbcc33946774}} 
+\index{Company@{Company}!add\+Repairer@{add\+Repairer}}
+\index{add\+Repairer@{add\+Repairer}!Company@{Company}}
+\subsubsection{\texorpdfstring{add\+Repairer()}{addRepairer()}}
+{\footnotesize\ttfamily void Company\+::add\+Repairer (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{std\+::string}]{gender }\end{DoxyParamCaption})}
+
+
+
+Add a new Repairer to the company. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ the name of said Repairer \\
+\hline
+{\em gender} & -\/ the gender of said Repairer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_aa5eac670a965d063cd700acc09effec7}\label{class_company_aa5eac670a965d063cd700acc09effec7}} 
+\index{Company@{Company}!change\+Address@{change\+Address}}
+\index{change\+Address@{change\+Address}!Company@{Company}}
+\subsubsection{\texorpdfstring{change\+Address()}{changeAddress()}}
+{\footnotesize\ttfamily void Company\+::change\+Address (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{std\+::string}]{new\+Address }\end{DoxyParamCaption})}
+
+
+
+Changing the Address of a user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ the current name \\
+\hline
+{\em new\+Address} & -\/ the new Address \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_ab06a4393f8658aecd365c9425ce85cc3}\label{class_company_ab06a4393f8658aecd365c9425ce85cc3}} 
+\index{Company@{Company}!change\+Age@{change\+Age}}
+\index{change\+Age@{change\+Age}!Company@{Company}}
+\subsubsection{\texorpdfstring{change\+Age()}{changeAge()}}
+{\footnotesize\ttfamily void Company\+::change\+Age (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{new\+Age,  }\item[{int}]{flag }\end{DoxyParamCaption})}
+
+
+
+Changing the age of a person. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ the current name \\
+\hline
+{\em new\+Age} & -\/ the new age \\
+\hline
+{\em flag} & -\/ if it is a teacher or a student \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_acded77254726ba932810fa4b67136d2e}\label{class_company_acded77254726ba932810fa4b67136d2e}} 
+\index{Company@{Company}!change\+Gender@{change\+Gender}}
+\index{change\+Gender@{change\+Gender}!Company@{Company}}
+\subsubsection{\texorpdfstring{change\+Gender()}{changeGender()}}
+{\footnotesize\ttfamily void Company\+::change\+Gender (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{std\+::string}]{newgender,  }\item[{int}]{flag }\end{DoxyParamCaption})}
+
+
+
+Changing the Gender of a person. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ the current name \\
+\hline
+{\em newgender} & -\/ the new Gender \\
+\hline
+{\em flag} & -\/ if it is a teacher or a student \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_ab33cbb2392281b852f32ef6869309d68}\label{class_company_ab33cbb2392281b852f32ef6869309d68}} 
+\index{Company@{Company}!changeis\+Gold@{changeis\+Gold}}
+\index{changeis\+Gold@{changeis\+Gold}!Company@{Company}}
+\subsubsection{\texorpdfstring{changeis\+Gold()}{changeisGold()}}
+{\footnotesize\ttfamily void Company\+::changeis\+Gold (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{bool}]{is\+Gold }\end{DoxyParamCaption})}
+
+
+
+Changing if a person is Gold or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ the current name \\
+\hline
+{\em is\+Gold} & -\/ the new Gold status \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_a51a026758b4b56b4a2e0fa937125480d}\label{class_company_a51a026758b4b56b4a2e0fa937125480d}} 
+\index{Company@{Company}!change\+Name@{change\+Name}}
+\index{change\+Name@{change\+Name}!Company@{Company}}
+\subsubsection{\texorpdfstring{change\+Name()}{changeName()}}
+{\footnotesize\ttfamily void Company\+::change\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{std\+::string}]{new\+Name,  }\item[{int}]{flag }\end{DoxyParamCaption})}
+
+
+
+Changing the name of a person. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ the current name \\
+\hline
+{\em new\+Name} & -\/ the new Name \\
+\hline
+{\em flag} & if it is a teacher or a student \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_ae7974a9da357a7e7dcbea0d8afd25908}\label{class_company_ae7974a9da357a7e7dcbea0d8afd25908}} 
+\index{Company@{Company}!change\+N\+IF@{change\+N\+IF}}
+\index{change\+N\+IF@{change\+N\+IF}!Company@{Company}}
+\subsubsection{\texorpdfstring{change\+N\+I\+F()}{changeNIF()}}
+{\footnotesize\ttfamily void Company\+::change\+N\+IF (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{new\+N\+IF }\end{DoxyParamCaption})}
+
+
+
+Changing the N\+IF of a user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ the current name \\
+\hline
+{\em new\+N\+IF} & -\/ the new\+N\+IF \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_a6ab661c94b41a0b6ef74fec280bf849e}\label{class_company_a6ab661c94b41a0b6ef74fec280bf849e}} 
+\index{Company@{Company}!change\+Teacher\+Status@{change\+Teacher\+Status}}
+\index{change\+Teacher\+Status@{change\+Teacher\+Status}!Company@{Company}}
+\subsubsection{\texorpdfstring{change\+Teacher\+Status()}{changeTeacherStatus()}}
+{\footnotesize\ttfamily bool Company\+::change\+Teacher\+Status (\begin{DoxyParamCaption}\item[{std\+::string}]{teacher,  }\item[{bool}]{newstat }\end{DoxyParamCaption})}
+
+
+
+Changing the status of teacher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em teacher} & -\/ the name of said teacher \\
+\hline
+{\em newstat} & -\/ the status wanted to maintain \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the teacher was found and changed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_a53a891acc19de4d24a82fd9f108cfe68}\label{class_company_a53a891acc19de4d24a82fd9f108cfe68}} 
+\index{Company@{Company}!check\+N\+IF@{check\+N\+IF}}
+\index{check\+N\+IF@{check\+N\+IF}!Company@{Company}}
+\subsubsection{\texorpdfstring{check\+N\+I\+F()}{checkNIF()}}
+{\footnotesize\ttfamily bool Company\+::check\+N\+IF (\begin{DoxyParamCaption}\item[{int}]{nif }\end{DoxyParamCaption})}
+
+
+
+Checking if the given value is a proper N\+IF. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nif} & -\/ the actual N\+IF \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ if it is a N\+IF or not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_ad6819fd8a928fd10123ad24ca640325c}\label{class_company_ad6819fd8a928fd10123ad24ca640325c}} 
+\index{Company@{Company}!delete\+Reservation@{delete\+Reservation}}
+\index{delete\+Reservation@{delete\+Reservation}!Company@{Company}}
+\subsubsection{\texorpdfstring{delete\+Reservation()}{deleteReservation()}}
+{\footnotesize\ttfamily bool Company\+::delete\+Reservation (\begin{DoxyParamCaption}\item[{std\+::string}]{username,  }\item[{int}]{month,  }\item[{int}]{day,  }\item[{double}]{starting\+Hour,  }\item[{unsigned int}]{duration }\end{DoxyParamCaption})}
+
+
+
+deleting the time of a given \mbox{\hyperlink{class_reservation}{Reservation}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & -\/ the name of the user \\
+\hline
+{\em month} & -\/ the month of the reservation \\
+\hline
+{\em day} & -\/ the day of the reservation \\
+\hline
+{\em starting\+Hour} & -\/ the starting hour of the reservation \\
+\hline
+{\em duration} & -\/ the duration of the reservation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ if it was successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_a0d85a33848aad31a2d369179c6f46b08}\label{class_company_a0d85a33848aad31a2d369179c6f46b08}} 
+\index{Company@{Company}!delete\+User@{delete\+User}}
+\index{delete\+User@{delete\+User}!Company@{Company}}
+\subsubsection{\texorpdfstring{delete\+User()}{deleteUser()}}
+{\footnotesize\ttfamily void Company\+::delete\+User (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Deleting a \mbox{\hyperlink{class_user}{User}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ the name of the \mbox{\hyperlink{class_user}{User}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_afa0ab125a0ba718fe2c13802fe1703be}\label{class_company_afa0ab125a0ba718fe2c13802fe1703be}} 
+\index{Company@{Company}!get\+Courts@{get\+Courts}}
+\index{get\+Courts@{get\+Courts}!Company@{Company}}
+\subsubsection{\texorpdfstring{get\+Courts()}{getCourts()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_court}{Court}} $>$ Company\+::get\+Courts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter of the current Courts. 
+
+\begin{DoxyReturn}{Returns}
+vector of Courts 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_a837fd39a8f03c20a3ceb8617410956b7}\label{class_company_a837fd39a8f03c20a3ceb8617410956b7}} 
+\index{Company@{Company}!get\+Max\+User@{get\+Max\+User}}
+\index{get\+Max\+User@{get\+Max\+User}!Company@{Company}}
+\subsubsection{\texorpdfstring{get\+Max\+User()}{getMaxUser()}}
+{\footnotesize\ttfamily int Company\+::get\+Max\+User (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+getter of Maximum of users in all courts 
+
+\begin{DoxyReturn}{Returns}
+maximum of users in all courts 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_a1a29eaacb474c8a76528ddfd74b9032a}\label{class_company_a1a29eaacb474c8a76528ddfd74b9032a}} 
+\index{Company@{Company}!get\+Scheduled\+Lesson@{get\+Scheduled\+Lesson}}
+\index{get\+Scheduled\+Lesson@{get\+Scheduled\+Lesson}!Company@{Company}}
+\subsubsection{\texorpdfstring{get\+Scheduled\+Lesson()}{getScheduledLesson()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_lesson}{Lesson}} $\ast$ $>$\+::iterator Company\+::get\+Scheduled\+Lesson (\begin{DoxyParamCaption}\item[{std\+::string}]{teacher\+Name,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_lesson}{Lesson}} $\ast$$>$}]{lessons,  }\item[{int}]{month,  }\item[{int}]{day,  }\item[{double}]{starting\+Hour,  }\item[{unsigned int}]{duration }\end{DoxyParamCaption})}
+
+
+
+Get a scheduled \mbox{\hyperlink{class_reservation}{Reservation}} of a given user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Name} & -\/ the name of the \mbox{\hyperlink{class_user}{User}} \\
+\hline
+{\em reservs} & -\/ the reservations of a given user \\
+\hline
+{\em month} & -\/ the month of the reservation \\
+\hline
+{\em day} & -\/ the day of the reservation \\
+\hline
+{\em starting\+Hour} & -\/ the starting hour of the reservation \\
+\hline
+{\em duration} & -\/ the duration of the reservation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ an iterator pointing to the reservation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_acdb7e7538f6401e24e9a1651bf8aad89}\label{class_company_acdb7e7538f6401e24e9a1651bf8aad89}} 
+\index{Company@{Company}!get\+Scheduled\+Reservation@{get\+Scheduled\+Reservation}}
+\index{get\+Scheduled\+Reservation@{get\+Scheduled\+Reservation}!Company@{Company}}
+\subsubsection{\texorpdfstring{get\+Scheduled\+Reservation()}{getScheduledReservation()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$ $>$\+::iterator Company\+::get\+Scheduled\+Reservation (\begin{DoxyParamCaption}\item[{std\+::string}]{user\+Name,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$}]{reservs,  }\item[{int}]{month,  }\item[{int}]{day,  }\item[{double}]{starting\+Hour,  }\item[{unsigned int}]{duration }\end{DoxyParamCaption})}
+
+
+
+Get a scheduled \mbox{\hyperlink{class_reservation}{Reservation}} of a given teacher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Name} & -\/ the name of the \mbox{\hyperlink{class_teacher}{Teacher}} \\
+\hline
+{\em reservs} & -\/ the reservations of a given \mbox{\hyperlink{class_teacher}{Teacher}} \\
+\hline
+{\em month} & -\/ the month of the lesson \\
+\hline
+{\em day} & -\/ the day of the lesson \\
+\hline
+{\em starting\+Hour} & -\/ the starting hour of the lesson \\
+\hline
+{\em duration} & -\/ the duration of the lesson \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ an iterator pointing to the lesson 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_a000159ce012318a6edf0335447ad8bde}\label{class_company_a000159ce012318a6edf0335447ad8bde}} 
+\index{Company@{Company}!get\+Teachers@{get\+Teachers}}
+\index{get\+Teachers@{get\+Teachers}!Company@{Company}}
+\subsubsection{\texorpdfstring{get\+Teachers()}{getTeachers()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_teacher}{Teacher}} $>$ Company\+::get\+Teachers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter of the current Teachers. 
+
+\begin{DoxyReturn}{Returns}
+vector of Teachers 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_a06704156dc1962518149b2307e448691}\label{class_company_a06704156dc1962518149b2307e448691}} 
+\index{Company@{Company}!get\+Users@{get\+Users}}
+\index{get\+Users@{get\+Users}!Company@{Company}}
+\subsubsection{\texorpdfstring{get\+Users()}{getUsers()}}
+{\footnotesize\ttfamily set$<$ \mbox{\hyperlink{class_user}{User}} $>$ Company\+::get\+Users (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter of the current Users. 
+
+\begin{DoxyReturn}{Returns}
+vector of Users 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_aa8b5bbb3b2d49d13f36d4fcdfc0d20d1}\label{class_company_aa8b5bbb3b2d49d13f36d4fcdfc0d20d1}} 
+\index{Company@{Company}!indentation@{indentation}}
+\index{indentation@{indentation}!Company@{Company}}
+\subsubsection{\texorpdfstring{indentation()}{indentation()}}
+{\footnotesize\ttfamily void Company\+::indentation (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{indentation }\end{DoxyParamCaption})}
+
+
+
+To indent the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ where to write \\
+\hline
+{\em indentation} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_a12366416c26ae1d5046695261374f440}\label{class_company_a12366416c26ae1d5046695261374f440}} 
+\index{Company@{Company}!list\+Available\+Repairers@{list\+Available\+Repairers}}
+\index{list\+Available\+Repairers@{list\+Available\+Repairers}!Company@{Company}}
+\subsubsection{\texorpdfstring{list\+Available\+Repairers()}{listAvailableRepairers()}}
+{\footnotesize\ttfamily void Company\+::list\+Available\+Repairers (\begin{DoxyParamCaption}\item[{unsigned}]{days\+Until\+Available }\end{DoxyParamCaption}) const}
+
+
+
+Listing all Repairers available to in the next days. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em days\+Until\+Available} & -\/ the maximum number of days for the repairer to be available \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_a56fa75dd66690eae0853a3f3278220e3}\label{class_company_a56fa75dd66690eae0853a3f3278220e3}} 
+\index{Company@{Company}!make\+Free@{make\+Free}}
+\index{make\+Free@{make\+Free}!Company@{Company}}
+\subsubsection{\texorpdfstring{make\+Free()}{makeFree()}}
+{\footnotesize\ttfamily bool Company\+::make\+Free (\begin{DoxyParamCaption}\item[{int}]{month,  }\item[{int}]{day,  }\item[{double}]{starting\+Hour,  }\item[{int}]{duration,  }\item[{std\+::string}]{username }\end{DoxyParamCaption})}
+
+
+
+Reserving the \mbox{\hyperlink{class_court}{Court}}, \mbox{\hyperlink{class_user}{User}} and \mbox{\hyperlink{class_teacher}{Teacher}} for a new \mbox{\hyperlink{class_reservation}{Reservation}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ the month of the lesson \\
+\hline
+{\em day} & -\/ the day of the lesson \\
+\hline
+{\em starting\+Hour} & -\/ the starting Hour for it \\
+\hline
+{\em duration} & -\/ the duration it \\
+\hline
+{\em username} & -\/ the name of the \mbox{\hyperlink{class_user}{User}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if it was successful created 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_a88745d2eaf511e686eccfa14601a302b}\label{class_company_a88745d2eaf511e686eccfa14601a302b}} 
+\index{Company@{Company}!make\+Lesson@{make\+Lesson}}
+\index{make\+Lesson@{make\+Lesson}!Company@{Company}}
+\subsubsection{\texorpdfstring{make\+Lesson()}{makeLesson()}}
+{\footnotesize\ttfamily bool Company\+::make\+Lesson (\begin{DoxyParamCaption}\item[{int}]{month,  }\item[{int}]{day,  }\item[{double}]{starting\+Hour,  }\item[{std\+::string}]{user\+Name }\end{DoxyParamCaption})}
+
+Reserving the \mbox{\hyperlink{class_court}{Court}}, \mbox{\hyperlink{class_user}{User}} and \mbox{\hyperlink{class_teacher}{Teacher}} for a new \mbox{\hyperlink{class_lesson}{Lesson}}. 
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ the month of the lesson \\
+\hline
+{\em day} & -\/ the day of the lesson \\
+\hline
+{\em starting\+Hour} & -\/ the starting Hour for it \\
+\hline
+{\em user\+Name} & -\/ the name of the \mbox{\hyperlink{class_user}{User}} \\
+\hline
+{\em teacher\+Name} & -\/ the name of the \mbox{\hyperlink{class_teacher}{Teacher}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if it was successful created 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_a955b07492e04edd5ed83f695ee362ab4}\label{class_company_a955b07492e04edd5ed83f695ee362ab4}} 
+\index{Company@{Company}!make\+User\+Invoice@{make\+User\+Invoice}}
+\index{make\+User\+Invoice@{make\+User\+Invoice}!Company@{Company}}
+\subsubsection{\texorpdfstring{make\+User\+Invoice()}{makeUserInvoice()}}
+{\footnotesize\ttfamily bool Company\+::make\+User\+Invoice (\begin{DoxyParamCaption}\item[{std\+::string}]{user\+Name,  }\item[{int}]{month }\end{DoxyParamCaption})}
+
+
+
+Make an \mbox{\hyperlink{class_invoice}{Invoice}} for a specific user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Name} & -\/ month it relates to \\
+\hline
+{\em month} & -\/ the name of the user \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if if was made sucessfuly 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_acc2aba7c2f4149021e9b93ab423e417b}\label{class_company_acc2aba7c2f4149021e9b93ab423e417b}} 
+\index{Company@{Company}!make\+User\+Report@{make\+User\+Report}}
+\index{make\+User\+Report@{make\+User\+Report}!Company@{Company}}
+\subsubsection{\texorpdfstring{make\+User\+Report()}{makeUserReport()}}
+{\footnotesize\ttfamily bool Company\+::make\+User\+Report (\begin{DoxyParamCaption}\item[{int}]{month,  }\item[{std\+::string}]{user\+Name,  }\item[{std\+::string}]{teacher\+Name }\end{DoxyParamCaption})}
+
+
+
+Make a \mbox{\hyperlink{class_report}{Report}} for a specific user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ month it relates to \\
+\hline
+{\em user\+Name} & -\/ the name of the user \\
+\hline
+{\em teacher\+Name} & -\/ the name of the teacher \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if if was made sucessfuly 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_a0ff732d93249a55653c7b9e3cf191e19}\label{class_company_a0ff732d93249a55653c7b9e3cf191e19}} 
+\index{Company@{Company}!modify\+Reservation@{modify\+Reservation}}
+\index{modify\+Reservation@{modify\+Reservation}!Company@{Company}}
+\subsubsection{\texorpdfstring{modify\+Reservation()}{modifyReservation()}}
+{\footnotesize\ttfamily bool Company\+::modify\+Reservation (\begin{DoxyParamCaption}\item[{std\+::string}]{username,  }\item[{int}]{month,  }\item[{int}]{day,  }\item[{double}]{starting\+Hour,  }\item[{unsigned int}]{duration,  }\item[{int}]{new\+Month,  }\item[{int}]{new\+Day,  }\item[{double}]{new\+Start\+Hour,  }\item[{unsigned int}]{new\+Duration }\end{DoxyParamCaption})}
+
+
+
+modifying the time of a given \mbox{\hyperlink{class_reservation}{Reservation}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & -\/ the name of the user \\
+\hline
+{\em month} & -\/ the month of the reservation \\
+\hline
+{\em day} & -\/ the day of the reservation \\
+\hline
+{\em starting\+Hour} & -\/ the starting hour of the reservation \\
+\hline
+{\em duration} & -\/ the duration of the reservation \\
+\hline
+{\em new\+Month} & -\/ the new month of the reservation \\
+\hline
+{\em new\+Day} & -\/ the new day of the reservation \\
+\hline
+{\em new\+Start\+Hour} & -\/ the new starting hour of the reservation \\
+\hline
+{\em new\+Duration} & -\/ the new duration of the reservation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ if it was successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_a80d971b44bc73adbb2bf3317f7747414}\label{class_company_a80d971b44bc73adbb2bf3317f7747414}} 
+\index{Company@{Company}!operator++@{operator++}}
+\index{operator++@{operator++}!Company@{Company}}
+\subsubsection{\texorpdfstring{operator++()}{operator++()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_company}{Company}} Company\+::operator++ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The operator to go through a day and all its necessary situations. 
+
+\begin{DoxyReturn}{Returns}
+the company itself 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_acbd7b1d6be4ae5e3322add41e2be256e}\label{class_company_acbd7b1d6be4ae5e3322add41e2be256e}} 
+\index{Company@{Company}!re\+Add\+User@{re\+Add\+User}}
+\index{re\+Add\+User@{re\+Add\+User}!Company@{Company}}
+\subsubsection{\texorpdfstring{re\+Add\+User()}{reAddUser()}}
+{\footnotesize\ttfamily void Company\+::re\+Add\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_user}{User}}}]{u }\end{DoxyParamCaption})}
+
+
+
+Getter of a specific \mbox{\hyperlink{class_user}{User}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Name} & -\/ name of the \mbox{\hyperlink{class_user}{User}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a reference to the user 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_a2b97cd4ed80ecab0aa92d0f9c1f81071}\label{class_company_a2b97cd4ed80ecab0aa92d0f9c1f81071}} 
+\index{Company@{Company}!read\+Info@{read\+Info}}
+\index{read\+Info@{read\+Info}!Company@{Company}}
+\subsubsection{\texorpdfstring{read\+Info()}{readInfo()}}
+{\footnotesize\ttfamily void Company\+::read\+Info (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{infile }\end{DoxyParamCaption})}
+
+
+
+Reads the company information of a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infile} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_afd7f0c326672c6bb6a23d5921503bc0d}\label{class_company_afd7f0c326672c6bb6a23d5921503bc0d}} 
+\index{Company@{Company}!register\+Teacher@{register\+Teacher}}
+\index{register\+Teacher@{register\+Teacher}!Company@{Company}}
+\subsubsection{\texorpdfstring{register\+Teacher()}{registerTeacher()}}
+{\footnotesize\ttfamily bool Company\+::register\+Teacher (\begin{DoxyParamCaption}\item[{std\+::string}]{teacher\+Name,  }\item[{int}]{age,  }\item[{std\+::string}]{gender }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Register a new \mbox{\hyperlink{class_teacher}{Teacher}} to the system. 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em teacher\+Name} & -\/ the name of the \mbox{\hyperlink{class_teacher}{Teacher}} \\
+\hline
+{\em age} & -\/ the age of the \mbox{\hyperlink{class_teacher}{Teacher}} \\
+\hline
+{\em gender} & -\/ the gender of the \mbox{\hyperlink{class_teacher}{Teacher}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the \mbox{\hyperlink{class_teacher}{Teacher}} was succesfully created 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_a5ac9ee475217b3b568a447f9d3535c7d}\label{class_company_a5ac9ee475217b3b568a447f9d3535c7d}} 
+\index{Company@{Company}!register\+User@{register\+User}}
+\index{register\+User@{register\+User}!Company@{Company}}
+\subsubsection{\texorpdfstring{register\+User()}{registerUser()}}
+{\footnotesize\ttfamily bool Company\+::register\+User (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{age,  }\item[{bool}]{is\+Gold,  }\item[{std\+::string}]{gender,  }\item[{std\+::string}]{adress,  }\item[{int}]{nif }\end{DoxyParamCaption})}
+
+
+
+Register a new \mbox{\hyperlink{class_user}{User}} to the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ the name of the user \\
+\hline
+{\em age} & -\/ the age of the user \\
+\hline
+{\em is\+Gold} & -\/ if he wants to have the Gold card or not \\
+\hline
+{\em gender} & -\/ the gender of the \mbox{\hyperlink{class_user}{User}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the user was succesfully created 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_ad35562fb6b18125ab7fe30cb79639cf7}\label{class_company_ad35562fb6b18125ab7fe30cb79639cf7}} 
+\index{Company@{Company}!remove\+Active\+Teacher@{remove\+Active\+Teacher}}
+\index{remove\+Active\+Teacher@{remove\+Active\+Teacher}!Company@{Company}}
+\subsubsection{\texorpdfstring{remove\+Active\+Teacher()}{removeActiveTeacher()}}
+{\footnotesize\ttfamily bool Company\+::remove\+Active\+Teacher (\begin{DoxyParamCaption}\item[{std\+::string}]{teacher }\end{DoxyParamCaption})}
+
+
+
+Removal of an active \mbox{\hyperlink{class_teacher}{Teacher}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em teacher} & -\/ the name of said teacher \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if it was successfull 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_af7f0b784eb184ae92f5c8d0c8bad0f09}\label{class_company_af7f0b784eb184ae92f5c8d0c8bad0f09}} 
+\index{Company@{Company}!remove\+Repairer@{remove\+Repairer}}
+\index{remove\+Repairer@{remove\+Repairer}!Company@{Company}}
+\subsubsection{\texorpdfstring{remove\+Repairer()}{removeRepairer()}}
+{\footnotesize\ttfamily void Company\+::remove\+Repairer (\begin{DoxyParamCaption}\item[{unsigned}]{id }\end{DoxyParamCaption})}
+
+
+
+Removal of a Repairer from the company. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & -\/ The Repairer ID \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_ae858645003e1a2cd2e38f6db4feda488}\label{class_company_ae858645003e1a2cd2e38f6db4feda488}} 
+\index{Company@{Company}!reschedule\+Lessons@{reschedule\+Lessons}}
+\index{reschedule\+Lessons@{reschedule\+Lessons}!Company@{Company}}
+\subsubsection{\texorpdfstring{reschedule\+Lessons()}{rescheduleLessons()}}
+{\footnotesize\ttfamily bool Company\+::reschedule\+Lessons (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$ \&}]{reservs,  }\item[{\mbox{\hyperlink{class_teacher}{Teacher}} \&}]{subst,  }\item[{std\+::string}]{username }\end{DoxyParamCaption})}
+
+
+
+Rescheduling the Lessons of a given teacher. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lessons} & -\/ the lessons to be changed \\
+\hline
+{\em reservs} & -\/ the reservations to be changed in the user \\
+\hline
+{\em subst} & -\/ the teacher itself \\
+\hline
+{\em username} & -\/ the user \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if it was successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_aaab5975d45b94e576be7fe6b8d0e73e5}\label{class_company_aaab5975d45b94e576be7fe6b8d0e73e5}} 
+\index{Company@{Company}!reschedule\+Repair@{reschedule\+Repair}}
+\index{reschedule\+Repair@{reschedule\+Repair}!Company@{Company}}
+\subsubsection{\texorpdfstring{reschedule\+Repair()}{rescheduleRepair()}}
+{\footnotesize\ttfamily void Company\+::reschedule\+Repair (\begin{DoxyParamCaption}\item[{unsigned}]{id,  }\item[{unsigned}]{day,  }\item[{unsigned}]{month,  }\item[{unsigned}]{new\+Day,  }\item[{unsigned}]{new\+Month }\end{DoxyParamCaption})}
+
+
+
+Rescheduling a given \mbox{\hyperlink{class_repair}{Repair}} to a specific \mbox{\hyperlink{class_court}{Court}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & -\/ the ID of the \mbox{\hyperlink{class_court}{Court}} \\
+\hline
+{\em day} & -\/ the day of the \mbox{\hyperlink{class_repair}{Repair}} \\
+\hline
+{\em month} & -\/ the month of the \mbox{\hyperlink{class_repair}{Repair}} \\
+\hline
+{\em new\+Day} & -\/ the new \mbox{\hyperlink{class_day}{Day}} of the \mbox{\hyperlink{class_repair}{Repair}} \\
+\hline
+{\em new\+Month} & -\/ the new \mbox{\hyperlink{class_month}{Month}} of the Mont \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_a58aa6a7e8812f98fdf7ba4b5da2eb12f}\label{class_company_a58aa6a7e8812f98fdf7ba4b5da2eb12f}} 
+\index{Company@{Company}!schedule\+Repair@{schedule\+Repair}}
+\index{schedule\+Repair@{schedule\+Repair}!Company@{Company}}
+\subsubsection{\texorpdfstring{schedule\+Repair()}{scheduleRepair()}}
+{\footnotesize\ttfamily void Company\+::schedule\+Repair (\begin{DoxyParamCaption}\item[{int}]{day,  }\item[{int}]{month,  }\item[{unsigned}]{ID }\end{DoxyParamCaption})}
+
+
+
+Scheduling a repair for a given \mbox{\hyperlink{class_court}{Court}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em day} & -\/ the day of the repair \\
+\hline
+{\em month} & -\/ the month of the repair \\
+\hline
+{\em ID} & -\/ the ID of the court \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_ad3d0ab0209f13ca48a83df34564ef055}\label{class_company_ad3d0ab0209f13ca48a83df34564ef055}} 
+\index{Company@{Company}!show\+Invoice@{show\+Invoice}}
+\index{show\+Invoice@{show\+Invoice}!Company@{Company}}
+\subsubsection{\texorpdfstring{show\+Invoice()}{showInvoice()}}
+{\footnotesize\ttfamily bool Company\+::show\+Invoice (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{month }\end{DoxyParamCaption})}
+
+
+
+Method to show a specific \mbox{\hyperlink{class_invoice}{Invoice}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ name of the \mbox{\hyperlink{class_user}{User}} \\
+\hline
+{\em month} & -\/ month they want \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if it was properly shown 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_a2c00c88b245aef0e0e52864b585f8f6b}\label{class_company_a2c00c88b245aef0e0e52864b585f8f6b}} 
+\index{Company@{Company}!show\+Report@{show\+Report}}
+\index{show\+Report@{show\+Report}!Company@{Company}}
+\subsubsection{\texorpdfstring{show\+Report()}{showReport()}}
+{\footnotesize\ttfamily bool Company\+::show\+Report (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{month }\end{DoxyParamCaption})}
+
+
+
+Method to show a specific \mbox{\hyperlink{class_report}{Report}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ name of the \mbox{\hyperlink{class_user}{User}} \\
+\hline
+{\em month} & -\/ month they want \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if it was properly shown 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_company_aa64ff74648761cfe39d4a9fb0c72031f}\label{class_company_aa64ff74648761cfe39d4a9fb0c72031f}} 
+\index{Company@{Company}!show\+Teacher@{show\+Teacher}}
+\index{show\+Teacher@{show\+Teacher}!Company@{Company}}
+\subsubsection{\texorpdfstring{show\+Teacher()}{showTeacher()}}
+{\footnotesize\ttfamily void Company\+::show\+Teacher (\begin{DoxyParamCaption}\item[{std\+::string}]{teacher }\end{DoxyParamCaption})}
+
+
+
+show a specific \mbox{\hyperlink{class_user}{User}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ name of the \mbox{\hyperlink{class_user}{User}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_aef95f2feab286505091c38db23cd1c90}\label{class_company_aef95f2feab286505091c38db23cd1c90}} 
+\index{Company@{Company}!show\+Teacher\+Lessons@{show\+Teacher\+Lessons}}
+\index{show\+Teacher\+Lessons@{show\+Teacher\+Lessons}!Company@{Company}}
+\subsubsection{\texorpdfstring{show\+Teacher\+Lessons()}{showTeacherLessons()}}
+{\footnotesize\ttfamily void Company\+::show\+Teacher\+Lessons (\begin{DoxyParamCaption}\item[{std\+::string}]{teacher }\end{DoxyParamCaption})}
+
+
+
+Shows the lessons of the \mbox{\hyperlink{class_teacher}{Teacher}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em teacher} & -\/ name of the \mbox{\hyperlink{class_teacher}{Teacher}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_a664aa9b9bde35eae3a564edec73cf5b3}\label{class_company_a664aa9b9bde35eae3a564edec73cf5b3}} 
+\index{Company@{Company}!show\+User@{show\+User}}
+\index{show\+User@{show\+User}!Company@{Company}}
+\subsubsection{\texorpdfstring{show\+User()}{showUser()}}
+{\footnotesize\ttfamily void Company\+::show\+User (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+show a specific \mbox{\hyperlink{class_user}{User}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ name of the \mbox{\hyperlink{class_user}{User}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_a428b70dbf9acd5edb34ee131ff1f8613}\label{class_company_a428b70dbf9acd5edb34ee131ff1f8613}} 
+\index{Company@{Company}!show\+User\+Reservations@{show\+User\+Reservations}}
+\index{show\+User\+Reservations@{show\+User\+Reservations}!Company@{Company}}
+\subsubsection{\texorpdfstring{show\+User\+Reservations()}{showUserReservations()}}
+{\footnotesize\ttfamily void Company\+::show\+User\+Reservations (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Show the Reservations of a specific user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ Name of the \mbox{\hyperlink{class_user}{User}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_ac03f62f1accf21eb445a7aa5731b1199}\label{class_company_ac03f62f1accf21eb445a7aa5731b1199}} 
+\index{Company@{Company}!store\+Info@{store\+Info}}
+\index{store\+Info@{store\+Info}!Company@{Company}}
+\subsubsection{\texorpdfstring{store\+Info()}{storeInfo()}}
+{\footnotesize\ttfamily void Company\+::store\+Info (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{identation }\end{DoxyParamCaption})}
+
+
+
+Store in the information of the \mbox{\hyperlink{class_company}{Company}} to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em identation} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_company_a64817eefb5be8a9d23af9e0f651b7f71}\label{class_company_a64817eefb5be8a9d23af9e0f651b7f71}} 
+\index{Company@{Company}!unschedule\+Repair@{unschedule\+Repair}}
+\index{unschedule\+Repair@{unschedule\+Repair}!Company@{Company}}
+\subsubsection{\texorpdfstring{unschedule\+Repair()}{unscheduleRepair()}}
+{\footnotesize\ttfamily void Company\+::unschedule\+Repair (\begin{DoxyParamCaption}\item[{unsigned}]{id,  }\item[{unsigned}]{day,  }\item[{unsigned}]{month }\end{DoxyParamCaption})}
+
+
+
+Unscheduling a given \mbox{\hyperlink{class_repair}{Repair}} to a specific \mbox{\hyperlink{class_court}{Court}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & -\/ the ID of the \mbox{\hyperlink{class_court}{Court}} \\
+\hline
+{\em day} & -\/ the day of the \mbox{\hyperlink{class_repair}{Repair}} \\
+\hline
+{\em month} & -\/ the month of the \mbox{\hyperlink{class_repair}{Repair}} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Company.\+h\item 
+Company.\+cpp\end{DoxyCompactItemize}

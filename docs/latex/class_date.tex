@@ -1,0 +1,231 @@
+\hypertarget{class_date}{}\section{Date Class Reference}
+\label{class_date}\index{Date@{Date}}
+
+
+{\ttfamily \#include $<$Date.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_date_a4e59ed4ba66eec61c27460c5d09fa1bd}\label{class_date_a4e59ed4ba66eec61c27460c5d09fa1bd}} 
+\mbox{\hyperlink{class_date_a4e59ed4ba66eec61c27460c5d09fa1bd}{Date}} ()
+\begin{DoxyCompactList}\small\item\em Class Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_date_a28c6604a0f8ed8216becf24abc20cf5b}{Date}} (unsigned int day, unsigned int month, unsigned int year)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_date}{Date}} \mbox{\hyperlink{class_date_a0c5386da90c6834a3e7a110b02e2abaa}{operator++}} ()
+\begin{DoxyCompactList}\small\item\em incrementation of the date \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_date_a979593888deb70d07fd12f8f869a109c}{store\+Info}} (std\+::ofstream \&outfile, int indentation) const
+\begin{DoxyCompactList}\small\item\em Store in the information of the \mbox{\hyperlink{class_date}{Date}} to a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_date_a71cb9aebbc36dc421d720764cacd681a}{indent}} (std\+::ofstream \&outfile, int identation) const
+\begin{DoxyCompactList}\small\item\em Indenting the file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_date_ad23dffa000ed62018a399c519acb06db}{read\+Info}} (std\+::ifstream \&infile)
+\begin{DoxyCompactList}\small\item\em Reading the information of a \mbox{\hyperlink{class_date}{Date}} from a file. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_date_ab39b571a45cbcdfd37b23c28801fa7b0}{get\+Day}} ()
+\begin{DoxyCompactList}\small\item\em Getter for the day. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_date_a9efc6db1870de82dbd717f1c3c782f82}{get\+Month}} ()
+\begin{DoxyCompactList}\small\item\em Getter for the month. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_date_a90be6a509b91ee9addfeec0e68b965e2}{get\+Year}} ()
+\begin{DoxyCompactList}\small\item\em Getter for the year. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_date_a0036e87463cdee6117d27f04933393fb}{operator==}} (\mbox{\hyperlink{class_date}{Date}} d)
+\begin{DoxyCompactList}\small\item\em Comparing two dates. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_date_a5f459b53c99391cc464c0c55268d133c}{operator-\/}} (\mbox{\hyperlink{class_date}{Date}} d)
+\begin{DoxyCompactList}\small\item\em Calculating the number of days between two dates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_date_ab238dfc73280d2b16266ebd3daf1b896}{operator$<$}} (\mbox{\hyperlink{class_date}{Date}} d1, \mbox{\hyperlink{class_date}{Date}} d2)
+\begin{DoxyCompactList}\small\item\em Checking if d1 is smaller than d2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class to save the current date of the company system 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_date_a28c6604a0f8ed8216becf24abc20cf5b}\label{class_date_a28c6604a0f8ed8216becf24abc20cf5b}} 
+\index{Date@{Date}!Date@{Date}}
+\index{Date@{Date}!Date@{Date}}
+\subsubsection{\texorpdfstring{Date()}{Date()}}
+{\footnotesize\ttfamily Date\+::\+Date (\begin{DoxyParamCaption}\item[{unsigned int}]{day,  }\item[{unsigned int}]{month,  }\item[{unsigned int}]{year }\end{DoxyParamCaption})}
+
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em day} & -\/ current day \\
+\hline
+{\em month} & -\/ current month \\
+\hline
+{\em year} & -\/ current year \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_date_ab39b571a45cbcdfd37b23c28801fa7b0}\label{class_date_ab39b571a45cbcdfd37b23c28801fa7b0}} 
+\index{Date@{Date}!get\+Day@{get\+Day}}
+\index{get\+Day@{get\+Day}!Date@{Date}}
+\subsubsection{\texorpdfstring{get\+Day()}{getDay()}}
+{\footnotesize\ttfamily unsigned int Date\+::get\+Day (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter for the day. 
+
+\begin{DoxyReturn}{Returns}
+the actual day 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_date_a9efc6db1870de82dbd717f1c3c782f82}\label{class_date_a9efc6db1870de82dbd717f1c3c782f82}} 
+\index{Date@{Date}!get\+Month@{get\+Month}}
+\index{get\+Month@{get\+Month}!Date@{Date}}
+\subsubsection{\texorpdfstring{get\+Month()}{getMonth()}}
+{\footnotesize\ttfamily unsigned int Date\+::get\+Month (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter for the month. 
+
+\begin{DoxyReturn}{Returns}
+the actual month 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_date_a90be6a509b91ee9addfeec0e68b965e2}\label{class_date_a90be6a509b91ee9addfeec0e68b965e2}} 
+\index{Date@{Date}!get\+Year@{get\+Year}}
+\index{get\+Year@{get\+Year}!Date@{Date}}
+\subsubsection{\texorpdfstring{get\+Year()}{getYear()}}
+{\footnotesize\ttfamily unsigned int Date\+::get\+Year (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter for the year. 
+
+\begin{DoxyReturn}{Returns}
+the actual year 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_date_a71cb9aebbc36dc421d720764cacd681a}\label{class_date_a71cb9aebbc36dc421d720764cacd681a}} 
+\index{Date@{Date}!indent@{indent}}
+\index{indent@{indent}!Date@{Date}}
+\subsubsection{\texorpdfstring{indent()}{indent()}}
+{\footnotesize\ttfamily void Date\+::indent (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{identation }\end{DoxyParamCaption}) const}
+
+
+
+Indenting the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_date_a0c5386da90c6834a3e7a110b02e2abaa}\label{class_date_a0c5386da90c6834a3e7a110b02e2abaa}} 
+\index{Date@{Date}!operator++@{operator++}}
+\index{operator++@{operator++}!Date@{Date}}
+\subsubsection{\texorpdfstring{operator++()}{operator++()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_date}{Date}} Date\+::operator++ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+incrementation of the date 
+
+\begin{DoxyReturn}{Returns}
+the date itself 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_date_a5f459b53c99391cc464c0c55268d133c}\label{class_date_a5f459b53c99391cc464c0c55268d133c}} 
+\index{Date@{Date}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Date@{Date}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily int Date\+::operator-\/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_date}{Date}}}]{d }\end{DoxyParamCaption})}
+
+
+
+Calculating the number of days between two dates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & -\/ the other date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ the number of days between dates 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_date_a0036e87463cdee6117d27f04933393fb}\label{class_date_a0036e87463cdee6117d27f04933393fb}} 
+\index{Date@{Date}!operator==@{operator==}}
+\index{operator==@{operator==}!Date@{Date}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Date\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_date}{Date}}}]{d }\end{DoxyParamCaption})}
+
+
+
+Comparing two dates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & -\/ the other date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ if they\textquotesingle{}re the same 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_date_ad23dffa000ed62018a399c519acb06db}\label{class_date_ad23dffa000ed62018a399c519acb06db}} 
+\index{Date@{Date}!read\+Info@{read\+Info}}
+\index{read\+Info@{read\+Info}!Date@{Date}}
+\subsubsection{\texorpdfstring{read\+Info()}{readInfo()}}
+{\footnotesize\ttfamily void Date\+::read\+Info (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{infile }\end{DoxyParamCaption})}
+
+
+
+Reading the information of a \mbox{\hyperlink{class_date}{Date}} from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infile} & -\/ file to read the information from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_date_a979593888deb70d07fd12f8f869a109c}\label{class_date_a979593888deb70d07fd12f8f869a109c}} 
+\index{Date@{Date}!store\+Info@{store\+Info}}
+\index{store\+Info@{store\+Info}!Date@{Date}}
+\subsubsection{\texorpdfstring{store\+Info()}{storeInfo()}}
+{\footnotesize\ttfamily void Date\+::store\+Info (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{indentation }\end{DoxyParamCaption}) const}
+
+
+
+Store in the information of the \mbox{\hyperlink{class_date}{Date}} to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_date_ab238dfc73280d2b16266ebd3daf1b896}\label{class_date_ab238dfc73280d2b16266ebd3daf1b896}} 
+\index{Date@{Date}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Date@{Date}}
+\subsubsection{\texorpdfstring{operator$<$}{operator<}}
+{\footnotesize\ttfamily bool operator$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_date}{Date}}}]{d1,  }\item[{\mbox{\hyperlink{class_date}{Date}}}]{d2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Checking if d1 is smaller than d2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d1} & -\/ first date \\
+\hline
+{\em d2} & -\/ second date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ if d1 is smaller than d2 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Date.\+h\item 
+Date.\+cpp\end{DoxyCompactItemize}

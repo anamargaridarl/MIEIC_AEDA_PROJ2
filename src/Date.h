@@ -79,10 +79,26 @@ public:
 	 */
 	unsigned int getYear();
 
+	/**
+	 * @brief Comparing two dates
+	 * @param d - the other date
+	 * @return - if they're the same
+	 */
 	bool operator==(Date d);
 
+	/**
+	 * @brief Calculating the number of days between two dates
+	 * @param d - the other date
+	 * @return - the number of days between dates
+	 */
     int operator-(Date d);
 
+    /**
+     * @brief Checking if d1 is smaller than d2
+     * @param d1 - first date
+     * @param d2 - second date
+     * @return - if d1 is smaller than d2
+     */
     friend bool operator<(Date d1, Date d2);
 };
 

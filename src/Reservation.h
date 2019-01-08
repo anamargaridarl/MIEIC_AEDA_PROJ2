@@ -110,6 +110,11 @@ public:
 	 * @return the hour
 	 */
 	std::string getHourFormat(double hour);
+	/**
+	 * @brief Comparison between two dates
+	 * @param r - the outside date
+	 * @return if they're the same
+	 */
 	bool operator== ( Reservation & r);
 
 	virtual std::string getTeacher() const;

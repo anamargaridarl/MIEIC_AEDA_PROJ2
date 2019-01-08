@@ -1,0 +1,116 @@
+\hypertarget{class_lesson}{}\section{Lesson Class Reference}
+\label{class_lesson}\index{Lesson@{Lesson}}
+
+
+{\ttfamily \#include $<$Reservation.\+h$>$}
+
+Inheritance diagram for Lesson\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_lesson}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lesson_a1f6ed0da97171480b7d6d5696d6f2afc}\label{class_lesson_a1f6ed0da97171480b7d6d5696d6f2afc}} 
+\mbox{\hyperlink{class_lesson_a1f6ed0da97171480b7d6d5696d6f2afc}{Lesson}} ()
+\begin{DoxyCompactList}\small\item\em Constructor of a lesson. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lesson_ad251882cdd4509899ff22cf4a5061e85}\label{class_lesson_ad251882cdd4509899ff22cf4a5061e85}} 
+{\bfseries Lesson} (int m, int d, double str\+Hr, double \mbox{\hyperlink{class_reservation_a82e197bd30e7949ee9b8616ee4eacf83}{price}}, unsigned int dr, std\+::string teacher\+Name)
+\item 
+double \mbox{\hyperlink{class_lesson_ad7a2f708f870040627a442cdf000683f}{get\+Price}} ()
+\begin{DoxyCompactList}\small\item\em Constructor of a lesson. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_lesson_a645855060ab3c915a6e0875bc5584887}{store\+Info}} (std\+::ofstream \&outfile, int \mbox{\hyperlink{class_reservation_a480981ed050bae19bc74bbb0bbb459f9}{indent}})
+\begin{DoxyCompactList}\small\item\em Store in the information of the lesson to a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_lesson_a3ac64e2f79bc9e381634d5d30499e8f1}{read\+Info}} (std\+::ifstream \&infile)
+\begin{DoxyCompactList}\small\item\em Reading the information of a lesson from a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lesson_add2dea9a07935a757249e1c0ed0d79e1}\label{class_lesson_add2dea9a07935a757249e1c0ed0d79e1}} 
+void \mbox{\hyperlink{class_lesson_add2dea9a07935a757249e1c0ed0d79e1}{show}} ()
+\begin{DoxyCompactList}\small\item\em Show the information of the \mbox{\hyperlink{class_lesson}{Lesson}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lesson_ae0681fd75bb70c1b91f0a1999524c5ce}\label{class_lesson_ae0681fd75bb70c1b91f0a1999524c5ce}} 
+std\+::string {\bfseries get\+Teacher} () const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A \mbox{\hyperlink{class_reservation}{Reservation}} with a \mbox{\hyperlink{class_teacher}{Teacher}} 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_lesson_ad7a2f708f870040627a442cdf000683f}\label{class_lesson_ad7a2f708f870040627a442cdf000683f}} 
+\index{Lesson@{Lesson}!get\+Price@{get\+Price}}
+\index{get\+Price@{get\+Price}!Lesson@{Lesson}}
+\subsubsection{\texorpdfstring{get\+Price()}{getPrice()}}
+{\footnotesize\ttfamily double Lesson\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Constructor of a lesson. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & -\/ \mbox{\hyperlink{class_month}{Month}} of the lesson \\
+\hline
+{\em d} & -\/ \mbox{\hyperlink{class_day}{Day}} of the lesson \\
+\hline
+{\em str\+Hr} & -\/ Starting Hour of the lesson \\
+\hline
+{\em price} & -\/ Price of the lesson \\
+\hline
+{\em dr} & -\/ Duration of the lesson Method to obtain the price of the lesson \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Price of the lesson 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_reservation_a62cdb2f1a24e2fce92fb9f024ae9f494}{Reservation}}.
+
+\mbox{\Hypertarget{class_lesson_a3ac64e2f79bc9e381634d5d30499e8f1}\label{class_lesson_a3ac64e2f79bc9e381634d5d30499e8f1}} 
+\index{Lesson@{Lesson}!read\+Info@{read\+Info}}
+\index{read\+Info@{read\+Info}!Lesson@{Lesson}}
+\subsubsection{\texorpdfstring{read\+Info()}{readInfo()}}
+{\footnotesize\ttfamily void Lesson\+::read\+Info (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{infile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reading the information of a lesson from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infile} & -\/ file to read the information from \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_reservation_acff32024a350c2156af9f74522c59b7b}{Reservation}}.
+
+\mbox{\Hypertarget{class_lesson_a645855060ab3c915a6e0875bc5584887}\label{class_lesson_a645855060ab3c915a6e0875bc5584887}} 
+\index{Lesson@{Lesson}!store\+Info@{store\+Info}}
+\index{store\+Info@{store\+Info}!Lesson@{Lesson}}
+\subsubsection{\texorpdfstring{store\+Info()}{storeInfo()}}
+{\footnotesize\ttfamily void Lesson\+::store\+Info (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{indent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Store in the information of the lesson to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_reservation_a8ec83fe2eb15294c3a51a9998ed17df7}{Reservation}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Reservation.\+h\item 
+Reservation.\+cpp\end{DoxyCompactItemize}

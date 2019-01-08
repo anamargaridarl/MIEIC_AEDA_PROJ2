@@ -1,0 +1,117 @@
+\hypertarget{class_free}{}\section{Free Class Reference}
+\label{class_free}\index{Free@{Free}}
+Inheritance diagram for Free\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_free}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_free_a4a847fee0a934284fc4581282706e885}\label{class_free_a4a847fee0a934284fc4581282706e885}} 
+\mbox{\hyperlink{class_free_a4a847fee0a934284fc4581282706e885}{Free}} ()
+\begin{DoxyCompactList}\small\item\em Constructor of Class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_free_afe1bb925d237595d9fd75fb2e7772314}{Free}} (int m, int d, double str\+Hr, double p, unsigned int dur)
+\item 
+double \mbox{\hyperlink{class_free_a229f009a7535eeba0a6ff4495de8c6bf}{get\+Price}} ()
+\begin{DoxyCompactList}\small\item\em Method to obtain the price of the free. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_free_a5eec9da16ebf4f388d16dd270bd93b64}{store\+Info}} (std\+::ofstream \&outfile, int \mbox{\hyperlink{class_reservation_a480981ed050bae19bc74bbb0bbb459f9}{indent}})
+\begin{DoxyCompactList}\small\item\em Store in the information of the \mbox{\hyperlink{class_free}{Free}} to a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_free_ad1023c825c9790edf0797e2e69dd2fcf}{read\+Info}} (std\+::ifstream \&infile)
+\begin{DoxyCompactList}\small\item\em Reading the information of a \mbox{\hyperlink{class_free}{Free}} from a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_free_acdd5db6cb64932312fc5e096265ebffa}\label{class_free_acdd5db6cb64932312fc5e096265ebffa}} 
+void \mbox{\hyperlink{class_free_acdd5db6cb64932312fc5e096265ebffa}{show}} ()
+\begin{DoxyCompactList}\small\item\em Show the information of the \mbox{\hyperlink{class_free}{Free}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_free_a785a58afc51a7b1920e7b2a96ff9ca52}\label{class_free_a785a58afc51a7b1920e7b2a96ff9ca52}} 
+std\+::string {\bfseries get\+Teacher} () const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_free_afe1bb925d237595d9fd75fb2e7772314}\label{class_free_afe1bb925d237595d9fd75fb2e7772314}} 
+\index{Free@{Free}!Free@{Free}}
+\index{Free@{Free}!Free@{Free}}
+\subsubsection{\texorpdfstring{Free()}{Free()}}
+{\footnotesize\ttfamily Free\+::\+Free (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{d,  }\item[{double}]{str\+Hr,  }\item[{double}]{p,  }\item[{unsigned int}]{dur }\end{DoxyParamCaption})}
+
+Constructor of Class 
+\begin{DoxyParams}{Parameters}
+{\em m} & -\/ month of the reservation \\
+\hline
+{\em d} & -\/ day of the reservation \\
+\hline
+{\em str\+Hr} & -\/ starting Hour of the reservation \\
+\hline
+{\em p} & -\/ price of the reservation \\
+\hline
+{\em dur} & -\/ duration of the reservation \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_free_a229f009a7535eeba0a6ff4495de8c6bf}\label{class_free_a229f009a7535eeba0a6ff4495de8c6bf}} 
+\index{Free@{Free}!get\+Price@{get\+Price}}
+\index{get\+Price@{get\+Price}!Free@{Free}}
+\subsubsection{\texorpdfstring{get\+Price()}{getPrice()}}
+{\footnotesize\ttfamily double Free\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Method to obtain the price of the free. 
+
+\begin{DoxyReturn}{Returns}
+Price of the lesson 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_reservation_a62cdb2f1a24e2fce92fb9f024ae9f494}{Reservation}}.
+
+\mbox{\Hypertarget{class_free_ad1023c825c9790edf0797e2e69dd2fcf}\label{class_free_ad1023c825c9790edf0797e2e69dd2fcf}} 
+\index{Free@{Free}!read\+Info@{read\+Info}}
+\index{read\+Info@{read\+Info}!Free@{Free}}
+\subsubsection{\texorpdfstring{read\+Info()}{readInfo()}}
+{\footnotesize\ttfamily void Free\+::read\+Info (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{infile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reading the information of a \mbox{\hyperlink{class_free}{Free}} from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em infile} & -\/ file to read the information from \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_reservation_acff32024a350c2156af9f74522c59b7b}{Reservation}}.
+
+\mbox{\Hypertarget{class_free_a5eec9da16ebf4f388d16dd270bd93b64}\label{class_free_a5eec9da16ebf4f388d16dd270bd93b64}} 
+\index{Free@{Free}!store\+Info@{store\+Info}}
+\index{store\+Info@{store\+Info}!Free@{Free}}
+\subsubsection{\texorpdfstring{store\+Info()}{storeInfo()}}
+{\footnotesize\ttfamily void Free\+::store\+Info (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{outfile,  }\item[{int}]{indent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Store in the information of the \mbox{\hyperlink{class_free}{Free}} to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outfile} & -\/ the file to write information \\
+\hline
+{\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_reservation_a8ec83fe2eb15294c3a51a9998ed17df7}{Reservation}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Reservation.\+h\item 
+Reservation.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,152 @@
+\hypertarget{class_day}{}\section{Day Class Reference}
+\label{class_day}\index{Day@{Day}}
+
+
+{\ttfamily \#include $<$Calendar.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_day_a0d38b5839dd80b179cb8f0669283b3aa}\label{class_day_a0d38b5839dd80b179cb8f0669283b3aa}} 
+\mbox{\hyperlink{class_day_a0d38b5839dd80b179cb8f0669283b3aa}{Day}} ()
+\begin{DoxyCompactList}\small\item\em Class Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_day_a0ba7af88eca9b5e6ca197c3d40b3ca66}{Day}} (std\+::pair$<$ int, int $>$ work\+Hours)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_day_ae8354b4a88cd98f5513ea6bc5dfb017e}{check\+Schedule}} (double starting\+Hours, int duration) const
+\begin{DoxyCompactList}\small\item\em Check if there\textquotesingle{}s reservation at a given time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_day_ad3c8ca8c171a994c59788965166ae36b}{set\+Schedule}} (double starting\+Hours, int duration)
+\begin{DoxyCompactList}\small\item\em Set a reservation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_day_a730572275262afd18b14cf60bbf98d29}\label{class_day_a730572275262afd18b14cf60bbf98d29}} 
+void {\bfseries unset\+Schedule} (double starting\+Hours, int duration)
+\item 
+void \mbox{\hyperlink{class_day_aa46e0811bd26355979c6cf9f4e4b9df7}{set\+Schedule}} (std\+::vector$<$ bool $>$ schedule)
+\begin{DoxyCompactList}\small\item\em Set the schedule. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_day_a6fc6dfeef1c92b9a5395648c4d0c8a70}{set\+SH}} (int sH)
+\begin{DoxyCompactList}\small\item\em Set the Starting Hour. \end{DoxyCompactList}\item 
+std\+::vector$<$ bool $>$ \mbox{\hyperlink{class_day_a89096a2d290b712108feb7fe3bf7da51}{get\+Schedule}} ()
+\begin{DoxyCompactList}\small\item\em Getter of the schedule. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_day_ab730d15c19486aa3c45839e8f5990c57}{get\+SH}} () const
+\begin{DoxyCompactList}\small\item\em Getter of the Starting Hour. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Each day of reservations 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_day_a0ba7af88eca9b5e6ca197c3d40b3ca66}\label{class_day_a0ba7af88eca9b5e6ca197c3d40b3ca66}} 
+\index{Day@{Day}!Day@{Day}}
+\index{Day@{Day}!Day@{Day}}
+\subsubsection{\texorpdfstring{Day()}{Day()}}
+{\footnotesize\ttfamily Day\+::\+Day (\begin{DoxyParamCaption}\item[{std\+::pair$<$ int, int $>$}]{work\+Hours }\end{DoxyParamCaption})}
+
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em work\+Hours} & -\/ when does the court work \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_day_ae8354b4a88cd98f5513ea6bc5dfb017e}\label{class_day_ae8354b4a88cd98f5513ea6bc5dfb017e}} 
+\index{Day@{Day}!check\+Schedule@{check\+Schedule}}
+\index{check\+Schedule@{check\+Schedule}!Day@{Day}}
+\subsubsection{\texorpdfstring{check\+Schedule()}{checkSchedule()}}
+{\footnotesize\ttfamily bool Day\+::check\+Schedule (\begin{DoxyParamCaption}\item[{double}]{starting\+Hours,  }\item[{int}]{duration }\end{DoxyParamCaption}) const}
+
+
+
+Check if there\textquotesingle{}s reservation at a given time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em starting\+Hours} & -\/ starting hours of the reservation \\
+\hline
+{\em duration} & -\/ duration of the reservation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if it free 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_day_a89096a2d290b712108feb7fe3bf7da51}\label{class_day_a89096a2d290b712108feb7fe3bf7da51}} 
+\index{Day@{Day}!get\+Schedule@{get\+Schedule}}
+\index{get\+Schedule@{get\+Schedule}!Day@{Day}}
+\subsubsection{\texorpdfstring{get\+Schedule()}{getSchedule()}}
+{\footnotesize\ttfamily std\+::vector$<$ bool $>$ Day\+::get\+Schedule (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter of the schedule. 
+
+\begin{DoxyReturn}{Returns}
+vector of the schedule 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_day_ab730d15c19486aa3c45839e8f5990c57}\label{class_day_ab730d15c19486aa3c45839e8f5990c57}} 
+\index{Day@{Day}!get\+SH@{get\+SH}}
+\index{get\+SH@{get\+SH}!Day@{Day}}
+\subsubsection{\texorpdfstring{get\+S\+H()}{getSH()}}
+{\footnotesize\ttfamily int Day\+::get\+SH (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter of the Starting Hour. 
+
+\begin{DoxyReturn}{Returns}
+vector of the Starting Hour 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_day_ad3c8ca8c171a994c59788965166ae36b}\label{class_day_ad3c8ca8c171a994c59788965166ae36b}} 
+\index{Day@{Day}!set\+Schedule@{set\+Schedule}}
+\index{set\+Schedule@{set\+Schedule}!Day@{Day}}
+\subsubsection{\texorpdfstring{set\+Schedule()}{setSchedule()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Day\+::set\+Schedule (\begin{DoxyParamCaption}\item[{double}]{starting\+Hours,  }\item[{int}]{duration }\end{DoxyParamCaption})}
+
+
+
+Set a reservation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em starting\+Hours} & -\/ starting hours of the reservation \\
+\hline
+{\em duration} & -\/ duration of the reservation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_day_aa46e0811bd26355979c6cf9f4e4b9df7}\label{class_day_aa46e0811bd26355979c6cf9f4e4b9df7}} 
+\index{Day@{Day}!set\+Schedule@{set\+Schedule}}
+\index{set\+Schedule@{set\+Schedule}!Day@{Day}}
+\subsubsection{\texorpdfstring{set\+Schedule()}{setSchedule()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Day\+::set\+Schedule (\begin{DoxyParamCaption}\item[{std\+::vector$<$ bool $>$}]{schedule }\end{DoxyParamCaption})}
+
+
+
+Set the schedule. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em schedule} & -\/ vector of the schedule \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_day_a6fc6dfeef1c92b9a5395648c4d0c8a70}\label{class_day_a6fc6dfeef1c92b9a5395648c4d0c8a70}} 
+\index{Day@{Day}!set\+SH@{set\+SH}}
+\index{set\+SH@{set\+SH}!Day@{Day}}
+\subsubsection{\texorpdfstring{set\+S\+H()}{setSH()}}
+{\footnotesize\ttfamily void Day\+::set\+SH (\begin{DoxyParamCaption}\item[{int}]{sH }\end{DoxyParamCaption})}
+
+
+
+Set the Starting Hour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sH} & -\/ starting Hour \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Calendar.\+h\item 
+Calendar.\+cpp\end{DoxyCompactItemize}

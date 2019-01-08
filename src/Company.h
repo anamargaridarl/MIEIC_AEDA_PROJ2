@@ -47,9 +47,9 @@ class Company
 {
 private:
 	std::vector<Court> tennisCourts; /**< vector with all the Courts */
-	tabTeach teachers;
-	std::set<User> users; /**< vector with all the Users */
-	std::priority_queue<Supporter> techSupport;
+	tabTeach teachers; /**< Hashtable with all the teachers*/
+	std::set<User> users; /**< BST with all the Users */
+	std::priority_queue<Supporter> techSupport; /**< Heap with all the Repairer*/
 	double cardValue;
 	Date date; /**< Current date*/
 
@@ -271,32 +271,205 @@ public:
      */
     void showTeacherLessons (std::string teacher);
 
+    /**
+     * @brief Showing the Current date
+     */
     void showDate();
 
 
+    /**
+     * @brief Changing the status of teacher
+     * @param teacher - the name of said teacher
+     * @param newstat - the status wanted to maintain
+     * @return if the teacher was found and changed
+     */
+    bool changeTeacherStatus(std::string teacher,bool newstat);
+
+    /**
+     * @brief Removal of an active Teacher
+     * @param teacher - the name of said teacher
+     * @return if it was successfull
+     */
+
     bool removeActiveTeacher(std::string teacher);
-    bool rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &subst, std::string username);
+
+
+    /**
+     * @brief Rescheduling the Lessons of a given teacher
+     * @param lessons - the lessons to be changed
+     * @param reservs - the reservations to be changed in the user
+     * @param subst - the teacher itself
+     * @param username - the user
+     * @return if it was successful
+     */
+     bool rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &subst, std::string username);
+
+    /**
+     * @brief Changing the name of a person
+     * @param name - the current name
+     * @param newName - the new Name
+     * @param flag if it is a teacher or a student
+     */
+
+  
     void changeName(std::string name, std::string newName, int flag);
+
+    /**
+     * @brief Changing the age of a person
+     * @param name - the current name
+     * @param newAge - the new age
+     * @param flag - if it is a teacher or a student
+     */
     void changeAge(std::string name, int newAge, int flag);
+    /**
+     * @brief Changing the Gender of a person
+     * @param name - the current name
+     * @param newgender - the new Gender
+     * @param flag - if it is a teacher or a student
+     */
 	void changeGender(std::string name, std::string newgender, int flag);
+
+	/**
+	 * @brief Changing if a person is Gold or not
+	 * @param name - the current name
+	 * @param isGold - the new Gold status
+	 */
     void changeisGold(std::string name, bool isGold);
+
+    /**
+     * @brief Checking if the given value is a proper NIF
+     * @param nif - the actual NIF
+     * @return - if it is a NIF or not
+     */
     bool checkNIF(int nif);
+
+    /**
+     * @brief Changing the NIF of a user
+     * @param name - the current name
+     * @param newNIF - the newNIF
+     */
     void changeNIF(std::string name, int newNIF);
-    void changeAddress(std::string name, std::string newAdress);
+
+    /**
+     * @brief Changing the Address of a user
+     * @param name - the current name
+     * @param newAddress - the new Address
+     */
+    void changeAddress(std::string name, std::string newAddress);
+
+
+
+
+	
+	void changeReservation(std::string name, unsigned int duration, int month, int day, double startingHour);
+  /**
+	 * @brief Deleting a User
+	 * @param name - the name of the User
+	 */
 	void deleteUser(std::string name);
 
 
+	/**
+	 * @brief Scheduling a repair for a given Court
+	 * @param day - the day of the repair
+	 * @param month - the month of the repair
+	 * @param ID - the ID of the court
+	 */
     void scheduleRepair(int day, int month, unsigned ID);
+
+    /**
+     * @brief Add a new Repairer to the company
+     * @param name - the name of said Repairer
+     * @param gender - the gender of said Repairer
+     */
     void addRepairer(std::string name, std::string gender);
+
+    /**
+     * @brief Removal of a Repairer from the company
+     * @param id - The Repairer ID
+     */
     void removeRepairer(unsigned id);
+
+    /**
+     * @brief Listing all Repairers
+     */
     void listAllRepairers() const;
 
+
+    //get the scheduled reservation of a given user, if possible
+    /**
+     * @brief Get a scheduled Reservation of a given user
+     * @param userName - the name of the User
+     * @param reservs - the reservations of a given user
+     * @param month - the month of the reservation
+     * @param day - the day of the reservation
+     * @param startingHour - the starting hour of the reservation
+     * @param duration - the duration of the reservation
+     * @return - an iterator pointing to the reservation
+     */
+    //get the scheduled lesson of a given teacher, if possible
+	std::vector<Lesson*>::iterator getScheduledLesson(std::string teacherName, std::vector<Lesson*> lessons, int month,int day,double startingHour, unsigned int duration);
+
+	/**
+    * @brief Get a scheduled Reservation of a given teacher
+    * @param userName - the name of the Teacher
+    * @param reservs - the reservations of a given Teacher
+    * @param month - the month of the lesson
+    * @param day - the day of the lesson
+    * @param startingHour - the starting hour of the lesson
+    * @param duration - the duration of the lesson
+    * @return - an iterator pointing to the lesson
+    */
+	std::vector<Reservation*>::iterator getScheduledReservation(std::string userName, std::vector <Reservation*> reservs, int month,int day, double startingHour, unsigned int duration);
+
+	/**
+	 * @brief modifying the time of a given Reservation
+	 * @param username - the name of the user
+	 * @param month - the month of the reservation
+	 * @param day - the day of the reservation
+	 * @param startingHour - the starting hour of the reservation
+	 * @param duration - the duration of the reservation
+	 * @param newMonth - the new month of the reservation
+	 * @param newDay - the new day of the reservation
+	 * @param newStartHour - the new starting hour of the reservation
+	 * @param newDuration - the new duration of the reservation
+	 * @return - if it was successful
+	 */
     bool modifyReservation(std::string username, int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,
 						   unsigned int newDuration);
 
+	/**
+	 * @brief deleting the time of a given Reservation
+	 * @param username - the name of the user
+	 * @param month - the month of the reservation
+	 * @param day - the day of the reservation
+	 * @param startingHour - the starting hour of the reservation
+	 * @param duration - the duration of the reservation
+	 * @return - if it was successful
+	 */
     bool deleteReservation(std::string username, int month, int day, double startingHour, unsigned int duration);
+  	/**
+     * @brief Listing all Repairers available to in the next days
+     * @param daysUntilAvailable - the maximum number of days for the repairer to be available
+     */
     void listAvailableRepairers(unsigned daysUntilAvailable) const;
+
+    /**
+     * @brief Unscheduling a given Repair to a specific Court
+     * @param id - the ID of the Court
+     * @param day - the day of the Repair
+     * @param month - the month of the Repair
+     */
     void unscheduleRepair(unsigned id, unsigned day, unsigned month);
+
+	/**
+	 * @brief Rescheduling a given Repair to a specific Court
+	 * @param id - the ID of the Court
+	 * @param day - the day of the Repair
+	 * @param month - the month of the Repair
+	 * @param newDay - the new Day of the Repair
+	 * @param newMonth - the new Month of the Mont
+	 */
     void rescheduleRepair(unsigned id, unsigned day, unsigned month, unsigned newDay, unsigned newMonth);
 
     void changeRepairerName(unsigned id, std::string newName);
@@ -472,5 +645,6 @@ public:
 	NoRepair(unsigned day, unsigned month, unsigned id): day(day), month(month), id(id){};
 	std::string what() const;
 };
+
 
 #endif /* SRC_COMPANY_H_ */
