@@ -853,7 +853,9 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cin >> flagNumbers;
                         newm = stoi(isNumber(flagNumbers));
 
+
                         C.rescheduleRepair(id,m,d,newd,newm);
+
                         break;
                     }
                     case 5: {
@@ -891,7 +893,14 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cin >> flagNumbers;
                         id = stoi(isNumber(flagNumbers));
 
-                        C.removeRepairer(id);
+                        try{
+                            C.removeRepairer(id);
+                        }
+                        catch(NoSupporterID &u)
+                        {
+                            cout << u.what() << endl;
+                        }
+
                         break;
                     }
                     case 7: {

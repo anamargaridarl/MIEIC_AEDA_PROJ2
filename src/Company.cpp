@@ -679,8 +679,26 @@ bool Company::rescheduleLessons(std::vector<Reservation *> &reservs, Teacher &su
 
 void Company::rescheduleRepair(unsigned id, unsigned day, unsigned month, unsigned newDay, unsigned newMonth)
 {
-    Company::unscheduleRepair(id, day, month);
-    Company::scheduleRepair(newDay, newMonth, id);
+   try{
+       unscheduleRepair(id, day, month);
+   }
+   catch(NoRepair &u)
+   {
+       cout << u.what() << endl;
+   }
+
+    try{
+        scheduleRepair(newDay, newMonth, id);
+    }
+    catch(NoSupporterAvailable &u)
+    {
+        cout << u.what() << endl;
+    }
+    catch(NoCourtID &u)
+    {
+        cout << u.what() << endl;
+    }
+
 }
 
 
