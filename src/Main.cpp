@@ -682,10 +682,6 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     cin>> flagNumbers;
                     duration = stoi(isNumber(flagNumbers));
 
-                    cin.ignore();
-                    cout << "New User name: " << endl;
-                    getline(cin,newname);
-
                     cout << "New Month: " <<endl;
                     cin>> flagNumbers;
                     newm = stoi(isNumber(flagNumbers));
@@ -844,6 +840,8 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         {
                             cout << u.what() << endl;
                         }
+
+                        break;
                     }
                     case 4:
                     {
@@ -856,6 +854,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         newm = stoi(isNumber(flagNumbers));
 
                         C.rescheduleRepair(id,m,d,newd,newm);
+                        break;
                     }
                     case 5: {
                         cout << "---------------------------------------------- " << endl;
