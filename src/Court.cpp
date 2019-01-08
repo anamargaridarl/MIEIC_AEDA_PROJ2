@@ -333,7 +333,7 @@ void Court::readInfo(std::ifstream &infile)
 				savingMonth.setDays(days);
 				months.push_back(savingMonth); //Saves another month
 			}
-			if(monthCounter == 12) // If 12 months are already stored it stops
+			if(monthCounter == 12 && savingString.find('\t\t\t\t]') != string::npos) // If 12 months are already stored it stops
 			{
 				break;
 			}

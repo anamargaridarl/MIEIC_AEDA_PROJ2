@@ -1035,13 +1035,15 @@ void Company::readInfo(std::ifstream &infile) {
 
 		if (savingString.find("tennisCourts") != string::npos) {
 			while (getline(infile, savingString)) {
-			if (savingString.find(']') != string::npos) {
+			if (savingString.find("\t],") != string::npos) {
 					break;
 				}
-
+			if(savingString.find('{') != string::npos)
+			{
 				Court c;
 				c.readInfo(infile);
 				tennisCourts.push_back(c);
+			}
 			}
 		}
 
