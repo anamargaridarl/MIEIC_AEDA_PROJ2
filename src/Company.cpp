@@ -129,7 +129,7 @@ bool Company::makeLesson(int month,int day,double startingHour,string userName)
 		if(!temp.getStatus()) {
 			throw (InactiveTeacher(temp.getName()));
 		}
-		for(auto j : tennisCourts) // Finds the first court where it can reserve the Class
+		for(auto &j : tennisCourts) // Finds the first court where it can reserve the Class
 		{
 			if(j.reserveClass(month,day,startingHour,u,temp)) {
 				teachers.insert(temp);
@@ -371,7 +371,7 @@ bool Company::makeUserInvoice(string userName,int month)
 
 void Company::scheduleRepair(int day, int month, unsigned ID)
 {
-	if(this->tennisCourts.size() > ID)
+	if(this->tennisCourts.size() < ID)
 		throw NoCourtID(ID);
 	Date d(day, month, this->date.getYear());
 	vector<Supporter> aux;

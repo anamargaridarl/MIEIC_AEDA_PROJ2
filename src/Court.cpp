@@ -21,7 +21,7 @@ Court::Court() {}
 bool Court::isOccupied(int month, int day, double startingHour, int duration)
 {
 	// Checks the schedule for the specified month
-	return (this->currentYear.getMonth(month).getDay(day).checkSchedule(startingHour, duration));
+	return !(this->currentYear.getMonth(month).getDay(day).checkSchedule(startingHour, duration));
 }
 
 void Court::modifyReservation( int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,unsigned int newDuration)
