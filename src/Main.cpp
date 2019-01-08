@@ -667,19 +667,19 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     getline(cin,name);
 
                     cout << "Month: " <<endl;
-                    cin>> flagCase;
+                    cin>> flagNumbers;
                     m = stoi(isNumber(flagNumbers));
 
                     cout << "Day: "<< endl;
-                    cin>> flagCase;
+                    cin>> flagNumbers;
                     d = stoi(isNumber(flagNumbers));
 
                     cout << "Starting Hour: " <<endl;
-                    cin>> flagCase;
+                    cin>> flagNumbers;
                     strH = stoi(isNumber(flagNumbers));
 
                     cout << "Duration: "<< endl;
-                    cin>> flagCase;
+                    cin>> flagNumbers;
                     duration = stoi(isNumber(flagNumbers));
 
                     cin.ignore();
@@ -687,19 +687,19 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     getline(cin,newname);
 
                     cout << "New Month: " <<endl;
-                    cin>> flagCase;
+                    cin>> flagNumbers;
                     newm = stoi(isNumber(flagNumbers));
 
                     cout << "New Day: "<< endl;
-                    cin>> flagCase;
+                    cin>> flagNumbers;
                     newd = stoi(isNumber(flagNumbers));
 
                     cout << "New Starting Hour: "<< endl;
-                    cin>> flagCase;
+                    cin>> flagNumbers;
                     newstrH = stoi(isNumber(flagNumbers));
 
                     cout << "New Duration: "<< endl;
-                    cin>> flagCase;
+                    cin>> flagNumbers;
                     newduration = stoi(isNumber(flagNumbers));
 
 
@@ -715,19 +715,19 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         getline(cin,name);
 
                         cout << "Month: " <<endl;
-                        cin>> flagCase;
+                        cin>> flagNumbers;
                         m = stoi(isNumber(flagNumbers));
 
                         cout << "Day: "<< endl;
-                        cin>> flagCase;
+                        cin>> flagNumbers;
                         d = stoi(isNumber(flagNumbers));
 
                         cout << "Starting Hour: " <<endl;
-                        cin>> flagCase;
+                        cin>> flagNumbers;
                         strH = stoi(isNumber(flagNumbers));
 
                         cout << "Duration: "<< endl;
-                        cin>> flagCase;
+                        cin>> flagNumbers;
                         duration = stoi(isNumber(flagNumbers));
 
                         C.deleteReservation(spaceAtEnd(name),m,d,strH,duration);
