@@ -57,24 +57,6 @@ public:
 	std::string getGender() const;
 
 	/**
-	 * @brief Setter of the name of the person
-	 * @param name - name of the person
-	 */
-	void setName(std::string name);
-
-	/**
-	 * @brief Setter of the age of the person
-	 * @param age - age of the person
-	 */
-	void setAge(int age);
-
-	/**
-	 * @brief Setter of the gender of the person
-	 * @param gender - gender of the person
-	 */
-	void setGender(std::string gender);
-
-	/**
 	 *
 	 * @brief Store in the information of the Person to a file
 	 * @param outfile - the file to write information
@@ -151,7 +133,7 @@ public:
 	 * @param isGold - does the person have the Gold Card
 	 * @param assignedTeacher - the teacher assigned to the person
 	 */
-	User(std::string name,int age, std::string gender, bool isGold, std::string assignedTeacher, std::string address, int nif);
+	User(std::string name,int age, std::string gender, bool isGold, std::string assignedTeacher, std::string address, int nif, bool active);
 
 	/**
 	 * @brief Make a person have a Gold Card
@@ -318,11 +300,16 @@ public:
 	 */
   	friend bool operator<(User r1, User r2);
 
+  bool isActive() const;
+    void changeActive(bool active);
+
+
 
 private:
 	bool isGold; /**< does the user have a Gold Card? */
 	int NIF; /**< The NIF of a user*/
 	std::string address; /**< The address of said user*/
+	bool active;
 	std::string assignedTeacher; /**< name of the assigned teacher*/
 	std::vector<Report*> reports; /**< vector of the reports */
 	std::vector<Reservation*> reservations; /**< vector of the reservations */
@@ -414,6 +401,8 @@ public:
 	 * @brief Clears the Number of students the teacher has
 	 */
 	void cleanNStudents();
+
+	void removeStudent();
 
 	void setLessons(std::vector<Lesson*> les);
 

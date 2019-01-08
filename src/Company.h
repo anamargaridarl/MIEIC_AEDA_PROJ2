@@ -54,6 +54,14 @@ private:
 	Date date; /**< Current date*/
 
 	void updateAvailableDays();
+
+	//get the scheduled reservation of a given user, if possible
+	std::vector<Reservation*>::iterator getScheduledReservation( std::vector <Reservation*> &reservs,const int &month, const int &day, const double &startingHour,
+																 const unsigned int &duration);
+	//get the scheduled lesson of a given teacher, if possible
+	std::vector<Lesson*>::iterator getScheduledLesson(std::string teacherName, std::vector<Lesson*> &lessons, const int &month, const int &day, const double &startingHour,
+													  const unsigned int &durationn);
+
 public:
 	/**
 	 *
@@ -144,7 +152,7 @@ public:
 	 * @param gender - the gender of the User
 	 * @return if the user was succesfully created
 	 */
-	bool registerUser(std::string name, int age,bool isGold,std::string gender,std::string adress, int nif);
+	bool registerUser(std::string name, int age,bool isGold,std::string gender,std::string adress, int nif, bool active);
 	//tested
 
 	/**
@@ -282,6 +290,7 @@ public:
      * @param teacher - the name of said teacher
      * @return if it was successfull
      */
+
     bool removeActiveTeacher(std::string teacher);
 
 
@@ -462,6 +471,8 @@ public:
 	 * @param newMonth - the new Month of the Mont
 	 */
     void rescheduleRepair(unsigned id, unsigned day, unsigned month, unsigned newDay, unsigned newMonth);
+
+    void changeRepairerName(unsigned id, std::string newName);
 };
 
 

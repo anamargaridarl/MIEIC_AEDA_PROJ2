@@ -21,7 +21,7 @@ Court::Court() {}
 bool Court::isOccupied(int month, int day, double startingHour, int duration)
 {
 	// Checks the schedule for the specified month
-	return (this->currentYear.getMonth(month).getDay(day).checkSchedule(startingHour, duration));
+	return !(this->currentYear.getMonth(month).getDay(day).checkSchedule(startingHour, duration));
 }
 
 void Court::modifyReservation( int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour,unsigned int newDuration)
@@ -58,7 +58,7 @@ CourtReserved::CourtReserved(int month, int day, double sH)
 }
 
 string CourtReserved::what()const{
-	return "The court is not available on the day " + to_string(this->day) + " of the month " + to_string(this->month) + " at "
+	return "No court is available on the day " + to_string(this->day) + " of the month " + to_string(this->month) + " at "
 			+ to_string(this->startingHour) + '\n';
 
 }
@@ -333,7 +333,7 @@ void Court::readInfo(std::ifstream &infile)
 				savingMonth.setDays(days);
 				months.push_back(savingMonth); //Saves another month
 			}
-			if(monthCounter == 12) // If 12 months are already stored it stops
+			if(monthCounter == 12 && savingString.find('\t\t\t\t]') != string::npos) // If 12 months are already stored it stops
 			{
 				break;
 			}
@@ -347,6 +347,21 @@ int Court::getMaxUsers() const
 {
 	return maxUsers;
 }
+
+double Court::hoursleft(int month, int day)
+{
+	double counter = 0;
+	for(const auto &i: 	this->currentYear.getMonth(month).getDay(day).getSchedule())
+	{
+		if(i == false)
+			counter += 1;
+	}
+	counter /= 2;
+
+	cout << "There are still " << counter << " hours left on this court" << endl;
+}
+
+
 
 std::string NoCourtfound::what() const
 {

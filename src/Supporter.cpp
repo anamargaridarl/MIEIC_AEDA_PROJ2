@@ -146,6 +146,7 @@ void Supporter::readInfo(std::ifstream &infile)
     string savingString;
     while (getline(infile, savingString))
     {
+        bool flag = false;
         if(savingString.find("Name") != string::npos)
         {
             savingString = savingString.substr(savingString.find(" "));
@@ -192,10 +193,13 @@ void Supporter::readInfo(std::ifstream &infile)
                     getline(infile, savingString);
                 }
                 if(savingString.find("]") != string::npos) {
+                    flag = true;
                     break;
                 }
             }
         }
+        if(flag)
+            break;
     }
 }
 
