@@ -831,7 +831,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         }
                         break;
                     }
-                    case 3:
+                    case 4:
                     {
                         try{
                             C.unscheduleRepair(id,m,d);
@@ -843,7 +843,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
 
                         break;
                     }
-                    case 4:
+                    case 3:
                     {
                         cout << "New Day" << endl;
                         cin >> flagNumbers;
