@@ -53,6 +53,10 @@ private:
 	double cardValue;
 	Date date; /**< Current date*/
 
+	/**
+	 * @brief Updating the number of days until each repairer is available on the increment of the
+	 * the day
+	 */
 	void updateAvailableDays();
 
 	/**
