@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AEDA TENNIS COURTS PART 2: Court Class Reference</title>
+<title>AEDA TENNIS COURTS PT2: Court Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AEDA TENNIS COURTS PART 2
+   <div id="projectname">AEDA TENNIS COURTS PT2
    </div>
   </td>
  </tr>
@@ -104,15 +104,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abb97f1c2df77bd02e788ac7d4709eaa8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_court.html#abb97f1c2df77bd02e788ac7d4709eaa8">occupied</a> (int month, int day, double startingHour, int duration)</td></tr>
 <tr class="memdesc:abb97f1c2df77bd02e788ac7d4709eaa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the <a class="el" href="class_court.html">Court</a> is already reserved at the given time.  <a href="#abb97f1c2df77bd02e788ac7d4709eaa8">More...</a><br /></td></tr>
 <tr class="separator:abb97f1c2df77bd02e788ac7d4709eaa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4536a06bcc2aec8a144d134ae64f2e6"><td class="memItemLeft" align="right" valign="top"><a id="ae4536a06bcc2aec8a144d134ae64f2e6"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isOccupied</b> (int month, int day, double startingHour, int duration)</td></tr>
+<tr class="memitem:ae4536a06bcc2aec8a144d134ae64f2e6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_court.html#ae4536a06bcc2aec8a144d134ae64f2e6">isOccupied</a> (int month, int day, double startingHour, int duration)</td></tr>
+<tr class="memdesc:ae4536a06bcc2aec8a144d134ae64f2e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the court is occupied at a given time.  <a href="#ae4536a06bcc2aec8a144d134ae64f2e6">More...</a><br /></td></tr>
 <tr class="separator:ae4536a06bcc2aec8a144d134ae64f2e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8ca7155497bdf17742b013b39c7ac3f"><td class="memItemLeft" align="right" valign="top"><a id="ac8ca7155497bdf17742b013b39c7ac3f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>modifyReservation</b> (int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour, unsigned int newDuration)</td></tr>
-<tr class="separator:ac8ca7155497bdf17742b013b39c7ac3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5041b8a1dd8463f4b184497a63f718f0"><td class="memItemLeft" align="right" valign="top"><a id="a5041b8a1dd8463f4b184497a63f718f0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>unsetReservation</b> (int month, int day, double startingHour, unsigned int duration)</td></tr>
+<tr class="memitem:a5041b8a1dd8463f4b184497a63f718f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_court.html#a5041b8a1dd8463f4b184497a63f718f0">unsetReservation</a> (int month, int day, double startingHour, unsigned int duration)</td></tr>
+<tr class="memdesc:a5041b8a1dd8463f4b184497a63f718f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unschedule a given reservation.  <a href="#a5041b8a1dd8463f4b184497a63f718f0">More...</a><br /></td></tr>
 <tr class="separator:a5041b8a1dd8463f4b184497a63f718f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb67c98e97c13d7eb9e49622a2e12aff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_court.html#abb67c98e97c13d7eb9e49622a2e12aff">hoursleft</a> (int month, int day)</td></tr>
+<tr class="memdesc:abb67c98e97c13d7eb9e49622a2e12aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of hours left at a given time at a court.  <a href="#abb67c98e97c13d7eb9e49622a2e12aff">More...</a><br /></td></tr>
+<tr class="separator:abb67c98e97c13d7eb9e49622a2e12aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The information of each <a class="el" href="class_court.html">Court</a> </p>
@@ -164,6 +164,43 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>unsetReservation</b> 
 
 </div>
 </div>
+<a id="abb67c98e97c13d7eb9e49622a2e12aff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb67c98e97c13d7eb9e49622a2e12aff">&#9670;&nbsp;</a></span>hoursleft()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Court::hoursleft </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>day</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The number of hours left at a given time at a court. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">month</td><td>- the month of the day to be checked </td></tr>
+    <tr><td class="paramname">day</td><td>- the day itself </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ae08f3e2f1119073fffc251fc1e725550"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae08f3e2f1119073fffc251fc1e725550">&#9670;&nbsp;</a></span>indent()</h2>
 
@@ -198,6 +235,58 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>unsetReservation</b> 
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ae4536a06bcc2aec8a144d134ae64f2e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4536a06bcc2aec8a144d134ae64f2e6">&#9670;&nbsp;</a></span>isOccupied()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Court::isOccupied </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>startingHour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>duration</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the court is occupied at a given time. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">month</td><td>- the month of the reservation </td></tr>
+    <tr><td class="paramname">day</td><td>- the day of the reservation </td></tr>
+    <tr><td class="paramname">startingHour</td><td>- the starting hour of the reservation </td></tr>
+    <tr><td class="paramname">duration</td><td>- the duration of reservation </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>- if it is occupied </dd></dl>
 
 </div>
 </div>
@@ -453,6 +542,57 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>unsetReservation</b> 
   <table class="params">
     <tr><td class="paramname">outfile</td><td>- the file to write information </td></tr>
     <tr><td class="paramname">indent</td><td>- current indentation </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5041b8a1dd8463f4b184497a63f718f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5041b8a1dd8463f4b184497a63f718f0">&#9670;&nbsp;</a></span>unsetReservation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Court::unsetReservation </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>day</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>startingHour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>duration</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unschedule a given reservation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">month</td><td>- the month of the reservation </td></tr>
+    <tr><td class="paramname">day</td><td>- the day of the reservation </td></tr>
+    <tr><td class="paramname">startingHour</td><td>- the starting hour of the reservation </td></tr>
+    <tr><td class="paramname">duration</td><td>- the duration of the reservation </td></tr>
   </table>
   </dd>
 </dl>

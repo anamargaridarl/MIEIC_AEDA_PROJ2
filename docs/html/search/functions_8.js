@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['makefree',['makeFree',['../class_company.html#a56fa75dd66690eae0853a3f3278220e3',1,'Company']]],
-  ['makegold',['makeGold',['../class_user.html#a1ddb4cbabc84ef92ac92bfe6f9385d39',1,'User']]],
-  ['makelesson',['makeLesson',['../class_company.html#a88745d2eaf511e686eccfa14601a302b',1,'Company']]],
-  ['makeuserinvoice',['makeUserInvoice',['../class_company.html#a955b07492e04edd5ed83f695ee362ab4',1,'Company']]],
-  ['makeuserreport',['makeUserReport',['../class_company.html#acc2aba7c2f4149021e9b93ab423e417b',1,'Company']]],
-  ['modifyreservation',['modifyReservation',['../class_company.html#a0ff732d93249a55653c7b9e3cf191e19',1,'Company']]],
-  ['month',['Month',['../class_month.html#a36882c55ece9c4210ec1b01bd665ec89',1,'Month::Month()'],['../class_month.html#a4abb71ddcd1dfed172a828d8598bbdc7',1,'Month::Month(int month, int days)']]]
+  ['lesson',['Lesson',['../class_lesson.html#a1f6ed0da97171480b7d6d5696d6f2afc',1,'Lesson']]],
+  ['listallrepairers',['listAllRepairers',['../class_company.html#abbe74aec59b9be5b5c546dcfed9873a0',1,'Company']]],
+  ['listavailablerepairers',['listAvailableRepairers',['../class_company.html#a12366416c26ae1d5046695261374f440',1,'Company']]],
+  ['loadclass',['loadClass',['../class_person.html#af07a032df8d56dddade4dc43960b536b',1,'Person::loadClass()'],['../class_user.html#abc12a9ca668bd860a3d6d2ae4791997d',1,'User::loadClass()'],['../class_teacher.html#a1f204644af41c43ff3bd0582393062fa',1,'Teacher::loadClass()']]]
 ];

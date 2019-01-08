@@ -60,7 +60,9 @@ void {\bfseries set\+Duration} (unsigned int dur)
 \item 
 \mbox{\Hypertarget{class_reservation_ac6ebe4b7db1ae78f11af83527f9405a6}\label{class_reservation_ac6ebe4b7db1ae78f11af83527f9405a6}} 
 void {\bfseries set\+Price} (double \mbox{\hyperlink{class_reservation_a82e197bd30e7949ee9b8616ee4eacf83}{price}})
-\end{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_reservation_afa8eadd14292a52c6a404078690a7f87}{set\+Teacher}} (std\+::string teacher)
+\begin{DoxyCompactList}\small\item\em Set the teacher of the \mbox{\hyperlink{class_lesson}{Lesson}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -258,6 +260,25 @@ Reading the information of a \mbox{\hyperlink{class_reservation}{Reservation}} f
 
 
 Reimplemented in \mbox{\hyperlink{class_free_ad1023c825c9790edf0797e2e69dd2fcf}{Free}}, and \mbox{\hyperlink{class_lesson_a3ac64e2f79bc9e381634d5d30499e8f1}{Lesson}}.
+
+\mbox{\Hypertarget{class_reservation_afa8eadd14292a52c6a404078690a7f87}\label{class_reservation_afa8eadd14292a52c6a404078690a7f87}} 
+\index{Reservation@{Reservation}!set\+Teacher@{set\+Teacher}}
+\index{set\+Teacher@{set\+Teacher}!Reservation@{Reservation}}
+\subsubsection{\texorpdfstring{set\+Teacher()}{setTeacher()}}
+{\footnotesize\ttfamily void Reservation\+::set\+Teacher (\begin{DoxyParamCaption}\item[{std\+::string}]{teacher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set the teacher of the \mbox{\hyperlink{class_lesson}{Lesson}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em teacher} & -\/ the name of the teacher \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{class_lesson_acbfde853aea74c9f2a3a6d50a4812705}{Lesson}}.
 
 \mbox{\Hypertarget{class_reservation_a8ec83fe2eb15294c3a51a9998ed17df7}\label{class_reservation_a8ec83fe2eb15294c3a51a9998ed17df7}} 
 \index{Reservation@{Reservation}!store\+Info@{store\+Info}}

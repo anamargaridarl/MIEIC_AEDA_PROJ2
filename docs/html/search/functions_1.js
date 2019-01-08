@@ -6,6 +6,7 @@ var searchData=
   ['changeisgold',['changeisGold',['../class_company.html#ab33cbb2392281b852f32ef6869309d68',1,'Company']]],
   ['changename',['changeName',['../class_company.html#a51a026758b4b56b4a2e0fa937125480d',1,'Company']]],
   ['changenif',['changeNIF',['../class_company.html#ae7974a9da357a7e7dcbea0d8afd25908',1,'Company']]],
+  ['changerepairername',['changeRepairerName',['../class_company.html#af3c6fb096e7983f540bdb993852fa47b',1,'Company']]],
   ['changeteacherstatus',['changeTeacherStatus',['../class_company.html#a6ab661c94b41a0b6ef74fec280bf849e',1,'Company']]],
   ['checkavailability',['checkAvailability',['../class_supporter.html#abc9023e59feac7f460aac0d182d3175d',1,'Supporter']]],
   ['checknif',['checkNIF',['../class_company.html#a53a891acc19de4d24a82fd9f108cfe68',1,'Company']]],

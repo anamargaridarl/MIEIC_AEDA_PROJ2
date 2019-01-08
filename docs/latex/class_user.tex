@@ -16,7 +16,7 @@ Inheritance diagram for User\+:\begin{figure}[H]
 \mbox{\Hypertarget{class_user_a4a0137053e591fbb79d9057dd7d2283d}\label{class_user_a4a0137053e591fbb79d9057dd7d2283d}} 
 \mbox{\hyperlink{class_user_a4a0137053e591fbb79d9057dd7d2283d}{User}} ()
 \begin{DoxyCompactList}\small\item\em Constructor of the class. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_user_afb81317eadcdbe867c09baea47e31e96}{User}} (std\+::string name, int age, std\+::string gender, bool is\+Gold, std\+::string assigned\+Teacher, std\+::string address, int nif)
+\mbox{\hyperlink{class_user_a26dacc0c7b6de0809db02d76a81cddbf}{User}} (std\+::string name, int age, std\+::string gender, bool is\+Gold, std\+::string assigned\+Teacher, std\+::string address, int nif, bool active)
 \begin{DoxyCompactList}\small\item\em Constructor of the class. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_user_a1ddb4cbabc84ef92ac92bfe6f9385d39}\label{class_user_a1ddb4cbabc84ef92ac92bfe6f9385d39}} 
 void \mbox{\hyperlink{class_user_a1ddb4cbabc84ef92ac92bfe6f9385d39}{make\+Gold}} ()
@@ -76,7 +76,13 @@ void \mbox{\hyperlink{class_user_ab29f666469897568a6c592869cc0a4f9}{delete\+User
 void \mbox{\hyperlink{class_user_a3161559f3e7b4c29b8a60a51f3d002ad}{edit\+Teacher}} (std\+::string new\+Teacher)
 \begin{DoxyCompactList}\small\item\em Editing the name of a \mbox{\hyperlink{class_teacher}{Teacher}} assigned. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_user_a0f8f72211ae7a56e413ad70358f96a19}{edit\+Reservations}} (std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$r)
-\begin{DoxyCompactList}\small\item\em C\+Hanging the reservations of a user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em C\+Hanging the reservations of a user. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_user_a9c6060d37c200406c1561fd211181127}\label{class_user_a9c6060d37c200406c1561fd211181127}} 
+bool {\bfseries is\+Active} () const
+\item 
+\mbox{\Hypertarget{class_user_a285d0407afd20799a269b45fc9e7cfe3}\label{class_user_a285d0407afd20799a269b45fc9e7cfe3}} 
+void {\bfseries change\+Active} (bool active)
+\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -88,11 +94,11 @@ bool \mbox{\hyperlink{class_user_a87114b6342ed4dc307aa3a185258b4c0}{operator$<$}
 The users of the court 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_user_afb81317eadcdbe867c09baea47e31e96}\label{class_user_afb81317eadcdbe867c09baea47e31e96}} 
+\mbox{\Hypertarget{class_user_a26dacc0c7b6de0809db02d76a81cddbf}\label{class_user_a26dacc0c7b6de0809db02d76a81cddbf}} 
 \index{User@{User}!User@{User}}
 \index{User@{User}!User@{User}}
 \subsubsection{\texorpdfstring{User()}{User()}}
-{\footnotesize\ttfamily User\+::\+User (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{age,  }\item[{std\+::string}]{gender,  }\item[{bool}]{is\+Gold,  }\item[{std\+::string}]{assigned\+Teacher,  }\item[{std\+::string}]{address,  }\item[{int}]{nif }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily User\+::\+User (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{int}]{age,  }\item[{std\+::string}]{gender,  }\item[{bool}]{is\+Gold,  }\item[{std\+::string}]{assigned\+Teacher,  }\item[{std\+::string}]{address,  }\item[{int}]{nif,  }\item[{bool}]{active }\end{DoxyParamCaption})}
 
 
 

@@ -28,15 +28,12 @@ void \mbox{\hyperlink{class_court_ae44417638404c3caf4579104e633a2f4}{set\+Max\+U
 \begin{DoxyCompactList}\small\item\em Setter of the maximum of users. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_court_abb97f1c2df77bd02e788ac7d4709eaa8}{occupied}} (int month, int day, double starting\+Hour, int duration)
 \begin{DoxyCompactList}\small\item\em Check if the \mbox{\hyperlink{class_court}{Court}} is already reserved at the given time. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_court_ae4536a06bcc2aec8a144d134ae64f2e6}\label{class_court_ae4536a06bcc2aec8a144d134ae64f2e6}} 
-bool {\bfseries is\+Occupied} (int month, int day, double starting\+Hour, int duration)
-\item 
-\mbox{\Hypertarget{class_court_ac8ca7155497bdf17742b013b39c7ac3f}\label{class_court_ac8ca7155497bdf17742b013b39c7ac3f}} 
-void {\bfseries modify\+Reservation} (int month, int day, double starting\+Hour, unsigned int duration, int new\+Month, int new\+Day, double new\+Start\+Hour, unsigned int new\+Duration)
-\item 
-\mbox{\Hypertarget{class_court_a5041b8a1dd8463f4b184497a63f718f0}\label{class_court_a5041b8a1dd8463f4b184497a63f718f0}} 
-void {\bfseries unset\+Reservation} (int month, int day, double starting\+Hour, unsigned int duration)
-\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{class_court_ae4536a06bcc2aec8a144d134ae64f2e6}{is\+Occupied}} (int month, int day, double starting\+Hour, int duration)
+\begin{DoxyCompactList}\small\item\em Checks if the court is occupied at a given time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_court_a5041b8a1dd8463f4b184497a63f718f0}{unset\+Reservation}} (int month, int day, double starting\+Hour, unsigned int duration)
+\begin{DoxyCompactList}\small\item\em Unschedule a given reservation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_court_abb67c98e97c13d7eb9e49622a2e12aff}{hoursleft}} (int month, int day)
+\begin{DoxyCompactList}\small\item\em The number of hours left at a given time at a court. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -74,6 +71,23 @@ Getter of the Maximum of Users.
 \begin{DoxyReturn}{Returns}
 the maximum of Users 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_court_abb67c98e97c13d7eb9e49622a2e12aff}\label{class_court_abb67c98e97c13d7eb9e49622a2e12aff}} 
+\index{Court@{Court}!hoursleft@{hoursleft}}
+\index{hoursleft@{hoursleft}!Court@{Court}}
+\subsubsection{\texorpdfstring{hoursleft()}{hoursleft()}}
+{\footnotesize\ttfamily void Court\+::hoursleft (\begin{DoxyParamCaption}\item[{int}]{month,  }\item[{int}]{day }\end{DoxyParamCaption})}
+
+
+
+The number of hours left at a given time at a court. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ the month of the day to be checked \\
+\hline
+{\em day} & -\/ the day itself \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_court_ae08f3e2f1119073fffc251fc1e725550}\label{class_court_ae08f3e2f1119073fffc251fc1e725550}} 
 \index{Court@{Court}!indent@{indent}}
 \index{indent@{indent}!Court@{Court}}
@@ -91,6 +105,30 @@ Indenting the file.
 {\em indent} & -\/ current indentation \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{class_court_ae4536a06bcc2aec8a144d134ae64f2e6}\label{class_court_ae4536a06bcc2aec8a144d134ae64f2e6}} 
+\index{Court@{Court}!is\+Occupied@{is\+Occupied}}
+\index{is\+Occupied@{is\+Occupied}!Court@{Court}}
+\subsubsection{\texorpdfstring{is\+Occupied()}{isOccupied()}}
+{\footnotesize\ttfamily bool Court\+::is\+Occupied (\begin{DoxyParamCaption}\item[{int}]{month,  }\item[{int}]{day,  }\item[{double}]{starting\+Hour,  }\item[{int}]{duration }\end{DoxyParamCaption})}
+
+
+
+Checks if the court is occupied at a given time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ the month of the reservation \\
+\hline
+{\em day} & -\/ the day of the reservation \\
+\hline
+{\em starting\+Hour} & -\/ the starting hour of the reservation \\
+\hline
+{\em duration} & -\/ the duration of reservation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/ if it is occupied 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_court_abb97f1c2df77bd02e788ac7d4709eaa8}\label{class_court_abb97f1c2df77bd02e788ac7d4709eaa8}} 
 \index{Court@{Court}!occupied@{occupied}}
 \index{occupied@{occupied}!Court@{Court}}
@@ -209,6 +247,27 @@ Store in the information of the \mbox{\hyperlink{class_court}{Court}} to a file.
 {\em outfile} & -\/ the file to write information \\
 \hline
 {\em indent} & -\/ current indentation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_court_a5041b8a1dd8463f4b184497a63f718f0}\label{class_court_a5041b8a1dd8463f4b184497a63f718f0}} 
+\index{Court@{Court}!unset\+Reservation@{unset\+Reservation}}
+\index{unset\+Reservation@{unset\+Reservation}!Court@{Court}}
+\subsubsection{\texorpdfstring{unset\+Reservation()}{unsetReservation()}}
+{\footnotesize\ttfamily void Court\+::unset\+Reservation (\begin{DoxyParamCaption}\item[{int}]{month,  }\item[{int}]{day,  }\item[{double}]{starting\+Hour,  }\item[{unsigned int}]{duration }\end{DoxyParamCaption})}
+
+
+
+Unschedule a given reservation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em month} & -\/ the month of the reservation \\
+\hline
+{\em day} & -\/ the day of the reservation \\
+\hline
+{\em starting\+Hour} & -\/ the starting hour of the reservation \\
+\hline
+{\em duration} & -\/ the duration of the reservation \\
 \hline
 \end{DoxyParams}
 

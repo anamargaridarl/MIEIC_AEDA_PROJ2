@@ -28,9 +28,10 @@ void \mbox{\hyperlink{class_lesson_a3ac64e2f79bc9e381634d5d30499e8f1}{read\+Info
 \mbox{\Hypertarget{class_lesson_add2dea9a07935a757249e1c0ed0d79e1}\label{class_lesson_add2dea9a07935a757249e1c0ed0d79e1}} 
 void \mbox{\hyperlink{class_lesson_add2dea9a07935a757249e1c0ed0d79e1}{show}} ()
 \begin{DoxyCompactList}\small\item\em Show the information of the \mbox{\hyperlink{class_lesson}{Lesson}}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_lesson_ae0681fd75bb70c1b91f0a1999524c5ce}\label{class_lesson_ae0681fd75bb70c1b91f0a1999524c5ce}} 
-std\+::string {\bfseries get\+Teacher} () const
-\end{DoxyCompactItemize}
+std\+::string \mbox{\hyperlink{class_lesson_ae0681fd75bb70c1b91f0a1999524c5ce}{get\+Teacher}} () const
+\begin{DoxyCompactList}\small\item\em Getter for the teacher of the \mbox{\hyperlink{class_lesson}{Lesson}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_lesson_acbfde853aea74c9f2a3a6d50a4812705}{set\+Teacher}} (std\+::string teacher)
+\begin{DoxyCompactList}\small\item\em Setter for the teacher of the lesson. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
@@ -68,6 +69,23 @@ Price of the lesson
 
 Reimplemented from \mbox{\hyperlink{class_reservation_a62cdb2f1a24e2fce92fb9f024ae9f494}{Reservation}}.
 
+\mbox{\Hypertarget{class_lesson_ae0681fd75bb70c1b91f0a1999524c5ce}\label{class_lesson_ae0681fd75bb70c1b91f0a1999524c5ce}} 
+\index{Lesson@{Lesson}!get\+Teacher@{get\+Teacher}}
+\index{get\+Teacher@{get\+Teacher}!Lesson@{Lesson}}
+\subsubsection{\texorpdfstring{get\+Teacher()}{getTeacher()}}
+{\footnotesize\ttfamily std\+::string Lesson\+::get\+Teacher (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Getter for the teacher of the \mbox{\hyperlink{class_lesson}{Lesson}}. 
+
+\begin{DoxyReturn}{Returns}
+-\/ the name of the of teacher 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_reservation}{Reservation}}.
+
 \mbox{\Hypertarget{class_lesson_a3ac64e2f79bc9e381634d5d30499e8f1}\label{class_lesson_a3ac64e2f79bc9e381634d5d30499e8f1}} 
 \index{Lesson@{Lesson}!read\+Info@{read\+Info}}
 \index{read\+Info@{read\+Info}!Lesson@{Lesson}}
@@ -86,6 +104,25 @@ Reading the information of a lesson from a file.
 
 
 Reimplemented from \mbox{\hyperlink{class_reservation_acff32024a350c2156af9f74522c59b7b}{Reservation}}.
+
+\mbox{\Hypertarget{class_lesson_acbfde853aea74c9f2a3a6d50a4812705}\label{class_lesson_acbfde853aea74c9f2a3a6d50a4812705}} 
+\index{Lesson@{Lesson}!set\+Teacher@{set\+Teacher}}
+\index{set\+Teacher@{set\+Teacher}!Lesson@{Lesson}}
+\subsubsection{\texorpdfstring{set\+Teacher()}{setTeacher()}}
+{\footnotesize\ttfamily void Lesson\+::set\+Teacher (\begin{DoxyParamCaption}\item[{std\+::string}]{teacher }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Setter for the teacher of the lesson. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em teacher} & -\/ the name of the teacher \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_reservation_afa8eadd14292a52c6a404078690a7f87}{Reservation}}.
 
 \mbox{\Hypertarget{class_lesson_a645855060ab3c915a6e0875bc5584887}\label{class_lesson_a645855060ab3c915a6e0875bc5584887}} 
 \index{Lesson@{Lesson}!store\+Info@{store\+Info}}
