@@ -216,6 +216,11 @@ bool Company::registerUser(string name, int age,bool isGold,string gender, strin
 			u.editGender(gender);
 			u.changeActive(true);
 			users.insert(u);
+
+			Teacher temp = getTeacher(u.getTeacher());
+			temp.addStudent();
+			teachers.insert(temp);
+
 			return true;
         } else {
 			users.insert(u);//Checks if there's a user already registered
