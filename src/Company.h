@@ -36,12 +36,13 @@ struct teacherHash
 
 
 
-/**
- * The company itself, operation all of the rest
- */
+
 
 typedef std::unordered_set<Teacher,teacherHash,teacherHash> tabTeach;
 
+/**
+ * The company itself, operation all of the rest
+ */
 
 class Company
 {
@@ -50,7 +51,7 @@ private:
 	tabTeach teachers; /**< Hashtable with all the teachers*/
 	std::set<User> users; /**< BST with all the Users */
 	std::priority_queue<Supporter> techSupport; /**< Heap with all the Repairer*/
-	double cardValue;
+	double cardValue; /**< The current card associated to this company */
 	Date date; /**< Current date*/
 
 	/**

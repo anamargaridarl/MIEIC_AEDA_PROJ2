@@ -6,7 +6,6 @@ var searchData=
   ['setinvoice',['setInvoice',['../class_user.html#ad0432b83c7379ca57ed782d2929f3b8a',1,'User']]],
   ['setlesson',['setLesson',['../class_teacher.html#aec95be6f77dc2b692627a6f4a5385971',1,'Teacher']]],
   ['setlessons',['setLessons',['../class_teacher.html#a6c234671dbd738bee06f9a34bf11aca4',1,'Teacher']]],
-  ['setmaxusers',['setMaxUsers',['../class_court.html#ae44417638404c3caf4579104e633a2f4',1,'Court']]],
   ['setmonth',['setMonth',['../class_month.html#a9f6e8f474768770ae897e53177eb1797',1,'Month']]],
   ['setmonths',['setMonths',['../class_year.html#a1478407d9100f722e54daaf1ce2a413c',1,'Year']]],
   ['setname',['setName',['../class_supporter.html#af192615aa7e4a17969f84448bca88498',1,'Supporter']]],
@@ -30,7 +29,6 @@ var searchData=
   ['showuserreservations',['showUserReservations',['../class_company.html#a428b70dbf9acd5edb34ee131ff1f8613',1,'Company']]],
   ['showusers',['showUsers',['../class_company.html#a9446ed52b7e2831b24488072d1e54cde',1,'Company']]],
   ['starthourinsideres',['StartHourInsideRes',['../class_start_hour_inside_res.html',1,'']]],
-  ['stopgold',['stopGold',['../class_user.html#a88a8b41f134b21aeb702c481ffee0ef4',1,'User']]],
   ['storeinfo',['storeInfo',['../class_company.html#ac03f62f1accf21eb445a7aa5731b1199',1,'Company::storeInfo()'],['../class_court.html#a25104f6ccd6fea2d3a33798f2e30451e',1,'Court::storeInfo()'],['../class_date.html#a979593888deb70d07fd12f8f869a109c',1,'Date::storeInfo()'],['../class_invoice.html#a326f9548d517f1f432939e0c8231a84e',1,'Invoice::storeInfo()'],['../class_person.html#a80f87df3f644706c2ad8fc8b800fdd95',1,'Person::storeInfo()'],['../class_user.html#aac5ff0f6899f3ce56d1b2d12ed557c79',1,'User::storeInfo()'],['../class_teacher.html#a2ece0d60fa7ec4aaf93333aa0be0d25f',1,'Teacher::storeInfo()'],['../class_report.html#a47faf2023bd07e59ab0296e8d0b2d512',1,'Report::storeInfo()'],['../class_reservation.html#a8ec83fe2eb15294c3a51a9998ed17df7',1,'Reservation::storeInfo()'],['../class_lesson.html#a645855060ab3c915a6e0875bc5584887',1,'Lesson::storeInfo()'],['../class_free.html#a5eec9da16ebf4f388d16dd270bd93b64',1,'Free::storeInfo()'],['../class_supporter.html#a83e75eda663c2dc14a60022e6e8f610f',1,'Supporter::storeInfo()']]],
   ['supporter',['Supporter',['../class_supporter.html',1,'Supporter'],['../class_supporter.html#a8978fd48c8dee1f7a3b023b5d20de611',1,'Supporter::Supporter()'],['../class_supporter.html#a930a75166ab9e6104c9a55d025289168',1,'Supporter::Supporter(const std::string &amp;name, const std::string &amp;gender)']]]
 ];

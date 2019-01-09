@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['readduser',['reAddUser',['../class_company.html#acbd7b1d6be4ae5e3322add41e2be256e',1,'Company']]],
   ['readinfo',['readInfo',['../class_company.html#a2b97cd4ed80ecab0aa92d0f9c1f81071',1,'Company::readInfo()'],['../class_court.html#a2d801d3edd9d0280ef0420b131e07f2e',1,'Court::readInfo()'],['../class_date.html#ad23dffa000ed62018a399c519acb06db',1,'Date::readInfo()'],['../class_invoice.html#aae19e485510f08c56be425b4634246ed',1,'Invoice::readInfo()'],['../class_report.html#ad36785f4f4531404a6464c6d5ce5a69b',1,'Report::readInfo()'],['../class_reservation.html#acff32024a350c2156af9f74522c59b7b',1,'Reservation::readInfo()'],['../class_lesson.html#a3ac64e2f79bc9e381634d5d30499e8f1',1,'Lesson::readInfo()'],['../class_free.html#ad1023c825c9790edf0797e2e69dd2fcf',1,'Free::readInfo()'],['../class_supporter.html#ada44d7fddeaec2ec925faa375af7b29e',1,'Supporter::readInfo()']]],
   ['registerteacher',['registerTeacher',['../class_company.html#afd7f0c326672c6bb6a23d5921503bc0d',1,'Company']]],
   ['registeruser',['registerUser',['../class_company.html#af58211dba6c7fa61b81648145dbb165e',1,'Company']]],

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AEDA TENNIS COURTS PT2: Company Class Reference</title>
+<title>TENNIS COURTS PT 2: Company Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AEDA TENNIS COURTS PT2
+   <div id="projectname">TENNIS COURTS PT 2
    </div>
+   <div id="projectbrief">A system designed to operate the backend of a tennis court company, with all of its details</div>
   </td>
  </tr>
  </tbody>
@@ -68,6 +69,8 @@ $(function() {
 <div class="title">Company Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_company_8h_source.html">Company.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -78,9 +81,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac038a4c5e02f13a7bab9b5139990316e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#ac038a4c5e02f13a7bab9b5139990316e">Company</a> (double cardValue, <a class="el" href="class_date.html">Date</a> d)</td></tr>
 <tr class="memdesc:ac038a4c5e02f13a7bab9b5139990316e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#ac038a4c5e02f13a7bab9b5139990316e">More...</a><br /></td></tr>
 <tr class="separator:ac038a4c5e02f13a7bab9b5139990316e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a837fd39a8f03c20a3ceb8617410956b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a837fd39a8f03c20a3ceb8617410956b7">getMaxUser</a> () const</td></tr>
-<tr class="memdesc:a837fd39a8f03c20a3ceb8617410956b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter of Maximum of users in all courts  <a href="#a837fd39a8f03c20a3ceb8617410956b7">More...</a><br /></td></tr>
-<tr class="separator:a837fd39a8f03c20a3ceb8617410956b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10770d690a59f9b4d9f84de6d0f527c9"><td class="memItemLeft" align="right" valign="top"><a id="a10770d690a59f9b4d9f84de6d0f527c9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a10770d690a59f9b4d9f84de6d0f527c9">createCourt</a> ()</td></tr>
 <tr class="memdesc:a10770d690a59f9b4d9f84de6d0f527c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creating a new <a class="el" href="class_court.html">Court</a>. <br /></td></tr>
@@ -88,20 +88,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:afa0ab125a0ba718fe2c13802fe1703be"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_court.html">Court</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#afa0ab125a0ba718fe2c13802fe1703be">getCourts</a> ()</td></tr>
 <tr class="memdesc:afa0ab125a0ba718fe2c13802fe1703be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter of the current Courts.  <a href="#afa0ab125a0ba718fe2c13802fe1703be">More...</a><br /></td></tr>
 <tr class="separator:afa0ab125a0ba718fe2c13802fe1703be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06704156dc1962518149b2307e448691"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_user.html">User</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a06704156dc1962518149b2307e448691">getUsers</a> ()</td></tr>
-<tr class="memdesc:a06704156dc1962518149b2307e448691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter of the current Users.  <a href="#a06704156dc1962518149b2307e448691">More...</a><br /></td></tr>
-<tr class="separator:a06704156dc1962518149b2307e448691"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a000159ce012318a6edf0335447ad8bde"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_teacher.html">Teacher</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a000159ce012318a6edf0335447ad8bde">getTeachers</a> ()</td></tr>
 <tr class="memdesc:a000159ce012318a6edf0335447ad8bde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter of the current Teachers.  <a href="#a000159ce012318a6edf0335447ad8bde">More...</a><br /></td></tr>
 <tr class="separator:a000159ce012318a6edf0335447ad8bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbd7b1d6be4ae5e3322add41e2be256e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#acbd7b1d6be4ae5e3322add41e2be256e">reAddUser</a> (<a class="el" href="class_user.html">User</a> u)</td></tr>
-<tr class="memdesc:acbd7b1d6be4ae5e3322add41e2be256e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter of a specific <a class="el" href="class_user.html">User</a>.  <a href="#acbd7b1d6be4ae5e3322add41e2be256e">More...</a><br /></td></tr>
-<tr class="separator:acbd7b1d6be4ae5e3322add41e2be256e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f222b5e97b060c0603c42e64d7567a6"><td class="memItemLeft" align="right" valign="top"><a id="a1f222b5e97b060c0603c42e64d7567a6"></a>
-<a class="el" href="class_user.html">User</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getUser</b> (std::string userName)</td></tr>
+<tr class="memitem:a1f222b5e97b060c0603c42e64d7567a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_user.html">User</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a1f222b5e97b060c0603c42e64d7567a6">getUser</a> (std::string userName)</td></tr>
+<tr class="memdesc:a1f222b5e97b060c0603c42e64d7567a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter of a specific <a class="el" href="class_user.html">User</a>.  <a href="#a1f222b5e97b060c0603c42e64d7567a6">More...</a><br /></td></tr>
 <tr class="separator:a1f222b5e97b060c0603c42e64d7567a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a166411c9ee427d89abd9349191434fbf"><td class="memItemLeft" align="right" valign="top"><a id="a166411c9ee427d89abd9349191434fbf"></a>
-<a class="el" href="class_teacher.html">Teacher</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getTeacher</b> (std::string teacherName)</td></tr>
+<tr class="memitem:a166411c9ee427d89abd9349191434fbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_teacher.html">Teacher</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a166411c9ee427d89abd9349191434fbf">getTeacher</a> (std::string teacherName)</td></tr>
+<tr class="memdesc:a166411c9ee427d89abd9349191434fbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter of a specific <a class="el" href="class_teacher.html">Teacher</a>.  <a href="#a166411c9ee427d89abd9349191434fbf">More...</a><br /></td></tr>
 <tr class="separator:a166411c9ee427d89abd9349191434fbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88745d2eaf511e686eccfa14601a302b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a88745d2eaf511e686eccfa14601a302b">makeLesson</a> (int month, int day, double startingHour, std::string userName)</td></tr>
 <tr class="separator:a88745d2eaf511e686eccfa14601a302b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,12 +111,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </ul>
  <a href="#afd7f0c326672c6bb6a23d5921503bc0d">More...</a><br /></td></tr>
 <tr class="separator:afd7f0c326672c6bb6a23d5921503bc0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc2aba7c2f4149021e9b93ab423e417b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#acc2aba7c2f4149021e9b93ab423e417b">makeUserReport</a> (int month, std::string userName, std::string teacherName)</td></tr>
-<tr class="memdesc:acc2aba7c2f4149021e9b93ab423e417b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make a <a class="el" href="class_report.html">Report</a> for a specific user.  <a href="#acc2aba7c2f4149021e9b93ab423e417b">More...</a><br /></td></tr>
-<tr class="separator:acc2aba7c2f4149021e9b93ab423e417b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a955b07492e04edd5ed83f695ee362ab4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a955b07492e04edd5ed83f695ee362ab4">makeUserInvoice</a> (std::string userName, int month)</td></tr>
-<tr class="memdesc:a955b07492e04edd5ed83f695ee362ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make an <a class="el" href="class_invoice.html">Invoice</a> for a specific user.  <a href="#a955b07492e04edd5ed83f695ee362ab4">More...</a><br /></td></tr>
-<tr class="separator:a955b07492e04edd5ed83f695ee362ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cda4441776f3abe755cb78b32fc0f46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a8cda4441776f3abe755cb78b32fc0f46">makeUserReport</a> (<a class="el" href="class_user.html">User</a> &amp;a, int month, std::string userName, std::string teacherName)</td></tr>
+<tr class="memdesc:a8cda4441776f3abe755cb78b32fc0f46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make a <a class="el" href="class_report.html">Report</a> for a specific user.  <a href="#a8cda4441776f3abe755cb78b32fc0f46">More...</a><br /></td></tr>
+<tr class="separator:a8cda4441776f3abe755cb78b32fc0f46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25feed1c9ea0ec0c33ab593f1b43ac18"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a25feed1c9ea0ec0c33ab593f1b43ac18">makeUserInvoice</a> (<a class="el" href="class_user.html">User</a> &amp;a, std::string userName, int month)</td></tr>
+<tr class="memdesc:a25feed1c9ea0ec0c33ab593f1b43ac18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make an <a class="el" href="class_invoice.html">Invoice</a> for a specific user.  <a href="#a25feed1c9ea0ec0c33ab593f1b43ac18">More...</a><br /></td></tr>
+<tr class="separator:a25feed1c9ea0ec0c33ab593f1b43ac18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c00c88b245aef0e0e52864b585f8f6b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a2c00c88b245aef0e0e52864b585f8f6b">showReport</a> (std::string name, int month)</td></tr>
 <tr class="memdesc:a2c00c88b245aef0e0e52864b585f8f6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to show a specific <a class="el" href="class_report.html">Report</a>.  <a href="#a2c00c88b245aef0e0e52864b585f8f6b">More...</a><br /></td></tr>
 <tr class="separator:a2c00c88b245aef0e0e52864b585f8f6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,9 +163,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#ad5477594a7c735a070c9076192d0bfe1">showDate</a> ()</td></tr>
 <tr class="memdesc:ad5477594a7c735a070c9076192d0bfe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Showing the Current date. <br /></td></tr>
 <tr class="separator:ad5477594a7c735a070c9076192d0bfe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ab661c94b41a0b6ef74fec280bf849e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a6ab661c94b41a0b6ef74fec280bf849e">changeTeacherStatus</a> (std::string teacher, bool newstat)</td></tr>
-<tr class="memdesc:a6ab661c94b41a0b6ef74fec280bf849e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changing the status of teacher.  <a href="#a6ab661c94b41a0b6ef74fec280bf849e">More...</a><br /></td></tr>
-<tr class="separator:a6ab661c94b41a0b6ef74fec280bf849e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad35562fb6b18125ab7fe30cb79639cf7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#ad35562fb6b18125ab7fe30cb79639cf7">removeActiveTeacher</a> (std::string teacher)</td></tr>
 <tr class="memdesc:ad35562fb6b18125ab7fe30cb79639cf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removal of an active <a class="el" href="class_teacher.html">Teacher</a>.  <a href="#ad35562fb6b18125ab7fe30cb79639cf7">More...</a><br /></td></tr>
 <tr class="separator:ad35562fb6b18125ab7fe30cb79639cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,9 +190,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:aa5eac670a965d063cd700acc09effec7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#aa5eac670a965d063cd700acc09effec7">changeAddress</a> (std::string name, std::string newAddress)</td></tr>
 <tr class="memdesc:aa5eac670a965d063cd700acc09effec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changing the Address of a user.  <a href="#aa5eac670a965d063cd700acc09effec7">More...</a><br /></td></tr>
 <tr class="separator:aa5eac670a965d063cd700acc09effec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af337b6d41e6e526ad05dea5e75e78cdb"><td class="memItemLeft" align="right" valign="top"><a id="af337b6d41e6e526ad05dea5e75e78cdb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>changeReservation</b> (std::string name, unsigned int duration, int month, int day, double startingHour)</td></tr>
-<tr class="separator:af337b6d41e6e526ad05dea5e75e78cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d85a33848aad31a2d369179c6f46b08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a0d85a33848aad31a2d369179c6f46b08">deleteUser</a> (std::string name)</td></tr>
 <tr class="memdesc:a0d85a33848aad31a2d369179c6f46b08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deleting a <a class="el" href="class_user.html">User</a>.  <a href="#a0d85a33848aad31a2d369179c6f46b08">More...</a><br /></td></tr>
 <tr class="separator:a0d85a33848aad31a2d369179c6f46b08"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -218,12 +206,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>changeReservation</b>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#abbe74aec59b9be5b5c546dcfed9873a0">listAllRepairers</a> () const</td></tr>
 <tr class="memdesc:abbe74aec59b9be5b5c546dcfed9873a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listing all Repairers. <br /></td></tr>
 <tr class="separator:abbe74aec59b9be5b5c546dcfed9873a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa501c307dde54a11d29d4fa13c609e86"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_lesson.html">Lesson</a> * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#aa501c307dde54a11d29d4fa13c609e86">getScheduledLesson</a> (std::string teacherName, std::vector&lt; <a class="el" href="class_lesson.html">Lesson</a> *&gt; lessons, int month, int day, double startingHour, unsigned int duration)</td></tr>
-<tr class="memdesc:aa501c307dde54a11d29d4fa13c609e86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a scheduled <a class="el" href="class_reservation.html">Reservation</a> of a given user.  <a href="#aa501c307dde54a11d29d4fa13c609e86">More...</a><br /></td></tr>
-<tr class="separator:aa501c307dde54a11d29d4fa13c609e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10cd87587fff183acb73b901574f3ec0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_reservation.html">Reservation</a> * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a10cd87587fff183acb73b901574f3ec0">getScheduledReservation</a> (std::string userName, std::vector&lt; <a class="el" href="class_reservation.html">Reservation</a> *&gt; reservs, int month, int day, double startingHour, unsigned int duration)</td></tr>
-<tr class="memdesc:a10cd87587fff183acb73b901574f3ec0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a scheduled <a class="el" href="class_reservation.html">Reservation</a> of a given teacher.  <a href="#a10cd87587fff183acb73b901574f3ec0">More...</a><br /></td></tr>
-<tr class="separator:a10cd87587fff183acb73b901574f3ec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ff732d93249a55653c7b9e3cf191e19"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_company.html#a0ff732d93249a55653c7b9e3cf191e19">modifyReservation</a> (std::string username, int month, int day, double startingHour, unsigned int duration, int newMonth, int newDay, double newStartHour, unsigned int newDuration)</td></tr>
 <tr class="memdesc:a0ff732d93249a55653c7b9e3cf191e19"><td class="mdescLeft">&#160;</td><td class="mdescRight">modifying the time of a given <a class="el" href="class_reservation.html">Reservation</a>  <a href="#a0ff732d93249a55653c7b9e3cf191e19">More...</a><br /></td></tr>
 <tr class="separator:a0ff732d93249a55653c7b9e3cf191e19"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -243,7 +225,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:af3c6fb096e7983f540bdb993852fa47b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the name of a repairer.  <a href="#af3c6fb096e7983f540bdb993852fa47b">More...</a><br /></td></tr>
 <tr class="separator:af3c6fb096e7983f540bdb993852fa47b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The company itself, operation all of the rest </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac038a4c5e02f13a7bab9b5139990316e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac038a4c5e02f13a7bab9b5139990316e">&#9670;&nbsp;</a></span>Company()</h2>
 
@@ -598,44 +582,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a6ab661c94b41a0b6ef74fec280bf849e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ab661c94b41a0b6ef74fec280bf849e">&#9670;&nbsp;</a></span>changeTeacherStatus()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Company::changeTeacherStatus </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>teacher</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>newstat</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Changing the status of teacher. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">teacher</td><td>- the name of said teacher </td></tr>
-    <tr><td class="paramname">newstat</td><td>- the status wanted to maintain </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>if the teacher was found and changed </dd></dl>
-
-</div>
-</div>
 <a id="a53a891acc19de4d24a82fd9f108cfe68"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a53a891acc19de4d24a82fd9f108cfe68">&#9670;&nbsp;</a></span>checkNIF()</h2>
 
@@ -768,155 +714,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a837fd39a8f03c20a3ceb8617410956b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a837fd39a8f03c20a3ceb8617410956b7">&#9670;&nbsp;</a></span>getMaxUser()</h2>
+<a id="a166411c9ee427d89abd9349191434fbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a166411c9ee427d89abd9349191434fbf">&#9670;&nbsp;</a></span>getTeacher()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Company::getMaxUser </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>getter of Maximum of users in all courts </p>
-<dl class="section return"><dt>Returns</dt><dd>maximum of users in all courts </dd></dl>
-
-</div>
-</div>
-<a id="aa501c307dde54a11d29d4fa13c609e86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa501c307dde54a11d29d4fa13c609e86">&#9670;&nbsp;</a></span>getScheduledLesson()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="class_lesson.html">Lesson</a>*&gt;::iterator Company::getScheduledLesson </td>
+          <td class="memname"><a class="el" href="class_teacher.html">Teacher</a> Company::getTeacher </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>teacherName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>teacherName</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="class_lesson.html">Lesson</a> *&gt;&#160;</td>
-          <td class="paramname"><em>lessons</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>month</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>day</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>startingHour</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>duration</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get a scheduled <a class="el" href="class_reservation.html">Reservation</a> of a given user. </p>
+<p>Getter of a specific <a class="el" href="class_teacher.html">Teacher</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">userName</td><td>- the name of the <a class="el" href="class_user.html">User</a> </td></tr>
-    <tr><td class="paramname">reservs</td><td>- the reservations of a given user </td></tr>
-    <tr><td class="paramname">month</td><td>- the month of the reservation </td></tr>
-    <tr><td class="paramname">day</td><td>- the day of the reservation </td></tr>
-    <tr><td class="paramname">startingHour</td><td>- the starting hour of the reservation </td></tr>
-    <tr><td class="paramname">duration</td><td>- the duration of the reservation </td></tr>
+    <tr><td class="paramname">teacherName</td><td>- name of the <a class="el" href="class_teacher.html">Teacher</a> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>- an iterator pointing to the reservation </dd></dl>
-
-</div>
-</div>
-<a id="a10cd87587fff183acb73b901574f3ec0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10cd87587fff183acb73b901574f3ec0">&#9670;&nbsp;</a></span>getScheduledReservation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="class_reservation.html">Reservation</a>*&gt;::iterator Company::getScheduledReservation </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>userName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="class_reservation.html">Reservation</a> *&gt;&#160;</td>
-          <td class="paramname"><em>reservs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>month</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>day</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>startingHour</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>duration</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get a scheduled <a class="el" href="class_reservation.html">Reservation</a> of a given teacher. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">userName</td><td>- the name of the <a class="el" href="class_teacher.html">Teacher</a> </td></tr>
-    <tr><td class="paramname">reservs</td><td>- the reservations of a given <a class="el" href="class_teacher.html">Teacher</a> </td></tr>
-    <tr><td class="paramname">month</td><td>- the month of the lesson </td></tr>
-    <tr><td class="paramname">day</td><td>- the day of the lesson </td></tr>
-    <tr><td class="paramname">startingHour</td><td>- the starting hour of the lesson </td></tr>
-    <tr><td class="paramname">duration</td><td>- the duration of the lesson </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>- an iterator pointing to the lesson </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the teacher </dd></dl>
 
 </div>
 </div>
@@ -940,23 +761,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a06704156dc1962518149b2307e448691"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06704156dc1962518149b2307e448691">&#9670;&nbsp;</a></span>getUsers()</h2>
+<a id="a1f222b5e97b060c0603c42e64d7567a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f222b5e97b060c0603c42e64d7567a6">&#9670;&nbsp;</a></span>getUser()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">set&lt; <a class="el" href="class_user.html">User</a> &gt; Company::getUsers </td>
+          <td class="memname"><a class="el" href="class_user.html">User</a> Company::getUser </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>userName</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Getter of the current Users. </p>
-<dl class="section return"><dt>Returns</dt><dd>vector of Users </dd></dl>
+<p>Getter of a specific <a class="el" href="class_user.html">User</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userName</td><td>- name of the <a class="el" href="class_user.html">User</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the user </dd></dl>
 
 </div>
 </div>
@@ -1133,15 +961,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a955b07492e04edd5ed83f695ee362ab4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a955b07492e04edd5ed83f695ee362ab4">&#9670;&nbsp;</a></span>makeUserInvoice()</h2>
+<a id="a25feed1c9ea0ec0c33ab593f1b43ac18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25feed1c9ea0ec0c33ab593f1b43ac18">&#9670;&nbsp;</a></span>makeUserInvoice()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Company::makeUserInvoice </td>
+          <td class="memname">void Company::makeUserInvoice </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="class_user.html">User</a> &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>userName</em>, </td>
         </tr>
@@ -1171,15 +1005,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="acc2aba7c2f4149021e9b93ab423e417b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc2aba7c2f4149021e9b93ab423e417b">&#9670;&nbsp;</a></span>makeUserReport()</h2>
+<a id="a8cda4441776f3abe755cb78b32fc0f46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cda4441776f3abe755cb78b32fc0f46">&#9670;&nbsp;</a></span>makeUserReport()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Company::makeUserReport </td>
+          <td class="memname">void Company::makeUserReport </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="class_user.html">User</a> &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>month</em>, </td>
         </tr>
@@ -1320,33 +1160,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>The operator to go through a day and all its necessary situations. </p>
 <dl class="section return"><dt>Returns</dt><dd>the company itself </dd></dl>
-
-</div>
-</div>
-<a id="acbd7b1d6be4ae5e3322add41e2be256e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbd7b1d6be4ae5e3322add41e2be256e">&#9670;&nbsp;</a></span>reAddUser()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Company::reAddUser </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_user.html">User</a>&#160;</td>
-          <td class="paramname"><em>u</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Getter of a specific <a class="el" href="class_user.html">User</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">userName</td><td>- name of the <a class="el" href="class_user.html">User</a> </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>a reference to the user </dd></dl>
 
 </div>
 </div>
@@ -1957,8 +1770,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_company_8h_source.html">Company.h</a></li>
-<li>Company.cpp</li>
+<li>/home/andrefmrocha/Projects/MIEIC_18_19_AEDA_PT2/src/<a class="el" href="_company_8h_source.html">Company.h</a></li>
+<li>/home/andrefmrocha/Projects/MIEIC_18_19_AEDA_PT2/src/Company.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

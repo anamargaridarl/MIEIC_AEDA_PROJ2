@@ -18,14 +18,6 @@ Inheritance diagram for User\+:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Constructor of the class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_user_a26dacc0c7b6de0809db02d76a81cddbf}{User}} (std\+::string name, int age, std\+::string gender, bool is\+Gold, std\+::string assigned\+Teacher, std\+::string address, int nif, bool active)
 \begin{DoxyCompactList}\small\item\em Constructor of the class. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_user_a1ddb4cbabc84ef92ac92bfe6f9385d39}\label{class_user_a1ddb4cbabc84ef92ac92bfe6f9385d39}} 
-void \mbox{\hyperlink{class_user_a1ddb4cbabc84ef92ac92bfe6f9385d39}{make\+Gold}} ()
-\begin{DoxyCompactList}\small\item\em Make a person have a Gold Card. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_user_a88a8b41f134b21aeb702c481ffee0ef4}\label{class_user_a88a8b41f134b21aeb702c481ffee0ef4}} 
-void \mbox{\hyperlink{class_user_a88a8b41f134b21aeb702c481ffee0ef4}{stop\+Gold}} ()
-\begin{DoxyCompactList}\small\item\em Stop a person from having a Gold Card. \end{DoxyCompactList}\item 
-std\+::string \mbox{\hyperlink{class_user_aef1759300db1bca3c84af6af79f00365}{get\+Address}} () const
-\begin{DoxyCompactList}\small\item\em Getting the address of a person. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{class_user_ad87b45e028489ed785fa82a4c9fc6739}{get\+Reservation\+Size}} () const
 \begin{DoxyCompactList}\small\item\em Getting the size of Reservations vector. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_user_abd33fb93abc0209808bab9ffc6c2482c}{getis\+Gold}} () const
@@ -36,8 +28,6 @@ int \mbox{\hyperlink{class_user_a5e98c1820005dd6915bccd75bd573cea}{get\+N\+IF}} 
 \item 
 \mbox{\hyperlink{class_invoice}{Invoice}} \mbox{\hyperlink{class_user_a82cb8a4c8f92d2a31fb2e8b0cff001f6}{get\+Invoice}} (int month) const
 \item 
-std\+::vector$<$ \mbox{\hyperlink{class_invoice}{Invoice}} $\ast$ $>$ \mbox{\hyperlink{class_user_ab633b50f8af608b0058c66fa5ced8494}{get\+Invoices}} () const
-\begin{DoxyCompactList}\small\item\em Getter of all the invoices. \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$ $>$ \mbox{\hyperlink{class_user_a52c283b101a310a3be644bb9f8552f34}{get\+Reservations}} () const
 \begin{DoxyCompactList}\small\item\em Getter of all the \mbox{\hyperlink{class_reservation}{Reservation}}. \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{class_user_aafe37a3bb0e14e669e42f2fee9e0ce29}{get\+Teacher}} () const
@@ -58,8 +48,8 @@ void \mbox{\hyperlink{class_user_ac8a201055d02b313721e56c4c0f6af82}{show}} ()
 \mbox{\Hypertarget{class_user_a3ccbaec58dd37260a34dfa84496b30bd}\label{class_user_a3ccbaec58dd37260a34dfa84496b30bd}} 
 void \mbox{\hyperlink{class_user_a3ccbaec58dd37260a34dfa84496b30bd}{clean\+Vectors}} ()
 \begin{DoxyCompactList}\small\item\em cleaning all vectors inside the \mbox{\hyperlink{class_user}{User}} \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_user_ab0637e7ec103b32d040a0bc97be0f178}\label{class_user_ab0637e7ec103b32d040a0bc97be0f178}} 
-void \mbox{\hyperlink{class_user_ab0637e7ec103b32d040a0bc97be0f178}{clean\+Reservations}} ()
+\mbox{\Hypertarget{class_user_a384f5eadff91f30d760d7e762628ba75}\label{class_user_a384f5eadff91f30d760d7e762628ba75}} 
+void \mbox{\hyperlink{class_user_a384f5eadff91f30d760d7e762628ba75}{clean\+Reservations}} (int month)
 \begin{DoxyCompactList}\small\item\em cleaning the Reservations \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_user_a69d12edf2fb136601b7b9558f1c7b1e2}\label{class_user_a69d12edf2fb136601b7b9558f1c7b1e2}} 
 void {\bfseries set\+Reservations} (std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$ reservs)
@@ -195,19 +185,6 @@ Editing the name of a \mbox{\hyperlink{class_teacher}{Teacher}} assigned.
 {\em new\+Teacher} & -\/ the new name of the teacher assigned \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_user_aef1759300db1bca3c84af6af79f00365}\label{class_user_aef1759300db1bca3c84af6af79f00365}} 
-\index{User@{User}!get\+Address@{get\+Address}}
-\index{get\+Address@{get\+Address}!User@{User}}
-\subsubsection{\texorpdfstring{get\+Address()}{getAddress()}}
-{\footnotesize\ttfamily string User\+::get\+Address (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Getting the address of a person. 
-
-\begin{DoxyReturn}{Returns}
-the current address 
-\end{DoxyReturn}
 \mbox{\Hypertarget{class_user_a82cb8a4c8f92d2a31fb2e8b0cff001f6}\label{class_user_a82cb8a4c8f92d2a31fb2e8b0cff001f6}} 
 \index{User@{User}!get\+Invoice@{get\+Invoice}}
 \index{get\+Invoice@{get\+Invoice}!User@{User}}
@@ -221,19 +198,6 @@ Getter of the \mbox{\hyperlink{class_invoice}{Invoice}} of a Specific \mbox{\hyp
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 the \mbox{\hyperlink{class_invoice}{Invoice}} of said month 
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_user_ab633b50f8af608b0058c66fa5ced8494}\label{class_user_ab633b50f8af608b0058c66fa5ced8494}} 
-\index{User@{User}!get\+Invoices@{get\+Invoices}}
-\index{get\+Invoices@{get\+Invoices}!User@{User}}
-\subsubsection{\texorpdfstring{get\+Invoices()}{getInvoices()}}
-{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_invoice}{Invoice}} $\ast$ $>$ User\+::get\+Invoices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Getter of all the invoices. 
-
-\begin{DoxyReturn}{Returns}
-vector of Invoices 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_user_abd33fb93abc0209808bab9ffc6c2482c}\label{class_user_abd33fb93abc0209808bab9ffc6c2482c}} 
 \index{User@{User}!getis\+Gold@{getis\+Gold}}
@@ -418,5 +382,5 @@ if the first is smaller than the second
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Person.\+h\item 
-Person.\+cpp\end{DoxyCompactItemize}
+/home/andrefmrocha/\+Projects/\+M\+I\+E\+I\+C\+\_\+18\+\_\+19\+\_\+\+A\+E\+D\+A\+\_\+\+P\+T2/src/Person.\+h\item 
+/home/andrefmrocha/\+Projects/\+M\+I\+E\+I\+C\+\_\+18\+\_\+19\+\_\+\+A\+E\+D\+A\+\_\+\+P\+T2/src/Person.\+cpp\end{DoxyCompactItemize}
