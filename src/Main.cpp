@@ -39,21 +39,14 @@ string spaceAtEnd(string name)
 {
    string copy = name;
    int pos;
-
    int size = copy.size();
 
-   if(copy.find(' ') != string::npos)
-   {
-       pos = copy.find(' ', size - 2);
-
-       if(pos == copy.size() -1 ) {
-           copy  = copy.substr(0, copy.size() - 1);
-           return copy;
+       while (copy.find(' ', size -1 ) != string::npos) {
+               copy = copy.substr(0, copy.size() - 1);
+                size = copy.size();
        }
-       else return copy;
-   }
-   else
-       return copy;
+    return copy;
+
 }
 
 string isNumber(string flagNumbers) {

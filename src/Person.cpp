@@ -604,7 +604,7 @@ void User::show()
 
 	cout << "isGold: " << a<< endl;
 	cout <<"Assigned Teacher: "<< assignedTeacher << endl;
-	cout << "Adress: "<< address << endl;
+	cout << "Address: "<< address << endl;
     cout <<"NIF: " << NIF << endl;
 
     if(active)
