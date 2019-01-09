@@ -120,6 +120,9 @@ public:
 	 * @param gender - gender of the person
 	 * @param isGold - does the person have the Gold Card
 	 * @param assignedTeacher - the teacher assigned to the person
+	 * @param address - address of the user
+	 * @param nif - nif of the user
+	 * @param active - if the user is active or not
 	 */
 	User(std::string name,int age, std::string gender, bool isGold, std::string assignedTeacher, std::string address, int nif, bool active);
 
@@ -218,6 +221,10 @@ public:
 	 * @brief cleaning the Reservations
 	 */
 	void cleanReservations(int month);
+	/**
+	 * @param Setter of the reservationf of the user
+	 * @param reservs - the reservation themselves
+	 */
 	void setReservations(std::vector<Reservation*> reservs);
 	//~User();
 	/**
@@ -265,7 +272,16 @@ public:
 	 */
   	friend bool operator<(User r1, User r2);
 
-  bool isActive() const;
+  	/**
+  	 * @brief Getter if he a user is active or not
+  	 * @return if he is active
+  	 */
+    bool isActive() const;
+
+    /**
+     * @param Setter for the active data member of the User
+     * @param active - the new state of activity
+     */
     void changeActive(bool active);
 
 

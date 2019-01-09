@@ -51,8 +51,7 @@ void \mbox{\hyperlink{class_user_a3ccbaec58dd37260a34dfa84496b30bd}{clean\+Vecto
 \mbox{\Hypertarget{class_user_a384f5eadff91f30d760d7e762628ba75}\label{class_user_a384f5eadff91f30d760d7e762628ba75}} 
 void \mbox{\hyperlink{class_user_a384f5eadff91f30d760d7e762628ba75}{clean\+Reservations}} (int month)
 \begin{DoxyCompactList}\small\item\em cleaning the Reservations \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_user_a69d12edf2fb136601b7b9558f1c7b1e2}\label{class_user_a69d12edf2fb136601b7b9558f1c7b1e2}} 
-void {\bfseries set\+Reservations} (std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$ reservs)
+void \mbox{\hyperlink{class_user_a69d12edf2fb136601b7b9558f1c7b1e2}{set\+Reservations}} (std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$ reservs)
 \item 
 void \mbox{\hyperlink{class_user_a092c80f086767a8c204320b6517bfc58}{edit\+Is\+Gold}} (bool is\+Gold)
 \begin{DoxyCompactList}\small\item\em Editing if a \mbox{\hyperlink{class_user}{User}} is Gold. \end{DoxyCompactList}\item 
@@ -67,11 +66,9 @@ void \mbox{\hyperlink{class_user_a3161559f3e7b4c29b8a60a51f3d002ad}{edit\+Teache
 \begin{DoxyCompactList}\small\item\em Editing the name of a \mbox{\hyperlink{class_teacher}{Teacher}} assigned. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_user_a0f8f72211ae7a56e413ad70358f96a19}{edit\+Reservations}} (std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$r)
 \begin{DoxyCompactList}\small\item\em C\+Hanging the reservations of a user. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_user_a9c6060d37c200406c1561fd211181127}\label{class_user_a9c6060d37c200406c1561fd211181127}} 
-bool {\bfseries is\+Active} () const
-\item 
-\mbox{\Hypertarget{class_user_a285d0407afd20799a269b45fc9e7cfe3}\label{class_user_a285d0407afd20799a269b45fc9e7cfe3}} 
-void {\bfseries change\+Active} (bool active)
+bool \mbox{\hyperlink{class_user_a9c6060d37c200406c1561fd211181127}{is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Getter if he a user is active or not. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_a285d0407afd20799a269b45fc9e7cfe3}{change\+Active}} (bool active)
 \end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
@@ -106,10 +103,29 @@ Constructor of the class.
 \hline
 {\em assigned\+Teacher} & -\/ the teacher assigned to the person \\
 \hline
+{\em address} & -\/ address of the user \\
+\hline
+{\em nif} & -\/ nif of the user \\
+\hline
+{\em active} & -\/ if the user is active or not \\
+\hline
 \end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_user_a285d0407afd20799a269b45fc9e7cfe3}\label{class_user_a285d0407afd20799a269b45fc9e7cfe3}} 
+\index{User@{User}!change\+Active@{change\+Active}}
+\index{change\+Active@{change\+Active}!User@{User}}
+\subsubsection{\texorpdfstring{change\+Active()}{changeActive()}}
+{\footnotesize\ttfamily void User\+::change\+Active (\begin{DoxyParamCaption}\item[{bool}]{active }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Setter} & for the active data member of the \mbox{\hyperlink{class_user}{User}} \\
+\hline
+{\em active} & -\/ the new state of activity \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_user_a9d826d552e81ecc17828be848e02519b}\label{class_user_a9d826d552e81ecc17828be848e02519b}} 
 \index{User@{User}!edit\+Adress@{edit\+Adress}}
 \index{edit\+Adress@{edit\+Adress}!User@{User}}
@@ -274,6 +290,19 @@ Getter of the assigned teacher.
 \begin{DoxyReturn}{Returns}
 the name of the teacher 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_user_a9c6060d37c200406c1561fd211181127}\label{class_user_a9c6060d37c200406c1561fd211181127}} 
+\index{User@{User}!is\+Active@{is\+Active}}
+\index{is\+Active@{is\+Active}!User@{User}}
+\subsubsection{\texorpdfstring{is\+Active()}{isActive()}}
+{\footnotesize\ttfamily bool User\+::is\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter if he a user is active or not. 
+
+\begin{DoxyReturn}{Returns}
+if he is active 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_user_abc12a9ca668bd860a3d6d2ae4791997d}\label{class_user_abc12a9ca668bd860a3d6d2ae4791997d}} 
 \index{User@{User}!load\+Class@{load\+Class}}
 \index{load\+Class@{load\+Class}!User@{User}}
@@ -332,6 +361,19 @@ Setter of the reservation.
 
 \begin{DoxyParams}{Parameters}
 {\em reservation} & -\/ the reservation to save \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_a69d12edf2fb136601b7b9558f1c7b1e2}\label{class_user_a69d12edf2fb136601b7b9558f1c7b1e2}} 
+\index{User@{User}!set\+Reservations@{set\+Reservations}}
+\index{set\+Reservations@{set\+Reservations}!User@{User}}
+\subsubsection{\texorpdfstring{set\+Reservations()}{setReservations()}}
+{\footnotesize\ttfamily void User\+::set\+Reservations (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_reservation}{Reservation}} $\ast$$>$}]{reservs }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em Setter} & of the reservationf of the user \\
+\hline
+{\em reservs} & -\/ the reservation themselves \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_user_aac5ff0f6899f3ce56d1b2d12ed557c79}\label{class_user_aac5ff0f6899f3ce56d1b2d12ed557c79}} 

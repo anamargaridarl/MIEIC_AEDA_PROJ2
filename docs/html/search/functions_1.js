@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['changeactive',['changeActive',['../class_user.html#a285d0407afd20799a269b45fc9e7cfe3',1,'User']]],
   ['changeaddress',['changeAddress',['../class_company.html#aa5eac670a965d063cd700acc09effec7',1,'Company']]],
   ['changeage',['changeAge',['../class_company.html#ab06a4393f8658aecd365c9425ce85cc3',1,'Company']]],
   ['changegender',['changeGender',['../class_company.html#acded77254726ba932810fa4b67136d2e',1,'Company']]],

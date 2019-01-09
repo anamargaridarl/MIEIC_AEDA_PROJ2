@@ -12,6 +12,7 @@ var searchData=
   ['setrepairdate',['setRepairDate',['../class_repair.html#a7c75483403ed47f71668740115a38f71',1,'Repair']]],
   ['setreport',['setReport',['../class_user.html#a0cdc359989bc67c3a135737cf1232a49',1,'User']]],
   ['setreservation',['setReservation',['../class_user.html#ab0e9dba3828977748ad6316eb346a854',1,'User']]],
+  ['setreservations',['setReservations',['../class_user.html#a69d12edf2fb136601b7b9558f1c7b1e2',1,'User']]],
   ['setschedule',['setSchedule',['../class_day.html#ad3c8ca8c171a994c59788965166ae36b',1,'Day::setSchedule(double startingHours, int duration)'],['../class_day.html#aa46e0811bd26355979c6cf9f4e4b9df7',1,'Day::setSchedule(std::vector&lt; bool &gt; schedule)']]],
   ['setsh',['setSH',['../class_day.html#a6fc6dfeef1c92b9a5395648c4d0c8a70',1,'Day']]],
   ['setstatus',['setStatus',['../class_teacher.html#a024a7daf22ee3ac310b69ba72fda5bb3',1,'Teacher']]],

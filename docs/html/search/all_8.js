@@ -10,5 +10,6 @@ var searchData=
   ['invoice',['Invoice',['../class_invoice.html',1,'Invoice'],['../class_invoice.html#a25d6ad261479340ac3775e21f03eef90',1,'Invoice::Invoice()'],['../class_invoice.html#a6db408ae47f1a40911c51b769b428034',1,'Invoice::Invoice(std::string name, std::string teacherName, std::vector&lt; Reservation *&gt; reservs, bool isGold)']]],
   ['invoicealreadyexists',['InvoiceAlreadyExists',['../class_invoice_already_exists.html',1,'']]],
   ['invoicenotavailable',['InvoiceNotAvailable',['../class_invoice_not_available.html',1,'']]],
+  ['isactive',['isActive',['../class_user.html#a9c6060d37c200406c1561fd211181127',1,'User']]],
   ['isoccupied',['isOccupied',['../class_court.html#ae4536a06bcc2aec8a144d134ae64f2e6',1,'Court']]]
 ];

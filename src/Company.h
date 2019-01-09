@@ -161,6 +161,9 @@ public:
 	 * @param age - the age of the user
 	 * @param isGold - if he wants to have the Gold card or not
 	 * @param gender - the gender of the User
+	 * @param address - address of the user
+	 * @param nif - nif of the user
+	 * @param active - if the user is active or not
 	 * @return if the user was succesfully created
 	 */
 	bool registerUser(std::string name, int age,bool isGold,std::string gender,std::string adress, int nif, bool active);
