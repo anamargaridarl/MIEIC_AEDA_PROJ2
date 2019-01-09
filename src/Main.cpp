@@ -40,10 +40,13 @@ string spaceAtEnd(string name)
    string copy = name;
    int pos;
 
+   int size = copy.size();
+
    if(copy.find(' ') != string::npos)
    {
-       pos = copy.find(' ');
-       if(pos == copy.size() - 1 ) {
+       pos = copy.find(' ', size - 2);
+
+       if(pos == copy.size() -1 ) {
            copy  = copy.substr(0, copy.size() - 1);
            return copy;
        }
@@ -224,20 +227,39 @@ bool editPerson(Company &C)
             case 1: {
                 cout << "New Name" << endl;
                 getline(cin, newGN);
-                C.changeName(spaceAtEnd(name), spaceAtEnd(newGN), 0);
+                try{
+                    C.changeName(spaceAtEnd(name), spaceAtEnd(newGN), 0);
+                }
+                catch(NoTeacherRegistered &u)
+                {
+                    cout << u.what() << endl;
+                }
                 break;
             }
             case 2: {
                 cout << "New Age" << endl;
                 cin >> flagNumbers;
                 age = stoi(isNumber(flagNumbers));
-                C.changeAge(spaceAtEnd(name), age, 0);
+                try{
+                    C.changeAge(spaceAtEnd(name), age, 0);
+                }
+                catch(NoTeacherRegistered &u)
+                {
+                    cout << u.what() << endl;
+                }
+
                 break;
             }
             case 3: {
                 cout << "New Gender" << endl;
                 cin >> newGN;
-                C.changeGender(spaceAtEnd(name), spaceAtEnd(newGN), 0);
+                try{
+                    C.changeGender(spaceAtEnd(name), spaceAtEnd(newGN), 0);
+                }
+                catch(NoTeacherRegistered &u)
+                {
+                    cout << u.what() << endl;
+                }
                 break;
             }
         }
