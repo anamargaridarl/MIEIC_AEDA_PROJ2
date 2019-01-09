@@ -1144,25 +1144,27 @@ bool Company::removeActiveTeacher(std::string teacher) {
 		rem_teacher.cleanNStudents(); //clear nº students assigned
 		teachers.insert(rem_teacher); // keep in the record
 
-		for(auto i: users)							//reassign another teacher to each student affected
+		for(set<User>::iterator it = users.begin(); it != users.end(); it++)							//reassign another teacher to each student affected
 		{												//distribuiting accordingly across the rest of the teachers
 
-			if(i.getTeacher() == rem_teacher.getName()) {
+			if(it->getTeacher() == rem_teacher.getName()) {
 				for (auto j: teachers) {
 					if (new_teacher.getnStudents() >= j.getnStudents() && j.getStatus())
 						new_teacher = j;
 				}
 				teachers.erase(new_teacher);
 				new_teacher.addStudent();// add a student to the substitute teacher
-				std::vector<Reservation *> reservs = i.getReservations();
-				rescheduleLessons(reservs, new_teacher,i.getName()); // reschedule the possible lessons
+				std::vector<Reservation *> reservs = it->getReservations();
+				rescheduleLessons(reservs, new_teacher,it->getName()); // reschedule the possible lessons
 				teachers.insert(new_teacher);
 
-				User u = i;
-				users.erase(i);
+
+				User u = *it;
+				users.erase(it);
 				u.editTeacher(new_teacher.getName());//ana side
 				u.editReservations(reservs); //ana side
 				users.insert(u);
+				it--;
 			}
 		}
 		return true;
