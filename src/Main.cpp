@@ -955,9 +955,10 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
             case 6: { // Does the user want to save the information?
                 cout << "Save and exit? " << endl;
                 cout << "1.Yes 0.No" << endl;
+                cout << "2.Go back" << endl;
                 cin >> flagCase;
 
-                while (flagCase != "1" && flagCase != "0") {
+                while (flagCase != "1" && flagCase != "0"  && flagCase != "2") {
                     cin.clear();
                     cin.ignore(1000, '\n');
                     cout << "Error...Try again: " << endl;
@@ -965,6 +966,9 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                 }
 
                 flagAux = stoi(flagCase);
+
+                if(flagAux == 2)
+                    break;
 
                 if (flagAux == 0)
                     return 0;
