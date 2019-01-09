@@ -836,14 +836,14 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         cout << "ID" << endl;
                         cin >> flagNumbers;
 
-                        flagAux = stoi(isNumber(flagNumbers));
+                        id = stoi(isNumber(flagNumbers));
 
                         cin.ignore();
                         cout << "New Name" << endl;
                         getline(cin, name);
 
                         try{
-                            C.changeRepairerName(id,name);
+                            C.changeRepairerName(id,spaceAtEnd(name));
                         }
                         catch(NoSupporterID &u)
                         {
@@ -873,7 +873,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                     }
                     case 5: {
                         try {
-                            C.unscheduleRepair(id, m, d);
+                            C.unscheduleRepair(id, d, m);
                         }
                         catch (NoRepair &u) {
                             cout << u.what() << endl;
@@ -895,7 +895,7 @@ int DevelopCompany(Company &C, unsigned int cardValue) {
                         newm = stoi(isNumber(flagNumbers));
 
 
-                        C.rescheduleRepair(id, m, d, newd, newm);
+                        C.rescheduleRepair(id, d, m, newd, newm);
 
                         break;
                     }
