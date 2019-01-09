@@ -673,8 +673,12 @@ bool operator<(User u1, User u2)
 	}
 	else if( !(u1.isActive()) && u2.isActive() )
 		return false;
-	else
+	else if( u1.isActive() && !(u2.isActive()))
 		return true;
+	else if(!(u1.isActive()) && !(u2.isActive()))
+    {
+        return u1.getName() < u2.getName();
+    }
 }
 
 
