@@ -1293,8 +1293,8 @@ bool Company::deleteReservation(std::string username, int month, int day, double
             lessons.erase(itLesson);				//remove from users' reservation and teachers' lessons
             reservs.erase(itRes);
 
-            delete *itLesson;
-            delete *itRes;
+            //delete *itLesson;
+            //delete *itRes;
 
             u.setReservations(reservs);
             temp.setLessons(lessons);
